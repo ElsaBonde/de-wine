@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 /* Beskriv din hemsida för sökmotorerna */
 export const metadata: Metadata = {
-  title: "Webbshop",
+  title: "Wine O`clock",
   description: "Dina favoritprodukter online till en bra pris...",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: LayoutProps) {
       <body className={inter.className}>
         <header>
           <Link href="/">
-            <h1>NextJS webbshop</h1>
+            <h1>Wine O`clock</h1>
           </Link>
         </header>
         {children}
