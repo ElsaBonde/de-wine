@@ -1,10 +1,49 @@
-import { Button } from "@mui/material";
+import { mockedProducts } from "@/data";
+import { AddShoppingCart, KeyboardDoubleArrowRight } from "@mui/icons-material";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 
 export default function StartPage() {
   return (
     <main>
-      <Button color="secondary">Something</Button>
-      <p>Det här är startsidan. Här ska alla produkterna visas.</p>
+      <Card sx={{ maxWidth: 345, margin: "10px" }}>
+        <CardActionArea>
+          {mockedProducts.map((product) => (
+            <div key={product.id}>
+              <CardMedia
+                component="img"
+                height="140"
+                image={product.image}
+                alt={product.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {product.title}
+                </Typography>
+                <Typography>{product.price}</Typography>
+                <AddShoppingCart />
+                <Typography variant="body2" color="text.secondary">
+                  {product.description}
+                </Typography>
+                <KeyboardDoubleArrowRight />
+              </CardContent>
+            </div>
+          ))}
+          ;
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+        </CardActions>
+      </Card>
     </main>
   );
 }
