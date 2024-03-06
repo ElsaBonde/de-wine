@@ -1,4 +1,4 @@
-import { mockedProducts } from "@/data";
+import { products } from "@/data";
 import { AddShoppingCart, KeyboardDoubleArrowRight } from "@mui/icons-material";
 import {
   Button,
@@ -19,7 +19,7 @@ export default function StartPage() {
         gap: "15px",
       }}
     >
-      {mockedProducts.map((product) => (
+      {products.map((product) => (
         <Card key={product.id} data-cy="product">
           <CardMedia
             component="img"

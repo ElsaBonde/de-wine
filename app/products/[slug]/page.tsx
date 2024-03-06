@@ -21,10 +21,10 @@ export default function ProductPage({ params }: PageProps) {
         width={200}
         height={200}
       />
-      <h2 className="text-5xl mt-4 mb-4">{productData.title}</h2>
-      <p className="text-2xl mt-4 mb-2">{productData.price}</p>
+      <h2 className="text-5xl mt-4 mb-4" data-cy="product-title">{productData.title}</h2>
+      <p className="text-2xl mt-4 mb-2" data-cy="product-price">{productData.price}</p>
       <hr className="border-stone-300" />
-      <p className="py-2">{productData.description}</p>
+      <p className="py-2" data-cy="product-description">{productData.description}</p>
     </main>
   );
 }
