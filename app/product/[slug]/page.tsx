@@ -1,11 +1,12 @@
 import { getProductById } from "@/data";
-import Image from "next/image";
+import { AddShoppingCart } from "@mui/icons-material";
+import { Button } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
 export default function ProductPage({ params }: PageProps) {
-  const productData = getProductById(params.slug);
-  if (!productData) {
+  const product = getProductById(params.slug);
+  if (!product) {
     return (
       <main className="p-4">
         <h1>Product does not exist.</h1>
@@ -15,16 +16,21 @@ export default function ProductPage({ params }: PageProps) {
 
   return (
     <main className="p-4">
-      <Image
-        src={productData.image}
-        alt={productData.title}
-        width={200}
-        height={200}
-      />
-      <h2 className="text-5xl mt-4 mb-4" data-cy="product-title">{productData.title}</h2>
-      <p className="text-2xl mt-4 mb-2" data-cy="product-price">{productData.price}</p>
+      <img src={product.image} alt={product.title} width={200} height={200} />{" "}
+      {/* david behöver fixa, måste va img och inte image för att funka i cypress */}
+      <h2 className="text-5xl mt-4 mb-4" data-cy="product-title">
+        {product.title}
+      </h2>
+      <p className="text-2xl mt-4 mb-2" data-cy="product-price">
+        {product.price}
+      </p>
       <hr className="border-stone-300" />
-      <p className="py-2" data-cy="product-description">{productData.description}</p>
+      <p className="py-2" data-cy="product-description">
+        {product.description}
+      </p>
+      <Button color="primary">
+        <AddShoppingCart data-cy="product-buy-button" />
+      </Button>
     </main>
   );
 }
