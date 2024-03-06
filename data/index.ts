@@ -70,10 +70,10 @@ export interface CartItem extends Product {
     }
     return product;
   }
-  // Funktion för att spara produkter till local storage
+  //spara produkter till local storage
 export function saveProductsToLocalStorage(products: Product[]) {
   try {
-    // Konvertera produkterna till en JSON-sträng och spara den i local storage under en viss nyckel
+    //gör om produkterna till en sträng och spara i local storage
     localStorage.setItem('products', JSON.stringify(products));
     console.log('Products saved to local storage successfully!');
   } catch (error) {
@@ -81,8 +81,6 @@ export function saveProductsToLocalStorage(products: Product[]) {
   }
 }
  
-
-  
   function getImageSrc(image: string) {
     return image; 
   }

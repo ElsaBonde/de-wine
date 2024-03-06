@@ -1,6 +1,7 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import "@fontsource/inspiration";
 import { AdminPanelSettings, ShoppingCart } from "@mui/icons-material";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -22,8 +23,10 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header
-          style={{
+      <AppRouterCacheProvider>
+        <Box
+          component="header"
+          sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -49,15 +52,16 @@ export default function RootLayout({ children }: LayoutProps) {
             <Image src={Glasses} alt="wineglasses" width={70} height={70} />
           </Link>
           <ShoppingCart />
-        </header>
+        </Box>
         {children}
 
-        <footer>
+        <Box component="footer" sx={{display: 'flex'}}>
           <p>
             <AdminPanelSettings /> Admin
           </p>
           <p>© 2024</p>
-        </footer>
+        </Box>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
