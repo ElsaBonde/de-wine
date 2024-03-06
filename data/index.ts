@@ -49,7 +49,7 @@ export const products: Product[] = [
   },
   {
     id: "5",
-    image: "wine3.jpeg",
+    image: "/wine3.jpeg",
     title: "Sunset Serenade",
     description:
       "Unwind in style with our Sunset Serenade collection. Delight in a symphony of flavors as you sip on a selection of velvety reds and crisp whites, perfectly paired to complement the tranquil hues of twilight. Let each bottle transport you to a blissful moment of relaxation and indulgence.",

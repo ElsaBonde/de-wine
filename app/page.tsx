@@ -20,6 +20,7 @@ export default function StartPage() {
       }}
     >
       {products.map((product) => (
+        <Link key={product.id} href={`/product/${product.id}`}>
         <Card key={product.id} data-cy="product">
           <CardMedia
             component="img"
@@ -53,7 +54,7 @@ export default function StartPage() {
               </div>
               <div>
                 <Button color="primary">
-                  <AddShoppingCart />
+                  <AddShoppingCart data-cy="product-buy-button" />
                 </Button>
               </div>
             </div>
@@ -71,15 +72,16 @@ export default function StartPage() {
                 {product.description}
               </Typography>
               <CardActions>
-                <Link key={product.id} href={`/products/${product.id}`}>
+              
                   <Button size="small">
                     <KeyboardDoubleArrowRight />
                   </Button>
-                </Link>
+               
               </CardActions>
             </div>
           </CardContent>
         </Card>
+        </Link>
       ))}
     </main>
   );
