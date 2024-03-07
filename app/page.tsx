@@ -17,12 +17,12 @@ import AddButton from "./ui/AddButton";
 export default function StartPage() {
   return (
     /* får man ändra från main till box enligt cypress - fråga david! */
-    <main>
+    <main style={{background: "#F9F1EC"}}>
       <Grid container spacing={4}>
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
             <Link href={`/product/${product.id}`}>
-              <CardActionArea>
+              <CardActionArea sx={{background: "white"}}>
                 <CardMedia
                   component="img"
                   image={product.image}

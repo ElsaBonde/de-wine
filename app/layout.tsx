@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{ margin: "0" }}>
         <AddContext>
           <AppRouterCacheProvider>
             <Box
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps) {
                 justifyContent: "space-between",
                 alignItems: "center",
                 background: "#f1ddcf",
-                padding: "0px, 20px",
+                padding: "20px 20px",
               }}
             >
               <Link
@@ -47,23 +47,27 @@ export default function RootLayout({ children }: LayoutProps) {
               >
                 <Typography
                   sx={{ color: red[900] }}
-                  variant="h2"
+                  variant="h3"
                   fontFamily="Inspiration"
+                  padding="10px"
                 >
                   Wine O&apos;Clock
                 </Typography>
-                <Image src={Glasses} alt="wineglasses" width={70} height={70} />
+                <Image src={Glasses} alt="wineglasses" width={50} height={50} />
               </Link>
               <Box>
-              <CountBadge />
-              <Link href="/checkout">
-              <ShoppingCart data-cy="cart-link" />
-              </Link>
+                <CountBadge />
+                <Link href="/checkout">
+                  <ShoppingCart data-cy="cart-link" />
+                </Link>
               </Box>
             </Box>
             {children}
 
-            <Box component="footer" sx={{ display: "flex" }}>
+            <Box
+              component="footer"
+              sx={{ display: "flex", background: "#f1ddcf" }}
+            >
               <p>
                 <AdminPanelSettings /> Admin
               </p>
