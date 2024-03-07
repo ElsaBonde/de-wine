@@ -20,15 +20,15 @@ export const products: Product[] = [
     image: "/redWine.jpeg",
     title: "Luxury Box",
     description:
-      "Indulge in the exquisite flavors and aromas of our curated collection of fine wines. From the rolling hills of Bordeaux to the sun-drenched valleys of Napa, each bottle tells a story of craftsmanship and passion.",
+      "Marvel at our Luxury Box, a tribute to the elegance of red wine. Each bottle selection, carefully chosen from vineyards around the world, offers an exclusive collection of premium red wines. Experience a world of sophisticated indulgence and let your wine journey become unforgettable.",
     price: 19999,
   },
   {
     id: "2",
     image: "/redWine2.jpeg",
-    title: "Sommelier's Selection",
+    title: "Sommelier's Pick",
     description:
-      "Delve into a world of sophisticated flavors with our Sommelier's Selection. Handpicked from renowned vineyards worldwide, this curated assortment features an array of premium reds, whites, and rosés, meticulously chosen to elevate your wine journey to new heights.",
+      "Delve into a world of sophisticated flavors with our Sommelier's Pick. Handpicked from renowned vineyards worldwide, this curated assortment features an array of premium reds, whites, and rosés, meticulously chosen to elevate your wine journey to new heights.",
     price: 1599,
   },
   {
@@ -36,13 +36,13 @@ export const products: Product[] = [
     image: "/wine.jpeg",
     title: "Taste of Tuscany",
     description:
-      "Experience the essence of Italy with our Taste of Tuscany collection. Indulge in a selection of robust reds and crisp whites, sourced from the sun-kissed vineyards of the Tuscan countryside. Each bottle encapsulates the rich heritage and unparalleled craftsmanship of this renowned winemaking region.",
+      "Experience Italy's essence with our Tuscan Revelry collection. Savor robust reds and crisp whites from Tuscany's sun-kissed vineyards. Each bottle encapsulates the region's rich heritage and craftsmanship, promising an unforgettable journey. Let the journey begin.",
     price: 2000,
   },
   {
     id: "4",
     image: "/wine2.jpeg",
-    title: "Globetrotter's Discovery",
+    title: "Globe Discovery",
     description:
       "Embark on a journey around the world from the comfort of your glass with our Globetrotter's Discovery. Featuring a diverse ensemble of wines from France, Spain, Argentina, and beyond, this collection promises to awaken your palate and ignite your wanderlust with every sip.",
     price: 1799,
@@ -60,7 +60,7 @@ export const products: Product[] = [
     image: "/wine4.jpeg",
     title: "The Wallet-friendly",
     description:
-      "Introducing our selection of wallet-friendly wines that don't compromise on quality. Whether you're hosting a casual get-together or unwinding after a long day, these bottles offer great value without breaking the bank.",
+      "Introducing our budget-friendly wine collection, where quality meets affordability. Ideal for casual gatherings or relaxing moments, these bottles offer exceptional value without compromising on taste. Discover the perfect companion for any occasion without overspending.",
     price: 700,
   },
 ];

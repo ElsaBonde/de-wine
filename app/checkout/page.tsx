@@ -1,7 +1,17 @@
 import { Box, Button, Card, CardActions, Typography } from "@mui/material";
+import { Product, CartItem } from "@/data";
 /* import { decrementCount } from './AddContext';  */
 
 export default function CartPage() {
+  const loadCartItemsFromLocalStorage = () => {
+    const savedCartItems = localStorage.getItem("cart-items");
+    if (savedCartItems) {
+      return JSON.parse(savedCartItems);
+    }
+    return [];
+  };
+
+  const cartItems = loadCartItemsFromLocalStorage();
   return (
     <main>
       <Typography variant="h2">
@@ -9,20 +19,19 @@ export default function CartPage() {
         varor!
       </Typography>
       <Box>
-        {cartItem.map(item)}
-        <Card data-cy="cart-item">
-          <img src="{item.image}" alt="{item.title}" />
-          <Typography>{item.title}</Typography>
-          <Typography>
-            ({item.price} * {item.quantity})
-          </Typography>
-          <CardActions>
-            {/* kolla om det finns + och - iconer att använda som knappar? */}
-            {/* <button onClick={decrementCount} disabled={count <= 1} data-cy="decrease-quantity-button">-</button>  */}
-            <Typography data-cy="quantity">{item.quantity}</Typography>
-            <Typography data-cy="increase-quantity-button">+</Typography>
-          </CardActions>
-        </Card>
+        {cartItems.map((item: CartItem, index: number) => (
+          <Card key={index} data-cy="cart-item">
+            <img src={item.image} alt={item.title} />
+            <Typography>{item.title}</Typography>
+            <Typography>
+              ({item.price} * {item.quantity})
+            </Typography>
+            <CardActions>
+              {/* Add your buttons here */}
+              <Typography data-cy="quantity">{item.quantity}</Typography>
+            </CardActions>
+          </Card>
+        ))}
       </Box>
       <Box>
         <Typography data-cy="total-price">Total price: {}</Typography>
