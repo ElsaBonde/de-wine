@@ -2,7 +2,6 @@ import "@fontsource/inspiration";
 import { AdminPanelSettings, ShoppingCart } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { red } from "@mui/material/colors";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
@@ -10,7 +9,7 @@ import Link from "next/link";
 import { LayoutProps } from "./types";
 import AddContext from "./ui/AddContext";
 import CountBadge from "./ui/CountBadge";
-import Glasses from "/public/glasses.png";
+import Logotype from "/public/logotype.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,15 +44,7 @@ export default function RootLayout({ children }: LayoutProps) {
                   alignItems: "center",
                 }}
               >
-                <Typography
-                  sx={{ color: red[900] }}
-                  variant="h3"
-                  fontFamily="Inspiration"
-                  padding="10px"
-                >
-                  Wine O&apos;Clock
-                </Typography>
-                <Image src={Glasses} alt="wineglasses" width={50} height={50} />
+                <Image src={Logotype} alt="logotype" width={200} height={60} />
               </Link>
               <Box>
                 <CountBadge />
@@ -66,12 +57,12 @@ export default function RootLayout({ children }: LayoutProps) {
 
             <Box
               component="footer"
-              sx={{ display: "flex", background: "#f1ddcf" }}
+              sx={{ display: "flex", background: "#f1ddcf", marginTop: "auto", padding: "15px 10px", alignItems: "center", justifyContent: "space-between"}}
             >
-              <p>
+              <Typography>
                 <AdminPanelSettings /> Admin
-              </p>
-              <p>© 2024</p>
+              </Typography>
+              <Typography >© 2024</Typography>
             </Box>
           </AppRouterCacheProvider>
         </AddContext>

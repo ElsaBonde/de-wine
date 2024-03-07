@@ -16,7 +16,7 @@ interface ContextValue {
   setCount: Dispatch<SetStateAction<number>>;
 }
 
-//Motorväg - ett alternativ för props?? Ursäkta mig?
+//Motorväg - ett alternativ för props?? 
 const CountContext = createContext<ContextValue>({} as ContextValue);
 
 //Påfarten tydligen, en väg till det som skickas ut över kontexten??
@@ -32,22 +32,22 @@ export default function AddContext(props: PropsWithChildren) {
   }, []);
 
   // ökar antalet items av en viss sort i kundkorgen
-  const incrementCount = () => {
+ /*  const incrementCount = () => {
     setCount((prevCount) => prevCount + 1);
     localStorage.setItem("cart-items-count-badge", (count + 1).toString());
-  };
+  }; */
 
   //minskar antalet items av en viss sort i kundkorgen
-  const decrementCount = () => {
+ /*  const decrementCount = () => {
     if (count > 1) {
       setCount((prevCount) => prevCount - 1);
       localStorage.setItem("cart-items-count-badge", (count - 1).toString());
     }
-  };
+  }; */
 
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (
-    /* bilarna, vad fuck är de här? value det som skickas över kontexten? */
+    /* bilarna, vad är de här? value det som skickas över kontexten? */
     <CountContext.Provider value={{ count, setCount }}>
       {props.children}
     </CountContext.Provider>
