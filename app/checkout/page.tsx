@@ -3,15 +3,17 @@ import { Product, CartItem } from "@/data";
 /* import { decrementCount } from './AddContext';  */
 
 export default function CartPage() {
-  const loadCartItemsFromLocalStorage = () => {
+  /* const loadCartItemsFromLocalStorage = () => {
     const savedCartItems = localStorage.getItem("cart-items");
     if (savedCartItems) {
       return JSON.parse(savedCartItems);
     }
-    return [];
-  };
+    return []; */
+/*   }; */
 
-  const cartItems = loadCartItemsFromLocalStorage();
+  /* const cartItems = loadCartItemsFromLocalStorage(); 
+  const handleIncrement = () => {
+    incrementCount(); */
   return (
     <main>
       <Typography variant="h2">
@@ -27,7 +29,7 @@ export default function CartPage() {
               ({item.price} * {item.quantity})
             </Typography>
             <CardActions>
-              {/* Add your buttons here */}
+              {/* Add your buttons here <Button onClick={handleIncrement}>Increase</Button>*/}
               <Typography data-cy="quantity">{item.quantity}</Typography>
             </CardActions>
           </Card>
