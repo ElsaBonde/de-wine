@@ -72,16 +72,7 @@ export function getProductById(slug: string) {
   }
   return product;
 }
-//spara produkter till local storage
-export function saveProductsToLocalStorage(products: Product[]) {
-  try {
-    //gör om produkterna till en sträng och spara i local storage
-    localStorage.setItem("products", JSON.stringify(products));
-    console.log("Products saved to local storage successfully!");
-  } catch (error) {
-    console.error("Error saving products to local storage:", error);
-  }
-}
+
 
 function getImageSrc(image: string) {
   return image;
