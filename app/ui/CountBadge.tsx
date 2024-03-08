@@ -1,18 +1,20 @@
 "use client";
 
 import { Typography } from "@mui/material";
-import { useCount } from "./AddContext";
+import { useCart } from "./CartContext";
 
 //skriver ut antalet items i kundkorgen
 export default function CountBadge() {
-  const { count } = useCount();
+  const { cart } = useCart();
+  if (cart.length === 0) return null;
+
   return (
     <Typography
       component="span"
       color="text.primary"
       data-cy="cart-items-count-badge"
     >
-      {count}
+      {cart.length}
     </Typography>
   );
 }

@@ -1,5 +1,4 @@
 import { products } from "@/data";
-import { KeyboardDoubleArrowRight } from "@mui/icons-material";
 import {
   Box,
   CardActionArea,
@@ -10,18 +9,19 @@ import {
   Link,
   Typography,
 } from "@mui/material";
+import NextLink from "next/link";
 
 import AddButton from "./ui/AddButton";
 
 export default function StartPage() {
   return (
     /* får man ändra från main till box enligt cypress - fråga david! */
-    <main style={{ background: "#F9F1EC", padding: "10px 20px"}}>
+    <main style={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
-            <Link href={`/product/${product.id}`}>
-              <CardActionArea sx={{ background: "white", borderRadius: "8px"}}>
+            <Link component={NextLink} href={`/product/${product.id}`}>
+              <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
                 <CardMedia
                   component="img"
                   image={product.image}
@@ -56,17 +56,16 @@ export default function StartPage() {
                       </Typography>
                     </Box>
                     <CardActions>
-                      <AddButton add={1} />
+                      <AddButton product={product} />
                     </CardActions>
                   </Box>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      data-cy="product-description"
-                    >
-                      {product.description}
-                    </Typography>
-                  
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    data-cy="product-description"
+                  >
+                    {product.description}
+                  </Typography>
                 </CardContent>
               </CardActionArea>
             </Link>

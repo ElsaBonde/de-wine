@@ -1,31 +1,26 @@
 "use client";
 
+import { Product } from "@/data";
 import { AddShoppingCart } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton, Snackbar } from "@mui/material";
 import React, { useState } from "react";
-import { useCount } from "./AddContext";
+import { useCart } from "./CartContext";
 
 interface Props {
-  add: number;
+  product: Product;
 }
 
 export default function AddButton(props: Props) {
   //skapar en variabel som vi kan använda för att uppdatera antalet items i kundkorgen samt en variabel för att visa en snackbar
-  const { count, setCount } = useCount();
+  const { addToCart } = useCart();
   const [openSnackBar, setOpenSnackBar] = useState(false);
-  
 
   //ökar antalet items i kundkorgen, lägger till dem i LS och visar snackbaren
-  const handleClick = () => {
-    const newCount = count + props.add;
-    const currentCartItems = JSON.parse(localStorage.getItem("cart-items") || "[]");
-    currentCartItems.push(props.add);
-  
-    localStorage.setItem("cart-items-count-badge", newCount.toString());
-    localStorage.setItem("cart-items", JSON.stringify(currentCartItems));
-    
-    setCount((prevCount) => prevCount + props.add);
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    addToCart(props.product);
     setOpenSnackBar(true);
   };
 

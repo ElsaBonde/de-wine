@@ -3,17 +3,7 @@ import { Product, CartItem } from "@/data";
 /* import { decrementCount } from './AddContext';  */
 
 export default function CartPage() {
-  /* const loadCartItemsFromLocalStorage = () => {
-    const savedCartItems = localStorage.getItem("cart-items");
-    if (savedCartItems) {
-      return JSON.parse(savedCartItems);
-    }
-    return []; */
-/*   }; */
-
-  /* const cartItems = loadCartItemsFromLocalStorage(); 
-  const handleIncrement = () => {
-    incrementCount(); */
+  
   return (
     <main>
       <Typography variant="h2">

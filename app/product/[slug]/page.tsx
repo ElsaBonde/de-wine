@@ -26,7 +26,7 @@ export default function ProductPage({ params }: PageProps) {
       <Typography data-cy="product-description">
         {product.description}
       </Typography>
-      <AddButton add={1} />
+      <AddButton product={product} />
     </main>
   );
 }

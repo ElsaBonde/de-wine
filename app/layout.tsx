@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { LayoutProps } from "./types";
-import AddContext from "./ui/AddContext";
+import CartContext from "./ui/CartContext";
 import CountBadge from "./ui/CountBadge";
 import Logotype from "/public/logotype.png";
 
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className} style={{ margin: "0" }}>
-        <AddContext>
+        <CartContext>
           <AppRouterCacheProvider>
             <Box
               component="header"
@@ -53,19 +53,27 @@ export default function RootLayout({ children }: LayoutProps) {
                 </Link>
               </Box>
             </Box>
+
             {children}
 
             <Box
               component="footer"
-              sx={{ display: "flex", background: "#f1ddcf", marginTop: "auto", padding: "15px 10px", alignItems: "center", justifyContent: "space-between"}}
+              sx={{
+                display: "flex",
+                background: "#f1ddcf",
+                marginTop: "auto",
+                padding: "15px 10px",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
               <Typography>
                 <AdminPanelSettings /> Admin
               </Typography>
-              <Typography >© 2024</Typography>
+              <Typography>© 2024</Typography>
             </Box>
           </AppRouterCacheProvider>
-        </AddContext>
+        </CartContext>
       </body>
     </html>
   );
