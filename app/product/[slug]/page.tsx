@@ -1,7 +1,7 @@
 import AddButton from "@/app/ui/AddButton";
 import { getProductById } from "@/data";
 import { Typography } from "@mui/material";
-
+import Image from "next/image";
 type PageProps = { params: { slug: string } };
 
 export default function ProductPage({ params }: PageProps) {
@@ -15,9 +15,9 @@ export default function ProductPage({ params }: PageProps) {
   }
 
   return (
-    <main style={{padding: "10px 20px"}}>
-      <img src={product.image} alt={product.title} width={200} height={200} />
-      {/* david behöver fixa, måste va img och inte image för att funka i cypress */}
+    <main style={{ padding: "10px 20px" }}>
+      <Image src={product.image} alt={product.title} width={100} height={100} /> {/* fråga david hur fan man låter den ge oss %, auto + MQ */}
+
       <Typography variant="h5" data-cy="product-title">
         {product.title}
       </Typography>
