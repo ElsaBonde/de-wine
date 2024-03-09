@@ -20,41 +20,66 @@ interface ContextValue {
 //Motorväg - ett alternativ för props??
 const CountContext = createContext<ContextValue>({} as ContextValue);
 
-//hämta värdet från localStorage
-const getCartFromLocalStorage = () => {
-  if (typeof window !== "undefined") {
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  } else {
-    //cypress-tester tom array som standardvärde
-    return [];
-  }
-};
+export const initialValue: CartItem[] = [];
 
 //Påfarten tydligen, en väg till det som skickas ut över kontexten??
 export default function CartContext(props: PropsWithChildren) {
-  const [cart, setCart] = useState<CartItem[]>(getCartFromLocalStorage);
+  const [cart, setCart] = useState<CartItem[]>(initialValue);
 
-  //alla ls funktioner i en useEffect
+  //alla ls funktioner i useEffect
   // SYNKA TILLSTÅNDET MED LOCALSTORAGE
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    const cartFromLS = localStorage.getItem("cart");
+    if (cartFromLS) {
+      setCart(JSON.parse(cartFromLS));
+    }
+  }, []);
+
+  const saveCartInLocalStorage = (updatedCart: CartItem[]) => {
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  //ta bort från kundkorgen
+  /* const removeFromCart = (productID: string) => { 
+    const updatedCart = cart.filter((item) => item.id !== productID);
+    setCart(updatedCart);
+    saveCartInLocalStorage(updatedCart);
+  }; */
+
+  //ändra antal av produkt i kundkorgen
+ /*  const changeQuantity = (productID: string, newQuantity: number) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productID) {
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+    saveCartInLocalStorage(updatedCart);
+  }; */
 
   // LÄGG ALL LOGIK NÄRA TILLSTÅNDET
   const addToCart = (product: Product) => {
-    // 1. När produkten finns i carten, öka antalet
-    // 2. När produkten inte finns i carten, lägg till den
-    setCart([...cart, { ...product, quantity: 1 }]);
-  };
+    //kolla om produkten redan finns i kundkorgen
+   /*  const existingProduct = cart.find((item) => item.id === product.id); */
 
-  // remove
-  // clear
+    //om produkten redan finns i kundkorgen, öka antalet (ändras nu bara i ls, inte i gränssnittet countbadge)
+  /*   if (existingProduct) {
+      changeQuantity(product.id, existingProduct.quantity + 1);
+      return;
+    } */
+
+    //om produkten inte finns i kundkorgen, lägg till den
+    const updatedCart = [...cart, { ...product, quantity: 1 }];
+    setCart(updatedCart);
+    saveCartInLocalStorage(updatedCart);
+  };
 
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (
     /* bilarna, vad är de här? value det som skickas över kontexten? */
-    <CountContext.Provider value={{ cart, addToCart }}>
+    /* lägg till changeQuantity, removeFromCart, clearCart när vi gjort sidor för det */
+    <CountContext.Provider value={{ cart, addToCart, }}>
       {props.children}
     </CountContext.Provider>
   );

@@ -6,7 +6,7 @@ export default function CartPage() {
   
   return (
     <main>
-      <Typography variant="h2">
+      {/* <Typography variant="h2">
         Hej, detta är en kundvagnsjävel men just nu går det inte att se dina
         varor!
       </Typography>
@@ -18,9 +18,9 @@ export default function CartPage() {
             <Typography>
               ({item.price} * {item.quantity})
             </Typography>
-            <CardActions>
+            <CardActions> */}
               {/* Add your buttons here <Button onClick={handleIncrement}>Increase</Button>*/}
-              <Typography data-cy="quantity">{item.quantity}</Typography>
+             {/*  <Typography data-cy="quantity">{item.quantity}</Typography>
             </CardActions>
           </Card>
         ))}
@@ -28,7 +28,7 @@ export default function CartPage() {
       <Box>
         <Typography data-cy="total-price">Total price: {}</Typography>
         <Button>Go to checkout</Button>
-      </Box>
+      </Box> */}
     </main>
   );
 }
