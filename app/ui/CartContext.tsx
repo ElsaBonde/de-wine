@@ -20,11 +20,22 @@ interface ContextValue {
 //Motorväg - ett alternativ för props??
 const CountContext = createContext<ContextValue>({} as ContextValue);
 
+//hämta värdet från localStorage
+const getCartFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  } else {
+    //cypress-tester tom array som standardvärde
+    return [];
+  }
+};
+
 //Påfarten tydligen, en väg till det som skickas ut över kontexten??
 export default function CartContext(props: PropsWithChildren) {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(getCartFromLocalStorage);
 
-  //all ls i useeffect
+  //alla ls funktioner i en useEffect
   // SYNKA TILLSTÅNDET MED LOCALSTORAGE
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));

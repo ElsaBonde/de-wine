@@ -43,10 +43,12 @@ export default function AddButton(props: Props) {
         onClick={handleClick}
       />
       <Snackbar
+      data-cy="added-to-cart-toast"
         open={openSnackBar}
         autoHideDuration={6000}
         onClose={handleCloseSnackBar}
-        message="Added to cart!"
+        message="has been added"
+        
         action={
           <React.Fragment>
             <IconButton

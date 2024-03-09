@@ -13,6 +13,7 @@ export default function CountBadge() {
       component="span"
       color="text.primary"
       data-cy="cart-items-count-badge"
+      
     >
       {cart.length}
     </Typography>
