@@ -98,7 +98,7 @@ export default function CartContext(props: PropsWithChildren) {
     const updatedCart = cart.map((item) => {
       if (item.id === productId && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
-      } else if (item.id === productId && item.quantity === 1) {
+      }  else if (item.id === productId && item.quantity === 1) {
         removeFromCart(item);
       }
       return item;
@@ -107,8 +107,8 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  const removeFromCart = (product: Product) => {
-    const updatedCart = cart.filter((item) => item.id !== product.id);
+  const removeFromCart = ( cartItem: CartItem) => {
+    const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
   };
