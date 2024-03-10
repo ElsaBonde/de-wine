@@ -13,7 +13,12 @@ import {
 interface ContextValue {
   cart: CartItem[];
   addToCart: (product: Product) => void;
-  // removeFromCart: (product: Product) => void;
+  incrementQuantity: (productId: string) => void;
+  getCartItems: () => CartItem[];
+  calculateTotalPrice: (cartItems: CartItem[]) => number;
+  increaseQuantity: (productId: string) => void;
+  decreaseQuantity: (productId: string) => void;
+  removeFromCart: (product: Product) => void;
   // clearCart: () => void;
 }
 
@@ -23,6 +28,7 @@ const CountContext = createContext<ContextValue>({} as ContextValue);
 export const initialValue: CartItem[] = [];
 
 //Påfarten tydligen, en väg till det som skickas ut över kontexten??
+//detta är vår provider som vi kommer att använda för att skicka data över kontexten
 export default function CartContext(props: PropsWithChildren) {
   const [cart, setCart] = useState<CartItem[]>(initialValue);
 
@@ -35,42 +41,86 @@ export default function CartContext(props: PropsWithChildren) {
     }
   }, []);
 
+  //spara kundkorgen i localstorage
   const saveCartInLocalStorage = (updatedCart: CartItem[]) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  //ta bort från kundkorgen
-  /* const removeFromCart = (productID: string) => { 
-    const updatedCart = cart.filter((item) => item.id !== productID);
+  // LÄGG ALL LOGIK NÄRA TILLSTÅNDET
+  const addToCart = (product: Product) => {
+    const existingProductInCart = cart.find((item) => item.id === product.id);
+
+    if (existingProductInCart) {
+      const updatedCart = cart.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      setCart(updatedCart);
+      saveCartInLocalStorage(updatedCart);
+      return;
+    }
+
+    //om produkten inte finns i kundkorgen, lägg till den
+    const updatedCart = [...cart, { ...product, quantity: 1 }];
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
-  }; */
+  };
 
-  //ändra antal av produkt i kundkorgen
- /*  const changeQuantity = (productID: string, newQuantity: number) => {
+  // Funktion för att öka antalet av en produkt i kundkorgen
+  const incrementQuantity = (productId: string) => {
     const updatedCart = cart.map((item) => {
-      if (item.id === productID) {
-        return { ...item, quantity: newQuantity };
+      if (item.id === productId) {
+        return { ...item, quantity: item.quantity + 1 };
       }
       return item;
     });
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
-  }; */
+  };
 
-  // LÄGG ALL LOGIK NÄRA TILLSTÅNDET
-  const addToCart = (product: Product) => {
-    //kolla om produkten redan finns i kundkorgen
-   /*  const existingProduct = cart.find((item) => item.id === product.id); */
+  //hämta kundvagnsobjekt
+  const getCartItems = () => {
+    return cart;
+  };
 
-    //om produkten redan finns i kundkorgen, öka antalet (ändras nu bara i ls, inte i gränssnittet countbadge)
-  /*   if (existingProduct) {
-      changeQuantity(product.id, existingProduct.quantity + 1);
-      return;
-    } */
+  //beräknar totalpriset av alla varor i kundvagnen
+  const calculateTotalPrice = (cartItems: CartItem[]) => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
 
-    //om produkten inte finns i kundkorgen, lägg till den
-    const updatedCart = [...cart, { ...product, quantity: 1 }];
+  //minska antalet av en viss produkt i kundvagnen
+  const decreaseQuantity = (productId: string) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId && item.quantity > 1) {
+        return { ...item, quantity: item.quantity - 1 };
+      } else if (item.id === productId && item.quantity === 1) {
+        removeFromCart(item);
+      }
+      return item;
+    });
+    setCart(updatedCart);
+    saveCartInLocalStorage(updatedCart);
+  };
+
+  const removeFromCart = (product: Product) => {
+    const updatedCart = cart.filter((item) => item.id !== product.id);
+    setCart(updatedCart);
+    saveCartInLocalStorage(updatedCart);
+  };
+
+  //öka antalet av en viss produkt i kundvagnen
+  const increaseQuantity = (productId: string) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
   };
@@ -79,7 +129,19 @@ export default function CartContext(props: PropsWithChildren) {
   return (
     /* bilarna, vad är de här? value det som skickas över kontexten? */
     /* lägg till changeQuantity, removeFromCart, clearCart när vi gjort sidor för det */
-    <CountContext.Provider value={{ cart, addToCart, }}>
+    <CountContext.Provider
+      value={{
+        cart,
+        addToCart,
+        incrementQuantity,
+        getCartItems,
+        calculateTotalPrice,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
+    >
+      {" "}
+      {/* Inkludera incrementQuantity i context-värdet */}
       {props.children}
     </CountContext.Provider>
   );
@@ -87,4 +149,6 @@ export default function CartContext(props: PropsWithChildren) {
 
 //Avfarten, för att kunna ta emot kontext data i komponenterna
 //DETTA ÄR VÅR HOOK SOM VI KOMMER ATT ANVÄNDA
-export const useCart = () => useContext(CountContext);
+const useCart = () => useContext(CountContext);
+
+export { useCart };

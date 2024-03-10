@@ -47,8 +47,7 @@ export default function AddButton(props: Props) {
         open={openSnackBar}
         autoHideDuration={6000}
         onClose={handleCloseSnackBar}
-        message="has been added"
-        
+        message={`${props.product.title} has been added to the cart`}
         action={
           <React.Fragment>
             <IconButton
