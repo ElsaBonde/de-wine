@@ -18,7 +18,7 @@ interface ContextValue {
   calculateTotalPrice: (cartItems: CartItem[]) => number;
   increaseQuantity: (productId: string) => void;
   decreaseQuantity: (productId: string) => void;
-  removeFromCart: (product: Product) => void;
+  removeFromCart: (cartItem: CartItem) => void;
   // clearCart: () => void;
 }
 
@@ -68,7 +68,7 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  // Funktion för att öka antalet av en produkt i kundkorgen
+  //ökar antalet på quantity i kundvagnen när man trycker på buy knappen, så det inte blir flera av samma produkt i kundvagnen och ls
   const incrementQuantity = (productId: string) => {
     const updatedCart = cart.map((item) => {
       if (item.id === productId) {
@@ -98,7 +98,8 @@ export default function CartContext(props: PropsWithChildren) {
     const updatedCart = cart.map((item) => {
       if (item.id === productId && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
-      }  else if (item.id === productId && item.quantity === 1) {
+      } else if (item.id === productId && item.quantity === 1) {
+        console.log("remove");
         removeFromCart(item);
       }
       return item;
@@ -107,7 +108,8 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  const removeFromCart = ( cartItem: CartItem) => {
+  //nåt fel på denna, den inte bort produkten från kundvagnen eller localstorage
+  const removeFromCart = (cartItem: CartItem) => {
     const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
@@ -138,10 +140,9 @@ export default function CartContext(props: PropsWithChildren) {
         calculateTotalPrice,
         increaseQuantity,
         decreaseQuantity,
+        removeFromCart,
       }}
     >
-      {" "}
-      {/* Inkludera incrementQuantity i context-värdet */}
       {props.children}
     </CountContext.Provider>
   );
