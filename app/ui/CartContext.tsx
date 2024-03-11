@@ -98,14 +98,16 @@ export default function CartContext(props: PropsWithChildren) {
     const updatedCart = cart.map((item) => {
       if (item.id === productId && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
-      } else if (item.id === productId && item.quantity === 1) {
-        console.log("remove");
-        removeFromCart(item);
       }
       return item;
     });
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
+
+    const itemToRemove = cart.find((item) => item.id === productId && item.quantity === 1);
+    if (itemToRemove) {
+      removeFromCart(itemToRemove);
+    }
   };
 
   //nåt fel på denna, den inte bort produkten från kundvagnen eller localstorage
@@ -130,7 +132,7 @@ export default function CartContext(props: PropsWithChildren) {
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (
     /* bilarna, vad är de här? value det som skickas över kontexten? */
-    /* lägg till changeQuantity, removeFromCart, clearCart när vi gjort sidor för det */
+    /* clearCart när vi gjort funktion för det */
     <CountContext.Provider
       value={{
         cart,
