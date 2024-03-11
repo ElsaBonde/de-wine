@@ -46,10 +46,10 @@ export default function RootLayout({ children }: LayoutProps) {
               >
                 <Image src={Logotype} alt="logotype" width={200} height={60} />
               </Link>
-              <Box>
+              <Box sx={{display: "flex", gap: "5px", justifyContent: "center"}}>
                 <CountBadge />
                 <Link href="/checkout">
-                  <ShoppingCart data-cy="cart-link" />
+                  <ShoppingCart data-cy="cart-link" sx={{color: "#881C1C"}}/>
                 </Link>
               </Box>
             </Box>
