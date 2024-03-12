@@ -4,6 +4,7 @@ import { CartItem } from "@/data";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import { useCart } from "../ui/CartContext";
+import  MessageForm from "../form/page";
 
 export default function CheckoutPage() {
   const {
@@ -98,17 +99,11 @@ export default function CheckoutPage() {
         >
           Total amount: {calculateTotalPrice(cartItems)} SEK
         </Box>
-        <Button
-          sx={{
-            backgroundColor: "#F1DDCF",
-            color: "#881C1C",
-            marginTop: "10px",
-            fontWeight: "bold",
-            justifyContent: "center",
-          }}
-        >
-          Place Order
-        </Button>
+      </Box>
+      <Box>
+        < MessageForm onMessageSent={function (): void {
+          throw new Error("Function not implemented.");
+        } } />
       </Box>
     </main>
   );
