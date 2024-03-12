@@ -19,7 +19,7 @@ interface ContextValue {
   increaseQuantity: (productId: string) => void;
   decreaseQuantity: (productId: string) => void;
   removeFromCart: (cartItem: CartItem) => void;
-  // clearCart: () => void;
+  clearCart: () => void;
 }
 
 //Motorväg - ett alternativ för props??
@@ -129,6 +129,11 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
+  const clearCart = () => { //funktion för att rensa kundvagnen
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
+
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (
     /* bilarna, vad är de här? value det som skickas över kontexten? */
@@ -143,6 +148,7 @@ export default function CartContext(props: PropsWithChildren) {
         increaseQuantity,
         decreaseQuantity,
         removeFromCart,
+        clearCart,
       }}
     >
       {props.children}

@@ -3,6 +3,7 @@
 import { CartItem } from "@/data";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
+import CheckoutForm from "../form";
 import { useCart } from "../ui/CartContext";
 
 export default function CheckoutPage() {
@@ -11,7 +12,12 @@ export default function CheckoutPage() {
     calculateTotalPrice,
     decreaseQuantity,
     increaseQuantity,
+    clearCart,
   } = useCart(); //hämtar alla funktioner som behövs här från contexten
+
+  const handleCheckoutDone = () => {
+    clearCart();
+  };
 
   //hämtar objekten i kudnvagnen
   const cartItems: CartItem[] = getCartItems();
@@ -98,17 +104,9 @@ export default function CheckoutPage() {
         >
           Total amount: {calculateTotalPrice(cartItems)} SEK
         </Box>
-        <Button
-          sx={{
-            backgroundColor: "#F1DDCF",
-            color: "#881C1C",
-            marginTop: "10px",
-            fontWeight: "bold",
-            justifyContent: "center",
-          }}
-        >
-          Place Order
-        </Button>
+      </Box>
+      <Box>
+        <CheckoutForm OnCheckoutDone={handleCheckoutDone} />
       </Box>
     </main>
   );
