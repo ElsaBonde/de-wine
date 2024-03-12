@@ -3,8 +3,8 @@
 import { CartItem } from "@/data";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
+import MessageForm from "../form";
 import { useCart } from "../ui/CartContext";
-import  MessageForm from "../form/page";
 
 export default function CheckoutPage() {
   const {
@@ -101,9 +101,11 @@ export default function CheckoutPage() {
         </Box>
       </Box>
       <Box>
-        < MessageForm onMessageSent={function (): void {
-          throw new Error("Function not implemented.");
-        } } />
+        <MessageForm
+          onMessageSent={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
       </Box>
     </main>
   );
