@@ -55,8 +55,11 @@ export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
 
   //funktion för att skicka meddelandet som rensar formuläret och anropar onMessageSent
   const sendForm = () => {
+    //rensar formuläret
     form.reset();
+    //anropar onMessageSent
     OnCheckoutDone();
+    //tar användaren till confirmation när formuläret är skickat
     window.location.href = '/confirmation'; 
   };
 
