@@ -12,17 +12,18 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-//typ för props till onMessageSent
-type onMessageSent = () => void;
+//typ för props till onCheckoutDone
+type OnCheckoutDone = () => void;
 
 //interface för props
-interface MessageFormProps {
-  onMessageSent: onMessageSent;
+interface FormProps {
+  OnCheckoutDone: OnCheckoutDone;
 }
 
-export default function MessageForm({ onMessageSent }: MessageFormProps) {
+//komponent för formulär för att skriva in personuppgifter
+export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
   // error meddelenden för formulär
-  const MessageSchema = z.object({
+  const CheckoutSchema = z.object({
     fullname: z.string().min(1, { message: "Please enter your full name" }),
     email: z.string().email({
       message:
@@ -45,17 +46,18 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
   });
 
   //typ för meddelandet
-  type Message = z.infer<typeof MessageSchema>;
+  type Checkout = z.infer<typeof CheckoutSchema>;
 
   //useForm hook för att hantera formuläret, resolver för att använda zodschema
-  const form = useForm<Message>({
-    resolver: zodResolver(MessageSchema),
+  const form = useForm<Checkout>({
+    resolver: zodResolver(CheckoutSchema),
   });
 
   //funktion för att skicka meddelandet som rensar formuläret och anropar onMessageSent
-  const sendMessage = () => {
+  const sendForm = () => {
     form.reset();
-    onMessageSent();
+    OnCheckoutDone();
+    window.location.href = '/confirmation'; 
   };
 
   return (
@@ -65,7 +67,7 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
           <Typography variant="h6" gutterBottom justifyContent={"center"}>
             Checkout information
           </Typography>
-          <Grid component="form" container spacing={3} data-cy="customer-form">
+          <Grid component="form" onSubmit={form.handleSubmit(sendForm)} container spacing={3} data-cy="customer-form">
             <Grid item xs={12} sm={6}>
               <TextField
                 required
@@ -95,7 +97,6 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 inputProps={{ "data-cy": "customer-email" }}
                 {...form.register("email")}
               />
-              {/* Visa felmeddelanden om validering misslyckas */}
               {form.formState.errors.email && (
                 <Typography
                   data-cy="customer-email-error"
@@ -195,7 +196,7 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
               />
             </Grid>
             <Button
-              onClick={form.handleSubmit(sendMessage)}
+              onClick={form.handleSubmit(sendForm)}
               type="submit"
               sx={{
                 backgroundColor: "#F1DDCF",

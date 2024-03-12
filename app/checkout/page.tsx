@@ -3,7 +3,7 @@
 import { CartItem } from "@/data";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
-import MessageForm from "../form";
+import CheckoutForm from "../form";
 import { useCart } from "../ui/CartContext";
 
 export default function CheckoutPage() {
@@ -12,7 +12,12 @@ export default function CheckoutPage() {
     calculateTotalPrice,
     decreaseQuantity,
     increaseQuantity,
+    clearCart,
   } = useCart(); //hämtar alla funktioner som behövs här från contexten
+
+  const handleCheckoutDone = () => {
+    clearCart();
+  };
 
   //hämtar objekten i kudnvagnen
   const cartItems: CartItem[] = getCartItems();
@@ -101,11 +106,7 @@ export default function CheckoutPage() {
         </Box>
       </Box>
       <Box>
-        <MessageForm
-          onMessageSent={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+        <CheckoutForm OnCheckoutDone={handleCheckoutDone} />
       </Box>
     </main>
   );
