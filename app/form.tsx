@@ -22,7 +22,7 @@ interface FormProps {
 
 //komponent för formulär för att skriva in personuppgifter
 export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
-  // error meddelenden för formulär
+  // errormeddelenden för formulär
   const CheckoutSchema = z.object({
     fullname: z.string().min(1, { message: "Please enter your full name" }),
     email: z.string().email({

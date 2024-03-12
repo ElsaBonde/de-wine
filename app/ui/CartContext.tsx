@@ -28,7 +28,7 @@ const CountContext = createContext<ContextValue>({} as ContextValue);
 export const initialValue: CartItem[] = [];
 
 //Påfarten tydligen, en väg till det som skickas ut över kontexten??
-//detta är vår provider som vi kommer att använda för att skicka data över kontexten
+//detta är vår provider som vi använder för att skicka data över kontexten
 export default function CartContext(props: PropsWithChildren) {
   const [cart, setCart] = useState<CartItem[]>(initialValue);
 
@@ -46,15 +46,16 @@ export default function CartContext(props: PropsWithChildren) {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  // LÄGG ALL LOGIK NÄRA TILLSTÅNDET
+  //lägger till en produkt i kundvagnen
   const addToCart = (product: Product) => {
     const existingProductInCart = cart.find((item) => item.id === product.id);
 
     if (existingProductInCart) {
+      //om produkten redan finns i kundkorgen, öka antalet
       const updatedCart = cart.map((item) => {
         if (item.id === product.id) {
           return { ...item, quantity: item.quantity + 1 };
-        }
+        } //om produkten inte finns i kundkorgen, lägg till den
         return item;
       });
       setCart(updatedCart);
@@ -68,7 +69,7 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  //ökar antalet på quantity i kundvagnen när man trycker på buy knappen, så det inte blir flera av samma produkt i kundvagnen och ls
+  //ökar antalet på quantity i kundvagnen när man trycker på buy knappen, så det inte blir flera "rader" av samma produkt i kundvagnen och ls
   const incrementQuantity = (productId: string) => {
     const updatedCart = cart.map((item) => {
       if (item.id === productId) {
@@ -95,7 +96,7 @@ export default function CartContext(props: PropsWithChildren) {
 
   //minska antalet av en viss produkt i kundvagnen
   const decreaseQuantity = (productId: string) => {
-    const updatedCart = cart.map((item) => {
+    const updatedCart = cart.map((item) => { //här minskas antalet av en produkt i kundvagnen
       if (item.id === productId && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
       }
@@ -104,13 +105,14 @@ export default function CartContext(props: PropsWithChildren) {
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
 
+    //om antalet av en produkt i kundvagnen är 1, ta bort den helt och hållet med removeFromCart
     const itemToRemove = cart.find((item) => item.id === productId && item.quantity === 1);
     if (itemToRemove) {
       removeFromCart(itemToRemove);
     }
   };
 
-  //nåt fel på denna, den inte bort produkten från kundvagnen eller localstorage
+  // tar bort en produkt helt från kundvagnen och ls
   const removeFromCart = (cartItem: CartItem) => {
     const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
@@ -129,15 +131,15 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  const clearCart = () => { //funktion för att rensa kundvagnen
+  //rensar kundvagnen och ls från alla produkter 
+  const clearCart = () => { 
     setCart([]);
     localStorage.removeItem("cart");
   };
 
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (
-    /* bilarna, vad är de här? value det som skickas över kontexten? */
-    /* clearCart när vi gjort funktion för det */
+   /*  det som skickas över kontexten */
     <CountContext.Provider
       value={{
         cart,
@@ -158,6 +160,7 @@ export default function CartContext(props: PropsWithChildren) {
 
 //Avfarten, för att kunna ta emot kontext data i komponenterna
 //DETTA ÄR VÅR HOOK SOM VI KOMMER ATT ANVÄNDA
+//hook för att ta emot data från contexten
 const useCart = () => useContext(CountContext);
 
 export { useCart };
