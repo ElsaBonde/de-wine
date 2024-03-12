@@ -1,5 +1,3 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
@@ -25,19 +23,24 @@ interface MessageFormProps {
 export default function MessageForm({ onMessageSent }: MessageFormProps) {
   // error meddelenden för formulär
   const MessageSchema = z.object({
-    firstname: z
-      .string()
-      .min(1, { message: "Please enter your full first name" }),
-    surname: z.string().min(1, { message: "Please enter your full surname" }),
+    fullname: z.string().min(1, { message: "Please enter your full name" }),
     email: z.string().email({
       message:
         "Please enter a valid email address in the following format: name@example.com",
     }),
     phonenumber: z
-      .string()
-      .min(10, { message: "Please enter a valid phone number (10 digits)" }),
+      .number()
+      .min(100000000, {
+        message: "Please enter a valid phone number (10 digits)",
+      })
+      .max(9999999999, {
+        message: "Please enter a valid phone number (10 digits)",
+      }),
     address: z.string().min(1, { message: "Please enter a valid address" }),
-    zipcode: z.string().min(5, { message: "Please enter a valid zip code" }), // om vi har z.number får vi inte rätt felmeddelande fråga DAVID!!!!!
+    zipcode: z
+      .number()
+      .min(10000, { message: "Please enter a valid zip code" })
+      .max(99999, { message: "Please enter a valid zip code" }),
     city: z.string().min(1, { message: "Please enter a valid city" }),
   });
 
@@ -66,35 +69,18 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="firstName"
-                label="First name"
+                id="fullName"
+                label="Full name"
                 fullWidth
-                autoComplete="given-name"
+                autoComplete="name"
                 variant="standard"
-                data-cy="customer-name"
-                {...form.register("firstname")}
+                inputProps={{ "data-cy": "customer-name" }}
+                {...form.register("fullname")}
               />
               {/* Visa felmeddelanden om validering misslyckas */}
-              {form.formState.errors.firstname && (
+              {form.formState.errors.fullname && (
                 <Typography data-cy="customer-name-error" sx={{ color: "red" }}>
-                  {form.formState.errors.firstname.message}
-                </Typography>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="lastName"
-                label="Last name"
-                fullWidth
-                autoComplete="family-name"
-                variant="standard"
-                data-cy="customer-name"
-                {...form.register("surname")}
-              />
-              {form.formState.errors.surname && (
-                <Typography data-cy="customer-name-error" sx={{ color: "red" }}>
-                  {form.formState.errors.surname.message}
+                  {form.formState.errors.fullname.message}
                 </Typography>
               )}
             </Grid>
@@ -104,9 +90,9 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 id="Email Adress"
                 label="Email Adress"
                 fullWidth
-                autoComplete="shipping adEmail Adressdress-level2"
+                autoComplete="email"
                 variant="standard"
-                data-cy="customer-email"
+                inputProps={{ "data-cy": "customer-email" }}
                 {...form.register("email")}
               />
               {/* Visa felmeddelanden om validering misslyckas */}
@@ -125,10 +111,12 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 id="Phone Number"
                 label="Phone Number"
                 fullWidth
-                autoComplete="Phone Number Level-2"
+                autoComplete="tel"
                 variant="standard"
-                data-cy="customer-phone"
-                {...form.register("phonenumber")}
+                inputProps={{ "data-cy": "customer-phone" }}
+                {...form.register("phonenumber", {
+                  setValueAs: (value) => parseInt(value),
+                })}
               />
               {form.formState.errors.phonenumber && (
                 <Typography
@@ -145,9 +133,9 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 id="address"
                 label="Address"
                 fullWidth
-                autoComplete="shipping address-line1"
+                autoComplete="street-address"
                 variant="standard"
-                data-cy="customer-address"
+                inputProps={{ "data-cy": "customer-address" }}
                 {...form.register("address")}
               />
               {form.formState.errors.address && (
@@ -165,10 +153,12 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 id="zip"
                 label="Zip code"
                 fullWidth
-                autoComplete="shipping postal-code"
+                autoComplete="postal-code"
                 variant="standard"
-                data-cy="customer-zipcode"
-                {...form.register("zipcode")}
+                inputProps={{ "data-cy": "customer-zipcode" }}
+                {...form.register("zipcode", {
+                  setValueAs: (value) => parseInt(value),
+                })}
               />
               {form.formState.errors.zipcode && (
                 <Typography
@@ -185,9 +175,9 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 id="city"
                 label="City"
                 fullWidth
-                autoComplete="shipping address-level2"
+                autoComplete="address-level2"
                 variant="standard"
-                data-cy="customer-city"
+                inputProps={{ "data-cy": "customer-city" }}
                 {...form.register("city")}
               />
               {form.formState.errors.city && (
@@ -204,20 +194,21 @@ export default function MessageForm({ onMessageSent }: MessageFormProps) {
                 label="I accept the terms and conditions."
               />
             </Grid>
+            <Button
+              onClick={form.handleSubmit(sendMessage)}
+              type="submit"
+              sx={{
+                backgroundColor: "#F1DDCF",
+                color: "#881C1C",
+                marginTop: "10px",
+                fontWeight: "bold",
+                justifyContent: "center",
+              }}
+            >
+              Place Order
+            </Button>
           </Grid>
         </React.Fragment>
-        <Button
-          onClick={form.handleSubmit(sendMessage)}
-          sx={{
-            backgroundColor: "#F1DDCF",
-            color: "#881C1C",
-            marginTop: "10px",
-            fontWeight: "bold",
-            justifyContent: "center",
-          }}
-        >
-          Place Order
-        </Button>
       </Container>
     </>
   );
