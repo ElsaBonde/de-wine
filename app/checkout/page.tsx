@@ -84,7 +84,7 @@ export default function CheckoutPage() {
           </Card>
         ))}
       </Box>
-      <Box sx={{display: "flex", flexDirection: "column"}}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           data-cy="total-price"
           sx={{
@@ -98,7 +98,17 @@ export default function CheckoutPage() {
         >
           Total amount: {calculateTotalPrice(cartItems)} SEK
         </Box>
-        <Button sx={{ backgroundColor: "#F1DDCF", color: "#881C1C", marginTop: "10px", fontWeight: "bold", justifyContent: "center" }}>Place Order</Button>
+        <Button
+          sx={{
+            backgroundColor: "#F1DDCF",
+            color: "#881C1C",
+            marginTop: "10px",
+            fontWeight: "bold",
+            justifyContent: "center",
+          }}
+        >
+          Place Order
+        </Button>
       </Box>
     </main>
   );
