@@ -11,9 +11,9 @@ export default function CheckoutPage() {
     calculateTotalPrice,
     decreaseQuantity,
     increaseQuantity,
-  } = useCart(); // Hämta funktioner från kundvagnscontext
+  } = useCart(); //hämtar alla funktioner som behövs här från contexten
 
-  // Hämta kundvagnsobjekten
+  //hämtar objekten i kudnvagnen
   const cartItems: CartItem[] = getCartItems();
 
   return (
@@ -24,7 +24,7 @@ export default function CheckoutPage() {
       <Box>
         {cartItems.map((item, index) => (
           <Card
-            key={index}
+            key={item.id}
             data-cy="cart-item"
             sx={{
               display: "flex",
