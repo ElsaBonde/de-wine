@@ -12,11 +12,11 @@ export default function CheckoutPage() {
     calculateTotalPrice,
     decreaseQuantity,
     increaseQuantity,
-    clearCart,
   } = useCart(); //hämtar alla funktioner som behövs här från contexten
 
   const handleCheckoutDone = () => {
-    clearCart();
+    /* clearCart();
+    localStorage.removeItem("checkoutFormData"); */
   };
 
   //hämtar objekten i kudnvagnen
