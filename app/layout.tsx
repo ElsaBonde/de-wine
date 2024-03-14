@@ -86,9 +86,16 @@ export default function RootLayout({ children }: LayoutProps) {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>
+                <Link
+                  href="/admin"
+                  style={{
+                    textDecoration: "none",
+                    color: "#881C1C",
+                  }}
+                  data-cy="admin-link"
+                >
                   <AdminPanelSettings /> Admin
-                </Typography>
+                </Link>
                 <Typography>© 2024</Typography>
               </Box>
             </AppRouterCacheProvider>

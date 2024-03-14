@@ -30,7 +30,7 @@ export default function CheckoutPage() {
           fontVariant: "small-caps",
         }}
       >
-        Your Wine'Order:
+        Your Wine&apos;Order:
       </Typography>
       <Box>
         {cart.map((item, index) => (
