@@ -55,7 +55,7 @@ export default function ProductPage({ params }: PageProps) {
           {product.title}
         </Typography>
         <Typography data-cy="product-price" sx={{ fontFamily: "josefin sans" }}>
-          {product.price}
+          {product.price} :-
         </Typography>
         <Typography
           data-cy="product-description"

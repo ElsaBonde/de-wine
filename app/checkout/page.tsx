@@ -10,6 +10,14 @@ export default function CheckoutPage() {
   const { cart, calculateTotalPrice, decreaseQuantity, increaseQuantity } =
     useCart(); //hämtar alla funktioner som behövs här från contexten
 
+  if (cart.length === 0) {
+    return (
+      <>
+        <h1> cart is empty</h1>
+      </>
+    );
+  }
+
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Typography
@@ -52,8 +60,16 @@ export default function CheckoutPage() {
                 flexGrow: "1",
               }}
             >
-              <Typography data-cy="product-title">{item.title}</Typography>
-              <Typography data-cy="product-price">
+              <Typography
+                data-cy="product-title"
+                sx={{ fontFamily: "Josefin Sans" }}
+              >
+                {item.title}
+              </Typography>
+              <Typography
+                data-cy="product-price"
+                sx={{ fontFamily: "Josefin Sans" }}
+              >
                 {" "}
                 {/* här får vi lägga till vad en kostar också */}
                 {item.price * item.quantity} :-
@@ -66,17 +82,28 @@ export default function CheckoutPage() {
                 }}
               >
                 <Button
-                  sx={{ color: "#881C1C", fontSize: "18px" }}
+                  sx={{
+                    color: "#881C1C",
+                    fontSize: "18px",
+                    fontFamily: "Josefin sans",
+                  }}
                   onClick={() => decreaseQuantity(item.id)}
                   data-cy="decrease-quantity-button"
                 >
                   -
                 </Button>
-                <Typography data-cy="product-quantity">
+                <Typography
+                  data-cy="product-quantity"
+                  sx={{ fontFamily: "Josefin Sans" }}
+                >
                   {item.quantity} pc
                 </Typography>
                 <Button
-                  sx={{ color: "#881C1C", fontSize: "18px" }}
+                  sx={{
+                    color: "#881C1C",
+                    fontSize: "18px",
+                    fontFamily: "josefin sans",
+                  }}
                   onClick={() => increaseQuantity(item.id)}
                   data-cy="increase-quantity-button"
                 >

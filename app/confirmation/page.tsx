@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Divider, Typography } from "@mui/material";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -10,7 +10,6 @@ import cheers from "/public/cheers.gif";
 
 export default function ConfirmationPage() {
   const { customer } = useCustomer();
-  // fixa så att carten rensas efter att sidan har laddats om
   const { cart: contextCart, calculateTotalPrice, clearCart } = useCart();
   const [cart] = useState(contextCart);
   const [orderId, setOrderId] = useState("");
@@ -25,16 +24,37 @@ export default function ConfirmationPage() {
     clearCart();
   }, [clearCart]);
 
+  const totalAmount = calculateTotalPrice();
+
   return (
-    <Box component="main" sx={{ display: "flex", flexDirection: "column" }}>
-      <Typography variant="h4" sx={{ textAlign: "center", margin: "10px" }}>
-        Thank you for your purchase!
-      </Typography>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Image src={cheers} alt="cheers" width={100} height={100} />
-      </Box>
-      <Box component="div">
-        <Typography>Your orderId is: {orderId}</Typography>
+    <Box
+      component="main"
+      sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+    >
+      <Box
+        component="div"
+        sx={{
+          flexGrow: "4",
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "#F1DDCF",
+          margin: "10px",
+          borderRadius: "0px 15px 15px 0px",
+          padding: "10px",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#881C1C",
+            fontSize: "30px",
+            textAlign: "center",
+            fontVariant: "small-caps",
+            paddingBottom: "10px",
+          }}
+        >
+          Your Wine'Order:
+        </Typography>
         <Box>
           {cart.map((item, index) => (
             <Card
@@ -46,6 +66,7 @@ export default function ConfirmationPage() {
                 alignItems: "center",
                 background: "white",
                 marginBottom: "10px",
+                borderRadius: "0px 10px 10px 0px",
               }}
             >
               <Image
@@ -63,66 +84,131 @@ export default function ConfirmationPage() {
                   flexGrow: "1",
                 }}
               >
-                <Typography data-cy="product-title">{item.title}</Typography>
-                <Typography data-cy="product-price">
+                <Typography
+                  data-cy="product-title"
+                  sx={{ fontFamily: "Josefin Sans" }}
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  data-cy="product-price"
+                  sx={{ fontFamily: "Josefin Sans" }}
+                >
                   {" "}
                   {/* här får vi lägga till vad en kostar också */}
                   {item.price * item.quantity} :-
                 </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+
+                <Typography
+                  data-cy="product-quantity"
+                  sx={{ fontFamily: "Josefin Sans" }}
                 >
-                  <Typography data-cy="product-quantity">
-                    {item.quantity} pc
-                  </Typography>
-                </Box>
+                  {item.quantity} pc
+                </Typography>
               </Box>
             </Card>
           ))}
         </Box>
-      </Box>
-      {customer && (
-        <Box
+        <Divider sx={{ color: "#881C1C", padding: "5px" }} />
+        <Typography
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "40rem",
-            margin: "auto",
-            textAlign: "left",
+            fontFamily: "Josefin Sans",
+            textAlign: "center",
+            fontWeight: "bold",
           }}
         >
-          <Typography variant="h5" sx={{ fontFamily: "karla" }}>
-            Your shipping information:
-          </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>
-            Name: <Typography component="span">{customer.fullname}</Typography>
-          </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>
-            Email: <Typography component="span">{customer.email}</Typography>
-          </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>
-            Phone number:
-            <Typography component="span">{customer.phonenumber}</Typography>
-          </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>
-            Adress:
-            <Typography comonent="span">{customer.address}</Typography>
-          </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>
-            Zip code:
-            <Typography component="span">{customer.zipcode}</Typography>
-          </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>
-            City:
-            <Typography component="span">{customer.city}</Typography>
-          </Typography>
+          TOTAL: {totalAmount} SEK
+        </Typography>
+      </Box>
+
+      {/* här börjar nästa skit */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: "5",
+          background: "#f1ddcf",
+          margin: "10px",
+          borderRadius: "10px 0px 0px 10px",
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            margin: "10px",
+            color: "#881c1c",
+            fontVariant: "small-caps",
+          }}
+        >
+          Thank you for your purchase!
+        </Typography>
+        <Box
+          sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+        >
+          {customer && (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                flexGrow: "8",
+                margin: "auto",
+                textAlign: "left",
+                padding: "15px 10px",
+                gap: "5px",
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{ fontFamily: "karla", marginTop: "30px" }}
+              >
+                Your Shipping Information:
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                Your orderId is:
+              </Typography>
+              <Typography component="span" sx={{}}>
+                {" "}
+                {orderId}
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                Name:{" "}
+                <Typography component="span">{customer.fullname}</Typography>
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                Email:{" "}
+                <Typography component="span">{customer.email}</Typography>
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                Phone number:{" "}
+                <Typography component="span">{customer.phonenumber}</Typography>
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                Adress:{" "}
+                <Typography component="span">{customer.address}</Typography>
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                Zip code:{" "}
+                <Typography component="span">{customer.zipcode}</Typography>
+              </Typography>
+              <Typography sx={{ fontWeight: "bold" }}>
+                City: <Typography component="span">{customer.city}</Typography>
+              </Typography>
+            </Box>
+          )}
+          <Box
+            sx={{
+              display: "flex",
+              flexGrow: "2",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: "20px",
+            }}
+          >
+            <Image src={cheers} alt="cheers" width={100} height={100} />
+          </Box>
         </Box>
-      )}
-      <Box sx={{ display: "flex", flexDirection: "column" }}></Box>
+      </Box>
     </Box>
   );
 }
