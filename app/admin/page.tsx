@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import NextLink from "next/link";
-import AddButton from "../ui/AddButton";
+import DeleteButton from "../ui/DeleteButton";
 
 export default function AdminPage() {
   return (
@@ -67,7 +67,7 @@ export default function AdminPage() {
                       </Typography>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} />
+                      <DeleteButton product={product} data-cy="admin-remove-product"/>
                     </CardActions>
                   </Box>
                   <Typography
