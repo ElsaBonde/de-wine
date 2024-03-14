@@ -1,3 +1,4 @@
+import "@fontsource/karla";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
@@ -34,7 +35,16 @@ export default function CheckoutForm() {
     <>
       <Container>
         <React.Fragment>
-          <Typography variant="h6" gutterBottom justifyContent={"center"}>
+          <Typography
+            variant="h5"
+            gutterBottom
+            justifyContent={"center"}
+            sx={{
+              fontFamily: "Karla",
+              fontWeight: "800",
+              fontVariant: "small-caps",
+            }}
+          >
             Checkout information
           </Typography>
           <Grid
@@ -102,7 +112,7 @@ export default function CheckoutForm() {
                 </Typography>
               )}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 id="address"

@@ -1,5 +1,6 @@
 "use client";
 
+import "@fontsource/karla";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import CheckoutForm from "../form";
@@ -10,9 +11,18 @@ export default function CheckoutPage() {
     useCart(); //hämtar alla funktioner som behövs här från contexten
 
   return (
-    <main style={{ background: "#F9F1EC", padding: "10px 20px" }}>
-      <Typography variant="h4" sx={{ textAlign: "center", margin: "10px" }}>
-        Shopping bag
+    <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: "center",
+          margin: "10px",
+          fontFamily: "Karla",
+          fontWeight: "400",
+          fontVariant: "small-caps",
+        }}
+      >
+        Your Wine'Order:
       </Typography>
       <Box>
         {cart.map((item, index) => (
@@ -86,7 +96,9 @@ export default function CheckoutPage() {
             color: "#881C1C",
             textAlign: "center",
             padding: "5px",
-            fontWeight: "bold",
+            fontFamily: "Karla",
+            fontWeight: "400",
+            fontVariant: "small-caps",
           }}
         >
           Total amount: {calculateTotalPrice()} SEK
@@ -95,6 +107,6 @@ export default function CheckoutPage() {
       <Box>
         <CheckoutForm />
       </Box>
-    </main>
+    </Box>
   );
 }

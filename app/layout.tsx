@@ -24,7 +24,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ margin: "0" }}>
+      <body
+        className={inter.className}
+        style={{ margin: "0", background: "#F9F1EC" }}
+      >
         <CartContext>
           <CustomerContext>
             <AppRouterCacheProvider>
@@ -54,7 +57,11 @@ export default function RootLayout({ children }: LayoutProps) {
                   />
                 </Link>
                 <Box
-                  sx={{ display: "flex", gap: "5px", justifyContent: "center" }}
+                  sx={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "center",
+                  }}
                 >
                   <CountBadge />
                   <Link href="/checkout">
@@ -74,7 +81,7 @@ export default function RootLayout({ children }: LayoutProps) {
                   display: "flex",
                   background: "#f1ddcf",
                   marginTop: "auto",
-                  padding: "15px 10px",
+                  padding: "5px 10px",
                   alignItems: "center",
                   justifyContent: "space-between",
                 }}
