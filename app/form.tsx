@@ -8,59 +8,26 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-//typ för props till onCheckoutDone
-type OnCheckoutDone = () => void;
-
-//interface för props
-interface FormProps {
-  OnCheckoutDone: OnCheckoutDone;
-}
+import { Customer, CustomerSchema, useCustomer } from "./ui/CustomerContext";
 
 //komponent för formulär för att skriva in personuppgifter
-export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
-  // errormeddelenden för formulär
-  const CheckoutSchema = z.object({
-    fullname: z.string().min(1, { message: "Please enter your full name" }),
-    email: z.string().email({
-      message:
-        "Please enter a valid email address in the following format: name@example.com",
-    }),
-    phonenumber: z
-      .number()
-      .min(100000000, {
-        message: "Please enter a valid phone number (10 digits)",
-      })
-      .max(9999999999, {
-        message: "Please enter a valid phone number (10 digits)",
-      }),
-    address: z.string().min(1, { message: "Please enter a valid address" }),
-    zipcode: z
-      .number()
-      .min(10000, { message: "Please enter a valid zip code" })
-      .max(99999, { message: "Please enter a valid zip code" }),
-    city: z.string().min(1, { message: "Please enter a valid city" }),
-  });
-
-  //typ för meddelandet
-  type Checkout = z.infer<typeof CheckoutSchema>;
+export default function CheckoutForm() {
+  const router = useRouter();
+  const { setCustomer } = useCustomer();
 
   //useForm hook för att hantera formuläret, resolver för att använda zodschema
-  const form = useForm<Checkout>({
-    resolver: zodResolver(CheckoutSchema),
+  const form = useForm<Customer>({
+    resolver: zodResolver(CustomerSchema),
   });
 
   //funktion för att skicka meddelandet som rensar formuläret och anropar onMessageSent
-  const sendForm = () => {
-    //rensar formuläret
-    form.reset();
-    //anropar onMessageSent
-    OnCheckoutDone();
-    //tar användaren till confirmation när formuläret är skickat
-    window.location.href = '/confirmation'; 
+  const sendForm = (customer: Customer) => {
+    console.log(customer);
+    setCustomer(customer);
+    router.push("/confirmation");
   };
 
   return (
@@ -70,7 +37,13 @@ export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
           <Typography variant="h6" gutterBottom justifyContent={"center"}>
             Checkout information
           </Typography>
-          <Grid component="form" onSubmit={form.handleSubmit(sendForm)} container spacing={3} data-cy="customer-form">
+          <Grid
+            component="form"
+            onSubmit={form.handleSubmit(sendForm)}
+            container
+            spacing={3}
+            data-cy="customer-form"
+          >
             <Grid item xs={12} sm={6}>
               <TextField
                 required
@@ -118,9 +91,7 @@ export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
                 autoComplete="tel"
                 variant="standard"
                 inputProps={{ "data-cy": "customer-phone" }}
-                {...form.register("phonenumber", {
-                  setValueAs: (value) => parseInt(value),
-                })}
+                {...form.register("phonenumber")}
               />
               {form.formState.errors.phonenumber && (
                 <Typography
@@ -160,9 +131,7 @@ export default function CheckoutForm({ OnCheckoutDone }: FormProps) {
                 autoComplete="postal-code"
                 variant="standard"
                 inputProps={{ "data-cy": "customer-zipcode" }}
-                {...form.register("zipcode", {
-                  setValueAs: (value) => parseInt(value),
-                })}
+                {...form.register("zipcode")}
               />
               {form.formState.errors.zipcode && (
                 <Typography

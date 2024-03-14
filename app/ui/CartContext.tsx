@@ -14,8 +14,7 @@ interface ContextValue {
   cart: CartItem[];
   addToCart: (product: Product) => void;
   incrementQuantity: (productId: string) => void;
-  getCartItems: () => CartItem[];
-  calculateTotalPrice: (cartItems: CartItem[]) => number;
+  calculateTotalPrice: () => number;
   increaseQuantity: (productId: string) => void;
   decreaseQuantity: (productId: string) => void;
   removeFromCart: (cartItem: CartItem) => void;
@@ -81,22 +80,15 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  //hämta kundvagnsobjekt
-  const getCartItems = () => {
-    return cart;
-  };
-
   //beräknar totalpriset av alla varor i kundvagnen
-  const calculateTotalPrice = (cartItems: CartItem[]) => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+  const calculateTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   //minska antalet av en viss produkt i kundvagnen
   const decreaseQuantity = (productId: string) => {
-    const updatedCart = cart.map((item) => { //här minskas antalet av en produkt i kundvagnen
+    const updatedCart = cart.map((item) => {
+      //här minskas antalet av en produkt i kundvagnen
       if (item.id === productId && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
       }
@@ -106,7 +98,9 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
 
     //om antalet av en produkt i kundvagnen är 1, ta bort den helt och hållet med removeFromCart
-    const itemToRemove = cart.find((item) => item.id === productId && item.quantity === 1);
+    const itemToRemove = cart.find(
+      (item) => item.id === productId && item.quantity === 1
+    );
     if (itemToRemove) {
       removeFromCart(itemToRemove);
     }
@@ -131,21 +125,20 @@ export default function CartContext(props: PropsWithChildren) {
     saveCartInLocalStorage(updatedCart);
   };
 
-  //rensar kundvagnen och ls från alla produkter 
-  const clearCart = () => { 
+  //rensar kundvagnen och ls från alla produkter
+  const clearCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
   };
 
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (
-   /*  det som skickas över kontexten */
+    /*  det som skickas över kontexten */
     <CountContext.Provider
       value={{
         cart,
         addToCart,
         incrementQuantity,
-        getCartItems,
         calculateTotalPrice,
         increaseQuantity,
         decreaseQuantity,

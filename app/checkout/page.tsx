@@ -1,26 +1,13 @@
 "use client";
 
-import { CartItem } from "@/data";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import CheckoutForm from "../form";
 import { useCart } from "../ui/CartContext";
 
 export default function CheckoutPage() {
-  const {
-    getCartItems,
-    calculateTotalPrice,
-    decreaseQuantity,
-    increaseQuantity,
-    clearCart,
-  } = useCart(); //hämtar alla funktioner som behövs här från contexten
-
-  const handleCheckoutDone = () => {
-    clearCart();
-  };
-
-  //hämtar objekten i kudnvagnen
-  const cartItems: CartItem[] = getCartItems();
+  const { cart, calculateTotalPrice, decreaseQuantity, increaseQuantity } =
+    useCart(); //hämtar alla funktioner som behövs här från contexten
 
   return (
     <main style={{ background: "#F9F1EC", padding: "10px 20px" }}>
@@ -28,7 +15,7 @@ export default function CheckoutPage() {
         Shopping bag
       </Typography>
       <Box>
-        {cartItems.map((item, index) => (
+        {cart.map((item, index) => (
           <Card
             key={item.id}
             data-cy="cart-item"
@@ -102,11 +89,11 @@ export default function CheckoutPage() {
             fontWeight: "bold",
           }}
         >
-          Total amount: {calculateTotalPrice(cartItems)} SEK
+          Total amount: {calculateTotalPrice()} SEK
         </Box>
       </Box>
       <Box>
-        <CheckoutForm OnCheckoutDone={handleCheckoutDone} />
+        <CheckoutForm />
       </Box>
     </main>
   );
