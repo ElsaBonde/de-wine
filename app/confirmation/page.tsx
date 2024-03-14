@@ -1,30 +1,20 @@
 "use client";
 
-import { CartItem } from "@/data";
 import { Box, Card, Typography } from "@mui/material";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useCart } from "../ui/CartContext";
+import { useCustomer } from "../ui/CustomerContext";
 
 export default function ConfirmationPage() {
-  // Hämta sparad data från localStorage i en annan fil
-  const savedFormData = localStorage.getItem("checkoutFormData");
+  const { customer } = useCustomer();
+  // fixa så att carten rensas efter att sidan har laddats om
+  const { cart: contextCart, calculateTotalPrice, clearCart } = useCart();
+  const [cart] = useState(contextCart);
 
-  //använd sparad data
-  let parsedFormData: {
-    fullname: string;
-    email: string;
-    phonenumber: number;
-    address: string;
-    zipcode: number;
-    city: string;
-  } | null = null;
-  if (savedFormData) {
-    parsedFormData = JSON.parse(savedFormData);
-  }
-  // fixa så att carten rensas efter att sidan har laddats om 
-  const { getCartItems, calculateTotalPrice } = useCart();
-
-  const cartItems: CartItem[] = getCartItems();
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
 
   return (
     <main>
@@ -32,19 +22,19 @@ export default function ConfirmationPage() {
         Thank you for your purchase!
       </Typography>
       <Typography>Your orderId is: ettuniktid</Typography>
-      {parsedFormData && (
+      {customer && (
         <Box>
           <Typography variant="h6">Your shipping information:</Typography>
-          <Typography>{`Full Name: ${parsedFormData.fullname}`}</Typography>
-          <Typography>{`Email: ${parsedFormData.email}`}</Typography>
-          <Typography>{`Phone Number: ${parsedFormData.phonenumber}`}</Typography>
-          <Typography>{`Address: ${parsedFormData.address}`}</Typography>
-          <Typography>{`Zip Code: ${parsedFormData.zipcode}`}</Typography>
-          <Typography>{`City: ${parsedFormData.city}`}</Typography>
+          <Typography>{`Full Name: ${customer.fullname}`}</Typography>
+          <Typography>{`Email: ${customer.email}`}</Typography>
+          <Typography>{`Phone Number: ${customer.phonenumber}`}</Typography>
+          <Typography>{`Address: ${customer.address}`}</Typography>
+          <Typography>{`Zip Code: ${customer.zipcode}`}</Typography>
+          <Typography>{`City: ${customer.city}`}</Typography>
         </Box>
       )}
       <Box>
-        {cartItems.map((item, index) => (
+        {cart.map((item, index) => (
           <Card
             key={item.id}
             data-cy="cart-item"
@@ -104,7 +94,7 @@ export default function ConfirmationPage() {
             fontWeight: "bold",
           }}
         >
-          Total amount: {calculateTotalPrice(cartItems)} SEK
+          Total amount: {calculateTotalPrice()} SEK
         </Box>
       </Box>
     </main>
