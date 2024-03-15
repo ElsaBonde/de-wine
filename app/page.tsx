@@ -28,7 +28,9 @@ export default function StartPage() {
                 color: "black",
               }}
             >
-              <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
+              <CardActionArea sx={{ background: "white", borderRadius: "8px", "&:hover": {
+                    transform: "scale(1.02)", transition: "transform 0.6s" 
+                  }}}>
                 <CardMedia
                   component="img"
                   image={product.image}
@@ -47,7 +49,7 @@ export default function StartPage() {
                   >
                     <Box>
                       <Typography
-                        gutterBottom
+                        
                         variant="h5"
                         component="div"
                         data-cy="product-title"
@@ -62,7 +64,7 @@ export default function StartPage() {
                         variant="body1"
                         color="text.secondary"
                         data-cy="product-price"
-                        sx={{ fontFamily: "josefin sans" }}
+                        sx={{ fontFamily: "josefin sans", color: "black", marginBottom: "10px" }}
                       >
                         {product.price} :-
                       </Typography>
@@ -88,5 +90,3 @@ export default function StartPage() {
     </Box>
   );
 }
-
-// Glöm inte, förstora bilden på "infosidan", vi påbörjade snackbar... vi påbörjade local storage...

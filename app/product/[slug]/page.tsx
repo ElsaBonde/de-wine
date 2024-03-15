@@ -47,6 +47,8 @@ export default function ProductPage({ params }: PageProps) {
           padding: "20px 40px",
         }}
       >
+        <Box component="div" sx={{display: "flex", justifyContent: "space-between", }}>
+          <Box component="div"> 
         <Typography
           variant="h5"
           data-cy="product-title"
@@ -57,13 +59,15 @@ export default function ProductPage({ params }: PageProps) {
         <Typography data-cy="product-price" sx={{ fontFamily: "josefin sans" }}>
           {product.price} :-
         </Typography>
+        </Box>
+        <AddButton product={product} />
+        </Box>
         <Typography
           data-cy="product-description"
           sx={{ marginTop: "15px", fontFamily: "josefin sans" }}
         >
           {product.description}
         </Typography>
-        <AddButton product={product} />
       </Box>
     </Box>
   );

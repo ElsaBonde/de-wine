@@ -28,7 +28,7 @@ export const products: Product[] = [
     image: "/redWine2.jpeg",
     title: "Sommelier's Pick",
     description:
-      "Delve into a world of sophisticated flavors with our Sommelier's Pick. Handpicked from renowned vineyards worldwide, this curated assortment features an array of premium reds, whites, and rosés, meticulously chosen to elevate your wine journey to new heights.",
+      "Delve into a world of sophisticated flavors with our Sommelier's Pick. Handpicked from renowned vineyards worldwide, this curated assortment features an array of premium reds, whites, and rosés, meticulously chosen to elevate your wine journey to new heights. Experience luxury with each taste.",
     price: 1599,
   },
   {
