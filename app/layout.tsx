@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { LayoutProps } from "./types";
+import { AdminContext, AdminProvider } from "./ui/AdminContext";
 import CartContext from "./ui/CartContext";
 import CountBadge from "./ui/CountBadge";
 import CustomerContext from "./ui/CustomerContext";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps) {
         className={inter.className}
         style={{ margin: "0", background: "#F9F1EC" }}
       >
+        <AdminProvider>
         <CartContext>
           <CustomerContext>
             <AppRouterCacheProvider>
@@ -86,21 +88,22 @@ export default function RootLayout({ children }: LayoutProps) {
                   justifyContent: "space-between",
                 }}
               >
-                <Link
-                  href="/admin"
-                  style={{
-                    textDecoration: "none",
-                    color: "#881C1C",
-                  }}
-                  data-cy="admin-link"
-                >
-                  <AdminPanelSettings /> Admin
-                </Link>
+                  <Link
+                    href="/admin"
+                    style={{
+                      textDecoration: "none",
+                      color: "#881C1C",
+                    }}
+                    data-cy="admin-link"
+                  >
+                    <AdminPanelSettings /> Admin
+                  </Link>
                 <Typography>© 2024</Typography>
               </Box>
             </AppRouterCacheProvider>
           </CustomerContext>
         </CartContext>
+        </AdminProvider>
       </body>
     </html>
   );

@@ -53,7 +53,7 @@ export default function ConfirmationPage() {
             paddingBottom: "10px",
           }}
         >
-          Your Wine'Order:
+          Your Wine&apos;Order:
         </Typography>
         <Box>
           {cart.map((item, index) => (
@@ -121,7 +121,7 @@ export default function ConfirmationPage() {
         </Typography>
       </Box>
 
-      {/* här börjar nästa skit */}
+   {/*    sektion 2 */}
       <Box
         sx={{
           display: "flex",
