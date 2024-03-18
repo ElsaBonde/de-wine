@@ -2,6 +2,24 @@
 
 A webshop where you can order different kind of wine packages in a vide range of different pricing and wines. On the first page you'll come across the whole selection of the different packages, you can either add to the cart directly from the hopmepage or you can navigate to the specific package to read more about it before adding it to the cart. The user can simply go to the cart-page to overwiev the added items and directly change the amount and see the total price. There is a checkout form in the cart-page to minimize the amount of clicks for the user, the form is provided with outofill to make it easier aswell. When the order is placed, the user will be directed to a confimation page with a summary of the order and chipping details.
 
+## Installation
+
+// clona från github, npm m.m.
+
+## Usage
+
+// starta utvecklingsserver, admin, navigation m.m
+
+## Tech
+
+//vilka ramverks som används och länkar till docs
+
+## Folder Structure
+
+// hur ser mapp-strukturen ut, vad har mappar och filer för ansvar?
+
+## Demo
+
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/G1YVQsIF)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
