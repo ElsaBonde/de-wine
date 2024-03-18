@@ -23,6 +23,7 @@ export default function AdminPage() {
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
+        
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
             <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>

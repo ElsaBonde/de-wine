@@ -12,7 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Customer, CustomerSchema, useCustomer } from "./ui/CustomerContext";
+import { Customer, CustomerSchema, useCustomer } from "./CustomerContext";
 
 //komponent för formulär för att skriva in personuppgifter
 export default function CheckoutForm() {

@@ -3,8 +3,8 @@
 import "@fontsource/karla";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
-import CheckoutForm from "../form";
 import { useCart } from "../ui/CartContext";
+import CheckoutForm from "../ui/CustomerForm";
 
 export default function CheckoutPage() {
   const { cart, calculateTotalPrice, decreaseQuantity, increaseQuantity } =
