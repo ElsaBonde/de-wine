@@ -1,5 +1,6 @@
 "use client";
 
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
   Box,
   CardActionArea,
@@ -10,13 +11,13 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
 import AddImage from "/public/AddImage.png";
-import Link from 'next/link';
 
 export default function AdminPage() {
-  const { products, removeProduct } = useAdminContext();
+  const { products, removeProduct, editProduct } = useAdminContext();
 
   const handleDelete = (productId: string) => {
     removeProduct(productId);
@@ -25,14 +26,16 @@ export default function AdminPage() {
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
-        <Link href="/admin/product/new">
-          <Box sx={{ border: "solid" }}>
-            <Image src={AddImage} alt="hora" width={200} height={200} />
-            <Typography>Title</Typography>
-            <Typography>price</Typography>
-            <Typography>Description</Typography>
-          </Box>
-        </Link>
+        <Grid item xs={12} sm={6} md={4}>
+          <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
+            <Link href="/admin/product/new">
+              <Image src={AddImage} alt="hora" width={200} height={200} />
+              <Typography>Title</Typography>
+              <Typography>price</Typography>
+              <Typography>Description</Typography>
+            </Link>
+          </CardActionArea>
+        </Grid>
 
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
@@ -78,6 +81,9 @@ export default function AdminPage() {
                   </Box>
                   <CardActions>
                     <DeleteButton product={product} onDelete={handleDelete} />
+                    <ModeEditOutlineOutlinedIcon
+                      onClick={() => editProduct(product.id, product)}
+                    />
                   </CardActions>
                 </Box>
                 <Typography

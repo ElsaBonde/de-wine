@@ -26,7 +26,6 @@ export default function CheckoutForm() {
 
   //funktion för att skicka meddelandet som rensar formuläret och anropar onMessageSent
   const sendForm = (customer: Customer) => {
-    console.log(customer);
     setCustomer(customer);
     router.push("/confirmation");
   };
