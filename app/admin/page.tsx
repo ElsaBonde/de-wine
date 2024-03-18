@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
+import AddImage from "../public/add-image-photo-icon.png"; //fråga david hur vi gör med denna (add new)/ måste vi använda oss av ett form? kan vi använda "dialog" från MUI (delete).
 
 export default function AdminPage() {
   const { products, removeProduct } = useAdminContext();

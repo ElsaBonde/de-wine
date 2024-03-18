@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { LayoutProps } from "./types";
-import { AdminContext, AdminProvider } from "./ui/AdminContext";
+import { AdminProvider } from "./ui/AdminContext";
 import CartContext from "./ui/CartContext";
 import CountBadge from "./ui/CountBadge";
 import CustomerContext from "./ui/CustomerContext";
@@ -30,64 +30,64 @@ export default function RootLayout({ children }: LayoutProps) {
         style={{ margin: "0", background: "#F9F1EC" }}
       >
         <AdminProvider>
-        <CartContext>
-          <CustomerContext>
-            <AppRouterCacheProvider>
-              <Box
-                component="header"
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  background: "#f1ddcf",
-                  padding: "20px 20px",
-                }}
-              >
-                <Link
-                  href="/"
-                  style={{
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Image
-                    src={Logotype}
-                    alt="logotype"
-                    width={200}
-                    height={60}
-                  />
-                </Link>
+          <CartContext>
+            <CustomerContext>
+              <AppRouterCacheProvider>
                 <Box
+                  component="header"
                   sx={{
                     display: "flex",
-                    gap: "5px",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    background: "#f1ddcf",
+                    padding: "20px 20px",
                   }}
                 >
-                  <CountBadge />
-                  <Link href="/checkout">
-                    <ShoppingCart
-                      data-cy="cart-link"
-                      sx={{ color: "#881C1C" }}
+                  <Link
+                    href="/"
+                    style={{
+                      textDecoration: "none",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Image
+                      src={Logotype}
+                      alt="logotype"
+                      width={200}
+                      height={60}
                     />
                   </Link>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: "5px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <CountBadge />
+                    <Link href="/checkout">
+                      <ShoppingCart
+                        data-cy="cart-link"
+                        sx={{ color: "#881C1C" }}
+                      />
+                    </Link>
+                  </Box>
                 </Box>
-              </Box>
 
-              {children}
+                {children}
 
-              <Box
-                component="footer"
-                sx={{
-                  display: "flex",
-                  background: "#f1ddcf",
-                  marginTop: "auto",
-                  padding: "5px 10px",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
+                <Box
+                  component="footer"
+                  sx={{
+                    display: "flex",
+                    background: "#f1ddcf",
+                    marginTop: "auto",
+                    padding: "5px 10px",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <Link
                     href="/admin"
                     style={{
@@ -98,11 +98,11 @@ export default function RootLayout({ children }: LayoutProps) {
                   >
                     <AdminPanelSettings /> Admin
                   </Link>
-                <Typography>© 2024</Typography>
-              </Box>
-            </AppRouterCacheProvider>
-          </CustomerContext>
-        </CartContext>
+                  <Typography>© 2024</Typography>
+                </Box>
+              </AppRouterCacheProvider>
+            </CustomerContext>
+          </CartContext>
         </AdminProvider>
       </body>
     </html>
