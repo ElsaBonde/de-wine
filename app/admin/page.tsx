@@ -9,9 +9,11 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
-import AddImage from "../public/add-image-photo-icon.png"; //fråga david hur vi gör med denna (add new)/ måste vi använda oss av ett form? kan vi använda "dialog" från MUI (delete).
+import AddImage from "/public/AddImage.png";
+import Link from 'next/link';
 
 export default function AdminPage() {
   const { products, removeProduct } = useAdminContext();
@@ -23,7 +25,15 @@ export default function AdminPage() {
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
-        
+        <Link href="/admin/product/new">
+          <Box sx={{ border: "solid" }}>
+            <Image src={AddImage} alt="hora" width={200} height={200} />
+            <Typography>Title</Typography>
+            <Typography>price</Typography>
+            <Typography>Description</Typography>
+          </Box>
+        </Link>
+
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
             <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
