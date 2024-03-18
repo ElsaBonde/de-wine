@@ -15,12 +15,12 @@ export default function ProductForm(props: Props) {
   const router = useRouter();
   const { addProduct } = useAdminContext();
 
-  const {register, formState, handleSubmit} = useForm<Product>({
+  const { register, formState, handleSubmit } = useForm<Product>({
     defaultValues: props.product || { id: Date.now().toString() },
     resolver: zodResolver(ProductSchema),
   });
 
-  const onSubmit = ((formData: Product) => {
+  const onSubmit = (formData: Product) => {
     if (isEdit) {
       props.onSave({ ...props.product, ...formData });
     } else {
@@ -29,7 +29,7 @@ export default function ProductForm(props: Props) {
 
     router.push("/admin");
     console.log(formData);
-  });
+  };
 
   return (
     <Grid
@@ -44,11 +44,10 @@ export default function ProductForm(props: Props) {
           required
           id="image"
           label="Image"
-
           fullWidth
           variant="standard"
           {...register("image")}
-          /*  inputProps={{ "data-cy": "product-image" }} */
+           inputProps={{ "data-cy": "product-image" }}
         />
         {formState.errors.image && <p>{formState.errors.image.message}</p>}
       </Grid>
@@ -57,7 +56,6 @@ export default function ProductForm(props: Props) {
           required
           id="title"
           label="Title"
-
           fullWidth
           variant="standard"
           {...register("title")}
@@ -70,10 +68,9 @@ export default function ProductForm(props: Props) {
           required
           id="price"
           label="Price"
-         
           fullWidth
           variant="standard"
-            {...register("price")}
+          {...register("price")}
           inputProps={{ "data-cy": "product-price" }}
         />
         {formState.errors.price && <p>{formState.errors.price.message}</p>}
@@ -81,20 +78,21 @@ export default function ProductForm(props: Props) {
       <Grid item xs={12} sm={6}>
         <TextField
           required
-          id="outlined-textarea"
+          /* id="outlined-textarea" */
+          id="description"
           label="Description"
-       
-          multiline
+          /* multiline */
           rows={4}
           fullWidth
           variant="standard"
-            {...register("description")}
+          {...register("description")}
           inputProps={{ "data-cy": "product-description" }}
         />
-        {formState.errors.description && <p>{formState.errors.description.message}</p>}
+        {formState.errors.description && (
+          <p>{formState.errors.description.message}</p>
+        )}
       </Grid>
       <Button
-        
         type="submit"
         sx={{
           backgroundColor: "#F1DDCF",

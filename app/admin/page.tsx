@@ -26,7 +26,7 @@ export default function AdminPage() {
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={4} data-cy="admin-add-product">
           <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
             <Link href="/admin/product/new">
               <Image src={AddImage} alt="hora" width={200} height={200} />
