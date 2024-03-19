@@ -81,10 +81,12 @@ export default function AdminPage() {
                   </Box>
                   <CardActions>
                     <DeleteButton product={product} onDelete={handleDelete} />
-                    <ModeEditOutlineOutlinedIcon
-                      data-cy="admin-edit-product"
-                      onClick={() => editProduct(product.id, product)}
-                    />
+                    <Link href={`/admin/product/${product.id}`}>
+                      <ModeEditOutlineOutlinedIcon
+                        data-cy="admin-edit-product"
+                        onClick={() => editProduct(product.id, product)}
+                      />
+                    </Link>
                   </CardActions>
                 </Box>
                 <Typography

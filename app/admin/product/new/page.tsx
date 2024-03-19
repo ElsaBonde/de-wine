@@ -9,7 +9,7 @@ export default function AddProduct() {
   const { addProduct } = useAdminContext();
 
   const handleSave = (product: Product) => {
-    const newProduct = addProduct(product);
+    addProduct(product);
   };
   return (
     <Box component="main" sx={{ padding: "10px" }}>
