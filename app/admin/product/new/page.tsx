@@ -12,7 +12,7 @@ export default function AddProduct() {
     addProduct(product);
   };
   return (
-    <Box component="main" sx={{padding: "10px"}}>
+    <Box component="main" sx={{ padding: "10px" }}>
       <ProductForm onSave={handleSave} />
     </Box>
   );
