@@ -1,6 +1,6 @@
 import { Product } from "@/data";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ProductSchema, useAdminContext } from "./AdminContext";
@@ -47,9 +47,11 @@ export default function ProductForm(props: Props) {
           fullWidth
           variant="standard"
           {...register("image")}
-           inputProps={{ "data-cy": "product-image" }}
+          inputProps={{ "data-cy": "product-image" }}
         />
-        {formState.errors.image && <p>{formState.errors.image.message}</p>}
+        {formState.errors.image && (
+          <p data-cy="product-image-error">{formState.errors.image.message}</p>
+        )}
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
@@ -61,7 +63,11 @@ export default function ProductForm(props: Props) {
           {...register("title")}
           inputProps={{ "data-cy": "product-title" }}
         />
-        {formState.errors.title && <p>{formState.errors.title.message}</p>}
+        {formState.errors.title && (
+          <Typography data-cy="product-title-error">
+            {formState.errors.title.message}
+          </Typography>
+        )}
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
@@ -73,7 +79,9 @@ export default function ProductForm(props: Props) {
           {...register("price")}
           inputProps={{ "data-cy": "product-price" }}
         />
-        {formState.errors.price && <p>{formState.errors.price.message}</p>}
+        {formState.errors.price && (
+          <p data-cy="product-price-error">{formState.errors.price.message}</p>
+        )}
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
@@ -89,7 +97,9 @@ export default function ProductForm(props: Props) {
           inputProps={{ "data-cy": "product-description" }}
         />
         {formState.errors.description && (
-          <p>{formState.errors.description.message}</p>
+          <p data-cy="product-description-error">
+            {formState.errors.description.message}
+          </p>
         )}
       </Grid>
       <Button
