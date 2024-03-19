@@ -71,12 +71,11 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     });
   };
 
-  //DAVID HJÄLP OSS!!!!
   const addProduct = (newProduct: Product) => {
     const productId = generateId();
     newProduct.id = productId;
     setProducts((prevProducts) => {
-      const updatedProducts = [newProduct, ...prevProducts];
+      const updatedProducts = [...prevProducts, newProduct];
       localStorage.setItem("products", JSON.stringify(updatedProducts));
       console.log("dessa:", updatedProducts);
       return updatedProducts;
