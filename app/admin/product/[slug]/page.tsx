@@ -3,6 +3,7 @@
 import { useAdminContext } from "@/app/ui/AdminContext";
 import ProductForm from "@/app/ui/ProductForm";
 import { Product, getProductById } from "@/data";
+import { Box } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
@@ -18,8 +19,8 @@ export default function EditProduct({ params }: PageProps) {
   };
 
   return (
-    <>
+    <Box component="main" sx={{ padding: "10px" }}>
       <ProductForm product={product} onSave={handleSave} />
-    </>
+    </Box>
   );
 }

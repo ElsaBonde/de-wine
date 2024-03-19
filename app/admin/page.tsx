@@ -27,14 +27,14 @@ export default function AdminPage() {
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={6} md={4} data-cy="admin-add-product">
-          <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
-            <Link href="/admin/product/new">
-              <Image src={AddImage} alt="hora" width={200} height={200} />
-              <Typography>Title</Typography>
-              <Typography>price</Typography>
-              <Typography>Description</Typography>
-            </Link>
-          </CardActionArea>
+          <Link href="/admin/product/new">
+            <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
+              <Image src={AddImage} alt="addImage" width={200} height={200} />
+              <Typography>Product coming soon..</Typography>
+              <Typography>123 :-</Typography>
+              <Typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, in a mollitia vel nulla sequi quam expedita? Incidunt possimus exercitationem nisi ab expedita veritatis harum iste, minus unde. Voluptatibus, totam!</Typography>
+            </CardActionArea>
+          </Link>
         </Grid>
 
         {products.map((product) => (
