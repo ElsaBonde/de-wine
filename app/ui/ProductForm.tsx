@@ -41,7 +41,6 @@ export default function ProductForm(props: Props) {
     >
       <Grid item xs={12} sm={6}>
         <TextField
-          required
           id="image"
           label="Image"
           fullWidth
@@ -50,12 +49,13 @@ export default function ProductForm(props: Props) {
           inputProps={{ "data-cy": "product-image" }}
         />
         {formState.errors.image && (
-          <p data-cy="product-image-error">{formState.errors.image.message}</p>
+          <Typography data-cy="product-image-error">
+            {formState.errors.image.message}
+          </Typography>
         )}
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          required
           id="title"
           label="Title"
           fullWidth
@@ -71,7 +71,6 @@ export default function ProductForm(props: Props) {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          required
           id="price"
           label="Price"
           fullWidth
@@ -80,12 +79,13 @@ export default function ProductForm(props: Props) {
           inputProps={{ "data-cy": "product-price" }}
         />
         {formState.errors.price && (
-          <p data-cy="product-price-error">{formState.errors.price.message}</p>
+          <Typography data-cy="product-price-error">
+            {formState.errors.price.message}
+          </Typography>
         )}
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          required
           /* id="outlined-textarea" */
           id="description"
           label="Description"
@@ -97,9 +97,9 @@ export default function ProductForm(props: Props) {
           inputProps={{ "data-cy": "product-description" }}
         />
         {formState.errors.description && (
-          <p data-cy="product-description-error">
+          <Typography data-cy="product-description-error">
             {formState.errors.description.message}
-          </p>
+          </Typography>
         )}
       </Grid>
       <Button

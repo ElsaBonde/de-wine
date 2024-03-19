@@ -9,10 +9,10 @@ export default function AddProduct() {
   const { addProduct } = useAdminContext();
 
   const handleSave = (product: Product) => {
-    addProduct(product);
+    const newProduct = addProduct(product);
   };
   return (
-    <Box component="main" sx={{padding: "10px"}}>
+    <Box component="main" sx={{ padding: "10px" }}>
       <ProductForm onSave={handleSave} />
     </Box>
   );

@@ -8,6 +8,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
 interface AdminContextValue {
@@ -48,6 +49,14 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     }
   }, []);
 
+  //genererar id
+  const generateId = (): string => {
+    const longId = uuidv4(); //genererar ett långt id
+    const shortIdWithCharacter = longId.slice(0, 5); //gör att id max är 5 tecken
+    const shortId = shortIdWithCharacter.replace(/-/g, ""); //tar bort tecken så som bindestreck osv
+    return shortId;
+  };
+
   //uppdatera produkt genom att hitta rätt produkt och uppdatera den
   const editProduct = (productId: string, updatedProduct: Partial<Product>) => {
     setProducts((prevProducts) => {
@@ -63,11 +72,14 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
   };
 
   const addProduct = (newProduct: Product) => {
+    const productId = generateId();
+    newProduct.id = productId;
     setProducts((prevProducts) => {
       const updatedProducts = [...prevProducts, newProduct];
       localStorage.setItem("products", JSON.stringify(updatedProducts));
       return updatedProducts;
     });
+    return newProduct;
   };
 
   //ta bort produkt från adminsidan genom att filtrera ut den
