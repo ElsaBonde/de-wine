@@ -111,7 +111,6 @@ export default function ProductForm(props: Props) {
       </Grid>
       <Button
         type="submit"
-        data-cy="admin-add-product"
         sx={{
           backgroundColor: "#F1DDCF",
           color: "#881C1C",

@@ -27,56 +27,16 @@ export default function AdminPage() {
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          data-cy="admin-add-product"
-          sx={{ fontFamily: "josefin sans" }}
-        >
-          <CardActionArea
-            sx={{
-              background: "white",
-              borderRadius: "8px",
-              padding: "8px",
-            }}
-          >
-            <Link
-              component={NextLink}
-              href="/admin/product/new"
-              sx={{
-                textDecoration: "none",
-                color: "black",
-              }}
-            >
-              <Image src={AddImage} alt="Image" width={200} height={200} />
-              <Typography variant="h5" sx={{ fontFamily: "josefin sans" }}>
-                Title
-              </Typography>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                data-cy="product-price"
-              >
-                price
-              </Typography>
-              <Typography>Description</Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                data-cy="product-description"
-                sx={{ fontFamily: "josefin sans" }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Laborum, minima suscipit quisquam saepe molestiae dolorum ex
-                dolores libero consectetur ullam est amet fugit. Ratione,
-                asperiores? Ipsa ipsum modi dolorum harum!
-              </Typography>
-            </Link>
-          </CardActionArea>
+        <Grid item xs={12} sm={6} md={4} data-cy="admin-add-product">
+          <Link href="/admin/product/new">
+            <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
+              <Image src={AddImage} alt="addImage" width={200} height={200} />
+              <Typography>Product coming soon..</Typography>
+              <Typography>123 :-</Typography>
+              <Typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, in a mollitia vel nulla sequi quam expedita? Incidunt possimus exercitationem nisi ab expedita veritatis harum iste, minus unde. Voluptatibus, totam!</Typography>
+            </CardActionArea>
+          </Link>
         </Grid>
-
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
             <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>

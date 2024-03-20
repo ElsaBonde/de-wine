@@ -77,6 +77,7 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     setProducts((prevProducts) => {
       const updatedProducts = [...prevProducts, newProduct];
       localStorage.setItem("products", JSON.stringify(updatedProducts));
+      console.log("dessa:", updatedProducts);
       return updatedProducts;
     });
     return newProduct;
