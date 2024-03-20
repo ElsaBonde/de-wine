@@ -8,10 +8,11 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Link,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
 import AddImage from "/public/AddImage.png";
@@ -26,7 +27,14 @@ export default function AdminPage() {
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={4} data-cy="admin-add-product">
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          data-cy="admin-add-product"
+          sx={{ fontFamily: "josefin sans" }}
+        >
           <CardActionArea
             sx={{
               background: "white",
@@ -34,12 +42,32 @@ export default function AdminPage() {
               padding: "8px",
             }}
           >
-            <Link href="/admin/product/new">
+            <Link
+              component={NextLink}
+              href="/admin/product/new"
+              sx={{
+                textDecoration: "none",
+                color: "black",
+              }}
+            >
               <Image src={AddImage} alt="Image" width={200} height={200} />
-              <Typography variant="h5">Title</Typography>
-              <Typography variant="subtitle1">price</Typography>
+              <Typography variant="h5" sx={{ fontFamily: "josefin sans" }}>
+                Title
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                data-cy="product-price"
+              >
+                price
+              </Typography>
               <Typography>Description</Typography>
-              <Typography variant="body2" sx={{ textDecoration: "none" }}>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                data-cy="product-description"
+                sx={{ fontFamily: "josefin sans" }}
+              >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Laborum, minima suscipit quisquam saepe molestiae dolorum ex
                 dolores libero consectetur ullam est amet fugit. Ratione,
