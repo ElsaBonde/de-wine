@@ -7,8 +7,13 @@ import { useCart } from "../ui/CartContext";
 import CheckoutForm from "../ui/CustomerForm";
 
 export default function CheckoutPage() {
-  const { cart, calculateTotalPrice, decreaseQuantity, increaseQuantity } =
-    useCart(); //hämtar alla funktioner som behövs här från contexten
+  const {
+    cart,
+    calculateTotalPrice,
+    calculateTotalSalePrice,
+    decreaseQuantity,
+    increaseQuantity,
+  } = useCart(); //hämtar alla funktioner som behövs här från contexten
 
   if (cart.length === 0) {
     return (
@@ -29,7 +34,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px", flex: 1 }}>
+    <Box
+      component="main"
+      sx={{ background: "#F9F1EC", padding: "10px 20px", flex: 1 }}
+    >
       <Typography
         variant="h4"
         sx={{
@@ -76,14 +84,38 @@ export default function CheckoutPage() {
               >
                 {item.title}
               </Typography>
-              <Typography
-                data-cy="product-price"
-                sx={{ fontFamily: "Josefin Sans" }}
-              >
-                {" "}
-                {/* här får vi lägga till vad en kostar också */}
-                {item.price * item.quantity} :-
-              </Typography>
+        
+        {/* om produkten har reapris, visa det */}
+              {item.salePrice ? (
+                <>
+                  <Typography
+                    sx={{
+                      fontFamily: "Josefin Sans",
+                      color: "red",
+                    }}
+                  >
+                    Your Price: {item.salePrice * item.quantity} :-
+                  </Typography>
+                  <Typography
+                    data-cy="product-price"
+                    sx={{
+                      fontFamily: "Josefin Sans",
+                      textDecoration: "line-through",
+                    }}
+                  >
+                    Old Price: {item.price * item.quantity} :-
+                  </Typography>
+                </>
+              ) : /* annars visa bara vanliga priset */ (
+                <Typography
+                  data-cy="product-price"
+                  sx={{ fontFamily: "Josefin Sans" }}
+                >
+                  Price: {item.price * item.quantity} :-
+                </Typography>
+              )}
+
+
               <Box
                 sx={{
                   display: "flex",
@@ -138,7 +170,21 @@ export default function CheckoutPage() {
             fontVariant: "small-caps",
           }}
         >
-          Total amount: {calculateTotalPrice()} SEK
+          Old price: {calculateTotalPrice()} SEK
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: "#F1DDCF",
+            borderRadius: "5px",
+            color: "red",
+            textAlign: "center",
+            padding: "5px",
+            fontFamily: "Karla",
+            fontWeight: "400",
+            fontVariant: "small-caps",
+          }}
+        >
+          Your price: {calculateTotalSalePrice()} SEK
         </Box>
       </Box>
       <Box>

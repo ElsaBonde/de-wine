@@ -8,6 +8,7 @@ export interface Product {
   title: string;
   description: string;
   price: number;
+  salePrice?: number;
 }
 export interface CartItem extends Product {
   quantity: number;
@@ -22,6 +23,7 @@ export const products: Product[] = [
     description:
       "Marvel at our Luxury Box, a tribute to the elegance of red wine. Each bottle selection, carefully chosen from vineyards around the world, offers an exclusive collection of premium red wines. Experience a world of sophisticated indulgence and let your wine journey become unforgettable.",
     price: 19999,
+    salePrice: 16999,
   },
   {
     id: "2",
@@ -38,6 +40,7 @@ export const products: Product[] = [
     description:
       "Experience Italy's essence with our Tuscan Revelry collection. Savor robust reds and crisp whites from Tuscany's sun-kissed vineyards. Each bottle encapsulates the region's rich heritage and craftsmanship, promising an unforgettable journey. Let the journey begin.",
     price: 2000,
+    salePrice: 1549,
   },
   {
     id: "4",

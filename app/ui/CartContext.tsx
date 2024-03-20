@@ -15,6 +15,7 @@ interface ContextValue {
   addToCart: (product: Product) => void;
   incrementQuantity: (productId: string) => void;
   calculateTotalPrice: () => number;
+  calculateTotalSalePrice: () => number;
   increaseQuantity: (productId: string) => void;
   decreaseQuantity: (productId: string) => void;
   removeFromCart: (cartItem: CartItem) => void;
@@ -63,7 +64,10 @@ export default function CartContext(props: PropsWithChildren) {
     }
 
     //om produkten inte finns i kundkorgen, lägg till den
-    const updatedCart = [...cart, { ...product, quantity: 1 }];
+    const updatedCart = [
+      ...cart,
+      { ...product, quantity: 1, salePrice: product.salePrice}, //spara ner reapris i cart om de finns ett
+    ];
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
   };
@@ -83,6 +87,16 @@ export default function CartContext(props: PropsWithChildren) {
   //beräknar totalpriset av alla varor i kundvagnen
   const calculateTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const calculateTotalSalePrice = () => {
+    return cart.reduce((total, item) => {
+      if (item.salePrice) {
+        return total + item.salePrice * item.quantity;
+      } else {
+        return total + item.price * item.quantity;
+      }
+    }, 0);
   };
 
   //minska antalet av en viss produkt i kundvagnen
@@ -140,6 +154,7 @@ export default function CartContext(props: PropsWithChildren) {
         addToCart,
         incrementQuantity,
         calculateTotalPrice,
+        calculateTotalSalePrice,
         increaseQuantity,
         decreaseQuantity,
         removeFromCart,

@@ -1,8 +1,7 @@
 import AddButton from "@/app/ui/AddButton";
 import { getProductById } from "@/data";
 import "@fontsource/josefin-sans";
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, CardMedia, Typography } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
@@ -27,15 +26,13 @@ export default function ProductPage({ params }: PageProps) {
       }}
     >
       <Box component="div" sx={{ width: "100%", height: "40vh" }}>
-        <Image
-          src={product.image}
+        <CardMedia
+          component="img"
+          image={product.image}
           alt={product.title}
-          width={100}
-          height={100}
-          style={{
-            width: "inherit",
-            height: "inherit",
-            objectFit: "contain",
+          sx={{
+            maxWidth: "100%",
+            height: "auto",
           }}
         />
       </Box>
@@ -47,20 +44,46 @@ export default function ProductPage({ params }: PageProps) {
           padding: "20px 40px",
         }}
       >
-        <Box component="div" sx={{display: "flex", justifyContent: "space-between", }}>
-          <Box component="div"> 
-        <Typography
-          variant="h5"
-          data-cy="product-title"
-          sx={{ fontFamily: "josefin sans" }}
+        <Box
+          component="div"
+          sx={{ display: "flex", justifyContent: "space-between" }}
         >
-          {product.title}
-        </Typography>
-        <Typography data-cy="product-price" sx={{ fontFamily: "josefin sans" }}>
-          {product.price} :-
-        </Typography>
-        </Box>
-        <AddButton product={product} />
+          <Box component="div">
+            <Typography
+              variant="h5"
+              data-cy="product-title"
+              sx={{ fontFamily: "josefin sans" }}
+            >
+              {product.title}
+            </Typography>
+
+            <Box sx={{ display: "flex", gap: "15px" }}>
+              <Typography
+                data-cy="product-price"
+                sx={{
+                  fontFamily: "josefin sans",
+                  color: "black",
+                  marginBottom: "10px",
+                  ...(product.salePrice && { textDecoration: "line-through" }),
+                }}
+              >
+                {product.price} :-
+              </Typography>
+
+              {product.salePrice && (
+                <Typography
+                  sx={{
+                    fontFamily: "josefin sans",
+                    color: "red",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {product.salePrice} :-
+                </Typography>
+              )}
+            </Box>
+          </Box>
+          <AddButton product={product} />
         </Box>
         <Typography
           data-cy="product-description"

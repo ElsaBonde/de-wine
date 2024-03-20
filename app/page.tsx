@@ -28,9 +28,16 @@ export default function StartPage() {
                 color: "black",
               }}
             >
-              <CardActionArea sx={{ background: "white", borderRadius: "8px", "&:hover": {
-                    transform: "scale(1.02)", transition: "transform 0.6s" 
-                  }}}>
+              <CardActionArea
+                sx={{
+                  background: "white",
+                  borderRadius: "8px",
+                  "&:hover": {
+                    transform: "scale(1.02)",
+                    transition: "transform 0.6s",
+                  },
+                }}
+              >
                 <CardMedia
                   component="img"
                   image={product.image}
@@ -49,7 +56,6 @@ export default function StartPage() {
                   >
                     <Box>
                       <Typography
-                        
                         variant="h5"
                         component="div"
                         data-cy="product-title"
@@ -60,14 +66,38 @@ export default function StartPage() {
                       >
                         {product.title}
                       </Typography>
-                      <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        data-cy="product-price"
-                        sx={{ fontFamily: "josefin sans", color: "black", marginBottom: "10px" }}
-                      >
-                        {product.price} :-
-                      </Typography>
+
+                      <Box sx={{ display: "flex", gap: "15px" }}>
+                        <Typography
+                          variant="body1"
+                          color="text.secondary"
+                          data-cy="product-price"
+                          sx={{
+                            fontFamily: "josefin sans",
+                            color: "black",
+                            marginBottom: "10px",
+                            ...(product.salePrice && {
+                              textDecoration: "line-through",
+                            }), //överstruket på normalpris om reapris finns
+                          }}
+                        >
+                          {product.price} :-
+                        </Typography>
+
+                        {product.salePrice && (
+                          <Typography
+                            variant="body1"
+                            color="red" //röd färg på reapris
+                            sx={{
+                              fontFamily: "josefin sans",
+                              color: "red",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            {product.salePrice} :-
+                          </Typography>
+                        )}
+                      </Box>
                     </Box>
                     <CardActions>
                       <AddButton product={product} />

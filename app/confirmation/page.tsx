@@ -90,14 +90,34 @@ export default function ConfirmationPage() {
                 >
                   {item.title}
                 </Typography>
-                <Typography
-                  data-cy="product-price"
-                  sx={{ fontFamily: "Josefin Sans" }}
-                >
-                  {" "}
-                  {/* här får vi lägga till vad en kostar också */}
-                  {item.price * item.quantity} :-
-                </Typography>
+                {item.salePrice ? (
+                  <>
+                    <Typography
+                      sx={{
+                        fontFamily: "Josefin Sans",
+                        color: "red",
+                      }}
+                    >
+                      Your Price: {item.salePrice * item.quantity} :-
+                    </Typography>
+                    <Typography
+                      data-cy="product-price"
+                      sx={{
+                        fontFamily: "Josefin Sans",
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      Old Price: {item.price * item.quantity} :-
+                    </Typography>
+                  </>
+                ) : (
+                  <Typography
+                    data-cy="product-price"
+                    sx={{ fontFamily: "Josefin Sans" }}
+                  >
+                    Price: {item.price * item.quantity} :-
+                  </Typography>
+                )}
 
                 <Typography
                   data-cy="product-quantity"
@@ -121,7 +141,7 @@ export default function ConfirmationPage() {
         </Typography>
       </Box>
 
-   {/*    sektion 2 */}
+      {/*    sektion 2 */}
       <Box
         sx={{
           display: "flex",
