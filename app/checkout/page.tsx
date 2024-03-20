@@ -29,7 +29,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
+    <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px", flex: 1 }}>
       <Typography
         variant="h4"
         sx={{

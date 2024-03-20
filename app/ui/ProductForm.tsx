@@ -39,16 +39,13 @@ export default function ProductForm(props: Props) {
       container
       spacing={3}
       data-cy="product-form"
-      direction={"column"}
-      alignItems={"center"}
     >
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           id="image"
           label="Image"
           fullWidth
           variant="standard"
-          sx={{ width: "50ch" }}
           {...register("image")}
           inputProps={{ "data-cy": "product-image" }}
         />
@@ -58,13 +55,12 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           id="title"
           label="Title"
           fullWidth
           variant="standard"
-          sx={{ width: "50ch" }}
           {...register("title")}
           inputProps={{ "data-cy": "product-title" }}
         />
@@ -74,13 +70,12 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           id="price"
           label="Price"
           fullWidth
           variant="standard"
-          sx={{ width: "50ch" }}
           {...register("price")}
           inputProps={{ "data-cy": "product-price" }}
         />
@@ -90,7 +85,7 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           /* id="outlined-textarea" */
           id="description"
@@ -99,7 +94,6 @@ export default function ProductForm(props: Props) {
           rows={4}
           fullWidth
           variant="standard"
-          sx={{ width: "50ch" }}
           {...register("description")}
           inputProps={{ "data-cy": "product-description" }}
         />
@@ -109,18 +103,20 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-      <Button
-        type="submit"
-        sx={{
-          backgroundColor: "#F1DDCF",
-          color: "#881C1C",
-          marginTop: "10px",
-          fontWeight: "bold",
-          justifyContent: "center",
-        }}
-      >
-        Save
-      </Button>
+      <Grid item xs={12}>
+        <Button
+          type="submit"
+          sx={{
+            backgroundColor: "#F1DDCF",
+            color: "#881C1C",
+            marginTop: "10px",
+            fontWeight: "bold",
+            justifyContent: "center",
+          }}
+        >
+          Save
+        </Button>
+      </Grid>
     </Grid>
   );
 }
