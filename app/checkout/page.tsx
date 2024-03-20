@@ -13,7 +13,17 @@ export default function CheckoutPage() {
   if (cart.length === 0) {
     return (
       <>
-        <h1> cart is empty</h1>
+        <Typography
+          variant="h2"
+          sx={{
+            textAlign: "center",
+            fontFamily: "karla",
+            fontVariant: "small-caps",
+          }}
+        >
+          {" "}
+          cart is empty..
+        </Typography>
       </>
     );
   }

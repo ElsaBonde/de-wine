@@ -8,10 +8,11 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Link,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
 import AddImage from "/public/AddImage.png";
@@ -36,7 +37,6 @@ export default function AdminPage() {
             </CardActionArea>
           </Link>
         </Grid>
-
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
             <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
