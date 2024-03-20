@@ -27,12 +27,24 @@ export default function AdminPage() {
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={6} md={4} data-cy="admin-add-product">
-          <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
+          <CardActionArea
+            sx={{
+              background: "white",
+              borderRadius: "8px",
+              padding: "8px",
+            }}
+          >
             <Link href="/admin/product/new">
-              <Image src={AddImage} alt="hora" width={200} height={200} />
-              <Typography>Title</Typography>
-              <Typography>price</Typography>
+              <Image src={AddImage} alt="Image" width={200} height={200} />
+              <Typography variant="h5">Title</Typography>
+              <Typography variant="subtitle1">price</Typography>
               <Typography>Description</Typography>
+              <Typography variant="body2" sx={{ textDecoration: "none" }}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Laborum, minima suscipit quisquam saepe molestiae dolorum ex
+                dolores libero consectetur ullam est amet fugit. Ratione,
+                asperiores? Ipsa ipsum modi dolorum harum!
+              </Typography>
             </Link>
           </CardActionArea>
         </Grid>

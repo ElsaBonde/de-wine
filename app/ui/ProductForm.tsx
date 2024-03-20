@@ -39,6 +39,8 @@ export default function ProductForm(props: Props) {
       container
       spacing={3}
       data-cy="product-form"
+      direction={"column"}
+      alignItems={"center"}
     >
       <Grid item xs={12} sm={6}>
         <TextField
@@ -46,6 +48,7 @@ export default function ProductForm(props: Props) {
           label="Image"
           fullWidth
           variant="standard"
+          sx={{ width: "50ch" }}
           {...register("image")}
           inputProps={{ "data-cy": "product-image" }}
         />
@@ -61,6 +64,7 @@ export default function ProductForm(props: Props) {
           label="Title"
           fullWidth
           variant="standard"
+          sx={{ width: "50ch" }}
           {...register("title")}
           inputProps={{ "data-cy": "product-title" }}
         />
@@ -76,6 +80,7 @@ export default function ProductForm(props: Props) {
           label="Price"
           fullWidth
           variant="standard"
+          sx={{ width: "50ch" }}
           {...register("price")}
           inputProps={{ "data-cy": "product-price" }}
         />
@@ -94,6 +99,7 @@ export default function ProductForm(props: Props) {
           rows={4}
           fullWidth
           variant="standard"
+          sx={{ width: "50ch" }}
           {...register("description")}
           inputProps={{ "data-cy": "product-description" }}
         />
