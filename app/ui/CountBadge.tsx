@@ -29,12 +29,25 @@ export default function CountBadge() {
   return (
     <Stack>
       <Link href="/checkout">
-        <Badge badgeContent={totalQuantity} data-cy="cart-items-count-badge">
+        <Badge
+          badgeContent={totalQuantity}
+          data-cy="cart-items-count-badge"
+          color="error"
+          sx={{
+            //sätter styling endast för badgen med numret
+            "& .MuiBadge-badge": {
+              backgroundColor: "white",
+              color: "#881c1c",
+              fontSize: "15px",
+              fontWeight: "bold",
+            },
+          }}
+        >
           <ShoppingCart
             sx={{
               color: "#881C1C",
-              width: "40px",
-              height: "40px",
+              width: "35px",
+              height: "35px",
             }}
             data-cy="cart-link"
           />
