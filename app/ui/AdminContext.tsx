@@ -25,6 +25,7 @@ export const ProductSchema = z.object({
     .number()
     .min(1, { message: "Please name a price for this product." }),
   description: z.string().min(1, { message: "Please write a desription." }),
+  compatibility: z.string().optional(),
 });
 
 export type FormProduct = z.infer<typeof ProductSchema>;
@@ -77,7 +78,6 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     setProducts((prevProducts) => {
       const updatedProducts = [...prevProducts, newProduct];
       localStorage.setItem("products", JSON.stringify(updatedProducts));
-      console.log("dessa:", updatedProducts);
       return updatedProducts;
     });
     return newProduct;

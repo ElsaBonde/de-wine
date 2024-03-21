@@ -104,6 +104,16 @@ export default function ProductForm(props: Props) {
         )}
       </Grid>
       <Grid item xs={12}>
+        <TextField
+          id="compatibility"
+          label="Compatibility"
+          rows={4}
+          fullWidth
+          variant="standard"
+          {...register("compatibility")}
+        />
+      </Grid>
+      <Grid item xs={12}>
         <Button
           type="submit"
           sx={{
