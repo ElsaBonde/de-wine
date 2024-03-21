@@ -1,4 +1,3 @@
-import { ShoppingCart } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,9 +34,6 @@ export default function Header() {
         }}
       >
         <CountBadge />
-        <Link href="/checkout">
-          <ShoppingCart data-cy="cart-link" sx={{ color: "#881C1C" }} />
-        </Link>
       </Box>
     </Box>
   );

@@ -1,6 +1,8 @@
 "use client";
 
-import { Typography } from "@mui/material";
+import { ShoppingCart } from "@mui/icons-material";
+import { Badge, Stack } from "@mui/material";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartContext";
 
@@ -25,13 +27,23 @@ export default function CountBadge() {
   }
 
   return (
-    <Typography
-      component="span"
-      data-cy="cart-items-count-badge"
-      sx={{ color: "#881C1C" }}
-    >
-      {" "}
-      {totalQuantity}
-    </Typography>
+    <Stack>
+      <Link href="/checkout">
+        <Badge
+          badgeContent={totalQuantity}
+          data-cy="cart-items-count-badge"
+          sx={{ color: "#881c1c" }}
+        >
+          <ShoppingCart
+            sx={{
+              color: "#881C1C",
+              width: "40px",
+              height: "40px",
+            }}
+            data-cy="cart-link"
+          />
+        </Badge>
+      </Link>
+    </Stack>
   );
 }
