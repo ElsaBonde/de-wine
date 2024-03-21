@@ -123,7 +123,7 @@ export default function ProductPage({ params }: PageProps) {
               variant="h5"
               sx={{ fontFamily: "josefin sans", marginBottom: "10px" }}
             >
-              Fits well with:
+              Enjoy with:
             </Typography>
             <Typography sx={{ fontFamily: "josefin sans" }}>
               {product.compatibility}

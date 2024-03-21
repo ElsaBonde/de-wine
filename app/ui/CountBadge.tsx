@@ -29,11 +29,7 @@ export default function CountBadge() {
   return (
     <Stack>
       <Link href="/checkout">
-        <Badge
-          badgeContent={totalQuantity}
-          data-cy="cart-items-count-badge"
-          sx={{ color: "#881c1c" }}
-        >
+        <Badge badgeContent={totalQuantity} data-cy="cart-items-count-badge">
           <ShoppingCart
             sx={{
               color: "#881C1C",
