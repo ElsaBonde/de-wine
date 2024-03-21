@@ -38,6 +38,7 @@ export default function ProductPage({ params }: PageProps) {
           },
         }}
       >
+        {/*  box för produktens bild */}
         <Box component="div" sx={{ width: "100%", height: "40vh" }}>
           <CardMedia
             component="img"
@@ -55,7 +56,7 @@ export default function ProductPage({ params }: PageProps) {
           />
         </Box>
 
-        <Box /* boxjäveln där informationen ligger */
+        <Box /* box där informationen om produkten ligger */
           component="div"
           sx={{
             backgroundColor: "white",
@@ -69,7 +70,7 @@ export default function ProductPage({ params }: PageProps) {
           >
             <Box component="div">
               {" "}
-              {/* boxen där texten och sån ligger */}
+              {/* boxen där texten och sånt ligger */}
               <Typography
                 variant="h5"
                 data-cy="product-title"
@@ -104,8 +105,11 @@ export default function ProductPage({ params }: PageProps) {
                   </Typography>
                 )}
               </Box>
+              {/* var tvungna att lägga box runt annars funkar ej pointer  */}
             </Box>
-            <AddButton product={product} />
+            <Box sx={{ cursor: "pointer" }}>
+              <AddButton product={product} />
+            </Box>
           </Box>
           <Typography
             data-cy="product-description"
