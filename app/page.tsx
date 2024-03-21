@@ -6,10 +6,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Divider,
   Grid,
   Link,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 import NextLink from "next/link";
 import AddButton from "./ui/AddButton";
 
@@ -17,6 +19,29 @@ export default function StartPage() {
   return (
     /* får man ändra från main till box enligt cypress - fråga david! */
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", padding: "10px 0px" }}
+      >
+        <Image
+          src="https://i.ibb.co/9N98vQ0/bild-2.png"
+          alt="Wine and glasses"
+          width={800}
+          height={400}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </Box>
+      <Divider>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "Josefin sans",
+            textAlign: "center",
+            marginY: "15px",
+          }}
+        >
+          Our wine boxes:
+        </Typography>
+      </Divider>
       <Grid container spacing={4}>
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
