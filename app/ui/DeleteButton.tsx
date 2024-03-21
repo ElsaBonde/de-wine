@@ -1,7 +1,15 @@
-import { IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography} from "@mui/material";
-import { useState } from "react";
 import { Product } from "@/data";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
 
 interface DeleteButtonProps {
   product: Product;
@@ -20,6 +28,10 @@ export default function DeleteButton({ product, onDelete }: DeleteButtonProps) {
   return (
     <>
       <IconButton
+        sx={{
+          color: "text.secondary",
+          "&:hover": { color: "#881c1c", backgroundColor: "white" },
+        }}
         data-cy="admin-remove-product"
         onClick={() => setOpen(true)}
       >
@@ -32,7 +44,13 @@ export default function DeleteButton({ product, onDelete }: DeleteButtonProps) {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button onClick={handleDelete} style={{ color: "red" }} data-cy="confirm-delete-button">Delete</Button>
+          <Button
+            onClick={handleDelete}
+            style={{ color: "red" }}
+            data-cy="confirm-delete-button"
+          >
+            Delete
+          </Button>
         </DialogActions>
       </Dialog>
     </>
