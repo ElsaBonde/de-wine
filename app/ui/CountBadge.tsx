@@ -11,28 +11,19 @@ export default function CountBadge() {
   const { cart } = useCart();
   const [totalQuantity, setTotalQuantity] = useState(0);
 
-  useEffect(() => {
-    // Beräkna totala antalet varor i kundvagnen
-    if (cart.length === 0) {
-      setTotalQuantity(0);
-      return;
-    } else {
-      const total = cart.reduce((total, item) => total + item.quantity, 0);
-      setTotalQuantity(total);
-    }
-  }, [cart]);
 
-  if (totalQuantity === 0) {
-    return null;
-  }
+  useEffect(() => {
+    //beräknar totala antalet items i kundkorgen
+    const total = cart.reduce((total, item) => total + item.quantity, 0);
+    setTotalQuantity(total);
+  }, [cart]);
 
   return (
     <Stack>
       <Link href="/checkout">
         <Badge
-          badgeContent={totalQuantity}
+          badgeContent={totalQuantity > 0 ? totalQuantity : null}
           data-cy="cart-items-count-badge"
-          color="error"
           sx={{
             //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
@@ -44,12 +35,12 @@ export default function CountBadge() {
           }}
         >
           <ShoppingCart
+            data-cy="cart-link"
             sx={{
               color: "#881C1C",
               width: "35px",
               height: "35px",
             }}
-            data-cy="cart-link"
           />
         </Badge>
       </Link>
