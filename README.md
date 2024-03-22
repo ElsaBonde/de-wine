@@ -12,6 +12,8 @@ A webshop where you can order different kind of wine packages in a vide range of
 
 ## Tech
 
+In the project we've worked with Typescript, Next.JS, and Material UI.
+
 //vilka ramverks som används och länkar till docs
 
 ## Folder Structure
