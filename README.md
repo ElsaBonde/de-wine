@@ -4,30 +4,7 @@ A webshop where you can order different kind of wine packages in a vide range of
 
 ## Installation
 
-// clona från github, npm m.m.
-
-## Usage
-
-// starta utvecklingsserver, admin, navigation m.m
-
-## Tech
-
-In the project we've worked with Typescript, Next.JS, and Material UI.
-
-//vilka ramverks som används och länkar till docs
-
-## Folder Structure
-
-// hur ser mapp-strukturen ut, vad har mappar och filer för ansvar?
-
-## Demo
-
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/G1YVQsIF)
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+Clone from GitHub, run `npm install` followed by:
 
 ```bash
 npm run dev
@@ -39,23 +16,23 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Learn More
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
+To learn more about Next.js and MUI, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Mui Documentation] (https://mui.com/) - read and learn about mui.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deploy on Vercel
+### Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-[]
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Contributers
+
+This is a school project done by
+
+- [Elsa Bonde](https://github.com/ElsaBonde)
+- [Malin Sundberg](https://github.com/Malinsund)
