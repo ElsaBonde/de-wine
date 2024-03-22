@@ -22,7 +22,7 @@ To learn more about Next.js and MUI, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Mui Documentation] (https://mui.com/) - read and learn about mui.
+- [Mui Documentation](https://mui.com/) - read and learn about mui.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
