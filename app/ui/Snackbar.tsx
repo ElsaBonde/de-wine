@@ -41,7 +41,7 @@ export default function SnackbarProvider({ children }: PropsWithChildren) {
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         data-cy="added-to-cart-toast"
         open={openSnackBar}
-        autoHideDuration={6000}
+        autoHideDuration={2000}
         onClose={handleCloseSnackBar}
         message={message}
         action={
