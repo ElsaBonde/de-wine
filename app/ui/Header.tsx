@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
-import Logotype from "/public/logotype.png";
 
 export default function Header() {
   return (
@@ -24,7 +23,7 @@ export default function Header() {
           alignItems: "center",
         }}
       >
-        <Image src={Logotype} alt="logotype" width={200} height={60} />
+        <Image src="logotype.png" alt="logotype" width={200} height={60} />
       </Link>
       <Box
         sx={{

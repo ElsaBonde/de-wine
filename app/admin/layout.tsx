@@ -15,7 +15,6 @@ import Image from "next/image";
 import { PropsWithChildren } from "react";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
-import AddImage from "/public/AddImage.png";
 
 export default function AdminLayout({ children }: PropsWithChildren) {
   const { products, removeProduct, editProduct } = useAdminContext();
@@ -43,7 +42,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                 }}
               >
                 <Image
-                  src={AddImage}
+                  src="/AddImage.png"
                   alt="addImage"
                   width={100}
                   height={100}

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useCart } from "../ui/CartContext";
 import { useCustomer } from "../ui/CustomerContext";
-import cheers from "/public/cheers.gif";
 
 export default function ConfirmationPage() {
   const { customer } = useCustomer();
@@ -225,7 +224,7 @@ export default function ConfirmationPage() {
               marginRight: "20px",
             }}
           >
-            <Image src={cheers} alt="cheers" width={100} height={100} />
+            <Image src="/cheers.gif" alt="cheers" width={100} height={100} />
           </Box>
         </Box>
       </Box>
