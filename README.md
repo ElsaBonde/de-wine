@@ -4,6 +4,8 @@ A webshop where you can order different kind of wine packages in a vide range of
 
 ## Installation
 
+
+
 Clone from GitHub, run `npm install` followed by:
 
 ```bash
@@ -15,6 +17,13 @@ pnpm dev
 # or
 bun dev
 ```
+
+## Database
+
+1. run "npm run migrate"
+2. run "npm run seed"
+3. run "npm run dev"
+4. run "npm run studio"
 
 ### Learn More
 
