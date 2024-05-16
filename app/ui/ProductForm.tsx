@@ -12,8 +12,7 @@ interface Props {
   onSave: (product: Product) => void;
 }
 
-export default function ProductForm(props: Props) {
-  const isEdit = Boolean(props.product);
+  const isEdit = Boolean(props.product)
   const router = useRouter();
   const { addProduct } = useAdminContext();
 
