@@ -1,8 +1,12 @@
 import { db } from "../db";
+import { mockOrders } from "./orders";
 import { mockProductsAndCategories } from "./products";
+import { mockUsers } from "./users";
 
 async function main() {
- await mockProductsAndCategories();
+  await mockProductsAndCategories();
+  await mockUsers();
+  await mockOrders();
 }
 
 main()
