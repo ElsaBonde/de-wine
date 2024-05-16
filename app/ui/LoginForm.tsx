@@ -1,10 +1,16 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Container, Grid, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CustomerSchema } from "./CustomerContext";
 
 export const LoginSchema = z.object({
   email: z.string().email({
@@ -22,7 +28,7 @@ function LoginForm() {
   const router = useRouter();
 
   const form = useForm<Customer>({
-    resolver: zodResolver(CustomerSchema),
+    resolver: zodResolver(LoginSchema),
   });
 
   const sendForm = (customer: Customer) => {
@@ -97,6 +103,16 @@ function LoginForm() {
           </Button>
         </Grid>
       </Grid>
+      <Link
+        href="/register"
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <button>Skapa ny användare?</button>
+      </Link>
     </Container>
   );
 }
