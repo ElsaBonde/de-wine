@@ -1,13 +1,13 @@
+import { getProductById } from "@/app/actions/productActions";
 import AddButton from "@/app/ui/AddButton";
-import { getProductById, products } from "@/data";
 import "@fontsource/josefin-sans";
-import { Box, CardMedia, Divider, Link, Typography } from "@mui/material";
-import NextLink from "next/link";
+import { Box, CardMedia, Divider, Typography } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
-export default function ProductPage({ params }: PageProps) {
-  const product = getProductById(params.slug);
+export default async function ProductPage({ params }: PageProps) {
+  const product = await getProductById(params.slug);
+
   if (!product) {
     return (
       <main>
@@ -39,7 +39,7 @@ export default function ProductPage({ params }: PageProps) {
         }}
       >
         {/*  box för produktens bild */}
-        <Box component="div" sx={{ width: "100%", height: "40vh" }}>
+        <Box component="div" sx={{ width: "10%", height: "auto" }}>
           <CardMedia
             component="img"
             image={product.image}
@@ -47,7 +47,7 @@ export default function ProductPage({ params }: PageProps) {
             sx={{
               maxWidth: "100%",
               height: "auto",
-              minHeight: "40vh",
+              minHeight: "10vh",
               borderRadius: {
                 xs: "15px 15px 0px 0px",
                 md: "15px 0px 0px 15px",
@@ -85,7 +85,7 @@ export default function ProductPage({ params }: PageProps) {
                     fontFamily: "josefin sans",
                     color: "black",
                     marginBottom: "10px",
-                    ...(product.salePrice && {
+                    ...(product.salesPrice && {
                       textDecoration: "line-through",
                     }),
                   }}
@@ -93,7 +93,7 @@ export default function ProductPage({ params }: PageProps) {
                   {product.price} :-
                 </Typography>
 
-                {product.salePrice && (
+                {product.salesPrice && (
                   <Typography
                     sx={{
                       fontFamily: "josefin sans",
@@ -101,7 +101,7 @@ export default function ProductPage({ params }: PageProps) {
                       marginBottom: "10px",
                     }}
                   >
-                    {product.salePrice} :-
+                    {product.salesPrice} :-
                   </Typography>
                 )}
               </Box>
@@ -118,7 +118,7 @@ export default function ProductPage({ params }: PageProps) {
             {product.description}
           </Typography>
           <Divider sx={{ margin: "20px 0px" }} />
-          <Box>
+          {/*  <Box>
             <Typography
               variant="h5"
               sx={{ fontFamily: "josefin sans", marginBottom: "10px" }}
@@ -128,7 +128,7 @@ export default function ProductPage({ params }: PageProps) {
             <Typography sx={{ fontFamily: "josefin sans" }}>
               {product.compatibility}
             </Typography>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
       <Divider />
@@ -154,7 +154,7 @@ export default function ProductPage({ params }: PageProps) {
             gap: "15px",
           }}
         >
-          {products.slice(0, 3).map((product) => (
+          {/*   {products.slice(0, 3).map((product) => (
             <Link
               component={NextLink}
               href={`/product/${product.id}`}
@@ -196,7 +196,7 @@ export default function ProductPage({ params }: PageProps) {
                 </Typography>
               </Box>
             </Link>
-          ))}
+          ))} */}
         </Box>
       </Box>
     </Box>

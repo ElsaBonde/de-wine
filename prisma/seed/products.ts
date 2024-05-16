@@ -9,8 +9,7 @@ export async function mockProductsAndCategories() {
       title: "The best wine",
       description: "abc",
       price: 293,
-      image:
-        "https://d3p3oepuk3k14u.cloudfront.net/img/article/w34005-mundo-de-yuntero-espumoso-bio-20240515064804_lg.webp",
+      image: "https://i.ibb.co/Z8mGht4/redWine.jpg",
       inventory: 1,
       categories: {
         // DAVID är detta korrekt för att lägga till i flera kategorier?
@@ -34,8 +33,7 @@ export async function mockProductsAndCategories() {
       title: "The second best wine",
       description: "funka",
       price: 288,
-      image:
-        "https://d3p3oepuk3k14u.cloudfront.net/img/article/w33368-bosco-dei-cirmioli-sparkling-blanc-de-blancs-extra-dry-20231101125737_lg.webp",
+      image: "https://i.ibb.co/LRpW3QX/redWine2.jpg",
       inventory: 5,
     },
   });
@@ -64,24 +62,21 @@ export async function mockProductsAndCategories() {
             title: "Red Winecoolers",
             description: "abc",
             price: 293,
-            image:
-              "https://d3p3oepuk3k14u.cloudfront.net/img/article/w31048-dufouleur-monopole-blanc-20230308122238_lg.webp",
+            image: "https://i.ibb.co/18JL0PW/wine.jpg",
             inventory: 1,
           },
           {
             title: "Red Stallion",
             description: "def",
             price: 288,
-            image:
-              "https://d3p3oepuk3k14u.cloudfront.net/img/article/w32380-dufouleur-monopole-rose-2022-20230308120950_lg.webp",
+            image: "https://i.ibb.co/26KrQHp/wine2.jpg",
             inventory: 5,
           },
           {
             title: "Red strawberry",
             description: "ghi",
             price: 99,
-            image:
-              "https://d3p3oepuk3k14u.cloudfront.net/img/article/w32727-dominio-de-requena-cava-brut-20230608081856_lg.webp",
+            image: "https://i.ibb.co/k5tL4J9/wine3.jpg",
             inventory: 10,
           },
         ],
@@ -100,16 +95,14 @@ export async function mockProductsAndCategories() {
             title: "Popping Champagne",
             description: "jkl",
             price: 83763,
-            image:
-              "https://d3p3oepuk3k14u.cloudfront.net/img/article/w25430-biasiotto-sui-lieviti-zero-15-spumante-extra-brut--20240326111057_lg.webp",
+            image: "https://i.ibb.co/rM4bJJy/wine4.jpg",
             inventory: 9,
           },
           {
             title: "Super Champis",
             description: "mno",
             price: 10000,
-            image:
-              "https://d3p3oepuk3k14u.cloudfront.net/img/article/w25430-biasiotto-sui-lieviti-zero-15-spumante-extra-brut--20240326111057_lg.webp",
+            image: "https://i.ibb.co/rM4bJJy/wine4.jpg",
             inventory: 1,
           },
         ],

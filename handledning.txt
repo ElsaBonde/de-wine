@@ -3,3 +3,5 @@ kolla igenom koden för mocked data.
 upsert: vi har ändrat namn men inget händer.
 isShipped???? hur lägger vi true går det inte. 
 
+hur ska vi använda params och lede till en specifik order.
+Vi kan inte radera i databasen, varför??? 
