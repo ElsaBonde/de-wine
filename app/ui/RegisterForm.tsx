@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { savePost } from "../actions/userActions";
 
 export const RegisterSchema = z.object({
   fullName: z.string().min(1, { message: "Please enter your full name" }),
@@ -18,19 +19,23 @@ export const RegisterSchema = z.object({
 });
 
 //typ för meddelandet
-export type Customer = z.infer<typeof RegisterSchema>;
+export type UserCreate = z.infer<typeof RegisterSchema>;
 
 function Register() {
+  const form = useForm<UserCreate>({ resolver: zodResolver(RegisterSchema) });
   //   const router = useRouter();
 
-  const form = useForm<Customer>({
-    resolver: zodResolver(RegisterSchema),
-  });
-
-  const sendForm = (customer: Customer) => {
-    // router.push("/confirmation");
+  //   const sendForm = (customer: Customer) => {
+  //     // router.push("/confirmation");
+  //   };
+  const handleSubmit = async (data: UserCreate) => {
+    try {
+      await savePost(data);
+      form.reset();
+    } catch (error: any) {
+      console.log(error);
+    }
   };
-
   return (
     <Container>
       <Typography
@@ -48,7 +53,7 @@ function Register() {
 
       <Grid
         component="form"
-        onSubmit={form.handleSubmit(sendForm)}
+        onSubmit={form.handleSubmit(handleSubmit)}
         container
         spacing={3}
         data-cy="customer-form"
@@ -121,8 +126,8 @@ function Register() {
         </Grid>
 
         <Button
-          onClick={form.handleSubmit(sendForm)}
           type="submit"
+          onSubmit={form.handleSubmit(handleSubmit)}
           sx={{
             backgroundColor: "#F1DDCF",
             color: "#881C1C",
