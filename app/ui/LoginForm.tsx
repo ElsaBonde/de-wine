@@ -11,7 +11,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CustomerSchema } from "./CustomerContext";
 
 export const LoginSchema = z.object({
   email: z.string().email({
@@ -29,7 +28,7 @@ function LoginForm() {
   const router = useRouter();
 
   const form = useForm<Customer>({
-    resolver: zodResolver(CustomerSchema),
+    resolver: zodResolver(LoginSchema),
   });
 
   const sendForm = (customer: Customer) => {
