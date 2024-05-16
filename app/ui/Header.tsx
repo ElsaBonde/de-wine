@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
@@ -33,6 +33,9 @@ export default function Header() {
         }}
       >
         <CountBadge />
+        <Link href={"/login"}>
+          <Button>Logga in</Button>
+        </Link>
       </Box>
     </Box>
   );
