@@ -1,7 +1,7 @@
 import { getProductById } from "@/app/actions/productActions";
 import AddButton from "@/app/ui/AddButton";
 import "@fontsource/josefin-sans";
-import { Box, CardMedia, Divider, Typography } from "@mui/material";
+import { Box, CardMedia, Divider, Link, Typography } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
@@ -39,7 +39,7 @@ export default async function ProductPage({ params }: PageProps) {
         }}
       >
         {/*  box för produktens bild */}
-        <Box component="div" sx={{ width: "10%", height: "auto" }}>
+        <Box component="div" sx={{ width: "100%", height: "40vh" }}>
           <CardMedia
             component="img"
             image={product.image}
@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: PageProps) {
             sx={{
               maxWidth: "100%",
               height: "auto",
-              minHeight: "10vh",
+              minHeight: "40vh",
               borderRadius: {
                 xs: "15px 15px 0px 0px",
                 md: "15px 0px 0px 15px",
@@ -62,6 +62,7 @@ export default async function ProductPage({ params }: PageProps) {
             backgroundColor: "white",
             borderRadius: { xs: "0px 0px 15px 15px", md: "0px 15px 15px 0px" },
             padding: "20px 40px",
+            height: "100%",
           }}
         >
           <Box
@@ -118,7 +119,7 @@ export default async function ProductPage({ params }: PageProps) {
             {product.description}
           </Typography>
           <Divider sx={{ margin: "20px 0px" }} />
-          {/*  <Box>
+          <Box>
             <Typography
               variant="h5"
               sx={{ fontFamily: "josefin sans", marginBottom: "10px" }}
@@ -126,13 +127,13 @@ export default async function ProductPage({ params }: PageProps) {
               Enjoy with:
             </Typography>
             <Typography sx={{ fontFamily: "josefin sans" }}>
-              {product.compatibility}
+              {/* {product.compatibility} */} här kan vi lägga in lite käck text om något, kanske lägga till ett attribut i databasen för detta? de blir lite snyggare när det är uppdelat. Nu skriver jag rätt mycket här för att se ungefär hur de skulle se ut om vi gjorde så här, men ni fattar poängen? tralala
             </Typography>
-          </Box> */}
+          </Box>
         </Box>
       </Box>
-      <Divider />
-      <Box
+      {/* <Divider /> */}
+      {/* <Box
         sx={{
           display: { xs: "none", md: "block" },
         }}
@@ -154,7 +155,7 @@ export default async function ProductPage({ params }: PageProps) {
             gap: "15px",
           }}
         >
-          {/*   {products.slice(0, 3).map((product) => (
+          {products.slice(0, 3).map((product) => (
             <Link
               component={NextLink}
               href={`/product/${product.id}`}
@@ -196,9 +197,9 @@ export default async function ProductPage({ params }: PageProps) {
                 </Typography>
               </Box>
             </Link>
-          ))} */}
+          ))}
         </Box>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

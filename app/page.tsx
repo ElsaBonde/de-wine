@@ -72,7 +72,7 @@ export default async function StartPage() {
                   image={product.image}
                   alt={product.title}
                   sx={{
-                    maxWidth: "10%",
+                    maxWidth: "100%",
                     height: "auto",
                   }}
                 />
