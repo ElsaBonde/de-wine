@@ -9,9 +9,10 @@ export async function mockProductsAndCategories() {
       title: "The best wine",
       description: "abc",
       price: 293,
-      image: "url",
+      image: "https://i.ibb.co/Z8mGht4/redWine.jpg",
       inventory: 1,
-      categories: { // DAVID är detta korrekt för att lägga till i flera kategorier? 
+      categories: {
+        // DAVID är detta korrekt för att lägga till i flera kategorier?
         create: [
           {
             title: "Red",
@@ -24,7 +25,6 @@ export async function mockProductsAndCategories() {
     },
   });
 
- 
   await db.product.upsert({
     where: { id: "clw7ucvey00000cjnfcml6bd5" },
     update: {},
@@ -33,12 +33,10 @@ export async function mockProductsAndCategories() {
       title: "The second best wine",
       description: "funka",
       price: 288,
-      image: "url",
+      image: "https://i.ibb.co/LRpW3QX/redWine2.jpg",
       inventory: 5,
     },
   });
-
-
 
   await db.category.upsert({
     where: { title: "White" },
@@ -47,12 +45,11 @@ export async function mockProductsAndCategories() {
       title: "White",
       products: {
         connect: {
-          id: wine.id, 
+          id: wine.id,
         },
       },
     },
   });
-  
 
   await db.category.upsert({
     where: { title: "Red" },
@@ -65,21 +62,21 @@ export async function mockProductsAndCategories() {
             title: "Red Winecoolers",
             description: "abc",
             price: 293,
-            image: "url",
+            image: "https://i.ibb.co/18JL0PW/wine.jpg",
             inventory: 1,
           },
           {
             title: "Red Stallion",
             description: "def",
             price: 288,
-            image: "url",
+            image: "https://i.ibb.co/26KrQHp/wine2.jpg",
             inventory: 5,
           },
           {
             title: "Red strawberry",
             description: "ghi",
             price: 99,
-            image: "url",
+            image: "https://i.ibb.co/k5tL4J9/wine3.jpg",
             inventory: 10,
           },
         ],
@@ -98,14 +95,14 @@ export async function mockProductsAndCategories() {
             title: "Popping Champagne",
             description: "jkl",
             price: 83763,
-            image: "url",
+            image: "https://i.ibb.co/rM4bJJy/wine4.jpg",
             inventory: 9,
           },
           {
             title: "Super Champis",
             description: "mno",
             price: 10000,
-            image: "url",
+            image: "https://i.ibb.co/rM4bJJy/wine4.jpg",
             inventory: 1,
           },
         ],

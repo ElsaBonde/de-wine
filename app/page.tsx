@@ -1,4 +1,4 @@
-import { products } from "@/data";
+import { db } from "@/prisma/db";
 import "@fontsource/josefin-sans";
 import {
   Box,
@@ -15,9 +15,13 @@ import Image from "next/image";
 import NextLink from "next/link";
 import AddButton from "./ui/AddButton";
 
-export default function StartPage() {
+export default async function StartPage() {
+  const products = await db.product.findMany({
+    include: { categories: true },
+    orderBy: { id: "desc" } /* Byter ordningen på listan */,
+  });
+
   return (
-    /* får man ändra från main till box enligt cypress - fråga david! */
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
       <Box
         sx={{ display: "flex", justifyContent: "center", padding: "10px 0px" }}
@@ -44,7 +48,7 @@ export default function StartPage() {
       </Divider>
       <Grid container spacing={4}>
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
+          <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Link
               component={NextLink}
               href={`/product/${product.id}`}
@@ -68,7 +72,7 @@ export default function StartPage() {
                   image={product.image}
                   alt={product.title}
                   sx={{
-                    maxWidth: "100%",
+                    maxWidth: "10%",
                     height: "auto",
                   }}
                 />
@@ -101,7 +105,7 @@ export default function StartPage() {
                             fontFamily: "josefin sans",
                             color: "black",
                             marginBottom: "10px",
-                            ...(product.salePrice && {
+                            ...(product.salesPrice && {
                               textDecoration: "line-through",
                             }), //överstruket på normalpris om reapris finns
                           }}
@@ -109,7 +113,7 @@ export default function StartPage() {
                           {product.price} :-
                         </Typography>
 
-                        {product.salePrice && (
+                        {product.salesPrice && (
                           <Typography
                             variant="body1"
                             color="red" //röd färg på reapris
@@ -119,7 +123,7 @@ export default function StartPage() {
                               marginBottom: "10px",
                             }}
                           >
-                            {product.salePrice} :-
+                            {product.salesPrice} :-
                           </Typography>
                         )}
                       </Box>
