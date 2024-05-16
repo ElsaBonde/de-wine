@@ -1,7 +1,9 @@
+import LoginForm from "../ui/LoginForm";
+
 function Login() {
   return (
     <div>
-      <h1>Logga in här</h1>
+      <LoginForm />
     </div>
   );
 }
