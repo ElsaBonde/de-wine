@@ -1,6 +1,13 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Container, Grid, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -97,6 +104,16 @@ function LoginForm() {
           </Button>
         </Grid>
       </Grid>
+      <Link
+        href="/register"
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <button>Skapa ny användare?</button>
+      </Link>
     </Container>
   );
 }
