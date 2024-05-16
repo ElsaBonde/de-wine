@@ -32,6 +32,7 @@ model Order {
   zip       String
   orderDate DateTime
   products  ProductOrder[]
+  isShipped Boolean        @default(false)
 }
 
 model User {
