@@ -1,7 +1,9 @@
+import RegisterForm from "../ui/RegisterForm";
+
 function Register() {
   return (
     <div>
-      <h1>Här kan du skapa en användare</h1>
+      <RegisterForm />
     </div>
   );
 }
