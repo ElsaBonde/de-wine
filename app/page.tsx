@@ -1,4 +1,3 @@
-import { db } from "@/prisma/db";
 import "@fontsource/josefin-sans";
 import {
   Box,
@@ -13,13 +12,11 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import NextLink from "next/link";
+import { getProducts } from "./actions/productActions";
 import AddButton from "./ui/AddButton";
 
 export default async function StartPage() {
-  const products = await db.product.findMany({
-    include: { categories: true },
-    orderBy: { id: "desc" } /* Byter ordningen på listan */,
-  });
+  const products = await getProducts();
 
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>

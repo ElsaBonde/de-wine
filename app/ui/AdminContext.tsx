@@ -1,6 +1,6 @@
 "use client";
 
-import { Product, products as productData } from "@/data";
+import { Product } from "@/data";
 import {
   PropsWithChildren,
   createContext,
@@ -10,6 +10,7 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
+import { getProducts } from "../actions/productActions";
 
 interface AdminContextValue {
   products: Product[];
@@ -39,15 +40,18 @@ export const useAdminContext = () => useContext(AdminContext);
 export const AdminProvider = ({ children }: PropsWithChildren) => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  // hämta produkter från localstorage om det finns, annars använd default produkter (mcokad data)
+  // hämta produkter från databas via getProducts()
   useEffect(() => {
-    const allProducts = localStorage.getItem("products");
-    if (allProducts) {
-      setProducts(JSON.parse(allProducts));
-    } else {
-      setProducts(productData);
-      localStorage.setItem("products", JSON.stringify(productData));
-    }
+    const fetchData = async () => {
+      try {
+        const fetchedProducts = await getProducts();
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error("There was an error fetching products", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   //genererar id
