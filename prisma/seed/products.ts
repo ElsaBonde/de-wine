@@ -12,7 +12,6 @@ export async function mockProductsAndCategories() {
       image: "https://i.ibb.co/Z8mGht4/redWine.jpg",
       inventory: 1,
       categories: {
-        // DAVID är detta korrekt för att lägga till i flera kategorier?
         create: [
           {
             title: "Red",
@@ -21,6 +20,19 @@ export async function mockProductsAndCategories() {
             title: "White",
           },
         ],
+      },
+    },
+  });
+
+  const white = await db.category.upsert({
+    where: { title: "White" },
+    update: {},
+    create: {
+      title: "White",
+      products: {
+        connect: {
+          id: wine.id,
+        },
       },
     },
   });
@@ -35,17 +47,9 @@ export async function mockProductsAndCategories() {
       price: 288,
       image: "https://i.ibb.co/LRpW3QX/redWine2.jpg",
       inventory: 5,
-    },
-  });
-
-  await db.category.upsert({
-    where: { title: "White" },
-    update: {},
-    create: {
-      title: "White",
-      products: {
+      categories: {
         connect: {
-          id: wine.id,
+          id: white.id,
         },
       },
     },

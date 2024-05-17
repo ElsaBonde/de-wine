@@ -1,11 +1,12 @@
 -- CreateTable
 CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
-    "price" INTEGER NOT NULL,
+    "price" DECIMAL(65,30) NOT NULL,
     "inventory" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "image" TEXT NOT NULL,
-    "salesPrice" INTEGER,
+    "salesPrice" DECIMAL(65,30),
     "isArchived" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
@@ -19,6 +20,8 @@ CREATE TABLE "Order" (
     "city" TEXT NOT NULL,
     "zip" TEXT NOT NULL,
     "orderDate" TIMESTAMP(3) NOT NULL,
+    "isShipped" BOOLEAN NOT NULL DEFAULT false,
+    "total" DECIMAL(65,30) NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
@@ -48,6 +51,7 @@ CREATE TABLE "ProductOrder" (
     "productId" TEXT NOT NULL,
     "orderId" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
+    "subTotal" DECIMAL(65,30) NOT NULL,
 
     CONSTRAINT "ProductOrder_pkey" PRIMARY KEY ("productId","orderId")
 );

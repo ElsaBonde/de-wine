@@ -1,23 +1,23 @@
 import { db } from "../db";
 
 export async function mockOrders() {
-
   await db.order.upsert({
-    where: { id: "order123" },
+    where: { id: "clwad7e9u000008k0819u2lvx" },
     update: {},
     create: {
-      id: "order123",
+      id: "clwad7e9u000008k0819u2lvx",
       user: {
         connect: {
-          id: "user123",
+          id: "clwad7xzi000108k0fosm1qs3",
         },
       },
       street: "street",
       city: "city",
       zip: "12345",
-    
+      total: 99.9,
+      isShipped: true,
       orderDate: new Date(),
-      
+
       products: {
         create: {
           product: {
@@ -26,9 +26,10 @@ export async function mockOrders() {
             },
           },
           quantity: 1,
+          subTotal: 99.9,
         },
-    }, // DAVID isShipped varför får den inte ligga här? 
-},
+      },
+    },
   });
 }
 
