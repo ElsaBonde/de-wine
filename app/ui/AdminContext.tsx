@@ -8,9 +8,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
-import { getProducts } from "../actions/productActions";
+import { createProduct, getProducts } from "../actions/productActions";
 
 interface AdminContextValue {
   products: Product[];
@@ -26,10 +25,15 @@ export const ProductSchema = z.object({
     .number()
     .min(1, { message: "Please name a price for this product." }),
   description: z.string().min(1, { message: "Please write a desription." }),
-  compatibility: z.string().optional(),
+  inventory: z.coerce
+    .number()
+    .min(1, { message: "Please enter the amount of products in stock." }),
+  /*  categories: z
+    .array(z.string())
+    .min(1, { message: "Please select a category." }), */
 });
 
-export type FormProduct = z.infer<typeof ProductSchema>;
+export type ProductCreate = z.infer<typeof ProductSchema>;
 
 //alternativ för props
 const AdminContext = createContext<AdminContextValue>({} as AdminContextValue);
@@ -54,14 +58,6 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     fetchData();
   }, []);
 
-  //genererar id
-  const generateId = (): string => {
-    const longId = uuidv4(); //genererar ett långt id
-    const shortIdWithCharacter = longId.slice(0, 5); //gör att id max är 5 tecken
-    const shortId = shortIdWithCharacter.replace(/-/g, ""); //tar bort tecken så som bindestreck osv
-    return shortId;
-  };
-
   //uppdatera produkt genom att hitta rätt produkt och uppdatera den
   const editProduct = (productId: string, updatedProduct: Partial<Product>) => {
     setProducts((prevProducts) => {
@@ -76,15 +72,15 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     });
   };
 
-  const addProduct = (newProduct: Product) => {
-    const productId = generateId();
-    newProduct.id = productId;
-    setProducts((prevProducts) => {
-      const updatedProducts = [...prevProducts, newProduct];
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
-      return updatedProducts;
-    });
-    return newProduct;
+  const addProduct = async (newProduct: Product) => {
+    try {
+      const createdProduct = await createProduct(newProduct);
+      setProducts((prevProducts) => [...prevProducts, createdProduct]);
+      return createdProduct;
+    } catch (error) {
+      console.error("There was an error creating the product", error);
+      throw error;
+    }
   };
 
   //ta bort produkt från adminsidan genom att filtrera ut den
