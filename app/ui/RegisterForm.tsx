@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { savePost } from "../actions/userActions";
+import { registerUser } from "../actions/userActions";
 
 export const RegisterSchema = z.object({
   fullName: z.string().min(1, { message: "Please enter your full name" }),
@@ -30,7 +30,8 @@ function Register() {
   //   };
   const handleSubmit = async (data: UserCreate) => {
     try {
-      await savePost(data);
+      console.log("Hej greta");
+      await registerUser(data);
       form.reset();
     } catch (error: any) {
       console.log(error);
