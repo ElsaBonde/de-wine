@@ -1,8 +1,8 @@
 "use client";
 
-import { Product } from "@/data";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ProductSchema, useAdminContext } from "./AdminContext";
@@ -12,7 +12,8 @@ interface Props {
   onSave: (product: Product) => void;
 }
 
-  const isEdit = Boolean(props.product)
+export default function ProductForm(props: Props) {
+  const isEdit = Boolean(props.product);
   const router = useRouter();
   const { addProduct } = useAdminContext();
 
@@ -102,7 +103,7 @@ interface Props {
           </Typography>
         )}
       </Grid>
-      <Grid item xs={12}>
+   {/*    <Grid item xs={12}>
         <TextField
           id="compatibility"
           label="Compatibility"
@@ -111,7 +112,7 @@ interface Props {
           variant="standard"
           {...register("compatibility")}
         />
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         <Button
           type="submit"
