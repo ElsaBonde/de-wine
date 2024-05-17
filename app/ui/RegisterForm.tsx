@@ -2,21 +2,18 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
-import router from "next/router";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../actions/userActions";
 import { RegisterSchema, UserCreate } from "../validation/register";
 
 function Register() {
   const form = useForm<UserCreate>({ resolver: zodResolver(RegisterSchema) });
-  
+
   const handleSubmit = async (data: UserCreate) => {
     try {
       console.log("Hej greta");
       await registerUser(data);
       form.reset();
-      router.push("/login");
-      
     } catch (error: any) {
       console.log(error);
     }

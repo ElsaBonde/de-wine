@@ -10,4 +10,4 @@ export const LoginSchema = z.object({
 });
 
 //typ för meddelandet
-export type Customer = z.infer<typeof LoginSchema>;
+export type Login = z.infer<typeof LoginSchema>;

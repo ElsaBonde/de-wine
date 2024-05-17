@@ -10,17 +10,16 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { LoginSchema } from "../validation/login";
-import { Customer } from "./CustomerContext";
+import { Login, LoginSchema } from "../validation/login";
 
 function LoginForm() {
   const router = useRouter();
 
-  const form = useForm<Customer>({
+  const form = useForm<Login>({
     resolver: zodResolver(LoginSchema),
   });
 
-  const sendForm = (customer: Customer) => {
+  const sendForm = (login: Login) => {
     router.push("/confirmation");
   };
 
