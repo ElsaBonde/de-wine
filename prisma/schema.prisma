@@ -12,12 +12,12 @@ datasource db {
 
 model Product {
   id          String         @id @default(cuid())
-  price       Int
+  price       Decimal
   inventory   Int
   title       String
   description String
   image       String
-  salesPrice  Int?
+  salesPrice  Decimal?
   isArchived  Boolean        @default(false)
   categories  Category[]
   orders      ProductOrder[]
@@ -33,13 +33,14 @@ model Order {
   orderDate DateTime
   products  ProductOrder[]
   isShipped Boolean        @default(false)
+  total     Decimal
 }
 
 model User {
   id       String  @id @default(cuid())
   fullName String
   userName String  @unique //ska vara email i validering
-  phone    Int
+  phone    String
   password String
   isAdmin  Boolean
   orders   Order[]
@@ -57,6 +58,7 @@ model ProductOrder {
   order     Order   @relation(fields: [orderId], references: [id])
   orderId   String
   quantity  Int
+  subTotal  Decimal
 
   @@id([productId, orderId])
 }
