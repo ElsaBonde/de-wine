@@ -13,6 +13,7 @@ import {
   createProduct,
   deleteProduct,
   getProducts,
+  updateProduct,
 } from "../actions/productActions";
 
 interface AdminContextValue {
@@ -63,17 +64,17 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   //uppdatera produkt genom att hitta rätt produkt och uppdatera den
-  const editProduct = (productId: string, updatedProduct: Partial<Product>) => {
-    setProducts((prevProducts) => {
-      const updatedProducts = prevProducts.map((product) => {
-        if (product.id === productId) {
-          return { ...product, ...updatedProduct };
-        }
-        return product;
-      });
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
-      return updatedProducts;
-    });
+  const editProduct = async (
+    productId: string,
+    updatedProduct: Partial<Product>
+  ) => {
+    const changedProduct = await updateProduct(productId, updatedProduct);
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === changedProduct.id ? changedProduct : product
+      )
+    );
+
   };
 
   const addProduct = async (newProduct: Product) => {

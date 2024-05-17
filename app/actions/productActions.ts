@@ -39,3 +39,22 @@ export async function deleteProduct(productId: string) {
   const product = await db.product.delete({ where: { id: productId } });
   return product;
 }
+
+export async function updateProduct(productId: string, productData: ProductCreate) {
+  const product = await db.product.update({
+    where: { id: productId },
+    data: {
+      price: productData.price,
+      inventory: productData.inventory,
+      title: productData.title,
+      description: productData.description,
+      image: productData.image,
+      /* categories: {
+        connect: productData.categories.map((category: any) => ({
+          id: category,
+        })),
+      }, */
+    },
+  });
+  return product;
+}
