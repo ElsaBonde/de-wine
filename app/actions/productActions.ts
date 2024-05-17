@@ -34,3 +34,8 @@ export async function createProduct(productData: ProductCreate) {
   console.log(product);
   //   revalidatePath("/"); /* Refreshar sidan/ bygger om den sidan du står på. */
 }
+
+export async function deleteProduct(productId: string) {
+  const product = await db.product.delete({ where: { id: productId } });
+  return product;
+}

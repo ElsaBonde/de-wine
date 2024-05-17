@@ -9,7 +9,11 @@ import {
   useState,
 } from "react";
 import { z } from "zod";
-import { createProduct, getProducts } from "../actions/productActions";
+import {
+  createProduct,
+  deleteProduct,
+  getProducts,
+} from "../actions/productActions";
 
 interface AdminContextValue {
   products: Product[];
@@ -83,13 +87,12 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  //ta bort produkt från adminsidan genom att filtrera ut den
-  const removeProduct = (productId: string) => {
-    const updatedProducts = products.filter(
-      (product) => product.id !== productId
+  //ta bort produkt från databasen och uppdatera state i frontend
+  const removeProduct = async (productId: string) => {
+    const deletedProduct = await deleteProduct(productId);
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== deletedProduct.id)
     );
-    setProducts(updatedProducts);
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
   };
 
   //funktioner som ska användas i adminsidan skickas till context
