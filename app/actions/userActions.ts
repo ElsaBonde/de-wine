@@ -4,7 +4,6 @@ import { db } from "@/prisma/db";
 import { UserCreate } from "../ui/RegisterForm";
 
 export async function registerUser(userData: UserCreate) {
-  // const userData = RegisterSchema.parse(incomingData);
 
   const user = await db.user.create({
     data: {

@@ -10,28 +10,16 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-export const LoginSchema = z.object({
-  email: z.string().email({
-    message:
-      "Please enter a valid email address in the following format: name@example.com",
-  }),
-
-  password: z.string().min(1, { message: "Wrong email or password" }),
-});
-
-//typ för meddelandet
-export type Customer = z.infer<typeof LoginSchema>;
+import { Login, LoginSchema } from "../validation/login";
 
 function LoginForm() {
   const router = useRouter();
 
-  const form = useForm<Customer>({
+  const form = useForm<Login>({
     resolver: zodResolver(LoginSchema),
   });
 
-  const sendForm = (customer: Customer) => {
+  const sendForm = (login: Login) => {
     router.push("/confirmation");
   };
 

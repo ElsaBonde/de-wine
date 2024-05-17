@@ -3,31 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { registerUser } from "../actions/userActions";
-
-export const RegisterSchema = z.object({
-  fullName: z.string().min(1, { message: "Please enter your full name" }),
-  email: z.string().email({
-    message:
-      "Please enter a valid email address in the following format: name@example.com",
-  }),
-  phone: z.string().min(10, { message: "Please enter a valid phone number" }),
-  password: z
-    .string()
-    .min(1, { message: "Please enter a password with min 6 letters." }),
-});
-
-//typ för meddelandet
-export type UserCreate = z.infer<typeof RegisterSchema>;
+import { RegisterSchema, UserCreate } from "../validation/register";
 
 function Register() {
   const form = useForm<UserCreate>({ resolver: zodResolver(RegisterSchema) });
-  //   const router = useRouter();
 
-  //   const sendForm = (customer: Customer) => {
-  //     // router.push("/confirmation");
-  //   };
   const handleSubmit = async (data: UserCreate) => {
     try {
       console.log("Hej greta");
