@@ -1,6 +1,7 @@
 "use client";
 
 import { Product } from "@/data";
+import { User } from "@prisma/client";
 import {
   PropsWithChildren,
   createContext,
@@ -15,8 +16,11 @@ import {
   getProducts,
   updateProduct,
 } from "../actions/productActions";
+import { getUsers, deleteUser } from "../actions/userActions";
 
 interface AdminContextValue {
+  users: User[];
+  removeUser: (userId: string) => void;
   products: Product[];
   addProduct: (newProduct: Product) => void;
   editProduct: (productId: string, updatedProduct: Partial<Product>) => void;
@@ -48,6 +52,21 @@ export const useAdminContext = () => useContext(AdminContext);
 
 export const AdminProvider = ({ children }: PropsWithChildren) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+
+  //hämta användare från databas via getUsers()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedUsers = await getUsers();
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.error("There was an error fetching users", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // hämta produkter från databas via getProducts()
   useEffect(() => {
@@ -95,12 +114,21 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     );
   };
 
+  const removeUser = async (userId: string) => {
+    const deletedUser = await deleteUser(userId);
+    setUsers((prevUsers) =>
+      prevUsers.filter((user) => user.id !== deletedUser.id)
+    );
+  };
+
   //funktioner som ska användas i adminsidan skickas till context
   const contextValue: AdminContextValue = {
+    users,
     products,
     addProduct,
     editProduct,
     removeProduct,
+    removeUser,
   };
 
   return (
