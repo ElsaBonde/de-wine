@@ -6,9 +6,9 @@ import {
   CardMedia,
   Grid,
   Typography,
+  Link,
 } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import { useAdminContext } from "../ui/AdminContext";
 import DeleteButton from "../ui/DeleteButton";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";

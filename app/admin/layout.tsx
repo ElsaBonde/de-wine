@@ -2,8 +2,8 @@
 
 import { Box, Button, Divider } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
-import { useAdminContext } from "../ui/AdminContext";
 import ShowProducts from "./showProducts";
+import ShowUsers from "./showUsers";
 
 export default function AdminLayout({ children }: PropsWithChildren) {
   const [showProducts, setShowProducts] = useState(true); //visar produkterna ifall statet är sant, annars kommer användare att visas
@@ -81,7 +81,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
       </Box>
       <Divider />
       {children}
-      <ShowProducts />
+      {showProducts ? <ShowProducts /> : <ShowUsers />}
     </Box>
   );
 }
