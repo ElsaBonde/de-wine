@@ -35,7 +35,7 @@ export const ProductSchema = z.object({
     .min(1, { message: "Please enter the amount of products in stock." }),
   /*  categories: z
     .array(z.string())
-    .min(1, { message: "Please select a category." }), */
+    .min(1, { message: "Please select at least one category." }), */
 });
 
 export type ProductCreate = z.infer<typeof ProductSchema>;
@@ -74,7 +74,6 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
         product.id === changedProduct.id ? changedProduct : product
       )
     );
-
   };
 
   const addProduct = async (newProduct: Product) => {

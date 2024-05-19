@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/prisma/db";
-import { UserCreate } from "../ui/RegisterForm";
+import { UserCreate } from "../validation/register";
 
 export async function registerUser(userData: UserCreate) {
   const user = await db.user.create({
@@ -15,4 +15,9 @@ export async function registerUser(userData: UserCreate) {
   });
   console.log(user);
   //   revalidatePath("/"); /* Refreshar sidan/ bygger om den sidan du står på. */
+}
+
+export async function getUsers() {
+  const users = await db.user.findMany({ orderBy: { id: "desc" } });
+  return users;
 }
