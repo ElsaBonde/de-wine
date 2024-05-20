@@ -1,12 +1,32 @@
 "use client";
 
 import { Box, Button, Divider } from "@mui/material";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
+import { getProducts } from "../actions/productActions";
+import { getUsers } from "../actions/userActions";
 import ShowProducts from "./showProducts";
 import ShowUsers from "./showUsers";
 
 export default function AdminLayout({ children }: PropsWithChildren) {
-  const [showProducts, setShowProducts] = useState(true); //visar produkterna ifall statet är sant, annars kommer användare att visas
+  const [showProducts, setShowProducts] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    if (showProducts) {
+      getProducts().then((data) => setProducts(data));
+    } else {
+      getUsers().then((data) => setUsers(data));
+    }
+  }, [showProducts]);
+
+  const handleShowProducts = () => {
+    setShowProducts(true);
+  };
+
+  const handleShowUsers = () => {
+    setShowProducts(false);
+  };
 
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
@@ -45,7 +65,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
               width: "85%",
             },
           }}
-          onClick={() => setShowProducts(true)}
+          onClick={handleShowProducts}
         >
           Products
         </Button>
@@ -74,14 +94,18 @@ export default function AdminLayout({ children }: PropsWithChildren) {
               width: "75%",
             },
           }}
-          onClick={() => setShowProducts(false)}
+          onClick={handleShowUsers}
         >
           Users
         </Button>
       </Box>
       <Divider />
       {children}
-      {showProducts ? <ShowProducts /> : <ShowUsers />}
+      {showProducts ? (
+        <ShowProducts products={products} />
+      ) : (
+        <ShowUsers users={users} />
+      )}
     </Box>
   );
 }

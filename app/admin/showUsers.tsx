@@ -9,16 +9,22 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { deleteUser, getUsers } from "../actions/userActions";
+import { User } from "../actions/userActions";
 
-export default async function ShowUsers() {
-  const users = await getUsers();
+interface ShowUsersProps {
+  users: User[];
+}
+
+export default function ShowUsers({ users }: ShowUsersProps) {
+  if (!users) {
+    return <div>Loading...</div>;
+  }
 
   const handleDelete = async (userId: string) => {
-    deleteUser(userId);
+    // Implementera funktionen för att hantera borttagning av användare här
   };
 
-  //gör om första bokstaven i varje ord på namnet till stor bokstav
+  // Funktion för att göra om första bokstaven i varje ord på namnet till stor bokstav
   const capitalizeFullName = (fullName: string) => {
     return fullName
       .split(" ")

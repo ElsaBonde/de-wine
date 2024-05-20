@@ -2,8 +2,17 @@
 
 import { db } from "@/prisma/db";
 
+export type User = {
+  id: string;
+  fullName: string;
+  userName: string;
+  phone: string;
+  isAdmin: boolean;
+};
+
 export async function getUsers() {
   const users = await db.user.findMany({ orderBy: { id: "desc" } });
+  console.log(users);
   return users;
 }
 
