@@ -48,9 +48,9 @@ export async function createProduct(incomingData: ProductCreate) {
 
 export async function deleteProduct(productId: string) {
   const product = await db.product.delete({ where: { id: productId } });
-  return product;
   revalidatePath("/");
   revalidatePath("/admin");
+  return product;
 }
 
 export async function updateProduct(
@@ -72,7 +72,12 @@ export async function updateProduct(
       },
     },
   });
-  return product;
   revalidatePath("/");
   revalidatePath("/admin");
+  return product;
+}
+
+export async function getCategories() {
+  const categories = await db.category.findMany();
+  return categories;
 }

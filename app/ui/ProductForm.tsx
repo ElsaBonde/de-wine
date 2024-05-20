@@ -1,14 +1,15 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Grid, Select, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Product, createProduct } from "../actions/productActions";
+import { ProductCreate, createProduct } from "../actions/productActions";
+import FormCategories from "./formCategories";
 
-interface Props {
-  product?: Product;
+interface ProductFormProps {
+  onSave: (product: ProductCreate) => Promise<void>;
 }
 
 export const ProductSchema = z.object({
@@ -26,24 +27,24 @@ export const ProductSchema = z.object({
     .min(1, { message: "Please select at least one category." }),
 });
 
-export default function ProductForm(props: Props) {
-  const isEdit = Boolean(props.product);
+export default function ProductForm({ onSave }: ProductFormProps) {
   const router = useRouter();
 
-  const { register, formState, handleSubmit } = useForm<Product>({
-    defaultValues: props.product || { id: Date.now().toString() },
+  const { register, formState, handleSubmit } = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
   });
 
-  const onSubmit = (formData: any) => {
-    console.log(formData);
-    if (isEdit) {
-      //updateProduct(formData);
-    } else {
-      createProduct(formData);
+  const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
+    try {
+      event.preventDefault();
+      console.log("Form data:", formData);
+      const result = await handleSubmit(onSubmit)(formData);
+      console.log("handleSubmit result:", result);
+      await createProduct(formData);
+      router.push("/admin"); //tillbaka till admin när ny produkt sparats
+    } catch (error) {
+      console.error("Error saving product:", error);
     }
-
-    router.push("/admin");
   };
 
   return (
@@ -101,10 +102,8 @@ export default function ProductForm(props: Props) {
       </Grid>
       <Grid item xs={12}>
         <TextField
-          /* id="outlined-textarea" */
           id="description"
           label="Description"
-          /* multiline */
           rows={4}
           fullWidth
           variant="standard"
@@ -132,20 +131,7 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-      <Grid>
-        <Select></Select>
-      </Grid>
-
-      {/*    <Grid item xs={12}>
-        <TextField
-          id="compatibility"
-          label="Compatibility"
-          rows={4}
-          fullWidth
-          variant="standard"
-          {...register("compatibility")}
-        />
-      </Grid> */}
+      <FormCategories />
       <Grid item xs={12}>
         <Button
           type="submit"
