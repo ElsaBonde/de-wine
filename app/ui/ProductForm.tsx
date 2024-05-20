@@ -103,6 +103,21 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="inventory"
+          label="Inventory"
+          fullWidth
+          variant="standard"
+          {...register("inventory")}
+          inputProps={{ "data-cy": "product-inventory" }}
+        />
+        {formState.errors.inventory && (
+          <Typography data-cy="product-inventory-error">
+            {formState.errors.inventory.message}
+          </Typography>
+        )}
+      </Grid>
    {/*    <Grid item xs={12}>
         <TextField
           id="compatibility"

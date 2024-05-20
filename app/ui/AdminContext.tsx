@@ -1,6 +1,7 @@
 "use client";
 
 import { Product } from "@/data";
+import { User } from "@prisma/client";
 import {
   PropsWithChildren,
   createContext,
@@ -8,11 +9,18 @@ import {
   useEffect,
   useState,
 } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
-import { getProducts } from "../actions/productActions";
+import {
+  createProduct,
+  deleteProduct,
+  getProducts,
+  updateProduct,
+} from "../actions/productActions";
+import { getUsers, deleteUser } from "../actions/userActions";
 
 interface AdminContextValue {
+  users: User[];
+  removeUser: (userId: string) => void;
   products: Product[];
   addProduct: (newProduct: Product) => void;
   editProduct: (productId: string, updatedProduct: Partial<Product>) => void;
@@ -26,10 +34,15 @@ export const ProductSchema = z.object({
     .number()
     .min(1, { message: "Please name a price for this product." }),
   description: z.string().min(1, { message: "Please write a desription." }),
-  compatibility: z.string().optional(),
+  inventory: z.coerce
+    .number()
+    .min(1, { message: "Please enter the amount of products in stock." }),
+  /*  categories: z
+    .array(z.string())
+    .min(1, { message: "Please select at least one category." }), */
 });
 
-export type FormProduct = z.infer<typeof ProductSchema>;
+export type ProductCreate = z.infer<typeof ProductSchema>;
 
 //alternativ för props
 const AdminContext = createContext<AdminContextValue>({} as AdminContextValue);
@@ -39,6 +52,21 @@ export const useAdminContext = () => useContext(AdminContext);
 
 export const AdminProvider = ({ children }: PropsWithChildren) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+
+  //hämta användare från databas via getUsers()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedUsers = await getUsers();
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.error("There was an error fetching users", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // hämta produkter från databas via getProducts()
   useEffect(() => {
@@ -54,54 +82,53 @@ export const AdminProvider = ({ children }: PropsWithChildren) => {
     fetchData();
   }, []);
 
-  //genererar id
-  const generateId = (): string => {
-    const longId = uuidv4(); //genererar ett långt id
-    const shortIdWithCharacter = longId.slice(0, 5); //gör att id max är 5 tecken
-    const shortId = shortIdWithCharacter.replace(/-/g, ""); //tar bort tecken så som bindestreck osv
-    return shortId;
-  };
-
   //uppdatera produkt genom att hitta rätt produkt och uppdatera den
-  const editProduct = (productId: string, updatedProduct: Partial<Product>) => {
-    setProducts((prevProducts) => {
-      const updatedProducts = prevProducts.map((product) => {
-        if (product.id === productId) {
-          return { ...product, ...updatedProduct };
-        }
-        return product;
-      });
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
-      return updatedProducts;
-    });
-  };
-
-  const addProduct = (newProduct: Product) => {
-    const productId = generateId();
-    newProduct.id = productId;
-    setProducts((prevProducts) => {
-      const updatedProducts = [...prevProducts, newProduct];
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
-      return updatedProducts;
-    });
-    return newProduct;
-  };
-
-  //ta bort produkt från adminsidan genom att filtrera ut den
-  const removeProduct = (productId: string) => {
-    const updatedProducts = products.filter(
-      (product) => product.id !== productId
+  const editProduct = async (
+    productId: string,
+    updatedProduct: Partial<Product>
+  ) => {
+    const changedProduct = await updateProduct(productId, updatedProduct);
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === changedProduct.id ? changedProduct : product
+      )
     );
-    setProducts(updatedProducts);
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
+  };
+
+  const addProduct = async (newProduct: Product) => {
+    try {
+      const createdProduct = await createProduct(newProduct);
+      setProducts((prevProducts) => [...prevProducts, createdProduct]);
+      return createdProduct;
+    } catch (error) {
+      console.error("There was an error creating the product", error);
+      throw error;
+    }
+  };
+
+  //ta bort produkt från databasen och uppdatera state i frontend
+  const removeProduct = async (productId: string) => {
+    const deletedProduct = await deleteProduct(productId);
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== deletedProduct.id)
+    );
+  };
+
+  const removeUser = async (userId: string) => {
+    const deletedUser = await deleteUser(userId);
+    setUsers((prevUsers) =>
+      prevUsers.filter((user) => user.id !== deletedUser.id)
+    );
   };
 
   //funktioner som ska användas i adminsidan skickas till context
   const contextValue: AdminContextValue = {
+    users,
     products,
     addProduct,
     editProduct,
     removeProduct,
+    removeUser,
   };
 
   return (

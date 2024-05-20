@@ -5,3 +5,6 @@ isShipped???? hur lägger vi true går det inte.
 
 
 Vi kan inte radera i databasen, varför??? 
+
+inför måndag:
+varför kan vi inte få in kategorier på ett naturligt sätt i formulär för att uppdatera och lägga till produkter? så här svårt kan de inte va?
