@@ -1,9 +1,13 @@
-import { Box, Button } from "@mui/material";
+import { auth } from "@/auth";
+import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
+import SignInButton from "./SignInButton";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+
   return (
     <Box
       component="header"
@@ -33,9 +37,7 @@ export default function Header() {
         }}
       >
         <CountBadge />
-        <Link href={"/login"}>
-          <Button>Logga in</Button>
-        </Link>
+        {session?.user ? <h1>hej bror</h1> : <SignInButton />}
       </Box>
     </Box>
   );

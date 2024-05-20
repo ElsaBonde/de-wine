@@ -107,7 +107,7 @@ export default async function StartPage() {
                             }), //överstruket på normalpris om reapris finns
                           }}
                         >
-                          {product.price} :-
+                          {product.price.toString()} :-
                         </Typography>
 
                         {product.salesPrice && (
@@ -120,7 +120,7 @@ export default async function StartPage() {
                               marginBottom: "10px",
                             }}
                           >
-                            {product.salesPrice} :-
+                            {product.salesPrice.toString()} :-
                           </Typography>
                         )}
                       </Box>

@@ -4,7 +4,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { LayoutProps } from "./types";
-import { AdminProvider } from "./ui/AdminContext";
 import CartContext from "./ui/CartContext";
 import CustomerContext from "./ui/CustomerContext";
 import Footer from "./ui/Footer";
@@ -33,20 +32,18 @@ export default function RootLayout({ children }: LayoutProps) {
           flexDirection: "column",
         }}
       >
-        <AdminProvider>
-          <CartContext>
-            <CustomerContext>
-              <AppRouterCacheProvider>
-                <SnackbarProvider>
-                  <Header />
-                  {children}
+        <CartContext>
+          <CustomerContext>
+            <AppRouterCacheProvider>
+              <SnackbarProvider>
+                <Header />
+                {children}
 
-                  <Footer />
-                </SnackbarProvider>
-              </AppRouterCacheProvider>
-            </CustomerContext>
-          </CartContext>
-        </AdminProvider>
+                <Footer />
+              </SnackbarProvider>
+            </AppRouterCacheProvider>
+          </CustomerContext>
+        </CartContext>
       </body>
     </html>
   );

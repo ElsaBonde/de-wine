@@ -9,13 +9,13 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useAdminContext } from "../ui/AdminContext";
+import { deleteUser, getUsers } from "../actions/userActions";
 
-export default function ShowUsers() {
-  const { users, removeUser } = useAdminContext();
+export default async function ShowUsers() {
+  const users = await getUsers();
 
-  const handleDelete = (userId: string) => {
-    removeUser(userId);
+  const handleDelete = async (userId: string) => {
+    deleteUser(userId);
   };
 
   //gör om första bokstaven i varje ord på namnet till stor bokstav

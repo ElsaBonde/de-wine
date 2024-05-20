@@ -1,32 +1,46 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Grid, TextField, Typography } from "@mui/material";
-import { Product } from "@prisma/client";
+import { Button, Grid, Select, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { ProductSchema, useAdminContext } from "./AdminContext";
+import { z } from "zod";
+import { Product, createProduct } from "../actions/productActions";
 
 interface Props {
   product?: Product;
-  onSave: (product: Product) => void;
 }
+
+export const ProductSchema = z.object({
+  image: z.string().url({ message: "Please enter a valid URL-link" }),
+  title: z.string().min(1, { message: "Please enter a valid title" }),
+  price: z.coerce
+    .number()
+    .min(1, { message: "Please name a price for this product." }),
+  description: z.string().min(1, { message: "Please write a desription." }),
+  inventory: z.coerce
+    .number()
+    .min(1, { message: "Please enter the amount of products in stock." }),
+  categories: z
+    .array(z.string())
+    .min(1, { message: "Please select at least one category." }),
+});
 
 export default function ProductForm(props: Props) {
   const isEdit = Boolean(props.product);
   const router = useRouter();
-  const { addProduct } = useAdminContext();
 
   const { register, formState, handleSubmit } = useForm<Product>({
     defaultValues: props.product || { id: Date.now().toString() },
     resolver: zodResolver(ProductSchema),
   });
 
-  const onSubmit = (formData: Product) => {
+  const onSubmit = (formData: any) => {
+    console.log(formData);
     if (isEdit) {
-      props.onSave({ ...props.product, ...formData });
+      //updateProduct(formData);
     } else {
-      addProduct(formData);
+      createProduct(formData);
     }
 
     router.push("/admin");
@@ -118,7 +132,11 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-   {/*    <Grid item xs={12}>
+      <Grid>
+        <Select></Select>
+      </Grid>
+
+      {/*    <Grid item xs={12}>
         <TextField
           id="compatibility"
           label="Compatibility"

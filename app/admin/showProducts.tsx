@@ -5,19 +5,24 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Typography,
   Link,
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { useAdminContext } from "../ui/AdminContext";
-import DeleteButton from "../ui/DeleteButton";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 
-export default function ShowProducts() {
-  const { products, removeProduct, editProduct } = useAdminContext();
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import {
+  deleteProduct,
+  getProducts,
+  updateProduct,
+} from "../actions/productActions";
+import DeleteButton from "../ui/DeleteButton";
+
+export default async function ShowProducts() {
+  const products = await getProducts();
 
   const handleDelete = (productId: string) => {
-    removeProduct(productId);
+    deleteProduct(productId);
   };
 
   return (
@@ -114,7 +119,7 @@ export default function ShowProducts() {
                     data-cy="product-price"
                     sx={{ fontFamily: "josefin sans" }}
                   >
-                    {product.price} :-
+                    {product.price.toString()} :-
                   </Typography>
                 </Box>
                 <CardActions>
@@ -126,7 +131,7 @@ export default function ShowProducts() {
                         "&:hover": { color: "#881c1c" },
                       }}
                       data-cy="admin-edit-product"
-                      onClick={() => editProduct(product.id, product)}
+                      onClick={() => updateProduct(product.id, product)}
                     />
                   </Link>
                 </CardActions>

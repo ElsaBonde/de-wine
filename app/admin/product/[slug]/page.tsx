@@ -1,31 +1,19 @@
-"use client";
-
-import { useAdminContext } from "@/app/ui/AdminContext";
+import EditProductModal from "@/app/ui/Modal";
 import ProductForm from "@/app/ui/ProductForm";
-import { Product } from "@/data";
-import { Box, Modal } from "@mui/material";
+import { db } from "@/prisma/db";
+import { Box } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
-export default function EditProduct({ params }: PageProps) {
+export default async function EditProductPage({ params }: PageProps) {
   const productId = params.slug;
-
-  const { products, editProduct } = useAdminContext();
-
-  const product = products.find((p) => p.id === productId);
-
-  const handleSave = (updatedProduct: Partial<Product>) => {
-    editProduct(productId, updatedProduct);
-  };
-
-  const handleClose = () => {};
+  const product = await db.product.findUnique({
+    where: { id: productId },
+    include: { categories: true },
+  });
 
   return (
-    <Modal
-      open
-      onClose={handleClose}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-    >
+    <EditProductModal>
       <Box
         component="main"
         sx={{
@@ -39,8 +27,8 @@ export default function EditProduct({ params }: PageProps) {
           boxSizing: "border-box",
         }}
       >
-        {product && <ProductForm product={product} onSave={handleSave} />}
+        {product && <ProductForm product={product} />}
       </Box>
-    </Modal>
+    </EditProductModal>
   );
 }
