@@ -1,6 +1,6 @@
-import { db } from "../db";
+import { PrismaClient } from "@prisma/client";
 
-export async function mockUsers() {
+export async function mockUsers(db: PrismaClient) {
   await db.user.upsert({
     where: { id: "clwad7xzi000108k0fosm1qs3" },
     update: {},
@@ -27,12 +27,3 @@ export async function mockUsers() {
     },
   });
 }
-
-/* model User {
-    id       String  @id @default(cuid())
-    fullName String
-    userName String  @unique //ska vara email i validering
-    phone    Int
-    password String
-    isAdmin  Boolean
-    orders   Order[] */
