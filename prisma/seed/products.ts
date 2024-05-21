@@ -1,6 +1,6 @@
-import { db } from "../db";
+import { PrismaClient } from "@prisma/client";
 
-export async function mockProductsAndCategories() {
+export async function mockProductsAndCategories(db: PrismaClient) {
   const wine = await db.product.upsert({
     where: { id: "clw7ucvey00000cjnfcml6bd4" },
     update: {},

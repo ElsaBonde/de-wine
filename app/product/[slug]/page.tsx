@@ -1,7 +1,7 @@
 import { getProductById } from "@/app/actions/productActions";
 import AddButton from "@/app/ui/AddButton";
 import "@fontsource/josefin-sans";
-import { Box, CardMedia, Divider, Link, Typography } from "@mui/material";
+import { Box, CardMedia, Divider, Typography } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
@@ -91,7 +91,7 @@ export default async function ProductPage({ params }: PageProps) {
                     }),
                   }}
                 >
-                  {product.price} :-
+                  {product.price.toString()} :-
                 </Typography>
 
                 {product.salesPrice && (
@@ -102,7 +102,7 @@ export default async function ProductPage({ params }: PageProps) {
                       marginBottom: "10px",
                     }}
                   >
-                    {product.salesPrice} :-
+                    {product.salesPrice.toString()} :-
                   </Typography>
                 )}
               </Box>
@@ -127,7 +127,11 @@ export default async function ProductPage({ params }: PageProps) {
               Enjoy with:
             </Typography>
             <Typography sx={{ fontFamily: "josefin sans" }}>
-              {/* {product.compatibility} */} här kan vi lägga in lite käck text om något, kanske lägga till ett attribut i databasen för detta? de blir lite snyggare när det är uppdelat. Nu skriver jag rätt mycket här för att se ungefär hur de skulle se ut om vi gjorde så här, men ni fattar poängen? tralala
+              {/* {product.compatibility} */} här kan vi lägga in lite käck text
+              om något, kanske lägga till ett attribut i databasen för detta? de
+              blir lite snyggare när det är uppdelat. Nu skriver jag rätt mycket
+              här för att se ungefär hur de skulle se ut om vi gjorde så här,
+              men ni fattar poängen? tralala
             </Typography>
           </Box>
         </Box>

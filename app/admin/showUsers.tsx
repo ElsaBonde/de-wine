@@ -9,16 +9,22 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useAdminContext } from "../ui/AdminContext";
+import { User } from "../actions/userActions";
 
-export default function ShowUsers() {
-  const { users, removeUser } = useAdminContext();
+interface ShowUsersProps {
+  users: User[];
+}
 
-  const handleDelete = (userId: string) => {
-    removeUser(userId);
+export default function ShowUsers({ users }: ShowUsersProps) {
+  if (!users) {
+    return <div>Loading...</div>;
+  }
+
+  const handleDelete = async (userId: string) => {
+    // Implementera funktionen för att hantera borttagning av användare här
   };
 
-  //gör om första bokstaven i varje ord på namnet till stor bokstav
+  // Funktion för att göra om första bokstaven i varje ord på namnet till stor bokstav
   const capitalizeFullName = (fullName: string) => {
     return fullName
       .split(" ")

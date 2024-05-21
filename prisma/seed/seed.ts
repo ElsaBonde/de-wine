@@ -1,12 +1,14 @@
-import { db } from "../db";
+import { PrismaClient } from "@prisma/client";
 import { mockOrders } from "./orders";
 import { mockProductsAndCategories } from "./products";
 import { mockUsers } from "./users";
 
+const db = new PrismaClient();
+
 async function main() {
-  await mockProductsAndCategories();
-  await mockUsers();
-  await mockOrders();
+  await mockProductsAndCategories(db);
+  await mockUsers(db);
+  await mockOrders(db);
 }
 
 main()

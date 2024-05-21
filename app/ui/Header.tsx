@@ -1,9 +1,14 @@
-import { Box, Button } from "@mui/material";
+import { auth } from "@/auth";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
+import SignInButton from "./SignInButton";
+import SignOutButton from "./SignOutButton";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+
   return (
     <Box
       component="header"
@@ -33,9 +38,13 @@ export default function Header() {
         }}
       >
         <CountBadge />
-        <Link href={"/login"}>
-          <Button>Logga in</Button>
-        </Link>
+        {session?.user ? (
+          <>
+            <Typography>Tjena {session.user.name}</Typography> <SignOutButton />
+          </>
+        ) : (
+          <SignInButton />
+        )}
       </Box>
     </Box>
   );

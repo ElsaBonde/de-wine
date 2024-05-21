@@ -2,34 +2,49 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
-import { Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { ProductSchema, useAdminContext } from "./AdminContext";
+import { z } from "zod";
+import { ProductCreate, createProduct } from "../actions/productActions";
+import FormCategories from "./formCategories";
 
-interface Props {
-  product?: Product;
-  onSave: (product: Product) => void;
+interface ProductFormProps {
+  onSave: (product: ProductCreate) => Promise<void>;
 }
 
-export default function ProductForm(props: Props) {
-  const isEdit = Boolean(props.product);
-  const router = useRouter();
-  const { addProduct } = useAdminContext();
+export const ProductSchema = z.object({
+  image: z.string().url({ message: "Please enter a valid URL-link" }),
+  title: z.string().min(1, { message: "Please enter a valid title" }),
+  price: z.coerce
+    .number()
+    .min(1, { message: "Please name a price for this product." }),
+  description: z.string().min(1, { message: "Please write a desription." }),
+  inventory: z.coerce
+    .number()
+    .min(1, { message: "Please enter the amount of products in stock." }),
+  categories: z
+    .array(z.string())
+    .min(1, { message: "Please select at least one category." }),
+});
 
-  const { register, formState, handleSubmit } = useForm<Product>({
-    defaultValues: props.product || { id: Date.now().toString() },
+export default function ProductForm({ onSave }: ProductFormProps) {
+  const router = useRouter();
+
+  const { register, formState, handleSubmit } = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
   });
 
-  const onSubmit = (formData: Product) => {
-    if (isEdit) {
-      props.onSave({ ...props.product, ...formData });
-    } else {
-      addProduct(formData);
+  const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
+    try {
+      event.preventDefault();
+      console.log("Form data:", formData);
+      const result = await handleSubmit(onSubmit)(formData);
+      console.log("handleSubmit result:", result);
+      await createProduct(formData);
+      router.push("/admin"); //tillbaka till admin när ny produkt sparats
+    } catch (error) {
+      console.error("Error saving product:", error);
     }
-
-    router.push("/admin");
   };
 
   return (
@@ -87,10 +102,8 @@ export default function ProductForm(props: Props) {
       </Grid>
       <Grid item xs={12}>
         <TextField
-          /* id="outlined-textarea" */
           id="description"
           label="Description"
-          /* multiline */
           rows={4}
           fullWidth
           variant="standard"
@@ -118,16 +131,7 @@ export default function ProductForm(props: Props) {
           </Typography>
         )}
       </Grid>
-   {/*    <Grid item xs={12}>
-        <TextField
-          id="compatibility"
-          label="Compatibility"
-          rows={4}
-          fullWidth
-          variant="standard"
-          {...register("compatibility")}
-        />
-      </Grid> */}
+      <FormCategories />
       <Grid item xs={12}>
         <Button
           type="submit"

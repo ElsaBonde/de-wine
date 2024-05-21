@@ -1,15 +1,14 @@
-import { db } from "../db";
+import { PrismaClient } from "@prisma/client";
 
-export async function mockUsers() {
+export async function mockUsers(db: PrismaClient) {
   await db.user.upsert({
     where: { id: "clwad7xzi000108k0fosm1qs3" },
     update: {},
     create: {
       id: "clwad7xzi000108k0fosm1qs3",
-      fullName: "User",
+      name: "User",
       userName: "abc",
-      phone: "293",
-      password: "user",
+      email: "skoj@gmail.com",
       isAdmin: false,
     },
   });
@@ -19,20 +18,10 @@ export async function mockUsers() {
     update: {},
     create: {
       id: "clwad8lqc000208k0edr1419p",
-      fullName: "Admin",
+      name: "Admin",
       userName: "kul",
-      phone: "293",
-      password: "admin",
+      email: "iamcool@hotmail.com",
       isAdmin: true,
     },
   });
 }
-
-/* model User {
-    id       String  @id @default(cuid())
-    fullName String
-    userName String  @unique //ska vara email i validering
-    phone    Int
-    password String
-    isAdmin  Boolean
-    orders   Order[] */

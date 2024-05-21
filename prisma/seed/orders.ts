@@ -1,6 +1,6 @@
-import { db } from "../db";
+import { PrismaClient } from "@prisma/client";
 
-export async function mockOrders() {
+export async function mockOrders(db: PrismaClient) {
   await db.order.upsert({
     where: { id: "clwad7e9u000008k0819u2lvx" },
     update: {},
