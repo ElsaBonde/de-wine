@@ -34,14 +34,11 @@ export default function ProductForm({ onSave }: ProductFormProps) {
     resolver: zodResolver(ProductSchema),
   });
 
-  const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
+  const onSubmit = async (formData: ProductCreate) => {
     try {
-      event.preventDefault();
       console.log("Form data:", formData);
-      const result = await handleSubmit(onSubmit)(formData);
-      console.log("handleSubmit result:", result);
-      await createProduct(formData);
-      router.push("/admin"); //tillbaka till admin när ny produkt sparats
+      await onSave(formData);
+      router.push("/admin"); // Navigate back to admin after saving the product
     } catch (error) {
       console.error("Error saving product:", error);
     }
