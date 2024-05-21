@@ -1,15 +1,15 @@
 "use client";
 
 import { Button } from "@mui/material";
-import { signIn } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
-export default function SignInButton() {
+export default function SignOutButton() {
   return (
     <Button
-      onClick={() => signIn()}
+      onClick={() => signOut()}
       className="bg-blue-400 text-white rounded-md p-2"
     >
-      Sign in
+      Sign out
     </Button>
   );
 }

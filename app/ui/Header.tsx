@@ -1,9 +1,10 @@
 import { auth } from "@/auth";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
 import SignInButton from "./SignInButton";
+import SignOutButton from "./SignOutButton";
 
 export default async function Header() {
   const session = await auth();
@@ -37,7 +38,13 @@ export default async function Header() {
         }}
       >
         <CountBadge />
-        {session?.user ? <h1>hej {session.user.name}</h1> : <SignInButton />}
+        {session?.user ? (
+          <>
+            <Typography>Tjena {session.user.name}</Typography> <SignOutButton />
+          </>
+        ) : (
+          <SignInButton />
+        )}
       </Box>
     </Box>
   );
