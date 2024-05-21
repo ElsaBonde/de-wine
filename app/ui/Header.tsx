@@ -37,7 +37,7 @@ export default async function Header() {
         }}
       >
         <CountBadge />
-        {session?.user ? <h1>hej bror</h1> : <SignInButton />}
+        {session?.user ? <h1>hej {session.user.name}</h1> : <SignInButton />}
       </Box>
     </Box>
   );

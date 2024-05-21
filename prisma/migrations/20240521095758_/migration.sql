@@ -29,12 +29,11 @@ CREATE TABLE "Order" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "fullName" TEXT NOT NULL,
-    "userName" TEXT NOT NULL,
+    "name" TEXT,
+    "userName" TEXT,
+    "email" TEXT NOT NULL,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
-    "phone" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
     "isAdmin" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -104,7 +103,7 @@ CREATE TABLE "_CategoryToProduct" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_userName_key" ON "User"("userName");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_title_key" ON "Category"("title");
