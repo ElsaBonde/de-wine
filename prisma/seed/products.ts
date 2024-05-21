@@ -15,9 +15,11 @@ export async function mockProductsAndCategories(db: PrismaClient) {
         create: [
           {
             title: "Red",
+            image: "https://i.ibb.co/JB28kZP/bild-4.png",
           },
           {
             title: "White",
+            image: "https://i.ibb.co/VNNFHZ6/bild-5.png",
           },
         ],
       },
@@ -29,6 +31,7 @@ export async function mockProductsAndCategories(db: PrismaClient) {
     update: {},
     create: {
       title: "White",
+      image: "https://i.ibb.co/VNNFHZ6/bild-5.png",
       products: {
         connect: {
           id: wine.id,
@@ -60,6 +63,7 @@ export async function mockProductsAndCategories(db: PrismaClient) {
     update: {},
     create: {
       title: "Red",
+      image: "https://i.ibb.co/JB28kZP/bild-4.png",
       products: {
         create: [
           {
@@ -93,6 +97,7 @@ export async function mockProductsAndCategories(db: PrismaClient) {
     update: {},
     create: {
       title: "Sparkling",
+      image: "https://i.ibb.co/BGkP3wg/bild-6.png",
       products: {
         create: [
           {

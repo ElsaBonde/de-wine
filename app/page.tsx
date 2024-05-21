@@ -10,27 +10,17 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import NextLink from "next/link";
 import { getProducts } from "./actions/productActions";
 import AddButton from "./ui/AddButton";
+import CategoriesCards from "./ui/CategoriesCards";
 
 export default async function StartPage() {
   const products = await getProducts();
 
   return (
     <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
-      <Box
-        sx={{ display: "flex", justifyContent: "center", padding: "10px 0px" }}
-      >
-        <Image
-          src="https://i.ibb.co/9N98vQ0/bild-2.png"
-          alt="Wine and glasses"
-          width={800}
-          height={400}
-          style={{ width: "100%", height: "100%" }}
-        />
-      </Box>
+      <CategoriesCards />
       <Divider>
         <Typography
           variant="h4"

@@ -81,3 +81,16 @@ export async function getCategories() {
   const categories = await db.category.findMany();
   return categories;
 }
+
+export async function getCategoryByTitle(title: string) {
+  const category = await db.category.findUnique({ where: { title } });
+  return category;
+}
+
+export async function getProductsByCategory(categoryId: string) {
+  const products = await db.product.findMany({
+    where: { categories: { some: { id: categoryId } } },
+    include: { categories: true },
+  });
+  return products;
+}
