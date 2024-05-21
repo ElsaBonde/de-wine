@@ -9,7 +9,6 @@ import { ProductCreate, createProduct } from "../actions/productActions";
 import FormCategories from "./formCategories";
 
 interface ProductFormProps {
-  product: ProductCreate;
   onSave: (product: ProductCreate) => Promise<void>;
 }
 
@@ -31,21 +30,9 @@ export const ProductSchema = z.object({
 export default function ProductForm({ onSave }: ProductFormProps) {
   const router = useRouter();
 
-  const { register, formState, handleSubmit, setValue } =
-    useForm<ProductCreate>({
-      resolver: zodResolver(ProductSchema),
-    });
-
-  useEffect(() => {
-    if (product) {
-      setValue("image", product.image);
-      setValue("title", product.title);
-      setValue("price", product.price);
-      setValue("description", product.description);
-      setValue("inventory", product.inventory);
-      setValue("categories", product.categories);
-    }
-  }, [product]);
+  const { register, formState, handleSubmit } = useForm<ProductCreate>({
+    resolver: zodResolver(ProductSchema),
+  });
 
   const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
     try {

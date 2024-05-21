@@ -9,7 +9,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { User, deleteUser } from "../actions/userActions";
+import { User } from "../actions/userActions";
 
 interface ShowUsersProps {
   users: User[];
@@ -21,7 +21,7 @@ export default function ShowUsers({ users }: ShowUsersProps) {
   }
 
   const handleDelete = async (userId: string) => {
-    await deleteUser(userId);
+    // Implementera funktionen för att hantera borttagning av användare här
   };
 
   // Funktion för att göra om första bokstaven i varje ord på namnet till stor bokstav

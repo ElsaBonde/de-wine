@@ -1,7 +1,6 @@
 "use server";
 
 import { db } from "@/prisma/db";
-import { revalidatePath } from "next/cache";
 
 export type User = {
   id: string;
@@ -19,6 +18,5 @@ export async function getUsers() {
 
 export async function deleteUser(userId: string) {
   const user = await db.user.delete({ where: { id: userId } });
-  revalidatePath("/admin");
   return user;
 }

@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "@prisma/client";
-import { deleteProduct } from "../actions/productActions";
 import DeleteButton from "../ui/DeleteButton";
 import AddProductCard from "./addProductCard";
 
@@ -23,8 +22,8 @@ export default function ShowProducts({ products }: ShowProductsProps) {
     return <div>Loading...</div>;
   }
 
-  const handleDelete = async (productId: string) => {
-    await deleteProduct(productId);
+  const handleDelete = (productId: string) => {
+    // Implementera funktionen för att hantera borttagning av produkt här
   };
 
   return (
