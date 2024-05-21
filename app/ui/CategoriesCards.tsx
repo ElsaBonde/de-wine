@@ -87,29 +87,29 @@ export default function CategoriesCards() {
                 />
                 <CardContent
                   sx={{
-                    background: "rgba(0, 0, 0, 0.4)",
+                    background: hoveringCard === category.id ? "transparent" : "rgba(0, 0, 0, 0.4)",
                     padding: "16px",
                     position: "absolute",
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    opacity: hoveringCard === category.id ? 0 : 1,
-                    transition: "opacity 0.35s, background 0.35s",
+                    color: hoveringCard === category.id ? "white" : "transparent",
+                    transition: "color 0.45s, background 0.45s",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-end",
                     height: "100%",
                   }}
                 >
-                  {hoveringCard === category.id && (
                     <Typography
                       variant="h4"
                       component="h3"
-                      sx={{ fontFamily: "Josefin sans", color: "white" }}
+                      sx={{ fontFamily: "Josefin sans" }}
                     >
                       {category.title}
                     </Typography>
-                  )}
+                  
                 </CardContent>
               </Card>
             </Link>
