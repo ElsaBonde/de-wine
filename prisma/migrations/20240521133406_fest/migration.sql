@@ -45,6 +45,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "image" TEXT,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
