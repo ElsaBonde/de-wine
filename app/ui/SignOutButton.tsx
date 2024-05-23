@@ -6,6 +6,14 @@ import { signOut } from "next-auth/react";
 export default function SignOutButton() {
   return (
     <Button
+      variant="contained"
+      sx={{
+        minWidth: "100px",
+        backgroundColor: "#881C1C",
+        "&:hover": {
+          backgroundColor: "#440000",
+        },
+      }}
       onClick={() => signOut()}
       className="bg-blue-400 text-white rounded-md p-2"
     >
