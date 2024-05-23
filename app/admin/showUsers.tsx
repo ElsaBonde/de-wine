@@ -25,13 +25,22 @@ export default function ShowUsers({ users }: ShowUsersProps) {
   };
 
   // Funktion för att göra om första bokstaven i varje ord på namnet till stor bokstav
-  const capitalizeFullName = (fullName: string) => {
+  // const capitalizeFullName = (fullName: string) => {
+  //   return fullName
+  //     .split(" ")
+  //     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  //     .join(" ");
+  // };
+  const capitalizeFullName = (fullName: string | undefined) => {
+    if (typeof fullName !== "string") {
+      return "";
+    }
+
     return fullName
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
-
   const tableCellStyle = {
     color: "#881c1c",
     fontFamily: "josefin sans",
@@ -58,8 +67,8 @@ export default function ShowUsers({ users }: ShowUsersProps) {
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
-              <TableCell>{capitalizeFullName(user.fullName)}</TableCell>
-              <TableCell>{user.userName}</TableCell>
+              <TableCell>{capitalizeFullName(user.name)}</TableCell>
+              <TableCell>{user.email}</TableCell>
               <TableCell>{user.phone}</TableCell>
               <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
               <TableCell>

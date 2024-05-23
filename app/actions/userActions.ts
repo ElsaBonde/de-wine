@@ -4,8 +4,9 @@ import { db } from "@/prisma/db";
 
 export type User = {
   id: string;
-  fullName: string;
+  name: string;
   userName: string;
+  email: string;
   phone: string;
   isAdmin: boolean;
 };
