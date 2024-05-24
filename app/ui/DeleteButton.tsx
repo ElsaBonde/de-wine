@@ -32,7 +32,6 @@ export default function DeleteButton({ product, onDelete }: DeleteButtonProps) {
           color: "text.secondary",
           "&:hover": { color: "#881c1c", backgroundColor: "white" },
         }}
-        data-cy="admin-remove-product"
         onClick={() => setOpen(true)}
       >
         <DeleteIcon />
@@ -47,7 +46,6 @@ export default function DeleteButton({ product, onDelete }: DeleteButtonProps) {
           <Button
             onClick={handleDelete}
             style={{ color: "red" }}
-            data-cy="confirm-delete-button"
           >
             Delete
           </Button>

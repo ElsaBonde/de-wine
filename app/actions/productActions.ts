@@ -76,30 +76,6 @@ export async function deleteProduct(productId: string) {
   return product;
 }
 
-/* export async function updateProduct(
-  productId: string,
-  productData: ProductCreate
-) {
-  const { categories, ...restData } = productData;
-
-  const categoryIds = await getCategoryIds(categories);
-
-  const product = await db.product.update({
-    where: { id: productId },
-    data: {
-      ...restData,
-      categories: {
-        connect: categoryIds.map((categoryId) => ({ id: categoryId })),
-      },
-    },
-  });
-
-  revalidatePath("/");
-  revalidatePath("/admin");
-
-  return product;
-} */
-
 export async function updateProduct(
   productId: string,
   productData: ProductCreate

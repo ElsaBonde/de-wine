@@ -41,19 +41,18 @@ export default function ProductForm({
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const form = useForm<ProductCreate>({
-    resolver: zodResolver(ProductSchema),
-    defaultValues: {
-      ...defaultValues,
-      categories: defaultValues?.categories || [], //ifall defaultvärden finns för kategorierna så använd dom, annars använd en tom array
-    },
-  });
-
   useEffect(() => {
     if (defaultValues) {
       setSelectedCategories(defaultValues.categories || []);
     }
   }, [defaultValues]);
+
+  const form = useForm<ProductCreate>({
+    resolver: zodResolver(ProductSchema),
+    defaultValues: {
+      ...defaultValues,
+    },
+  });
 
   const { register, formState, handleSubmit } = form;
 
@@ -74,15 +73,12 @@ export default function ProductForm({
     }
   };
 
-  console.log("defaultValues", defaultValues);
-
   return (
     <Grid
       component="form"
       onSubmit={handleSubmit(onSubmit)}
       container
       spacing={3}
-      data-cy="product-form"
     >
       <Grid item xs={12}>
         <TextField
@@ -93,7 +89,7 @@ export default function ProductForm({
           {...register("image")}
         />
         {formState.errors.image && (
-          <Typography data-cy="product-image-error">
+          <Typography>
             {formState.errors.image.message}
           </Typography>
         )}
@@ -107,7 +103,7 @@ export default function ProductForm({
           {...register("title")}
         />
         {formState.errors.title && (
-          <Typography data-cy="product-title-error">
+          <Typography>
             {formState.errors.title.message}
           </Typography>
         )}
@@ -121,7 +117,7 @@ export default function ProductForm({
           {...register("price")}
         />
         {formState.errors.price && (
-          <Typography data-cy="product-price-error">
+          <Typography>
             {formState.errors.price.message}
           </Typography>
         )}
@@ -136,7 +132,7 @@ export default function ProductForm({
           {...register("description")}
         />
         {formState.errors.description && (
-          <Typography data-cy="product-description-error">
+          <Typography>
             {formState.errors.description.message}
           </Typography>
         )}
@@ -150,13 +146,13 @@ export default function ProductForm({
           {...register("inventory")}
         />
         {formState.errors.inventory && (
-          <Typography data-cy="product-inventory-error">
+          <Typography>
             {formState.errors.inventory.message}
           </Typography>
         )}
       </Grid>
       <SelectCategories
-        categories={selectedCategories}
+        selectedCategories={selectedCategories}
         onChange={setSelectedCategories}
       />
       <Grid item xs={12}>

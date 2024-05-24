@@ -39,7 +39,6 @@ export default function SnackbarProvider({ children }: PropsWithChildren) {
     <SnackbarContext.Provider value={{ showSnack }}>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        data-cy="added-to-cart-toast"
         open={openSnackBar}
         autoHideDuration={2000}
         onClose={handleCloseSnackBar}

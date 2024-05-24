@@ -26,7 +26,6 @@ export default function Footer() {
           display: "flex",
           alignItems: "center",
         }}
-        data-cy="admin-link"
       >
         <AdminPanelSettings sx={{ "&:hover": { color: "#881c1c" } }} />
         Admin

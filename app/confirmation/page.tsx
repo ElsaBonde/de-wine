@@ -58,7 +58,6 @@ export default function ConfirmationPage() {
           {cart.map((item, index) => (
             <Card
               key={item.id}
-              data-cy="cart-item"
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -84,7 +83,6 @@ export default function ConfirmationPage() {
                 }}
               >
                 <Typography
-                  data-cy="product-title"
                   sx={{ fontFamily: "Josefin Sans" }}
                 >
                   {item.title}
@@ -100,7 +98,6 @@ export default function ConfirmationPage() {
                       Your Price: {item.salePrice * item.quantity} :-
                     </Typography>
                     <Typography
-                      data-cy="product-price"
                       sx={{
                         fontFamily: "Josefin Sans",
                         textDecoration: "line-through",
@@ -111,7 +108,6 @@ export default function ConfirmationPage() {
                   </>
                 ) : (
                   <Typography
-                    data-cy="product-price"
                     sx={{ fontFamily: "Josefin Sans" }}
                   >
                     Price: {item.price * item.quantity} :-
@@ -119,7 +115,6 @@ export default function ConfirmationPage() {
                 )}
 
                 <Typography
-                  data-cy="product-quantity"
                   sx={{ fontFamily: "Josefin Sans" }}
                 >
                   {item.quantity} pc

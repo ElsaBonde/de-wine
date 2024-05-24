@@ -51,7 +51,6 @@ export default function CheckoutForm() {
             onSubmit={form.handleSubmit(sendForm)}
             container
             spacing={3}
-            data-cy="customer-form"
           >
             <Grid item xs={12} sm={6}>
               <TextField
@@ -61,12 +60,11 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="name"
                 variant="standard"
-                inputProps={{ "data-cy": "customer-name" }}
                 {...form.register("fullname")}
               />
               {/* Visa felmeddelanden om validering misslyckas */}
               {form.formState.errors.fullname && (
-                <Typography data-cy="customer-name-error" sx={{ color: "red" }}>
+                <Typography sx={{ color: "red" }}>
                   {form.formState.errors.fullname.message}
                 </Typography>
               )}
@@ -79,12 +77,10 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="email"
                 variant="standard"
-                inputProps={{ "data-cy": "customer-email" }}
                 {...form.register("email")}
               />
               {form.formState.errors.email && (
                 <Typography
-                  data-cy="customer-email-error"
                   sx={{ color: "red" }}
                 >
                   {form.formState.errors.email.message}
@@ -99,12 +95,10 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="tel"
                 variant="standard"
-                inputProps={{ "data-cy": "customer-phone" }}
                 {...form.register("phonenumber")}
               />
               {form.formState.errors.phonenumber && (
                 <Typography
-                  data-cy="customer-phone-error"
                   sx={{ color: "red" }}
                 >
                   {form.formState.errors.phonenumber.message}
@@ -119,12 +113,10 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="street-address"
                 variant="standard"
-                inputProps={{ "data-cy": "customer-address" }}
                 {...form.register("address")}
               />
               {form.formState.errors.address && (
                 <Typography
-                  data-cy="customer-address-error"
                   sx={{ color: "red" }}
                 >
                   {form.formState.errors.address.message}
@@ -139,12 +131,10 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="postal-code"
                 variant="standard"
-                inputProps={{ "data-cy": "customer-zipcode" }}
                 {...form.register("zipcode")}
               />
               {form.formState.errors.zipcode && (
                 <Typography
-                  data-cy="customer-zipcode-error"
                   sx={{ color: "red" }}
                 >
                   {form.formState.errors.zipcode.message}
@@ -159,11 +149,10 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="address-level2"
                 variant="standard"
-                inputProps={{ "data-cy": "customer-city" }}
                 {...form.register("city")}
               />
               {form.formState.errors.city && (
-                <Typography data-cy="customer-city-error" sx={{ color: "red" }}>
+                <Typography  sx={{ color: "red" }}>
                   {form.formState.errors.city.message}
                 </Typography>
               )}

@@ -54,7 +54,6 @@ export default function CheckoutPage() {
         {cart.map((item, index) => (
           <Card
             key={item.id}
-            data-cy="cart-item"
             sx={{
               display: "flex",
               flexDirection: "row",
@@ -79,7 +78,6 @@ export default function CheckoutPage() {
               }}
             >
               <Typography
-                data-cy="product-title"
                 sx={{ fontFamily: "Josefin Sans" }}
               >
                 {item.title}
@@ -97,7 +95,6 @@ export default function CheckoutPage() {
                     Your Price: {item.salePrice * item.quantity} :-
                   </Typography>
                   <Typography
-                    data-cy="product-price"
                     sx={{
                       fontFamily: "Josefin Sans",
                       textDecoration: "line-through",
@@ -108,7 +105,6 @@ export default function CheckoutPage() {
                 </>
               ) : /* annars visa bara vanliga priset */ (
                 <Typography
-                  data-cy="product-price"
                   sx={{ fontFamily: "Josefin Sans" }}
                 >
                   Price: {item.price * item.quantity} :-
@@ -130,12 +126,10 @@ export default function CheckoutPage() {
                     fontFamily: "Josefin sans",
                   }}
                   onClick={() => decreaseQuantity(item.id)}
-                  data-cy="decrease-quantity-button"
                 >
                   -
                 </Button>
                 <Typography
-                  data-cy="product-quantity"
                   sx={{ fontFamily: "Josefin Sans" }}
                 >
                   {item.quantity} pc
@@ -147,7 +141,6 @@ export default function CheckoutPage() {
                     fontFamily: "josefin sans",
                   }}
                   onClick={() => increaseQuantity(item.id)}
-                  data-cy="increase-quantity-button"
                 >
                   +
                 </Button>
@@ -158,7 +151,6 @@ export default function CheckoutPage() {
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
-          data-cy="total-price"
           sx={{
             backgroundColor: "#F1DDCF",
             borderRadius: "5px",

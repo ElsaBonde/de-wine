@@ -74,14 +74,12 @@ export default async function ProductPage({ params }: PageProps) {
               {/* boxen där texten och sånt ligger */}
               <Typography
                 variant="h5"
-                data-cy="product-title"
                 sx={{ fontFamily: "josefin sans" }}
               >
                 {product.title}
               </Typography>
               <Box sx={{ display: "flex", gap: "15px" }}>
                 <Typography
-                  data-cy="product-price"
                   sx={{
                     fontFamily: "josefin sans",
                     color: "black",
@@ -113,7 +111,6 @@ export default async function ProductPage({ params }: PageProps) {
             </Box>
           </Box>
           <Typography
-            data-cy="product-description"
             sx={{ marginTop: "15px", fontFamily: "josefin sans" }}
           >
             {product.description}

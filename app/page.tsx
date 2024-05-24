@@ -74,7 +74,6 @@ export default async function StartPage() {
                       <Typography
                         variant="h5"
                         component="div"
-                        data-cy="product-title"
                         sx={{
                           fontFamily: "josefin sans",
                           "&:hover": { color: "#881C1C" },
@@ -87,7 +86,6 @@ export default async function StartPage() {
                         <Typography
                           variant="body1"
                           color="text.secondary"
-                          data-cy="product-price"
                           sx={{
                             fontFamily: "josefin sans",
                             color: "black",
@@ -122,7 +120,6 @@ export default async function StartPage() {
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    data-cy="product-description"
                     sx={{ fontFamily: "josefin sans" }}
                   >
                     {product.description}
