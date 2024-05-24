@@ -15,6 +15,9 @@ const nextConfig = {
   experimental: {
     typedRoutes: false,
   },
+  images: {
+    domains: ["avatars.githubusercontent.com"],
+  },
 };
 
 export default nextConfig;

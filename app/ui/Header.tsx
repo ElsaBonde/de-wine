@@ -40,7 +40,10 @@ export default async function Header() {
         <CountBadge />
         {session?.user ? (
           <>
-            <Typography>Tjena {session.user.name}</Typography> <SignOutButton />
+            <Link href="/profile">
+              <Typography>Tjena {session.user.name}</Typography>
+            </Link>
+            <SignOutButton />
           </>
         ) : (
           <SignInButton />
