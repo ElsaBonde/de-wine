@@ -1,17 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useForm, FormProvider } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ProductCreate, createProduct } from "../actions/productActions";
-import FormCategories from "./formCategories";
+import {
+  ProductCreate,
+  createProduct,
+  updateProduct,
+} from "../actions/productActions";
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
   onSave: (product: ProductCreate) => Promise<void>;
+  defaultValues?: ProductCreate;
 }
 
 export const ProductSchema = z.object({
@@ -30,12 +34,16 @@ export const ProductSchema = z.object({
     .optional(),
 });
 
-export default function ProductForm({ onSave }: ProductFormProps) {
+export default function ProductForm({
+  onSave,
+  defaultValues,
+}: ProductFormProps) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const form = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
+    defaultValues: defaultValues,
   });
 
   const { register, formState, handleSubmit } = form;
@@ -45,11 +53,21 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       ...formData,
       categories: selectedCategories,
     };
+    console.log("Form data:", formData); 
+    console.log("Combined data:", combinedData); 
+    console.log("Selected categories:", selectedCategories); 
+    console.log("Default values:", defaultValues); 
     try {
-      await createProduct(combinedData);
+      if (defaultValues) {
+        console.log("Updating product with ID:", defaultValues.id); 
+        await updateProduct(defaultValues.id, combinedData);
+        console.log("Product updated successfully!"); 
+      } else {
+        await createProduct(combinedData);
+      }
       router.push("/admin");
     } catch (error) {
-      console.error("Error saving product:", error);
+      console.error("Error saving product:", error); 
     }
   };
 

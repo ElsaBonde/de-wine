@@ -1,14 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { ProductCreate } from "../actions/productActions";
+import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import { useEffect, useState } from "react";
 import { getCategories } from "../actions/categoryActions";
-import {
-  CircularProgress,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
 
 interface Props {
   categories: string[];
@@ -18,6 +10,7 @@ interface Props {
 export default function SelectCategories(props: Props) {
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [categoryTitles, setCategoryTitles] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -27,6 +20,7 @@ export default function SelectCategories(props: Props) {
           (category) => category.title
         );
         setCategories(categoryTitles);
+        setCategoryTitles(categoryTitles); // Sätt categoryTitles-tillståndet här
         setLoading(false);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -36,6 +30,11 @@ export default function SelectCategories(props: Props) {
 
     fetchCategories();
   }, []);
+
+
+  if (loading) {
+    return <p>Loading categories...</p>;
+  }
 
   return (
     <Grid item xs={12}>
@@ -48,7 +47,7 @@ export default function SelectCategories(props: Props) {
           fullWidth
           label="Categories"
           value={props.categories}
-          onChange={(event) => props.onChange(event.target.value)}
+          onChange={(event) => props.onChange(event.target.value as string[])}
         >
           {categories.map((category) => (
             <MenuItem key={category} value={category}>

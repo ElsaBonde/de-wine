@@ -1,16 +1,12 @@
+import { getProductById } from "@/app/actions/productActions";
 import EditProductModal from "@/app/ui/Modal";
 import ProductForm from "@/app/ui/ProductForm";
-import { db } from "@/prisma/db";
 import { Box } from "@mui/material";
 
 type PageProps = { params: { slug: string } };
 
 export default async function EditProductPage({ params }: PageProps) {
-  const productId = params.slug;
-  const product = await db.product.findUnique({
-    where: { id: productId },
-    include: { categories: true },
-  });
+  const product = await getProductById(params.slug);
 
   return (
     <EditProductModal>
@@ -27,7 +23,8 @@ export default async function EditProductPage({ params }: PageProps) {
           boxSizing: "border-box",
         }}
       >
-        {product && <ProductForm product={product} />}
+        {/* Skicka produktdata som defaultValues till ProductForm */}
+        {product && <ProductForm defaultValues={product} />}
       </Box>
     </EditProductModal>
   );
