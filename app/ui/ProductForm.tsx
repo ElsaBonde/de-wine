@@ -34,7 +34,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
     resolver: zodResolver(ProductSchema),
   });
 
-  const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
+ /*  const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
     try {
       event.preventDefault();
       console.log("Form data:", formData);
@@ -42,6 +42,21 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       console.log("handleSubmit result:", result);
       await createProduct(formData);
       router.push("/admin"); //tillbaka till admin när ny produkt sparats
+    } catch (error) {
+      console.error("Error saving product:", error);
+    }
+  }; */
+
+  const onSubmit = async (formData: ProductCreate) => {
+    try {
+      if (productId) {
+ 
+        console.log(productId)
+        await updateProduct(productId, formData); // Anropa updateProduct med produktens ID och formulärdata
+      } else {
+        await createProduct(formData); // Skapa ny produkt med formulärdata
+      }
+      router.push("/admin");
     } catch (error) {
       console.error("Error saving product:", error);
     }

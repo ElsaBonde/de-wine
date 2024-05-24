@@ -12,6 +12,7 @@ import {
 import { Product } from "@prisma/client";
 import DeleteButton from "../ui/DeleteButton";
 import AddProductCard from "./addProductCard";
+import { deleteProduct } from "../actions/productActions";
 
 interface ShowProductsProps {
   products: Product[];
@@ -22,8 +23,9 @@ export default function ShowProducts({ products }: ShowProductsProps) {
     return <div>Loading...</div>;
   }
 
-  const handleDelete = (productId: string) => {
-    // Implementera funktionen för att hantera borttagning av produkt här
+  const handleDelete = async (productId: string) => {
+    console.log("Deleting product with id: ", productId); //visar id på produkten som ska tas bort
+     await deleteProduct(productId);
   };
 
   return (
