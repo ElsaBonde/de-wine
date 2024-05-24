@@ -2,15 +2,20 @@ import EditProductModal from "@/app/ui/Modal";
 import ProductForm from "@/app/ui/ProductForm";
 import { db } from "@/prisma/db";
 import { Box } from "@mui/material";
+import { getProductById } from "@/app/actions/productActions";
 
 type PageProps = { params: { slug: string } };
 
 export default async function EditProductPage({ params }: PageProps) {
-  const productId = params.slug;
-  const product = await db.product.findUnique({
-    where: { id: productId },
-    include: { categories: true },
-  });
+  const product = await getProductById(params.slug);
+
+  if (!product) {
+    return (
+      <main>
+        <h1>Product does not exist...</h1>
+      </main>
+    );
+  }
 
   return (
     <EditProductModal>

@@ -23,7 +23,6 @@ export default function CountBadge() {
       <Link href="/checkout">
         <Badge
           badgeContent={totalQuantity > 0 ? totalQuantity : null}
-          data-cy="cart-items-count-badge"
           sx={{
             //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
@@ -35,7 +34,6 @@ export default function CountBadge() {
           }}
         >
           <ShoppingCart
-            data-cy="cart-link"
             sx={{
               color: "#881C1C",
               width: "35px",

@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function AddProductCard() {
   return (
-    <Grid item xs={12} sm={6} md={4} data-cy="admin-add-product">
+    <Grid item xs={12} sm={6} md={4}>
       <Link
         href="/admin/product/new"
         color="text.secondary"

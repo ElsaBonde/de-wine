@@ -12,6 +12,7 @@ import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
   onSave: (product: ProductCreate) => Promise<void>;
+  product?: ProductCreate;
 }
 
 export const ProductSchema = z.object({
@@ -30,12 +31,20 @@ export const ProductSchema = z.object({
     .optional(),
 });
 
-export default function ProductForm({ onSave }: ProductFormProps) {
+export default function ProductForm({ onSave, product }: ProductFormProps) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const form = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
+    defaultValues: product || {
+      image: "",
+      title: "",
+      price: null,
+      description: "",
+      inventory: null,
+      categories: [],
+    },
   });
 
   const { register, formState, handleSubmit } = form;
@@ -46,8 +55,13 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       categories: selectedCategories,
     };
     try {
-      await createProduct(combinedData);
-      router.push("/admin");
+      if (productId) {
+        console.log("Updating product with id:", productId);
+        await updateProduct(productId, combinedData);
+      } else {
+        await createProduct(combinedData);
+        router.push("/admin");
+      }
     } catch (error) {
       console.error("Error saving product:", error);
     }
@@ -59,7 +73,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       onSubmit={handleSubmit(onSubmit)}
       container
       spacing={3}
-      data-cy="product-form"
     >
       <Grid item xs={12}>
         <TextField
@@ -70,9 +83,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("image")}
         />
         {formState.errors.image && (
-          <Typography data-cy="product-image-error">
-            {formState.errors.image.message}
-          </Typography>
+          <Typography>{formState.errors.image.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -84,9 +95,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("title")}
         />
         {formState.errors.title && (
-          <Typography data-cy="product-title-error">
-            {formState.errors.title.message}
-          </Typography>
+          <Typography>{formState.errors.title.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -98,9 +107,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("price")}
         />
         {formState.errors.price && (
-          <Typography data-cy="product-price-error">
-            {formState.errors.price.message}
-          </Typography>
+          <Typography>{formState.errors.price.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -113,9 +120,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("description")}
         />
         {formState.errors.description && (
-          <Typography data-cy="product-description-error">
-            {formState.errors.description.message}
-          </Typography>
+          <Typography>{formState.errors.description.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -127,9 +132,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("inventory")}
         />
         {formState.errors.inventory && (
-          <Typography data-cy="product-inventory-error">
-            {formState.errors.inventory.message}
-          </Typography>
+          <Typography>{formState.errors.inventory.message}</Typography>
         )}
       </Grid>
       <SelectCategories
