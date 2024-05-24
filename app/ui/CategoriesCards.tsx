@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
-import { getCategories } from "../actions/productActions";
+import { getCategories } from "../actions/categoryActions";
 
 export default function CategoriesCards() {
   const [categories, setCategories] = useState<

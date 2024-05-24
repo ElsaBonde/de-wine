@@ -1,7 +1,4 @@
-import {
-  getCategoryByTitle,
-  getProductsByCategory,
-} from "@/app/actions/productActions";
+import { getProductsByCategory, getCategoryByTitle } from "@/app/actions/categoryActions";
 import AddButton from "@/app/ui/AddButton";
 import {
   Box,
@@ -45,104 +42,104 @@ export default async function CategoryPage({ params }: PageProps) {
         </Typography>
       </Divider>
       <Grid container spacing={4}>
-      {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} key={product.id}>
-          <Link
-            component={NextLink}
-            href={`/product/${product.id}`}
-            sx={{
-              textDecoration: "none",
-              color: "black",
-            }}
-          >
-            <CardActionArea
+        {products.map((product) => (
+          <Grid item xs={12} sm={6} md={4} key={product.id}>
+            <Link
+              component={NextLink}
+              href={`/product/${product.id}`}
               sx={{
-                background: "white",
-                borderRadius: "8px",
-                "&:hover": {
-                  transform: "scale(1.02)",
-                  transition: "transform 0.6s",
-                },
+                textDecoration: "none",
+                color: "black",
               }}
             >
-              <CardMedia
-                component="img"
-                image={product.image}
-                alt={product.title}
+              <CardActionArea
                 sx={{
-                  maxWidth: "100%",
-                  height: "auto",
+                  background: "white",
+                  borderRadius: "8px",
+                  "&:hover": {
+                    transform: "scale(1.02)",
+                    transition: "transform 0.6s",
+                  },
                 }}
-              />
-              <CardContent>
-                <Box
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
+              >
+                <CardMedia
+                  component="img"
+                  image={product.image}
+                  alt={product.title}
+                  sx={{
+                    maxWidth: "100%",
+                    height: "auto",
                   }}
-                >
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      component="div"
-                      data-cy="product-title"
-                      sx={{
-                        fontFamily: "josefin sans",
-                        "&:hover": { color: "#881C1C" },
-                      }}
-                    >
-                      {product.title}
-                    </Typography>
-
-                    <Box sx={{ display: "flex", gap: "15px" }}>
+                />
+                <CardContent>
+                  <Box
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Box>
                       <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        data-cy="product-price"
+                        variant="h5"
+                        component="div"
+                        data-cy="product-title"
                         sx={{
                           fontFamily: "josefin sans",
-                          color: "black",
-                          marginBottom: "10px",
-                          ...(product.salesPrice && {
-                            textDecoration: "line-through",
-                          }), //överstruket på normalpris om reapris finns
+                          "&:hover": { color: "#881C1C" },
                         }}
                       >
-                        {product.price.toString()} :-
+                        {product.title}
                       </Typography>
 
-                      {product.salesPrice && (
+                      <Box sx={{ display: "flex", gap: "15px" }}>
                         <Typography
                           variant="body1"
-                          color="red" //röd färg på reapris
+                          color="text.secondary"
+                          data-cy="product-price"
                           sx={{
                             fontFamily: "josefin sans",
-                            color: "red",
+                            color: "black",
                             marginBottom: "10px",
+                            ...(product.salesPrice && {
+                              textDecoration: "line-through",
+                            }), //överstruket på normalpris om reapris finns
                           }}
                         >
-                          {product.salesPrice.toString()} :-
+                          {product.price.toString()} :-
                         </Typography>
-                      )}
+
+                        {product.salesPrice && (
+                          <Typography
+                            variant="body1"
+                            color="red" //röd färg på reapris
+                            sx={{
+                              fontFamily: "josefin sans",
+                              color: "red",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            {product.salesPrice.toString()} :-
+                          </Typography>
+                        )}
+                      </Box>
                     </Box>
+                    <CardActions>
+                      <AddButton product={product} />
+                    </CardActions>
                   </Box>
-                  <CardActions>
-                    <AddButton product={product} />
-                  </CardActions>
-                </Box>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  data-cy="product-description"
-                  sx={{ fontFamily: "josefin sans" }}
-                >
-                  {product.description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Link>
-        </Grid>
-      ))}
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    data-cy="product-description"
+                    sx={{ fontFamily: "josefin sans" }}
+                  >
+                    {product.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Link>
+          </Grid>
+        ))}
       </Grid>
     </>
   );

@@ -3,10 +3,11 @@
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { getCategoryIds } from "./categoryActions";
 
 export type Product = Prisma.ProductGetPayload<{
   include: { categories: true };
-}>;
+}>
 
 export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
@@ -25,8 +26,18 @@ export async function getProducts() {
   return products;
 }
 
+//ser ni detta?!?!?!  allt är efte, min jävla teams har typ hängt sig. lunch???? :')  
+// LUNCH???? aaa kör på det!   den här kuken är kukad ändå
+//hahaha jaaa asså hjälp mig, jag är så trött på att sitta och kolla på detta. 
+//tror vi får stänga allt
+//yes jag gör de kickar ut er nu
+
 export async function createProduct(incomingData: ProductCreate) {
   const { categories, ...productData } = incomingData;
+  //hämata kategorier från databasen baserat på dess id
+  const categoryIds = await getCategoryIds(categories);
+  
+  //ansluter kategorins id till produkten
   const product = await db.product.create({
     data: {
       price: productData.price,
@@ -35,13 +46,12 @@ export async function createProduct(incomingData: ProductCreate) {
       description: productData.description,
       image: productData.image,
       categories: {
-        connect: categories.map((category) => ({
-          id: category,
+        connect: categoryIds.map((categoryId) => ({
+          id: categoryId,
         })),
       },
     },
   });
-  console.log(product);
   revalidatePath("/");
   revalidatePath("/admin");
 }
@@ -75,22 +85,4 @@ export async function updateProduct(
   revalidatePath("/");
   revalidatePath("/admin");
   return product;
-}
-
-export async function getCategories() {
-  const categories = await db.category.findMany();
-  return categories;
-}
-
-export async function getCategoryByTitle(title: string) {
-  const category = await db.category.findUnique({ where: { title } });
-  return category;
-}
-
-export async function getProductsByCategory(categoryId: string) {
-  const products = await db.product.findMany({
-    where: { categories: { some: { id: categoryId } } },
-    include: { categories: true },
-  });
-  return products;
 }

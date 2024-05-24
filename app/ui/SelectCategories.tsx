@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getCategories, ProductCreate } from "../actions/productActions";
+import { ProductCreate } from "../actions/productActions";
+import { getCategories } from "../actions/categoryActions";
 import {
   CircularProgress,
   FormControl,
@@ -25,7 +26,6 @@ export default function SelectCategories(props: Props) {
         const categoryTitles = fetchedCategories.map(
           (category) => category.title
         );
-
         setCategories(categoryTitles);
         setLoading(false);
       } catch (error) {
@@ -36,8 +36,6 @@ export default function SelectCategories(props: Props) {
 
     fetchCategories();
   }, []);
-
-  console.log(categories);
 
   return (
     <Grid item xs={12}>

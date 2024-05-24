@@ -41,16 +41,12 @@ export default function ProductForm({ onSave }: ProductFormProps) {
   const { register, formState, handleSubmit } = form;
 
   const onSubmit = async (formData: ProductCreate) => {
-    console.log("FORMDATA", formData);
-    console.log("cate", selectedCategories);
-    return;
+    const combinedData = {
+      ...formData,
+      categories: selectedCategories,
+    };
     try {
-      if (productId) {
-        console.log(productId);
-        await updateProduct(productId, formData); // Anropa updateProduct med produktens ID och formulärdata
-      } else {
-        await createProduct(formData); // Skapa ny produkt med formulärdata
-      }
+      await createProduct(combinedData);
       router.push("/admin");
     } catch (error) {
       console.error("Error saving product:", error);
@@ -72,7 +68,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("image")}
-          inputProps={{ "data-cy": "product-image" }}
         />
         {formState.errors.image && (
           <Typography data-cy="product-image-error">
@@ -87,7 +82,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("title")}
-          inputProps={{ "data-cy": "product-title" }}
         />
         {formState.errors.title && (
           <Typography data-cy="product-title-error">
@@ -102,7 +96,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("price")}
-          inputProps={{ "data-cy": "product-price" }}
         />
         {formState.errors.price && (
           <Typography data-cy="product-price-error">
@@ -118,7 +111,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("description")}
-          inputProps={{ "data-cy": "product-description" }}
         />
         {formState.errors.description && (
           <Typography data-cy="product-description-error">
@@ -133,7 +125,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("inventory")}
-          inputProps={{ "data-cy": "product-inventory" }}
         />
         {formState.errors.inventory && (
           <Typography data-cy="product-inventory-error">
@@ -145,10 +136,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
         categories={selectedCategories}
         onChange={setSelectedCategories}
       />
-      {/* <FormCategories
-        categories={selectedCategories}
-        onChange={setSelectedCategories}
-      /> */}
       <Grid item xs={12}>
         <Button
           type="submit"
