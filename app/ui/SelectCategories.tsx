@@ -1,3 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { ProductCreate } from "../actions/productActions";
+import { getCategories } from "../actions/categoryActions";
 import {
   CircularProgress,
   FormControl,
@@ -6,13 +9,15 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { getCategories } from "../actions/productActions";
 
-export default function FormCategories() {
+interface Props {
+  categories: string[];
+  onChange: (categories: string[]) => void;
+}
+
+export default function SelectCategories(props: Props) {
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -32,16 +37,6 @@ export default function FormCategories() {
     fetchCategories();
   }, []);
 
-  const handleCategoriesChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
-    setSelectedCategories(event.target.value as string[]);
-  };
-
-  if (loading) {
-    return <CircularProgress />;
-  }
-
   return (
     <Grid item xs={12}>
       <FormControl fullWidth>
@@ -52,8 +47,8 @@ export default function FormCategories() {
           multiple
           fullWidth
           label="Categories"
-          value={selectedCategories}
-          onChange={handleCategoriesChange}
+          value={props.categories}
+          onChange={(event) => props.onChange(event.target.value)}
         >
           {categories.map((category) => (
             <MenuItem key={category} value={category}>

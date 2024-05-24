@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
 import { ProductCreate, createProduct } from "../actions/productActions";
 import FormCategories from "./formCategories";
+import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
   onSave: (product: ProductCreate) => Promise<void>;
@@ -24,38 +26,27 @@ export const ProductSchema = z.object({
     .min(1, { message: "Please enter the amount of products in stock." }),
   categories: z
     .array(z.string())
-    .min(1, { message: "Please select at least one category." }),
+    .min(1, { message: "Please select at least one category." })
+    .optional(),
 });
 
 export default function ProductForm({ onSave }: ProductFormProps) {
   const router = useRouter();
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const { register, formState, handleSubmit } = useForm<ProductCreate>({
+  const form = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
   });
 
- /*  const onSubmit = async (formData: ProductCreate, event: React.FormEvent) => {
-    try {
-      event.preventDefault();
-      console.log("Form data:", formData);
-      const result = await handleSubmit(onSubmit)(formData);
-      console.log("handleSubmit result:", result);
-      await createProduct(formData);
-      router.push("/admin"); //tillbaka till admin när ny produkt sparats
-    } catch (error) {
-      console.error("Error saving product:", error);
-    }
-  }; */
+  const { register, formState, handleSubmit } = form;
 
   const onSubmit = async (formData: ProductCreate) => {
+    const combinedData = {
+      ...formData,
+      categories: selectedCategories,
+    };
     try {
-      if (productId) {
- 
-        console.log(productId)
-        await updateProduct(productId, formData); // Anropa updateProduct med produktens ID och formulärdata
-      } else {
-        await createProduct(formData); // Skapa ny produkt med formulärdata
-      }
+      await createProduct(combinedData);
       router.push("/admin");
     } catch (error) {
       console.error("Error saving product:", error);
@@ -77,7 +68,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("image")}
-          inputProps={{ "data-cy": "product-image" }}
         />
         {formState.errors.image && (
           <Typography data-cy="product-image-error">
@@ -92,7 +82,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("title")}
-          inputProps={{ "data-cy": "product-title" }}
         />
         {formState.errors.title && (
           <Typography data-cy="product-title-error">
@@ -107,7 +96,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("price")}
-          inputProps={{ "data-cy": "product-price" }}
         />
         {formState.errors.price && (
           <Typography data-cy="product-price-error">
@@ -123,7 +111,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("description")}
-          inputProps={{ "data-cy": "product-description" }}
         />
         {formState.errors.description && (
           <Typography data-cy="product-description-error">
@@ -138,7 +125,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           fullWidth
           variant="standard"
           {...register("inventory")}
-          inputProps={{ "data-cy": "product-inventory" }}
         />
         {formState.errors.inventory && (
           <Typography data-cy="product-inventory-error">
@@ -146,7 +132,10 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           </Typography>
         )}
       </Grid>
-      <FormCategories />
+      <SelectCategories
+        categories={selectedCategories}
+        onChange={setSelectedCategories}
+      />
       <Grid item xs={12}>
         <Button
           type="submit"
