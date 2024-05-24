@@ -1,6 +1,6 @@
 "use client";
-
-import { useState } from "react";
+ 
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -9,11 +9,13 @@ import { z } from "zod";
 import { ProductCreate, createProduct } from "../actions/productActions";
 import FormCategories from "./formCategories";
 import SelectCategories from "./SelectCategories";
-
+import { getCategoryByTitle } from "../actions/categoryActions";
+ 
 interface ProductFormProps {
   onSave: (product: ProductCreate) => Promise<void>;
+  product? : ProductCreate;
 }
-
+ 
 export const ProductSchema = z.object({
   image: z.string().url({ message: "Please enter a valid URL-link" }),
   title: z.string().min(1, { message: "Please enter a valid title" }),
@@ -29,17 +31,38 @@ export const ProductSchema = z.object({
     .min(1, { message: "Please select at least one category." })
     .optional(),
 });
-
-export default function ProductForm({ onSave }: ProductFormProps) {
+ 
+export default function ProductForm({ onSave, product }: ProductFormProps) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
+  const [defaultCategories, setDefaultCategories] = useState<string[]>([]);
+ 
   const form = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
+    defaultValues: product || {
+      image: "",
+      title: "",
+      price: 0,
+      description: "",
+      inventory: 0,
+      categories: defaultCategories,
+    }
   });
-
-  const { register, formState, handleSubmit } = form;
-
+ 
+  const { register, formState, handleSubmit, setValue } = form;
+ 
+  useEffect(() => {
+    if (product) {
+      product.categories.forEach(async (category) => {
+        const existingCategory = await getCategoryByTitle(category.title);
+        if (existingCategory) {
+          setValue("categories", [...product.categories]);
+        }
+      });
+    }
+  }, [defaultCategories, product, setValue]);
+ 
+ 
   const onSubmit = async (formData: ProductCreate) => {
     const combinedData = {
       ...formData,
@@ -52,7 +75,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       console.error("Error saving product:", error);
     }
   };
-
+ 
   return (
     <Grid
       component="form"
@@ -153,3 +176,4 @@ export default function ProductForm({ onSave }: ProductFormProps) {
     </Grid>
   );
 }
+ 
