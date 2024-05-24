@@ -1,6 +1,7 @@
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
   Box,
+  Card,
   CardActionArea,
   CardActions,
   CardContent,
@@ -10,9 +11,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "@prisma/client";
+import { deleteProduct } from "../actions/productActions";
 import DeleteButton from "../ui/DeleteButton";
 import AddProductCard from "./addProductCard";
-import { deleteProduct } from "../actions/productActions";
 
 interface ShowProductsProps {
   products: Product[];
@@ -25,7 +26,7 @@ export default function ShowProducts({ products }: ShowProductsProps) {
 
   const handleDelete = async (productId: string) => {
     console.log("Deleting product with id: ", productId); //visar id på produkten som ska tas bort
-     await deleteProduct(productId);
+    await deleteProduct(productId);
   };
 
   return (
@@ -33,16 +34,18 @@ export default function ShowProducts({ products }: ShowProductsProps) {
       <AddProductCard />
       {products.map((product) => (
         <Grid item xs={12} sm={6} md={4} key={product.id} data-cy="product">
-          <CardActionArea sx={{ background: "white", borderRadius: "8px" }}>
-            <CardMedia
-              component="img"
-              image={product.image}
-              alt={product.title}
-              sx={{
-                maxWidth: "100%",
-                height: "auto",
-              }}
-            />
+          <Card sx={{ background: "white", borderRadius: "8px" }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                image={product.image}
+                alt={product.title}
+                sx={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            </CardActionArea>
             <CardContent>
               <Box
                 style={{
@@ -73,19 +76,6 @@ export default function ShowProducts({ products }: ShowProductsProps) {
                     {product.price.toString()} :-
                   </Typography>
                 </Box>
-                <CardActions>
-                  <DeleteButton product={product} onDelete={handleDelete} />
-                  <Link href={`/admin/product/${product.id}`}>
-                    <ModeEditOutlineOutlinedIcon
-                      sx={{
-                        color: "text.secondary",
-                        "&:hover": { color: "#881c1c" },
-                      }}
-                      data-cy="admin-edit-product"
-                      // Observera att updateProduct inte längre är här
-                    />
-                  </Link>
-                </CardActions>
               </Box>
               <Typography
                 variant="body2"
@@ -96,7 +86,19 @@ export default function ShowProducts({ products }: ShowProductsProps) {
                 {product.description}
               </Typography>
             </CardContent>
-          </CardActionArea>
+            <CardActions>
+              <DeleteButton product={product} onDelete={handleDelete} />
+              <Link href={`/admin/product/${product.id}`}>
+                <ModeEditOutlineOutlinedIcon
+                  sx={{
+                    color: "text.secondary",
+                    "&:hover": { color: "#881c1c" },
+                  }}
+                  data-cy="admin-edit-product"
+                />
+              </Link>
+            </CardActions>
+          </Card>
         </Grid>
       ))}
     </Grid>
