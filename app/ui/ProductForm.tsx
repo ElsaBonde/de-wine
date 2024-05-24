@@ -43,7 +43,10 @@ export default function ProductForm({
 
   const form = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
-    defaultValues: defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      categories: defaultValues?.categories || [], //ifall defaultvärden finns för kategorierna så använd dom, annars använd en tom array
+    },
   });
 
   const { register, formState, handleSubmit } = form;
@@ -53,15 +56,9 @@ export default function ProductForm({
       ...formData,
       categories: selectedCategories,
     };
-    console.log("Form data:", formData); 
-    console.log("Combined data:", combinedData); 
-    console.log("Selected categories:", selectedCategories); 
-    console.log("Default values:", defaultValues); 
     try {
       if (defaultValues) {
-        console.log("Updating product with ID:", defaultValues.id); 
         await updateProduct(defaultValues.id, combinedData);
-        console.log("Product updated successfully!"); 
       } else {
         await createProduct(combinedData);
       }
@@ -70,7 +67,9 @@ export default function ProductForm({
       console.error("Error saving product:", error); 
     }
   };
-
+  
+  console.log("defaultValues", defaultValues);
+  
   return (
     <Grid
       component="form"

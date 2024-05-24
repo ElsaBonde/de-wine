@@ -13,7 +13,6 @@ export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
 };
 
-
 export async function getProductById(slug: string) {
   const product = await db.product.findUnique({
     where: { id: slug },
@@ -22,10 +21,15 @@ export async function getProductById(slug: string) {
 
   if (product) {
     const categories = product.categories.map((category) => category.title);
+    const categoryIds = await getCategoryIds(categories);
+
     const defaultValues: ProductCreate = {
       ...product,
       categories: categories,
+      categoryIds: categoryIds
     };
+
+    console.log("getproductbyid log", defaultValues); 
 
     return defaultValues;
   }
