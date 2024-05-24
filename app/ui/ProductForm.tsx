@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -49,6 +49,12 @@ export default function ProductForm({
     },
   });
 
+  useEffect(() => {
+    if (defaultValues) {
+      setSelectedCategories(defaultValues.categories || []);
+    }
+  }, [defaultValues]);
+
   const { register, formState, handleSubmit } = form;
 
   const onSubmit = async (formData: ProductCreate) => {
@@ -64,12 +70,12 @@ export default function ProductForm({
       }
       router.push("/admin");
     } catch (error) {
-      console.error("Error saving product:", error); 
+      console.error("Error saving product:", error);
     }
   };
-  
+
   console.log("defaultValues", defaultValues);
-  
+
   return (
     <Grid
       component="form"
