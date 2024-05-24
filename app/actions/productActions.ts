@@ -76,7 +76,7 @@ export async function deleteProduct(productId: string) {
   return product;
 }
 
-export async function updateProduct(
+/* export async function updateProduct(
   productId: string,
   productData: ProductCreate
 ) {
@@ -98,4 +98,39 @@ export async function updateProduct(
   revalidatePath("/admin");
 
   return product;
+} */
+
+export async function updateProduct(
+  productId: string,
+  productData: ProductCreate
+) {
+  const { categories, ...restData } = productData;
+
+  const categoryIds = await getCategoryIds(categories);
+
+  const product = await db.product.update({
+    where: { id: productId },
+    data: {
+      ...restData
+    },
+  });
+
+  await updateProductCategories(productId, categoryIds);
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+
+  return product;
+}
+
+//uppdaterar kategorier för en produkt, anropas i updateProduct
+async function updateProductCategories(productId: string, categoryIds: string[]) {
+  await db.product.update({
+    where: { id: productId },
+    data: {
+      categories: {
+        set: categoryIds.map((categoryId) => ({ id: categoryId })),
+      },
+    },
+  });
 }
