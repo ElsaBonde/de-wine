@@ -69,13 +69,13 @@ export default function AdminDashboard() {
           xs={12}
           sm={6}
           md={4}
-          sx={{ margin: "auto" }}
+         
         >
           <Box
             sx={{
               background: "white",
               borderRadius: "8px",
-              maxWidth: "300px",
+             
               display: "flex",
               alignItems: "center",
               gap: "20px",
@@ -111,13 +111,13 @@ export default function AdminDashboard() {
           xs={12}
           sm={6}
           md={4}
-          sx={{ margin: "auto" }} 
+        
         >
           <Box
             sx={{
               background: "white",
               borderRadius: "8px",
-              maxWidth: "300px",
+              
               display: "flex",
               alignItems: "center",
               gap: "20px",
@@ -153,13 +153,13 @@ export default function AdminDashboard() {
           xs={12}
           sm={6}
           md={4}
-          sx={{ margin: "auto" }}
+         
         >
           <Box
             sx={{
               background: "white",
               borderRadius: "8px",
-              maxWidth: "300px",
+            
               display: "flex",
               alignItems: "center",
               gap: "20px",
