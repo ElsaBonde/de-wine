@@ -60,9 +60,8 @@ export default function AdminDashboard() {
         container
         spacing={4}
         sx={{
-          marginTop: "30px",
-          justifyContent: "center",
-          alignItems: "center",
+          marginTop: "0px",
+          
         }}
       >
         <Grid
@@ -70,32 +69,82 @@ export default function AdminDashboard() {
           xs={12}
           sm={6}
           md={4}
-          sx={{ background: "white", borderRadius: "8px" }}
+          sx={{ margin: "auto" }}
         >
-          <Box sx={{ display: "flex", gap: "20px" }}>
-            <>
-              <PeopleIcon
-                sx={{
-                  fontSize: "60px",
-                  background: "#F1DDCF",
-                  color: "white",
-                  borderRadius: "50%",
-                }}
+          <Box
+            sx={{
+              background: "white",
+              borderRadius: "8px",
+              maxWidth: "300px",
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+              padding: "20px",
+            }}
+          >
+            <PeopleIcon
+              sx={{
+                fontSize: "60px",
+                background: "#F1DDCF",
+                color: "white",
+                borderRadius: "50%",
+              }}
               />
-            </>
+              <Box>
+            <Typography
+              variant="h5"
+              sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+            >
+              {usersCount}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+            >
+              Users
+            </Typography>
+              </Box>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          sx={{ margin: "auto" }} 
+        >
+          <Box
+            sx={{
+              background: "white",
+              borderRadius: "8px",
+              maxWidth: "300px",
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+              padding: "20px",
+            }}
+          >
+            <ShoppingCartIcon
+              sx={{
+                fontSize: "60px",
+                background: "#F1DDCF",
+                color: "white",
+                borderRadius: "50%",
+              }}
+            />
             <Box>
-              <Typography
-                variant="h5"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
-              >
-                {usersCount}
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
-              >
-                Users
-              </Typography>
+            <Typography
+              variant="h5"
+              sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+            >
+              {ordersCount}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+            >
+              Orders
+            </Typography>
             </Box>
           </Box>
         </Grid>
@@ -104,69 +153,44 @@ export default function AdminDashboard() {
           xs={12}
           sm={6}
           md={4}
-          sx={{ background: "white", borderRadius: "8px" }}
+          sx={{ margin: "auto" }}
         >
-          <Box sx={{ display: "flex", gap: "20px" }}>
-            <>
-              <ShoppingCartIcon
-                sx={{
-                  fontSize: "60px",
-                  background: "#F1DDCF",
-                  color: "white",
-                  borderRadius: "50%",
-                }}
-              />
-            </>
+          <Box
+            sx={{
+              background: "white",
+              borderRadius: "8px",
+              maxWidth: "300px",
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+              padding: "20px",
+            }}
+          >
+            <AttachMoneyIcon
+              sx={{
+                fontSize: "60px",
+                background: "#F1DDCF",
+                color: "white",
+                borderRadius: "50%",
+              }}
+            />
             <Box>
-              <Typography
-                variant="h5"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
-              >
-                {ordersCount}
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
-              >
-                Orders
-              </Typography>
+            <Typography
+              variant="h5"
+              sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+            >
+              {totalAmount}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+            >
+              Amount earned
+            </Typography>
             </Box>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          sx={{ background: "white", borderRadius: "8px" }}
-        >
-          <Box sx={{ display: "flex", gap: "20px" }}>
-            <>
-              <AttachMoneyIcon
-                sx={{
-                  fontSize: "60px",
-                  background: "#F1DDCF",
-                  color: "white",
-                  borderRadius: "50%",
-                }}
-              />
-            </>
-            <Box>
-              <Typography
-                variant="h5"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
-              >
-                {totalAmount}
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
-              >
-                Amount earned
-              </Typography>
-            </Box>
-          </Box>
-        </Grid>
+        
       </Grid>
     </>
   );

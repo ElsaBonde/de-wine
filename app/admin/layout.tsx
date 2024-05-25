@@ -105,7 +105,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
           </Button>
         </Box>
         <Divider />
-        <AdminDashboard users={users} />
+        <AdminDashboard/>
         {children}
         {showProducts ? (
           <ShowProducts products={products} />

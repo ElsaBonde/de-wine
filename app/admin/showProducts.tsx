@@ -30,8 +30,9 @@ export default function ShowProducts({ products }: ShowProductsProps) {
   };
 
   return (
-    <Grid container spacing={4} sx={{ marginTop: "0px" }}>
+    <>
       <AddProductCard />
+    <Grid container spacing={4} sx={{ marginTop: "0px" }}>
       {products.map((product) => (
         <Grid item xs={12} sm={6} md={4} key={product.id}>
           <Card sx={{ background: "white", borderRadius: "8px" }}>
@@ -98,5 +99,6 @@ export default function ShowProducts({ products }: ShowProductsProps) {
         </Grid>
       ))}
     </Grid>
+    </>
   );
 }
