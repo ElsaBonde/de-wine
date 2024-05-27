@@ -1,17 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useForm, FormProvider } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ProductCreate, createProduct } from "../actions/productActions";
-import FormCategories from "./formCategories";
+import {
+  ProductCreate,
+  createProduct,
+  updateProduct,
+} from "../actions/productActions";
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
   onSave: (product: ProductCreate) => Promise<void>;
+  defaultValues?: ProductCreate;
 }
 
 export const ProductSchema = z.object({
@@ -30,12 +34,24 @@ export const ProductSchema = z.object({
     .optional(),
 });
 
-export default function ProductForm({ onSave }: ProductFormProps) {
+export default function ProductForm({
+  onSave,
+  defaultValues,
+}: ProductFormProps) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
+  useEffect(() => {
+    if (defaultValues) {
+      setSelectedCategories(defaultValues.categories || []);
+    }
+  }, [defaultValues]);
+
   const form = useForm<ProductCreate>({
     resolver: zodResolver(ProductSchema),
+    defaultValues: {
+      ...defaultValues,
+    },
   });
 
   const { register, formState, handleSubmit } = form;
@@ -46,7 +62,11 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       categories: selectedCategories,
     };
     try {
-      await createProduct(combinedData);
+      if (defaultValues) {
+        await updateProduct(defaultValues.id, combinedData);
+      } else {
+        await createProduct(combinedData);
+      }
       router.push("/admin");
     } catch (error) {
       console.error("Error saving product:", error);
@@ -59,7 +79,6 @@ export default function ProductForm({ onSave }: ProductFormProps) {
       onSubmit={handleSubmit(onSubmit)}
       container
       spacing={3}
-      data-cy="product-form"
     >
       <Grid item xs={12}>
         <TextField
@@ -70,7 +89,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("image")}
         />
         {formState.errors.image && (
-          <Typography data-cy="product-image-error">
+          <Typography>
             {formState.errors.image.message}
           </Typography>
         )}
@@ -84,7 +103,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("title")}
         />
         {formState.errors.title && (
-          <Typography data-cy="product-title-error">
+          <Typography>
             {formState.errors.title.message}
           </Typography>
         )}
@@ -98,7 +117,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("price")}
         />
         {formState.errors.price && (
-          <Typography data-cy="product-price-error">
+          <Typography>
             {formState.errors.price.message}
           </Typography>
         )}
@@ -113,7 +132,7 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("description")}
         />
         {formState.errors.description && (
-          <Typography data-cy="product-description-error">
+          <Typography>
             {formState.errors.description.message}
           </Typography>
         )}
@@ -127,13 +146,13 @@ export default function ProductForm({ onSave }: ProductFormProps) {
           {...register("inventory")}
         />
         {formState.errors.inventory && (
-          <Typography data-cy="product-inventory-error">
+          <Typography>
             {formState.errors.inventory.message}
           </Typography>
         )}
       </Grid>
       <SelectCategories
-        categories={selectedCategories}
+        selectedCategories={selectedCategories}
         onChange={setSelectedCategories}
       />
       <Grid item xs={12}>

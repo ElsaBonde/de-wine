@@ -25,7 +25,6 @@ export default function AddButton(props: Props) {
 
   return (
     <AddShoppingCart
-      data-cy="product-buy-button"
       sx={{ "&:hover": { color: "#881C1C" } }}
       onClick={handleClick}
     />

@@ -1,8 +1,6 @@
 "use server";
 
 import { db } from "@/prisma/db";
-import { Prisma } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
 export async function getProductsByCategory(categoryId: string) {
   const products = await db.product.findMany({
