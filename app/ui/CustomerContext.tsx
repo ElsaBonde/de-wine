@@ -13,10 +13,6 @@ import { z } from "zod";
 // errormeddelenden för formulär
 export const CustomerSchema = z.object({
   fullname: z.string().min(1, { message: "Please enter your full name" }),
-  email: z.string().email({
-    message:
-      "Please enter a valid email address in the following format: name@example.com",
-  }),
   phonenumber: z
     .string()
     .min(10, { message: "Please enter a valid phone number" }),

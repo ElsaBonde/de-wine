@@ -13,6 +13,10 @@ export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
 };
 
+export type CartItem = Product & {
+  quantity: number;
+};
+
 export async function getProductById(slug: string) {
   const product = await db.product.findUnique({
     where: { id: slug },

@@ -12,10 +12,12 @@ import {
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { createOrder } from "../actions/orderActions";
+import { CartItem } from "../actions/productActions";
 import { Customer, CustomerSchema, useCustomer } from "./CustomerContext";
 
 //komponent för formulär för att skriva in personuppgifter
-export default function CheckoutForm() {
+export default function CheckoutForm(cart: CartItem[]) {
   const router = useRouter();
   const { setCustomer } = useCustomer();
 
@@ -25,8 +27,10 @@ export default function CheckoutForm() {
   });
 
   //funktion för att skicka meddelandet som rensar formuläret och anropar onMessageSent
-  const sendForm = (customer: Customer) => {
+  const sendForm = async (customer: Customer) => {
     setCustomer(customer);
+    const orderInfo = await createOrder(cart, customer);
+    console.log(orderInfo);
     router.push("/confirmation");
   };
 
@@ -72,24 +76,6 @@ export default function CheckoutForm() {
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="Email Adress"
-                label="Email Adress"
-                fullWidth
-                autoComplete="email"
-                variant="standard"
-                {...form.register("email")}
-              />
-              {form.formState.errors.email && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
-                  {form.formState.errors.email.message}
-                </Typography>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
                 id="Phone Number"
                 label="Phone Number"
                 fullWidth
@@ -98,9 +84,7 @@ export default function CheckoutForm() {
                 {...form.register("phonenumber")}
               />
               {form.formState.errors.phonenumber && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
+                <Typography sx={{ color: "red" }}>
                   {form.formState.errors.phonenumber.message}
                 </Typography>
               )}
@@ -116,9 +100,7 @@ export default function CheckoutForm() {
                 {...form.register("address")}
               />
               {form.formState.errors.address && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
+                <Typography sx={{ color: "red" }}>
                   {form.formState.errors.address.message}
                 </Typography>
               )}
@@ -134,9 +116,7 @@ export default function CheckoutForm() {
                 {...form.register("zipcode")}
               />
               {form.formState.errors.zipcode && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
+                <Typography sx={{ color: "red" }}>
                   {form.formState.errors.zipcode.message}
                 </Typography>
               )}
@@ -152,7 +132,7 @@ export default function CheckoutForm() {
                 {...form.register("city")}
               />
               {form.formState.errors.city && (
-                <Typography  sx={{ color: "red" }}>
+                <Typography sx={{ color: "red" }}>
                   {form.formState.errors.city.message}
                 </Typography>
               )}
