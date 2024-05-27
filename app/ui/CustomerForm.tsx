@@ -16,8 +16,12 @@ import { createOrder } from "../actions/orderActions";
 import { CartItem } from "../actions/productActions";
 import { Customer, CustomerSchema, useCustomer } from "./CustomerContext";
 
+type ChecokoutFormProps = {
+  cart: CartItem[];
+};
+
 //komponent för formulär för att skriva in personuppgifter
-export default function CheckoutForm(cart: CartItem[]) {
+export default function CheckoutForm({ cart }: ChecokoutFormProps) {
   const router = useRouter();
   const { setCustomer } = useCustomer();
 
@@ -59,49 +63,49 @@ export default function CheckoutForm(cart: CartItem[]) {
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="fullName"
-                label="Full name"
+                id="name"
+                label="Name"
                 fullWidth
                 autoComplete="name"
                 variant="standard"
-                {...form.register("fullname")}
+                {...form.register("name")}
               />
               {/* Visa felmeddelanden om validering misslyckas */}
-              {form.formState.errors.fullname && (
+              {form.formState.errors.name && (
                 <Typography sx={{ color: "red" }}>
-                  {form.formState.errors.fullname.message}
+                  {form.formState.errors.name.message}
                 </Typography>
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="Phone Number"
-                label="Phone Number"
+                id="phone"
+                label="Phone"
                 fullWidth
                 autoComplete="tel"
                 variant="standard"
-                {...form.register("phonenumber")}
+                {...form.register("phone")}
               />
-              {form.formState.errors.phonenumber && (
+              {form.formState.errors.phone && (
                 <Typography sx={{ color: "red" }}>
-                  {form.formState.errors.phonenumber.message}
+                  {form.formState.errors.phone.message}
                 </Typography>
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="address"
-                label="Address"
+                id="street"
+                label="Street"
                 fullWidth
                 autoComplete="street-address"
                 variant="standard"
-                {...form.register("address")}
+                {...form.register("street")}
               />
               {form.formState.errors.address && (
                 <Typography sx={{ color: "red" }}>
-                  {form.formState.errors.address.message}
+                  {form.formState.errors.street.message}
                 </Typography>
               )}
             </Grid>
@@ -113,11 +117,11 @@ export default function CheckoutForm(cart: CartItem[]) {
                 fullWidth
                 autoComplete="postal-code"
                 variant="standard"
-                {...form.register("zipcode")}
+                {...form.register("zip")}
               />
               {form.formState.errors.zipcode && (
                 <Typography sx={{ color: "red" }}>
-                  {form.formState.errors.zipcode.message}
+                  {form.formState.errors.zip.message}
                 </Typography>
               )}
             </Grid>

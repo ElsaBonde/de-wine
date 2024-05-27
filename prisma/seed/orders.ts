@@ -14,7 +14,7 @@ export async function mockOrders(db: PrismaClient) {
       street: "street",
       name: "Siv Grönrot",
       city: "city",
-      zip: "12345",
+      zip: 12345,
       phone: "+46701234567",
       total: 99.9,
       isShipped: true,

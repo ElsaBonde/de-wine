@@ -15,11 +15,12 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "street" TEXT NOT NULL,
     "city" TEXT NOT NULL,
-    "phone" INTEGER NOT NULL,
-    "zip" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "zip" INTEGER NOT NULL,
     "orderDate" TIMESTAMP(3) NOT NULL,
     "isShipped" BOOLEAN NOT NULL DEFAULT false,
     "total" DOUBLE PRECISION NOT NULL,
