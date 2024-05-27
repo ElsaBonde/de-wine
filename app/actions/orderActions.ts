@@ -22,6 +22,19 @@ export async function getOrders() {
   return orders;
 }
 
+export async function getOrderById(slug: string) {
+const order = await db.order.findUnique({
+    where: { id: slug },
+    include: { products: { include: { product: true } } },
+  });
+  return order;
+}
+/* 
+export async function getProductOrderRows() {
+  const rows = await db.productOrder.findMany();
+  return rows;
+} */
+
 export async function orderNumber() {
   const count = await db.order.count();
 
@@ -45,7 +58,6 @@ export async function createOrder(cart: CartItem[], userData: any) {
     return null;
   }
 
-  //här vill vi räkna ut totalen av alla cartitems genom att hämta ut produkterna från db och multiplicera med antalet
   const productIds = cart.map((item) => item.id);
   const products = await db.product.findMany({
     where: {
