@@ -12,12 +12,12 @@ import { z } from "zod";
 
 // errormeddelenden för formulär
 export const CustomerSchema = z.object({
-  fullname: z.string().min(1, { message: "Please enter your full name" }),
-  phonenumber: z
+  name: z.string().min(1, { message: "Please enter your full name" }),
+  phone: z
     .string()
     .min(10, { message: "Please enter a valid phone number" }),
-  address: z.string().min(1, { message: "Please enter a valid address" }),
-  zipcode: z.coerce
+  street: z.string().min(1, { message: "Please enter a valid street" }),
+  zip: z.coerce
     .number()
     .min(10000, { message: "Please enter a valid zip code" })
     .max(99999, { message: "Please enter a valid zip code" }),

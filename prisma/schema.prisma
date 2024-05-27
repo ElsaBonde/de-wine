@@ -32,7 +32,7 @@ model Order {
   street    String
   city      String
   phone     String
-  zip       String
+  zip       Int
   orderDate DateTime
   isShipped Boolean  @default(false)
   total     Float
