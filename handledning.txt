@@ -2,6 +2,25 @@ validera inkommande data och kolla behörighet från david
 
 Revalidate funkar inte, varför? 
 
-Session provider, vart ska vi ha den? 
+Ska man kunna lägga till saker i carten även om inte är inloggad?
 
-Hur tömmer vi carten nu när vi kör en serverside på confirmation? 
+
+
+### VAD VI SKA GÖRA
+
+designfrågor: 
+gör snyggare responsivt
+gör om färger
+gör om loggan
+lägg lite effekter (animationer)
+
+funktionalitet:
+uppdatera lagersaldo när produkter blir shoppade
+lägg till orderhistorik på admin
+se till att man kan ändra "isShipped"-flaggan från admin
+Pusha vidare när användare blivit inloggad
+på profilsidan ska orderhistorik för användaren visas, lägg inte shipped överst, shipped under? typ?
+
+villkor för olika typer inloggningar
+fixa validering i föränderlig actions
+
