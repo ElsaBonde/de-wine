@@ -8,6 +8,7 @@ export async function mockUsers(db: PrismaClient) {
       id: "clwad7xzi000108k0fosm1qs3",
       name: "User",
       userName: "abc",
+     
       email: "skoj@gmail.com",
       isAdmin: false,
     },

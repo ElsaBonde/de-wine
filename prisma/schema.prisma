@@ -13,12 +13,12 @@ datasource db {
 
 model Product {
   id          String         @id @default(cuid())
-  price       Decimal
+  price       Float
   inventory   Int
   title       String
   description String
   image       String
-  salesPrice  Decimal?
+  salesPrice  Float?
   isArchived  Boolean        @default(false)
   categories  Category[]
   orders      ProductOrder[]
@@ -27,13 +27,15 @@ model Product {
 model Order {
   id        String   @id @default(cuid())
   user      User     @relation(fields: [userId], references: [id])
+  name      String
   userId    String
   street    String
   city      String
-  zip       String
+  phone     String
+  zip       Int
   orderDate DateTime
   isShipped Boolean  @default(false)
-  total     Decimal
+  total     Float
 
   products ProductOrder[]
 }
@@ -55,8 +57,8 @@ model User {
 }
 
 model Category {
-  id    String @id @default(cuid())
-  title String @unique
+  id    String  @id @default(cuid())
+  title String  @unique
   image String?
 
   products Product[]
@@ -66,7 +68,7 @@ model ProductOrder {
   productId String
   orderId   String
   quantity  Int
-  subTotal  Decimal
+  subTotal  Float
 
   product Product @relation(fields: [productId], references: [id])
   order   Order   @relation(fields: [orderId], references: [id])

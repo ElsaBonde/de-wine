@@ -180,7 +180,7 @@ export default function CheckoutPage() {
         </Box>
       </Box>
       <Box>
-        <CheckoutForm />
+        <CheckoutForm cart={cart} />
       </Box>
     </Box>
   );

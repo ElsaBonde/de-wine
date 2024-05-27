@@ -12,8 +12,10 @@ export async function mockOrders(db: PrismaClient) {
         },
       },
       street: "street",
+      name: "Siv Grönrot",
       city: "city",
-      zip: "12345",
+      zip: 12345,
+      phone: "+46701234567",
       total: 99.9,
       isShipped: true,
       orderDate: new Date(),
@@ -32,15 +34,3 @@ export async function mockOrders(db: PrismaClient) {
     },
   });
 }
-
-/* model Order {
-    id        String         @id @default(cuid())
-    user      User           @relation(fields: [userId], references: [id])
-    userId    String
-    street    String
-    city      String
-    zip       String
-    orderDate DateTime
-    products  ProductOrder[]
-    isShipped Boolean        @default(false)
-  } */

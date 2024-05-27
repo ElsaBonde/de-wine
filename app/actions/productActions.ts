@@ -13,6 +13,11 @@ export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
 };
 
+export type CartItem = Product & {
+  quantity: number;
+  subTotal: number;
+};
+
 export async function getProductById(slug: string) {
   const product = await db.product.findUnique({
     where: { id: slug },
@@ -71,6 +76,8 @@ export async function createProduct(incomingData: ProductCreate) {
 
 export async function deleteProduct(productId: string) {
   const product = await db.product.delete({ where: { id: productId } });
+  //david kan vi prata om det här? session som väljer vad som visas och inte ta bort nåt alls? is this right? 
+  product.isArchived = true;
   revalidatePath("/");
   revalidatePath("/admin");
   return product;

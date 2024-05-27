@@ -12,10 +12,16 @@ import {
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { createOrder } from "../actions/orderActions";
+import { CartItem } from "../actions/productActions";
 import { Customer, CustomerSchema, useCustomer } from "./CustomerContext";
 
+type ChecokoutFormProps = {
+  cart: CartItem[];
+};
+
 //komponent för formulär för att skriva in personuppgifter
-export default function CheckoutForm() {
+export default function CheckoutForm({ cart }: ChecokoutFormProps) {
   const router = useRouter();
   const { setCustomer } = useCustomer();
 
@@ -25,9 +31,14 @@ export default function CheckoutForm() {
   });
 
   //funktion för att skicka meddelandet som rensar formuläret och anropar onMessageSent
-  const sendForm = (customer: Customer) => {
+  const sendForm = async (customer: Customer) => {
     setCustomer(customer);
-    router.push("/confirmation");
+    const orderInfo = await createOrder(cart, customer);
+    if (!orderInfo) {
+      return;
+    }
+    router.push(`/confirmation/${orderInfo.id}`
+    );
   };
 
   return (
@@ -55,71 +66,49 @@ export default function CheckoutForm() {
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="fullName"
-                label="Full name"
+                id="name"
+                label="Name"
                 fullWidth
                 autoComplete="name"
                 variant="standard"
-                {...form.register("fullname")}
+                {...form.register("name")}
               />
               {/* Visa felmeddelanden om validering misslyckas */}
-              {form.formState.errors.fullname && (
+              {form.formState.errors.name && (
                 <Typography sx={{ color: "red" }}>
-                  {form.formState.errors.fullname.message}
+                  {form.formState.errors.name.message}
                 </Typography>
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="Email Adress"
-                label="Email Adress"
-                fullWidth
-                autoComplete="email"
-                variant="standard"
-                {...form.register("email")}
-              />
-              {form.formState.errors.email && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
-                  {form.formState.errors.email.message}
-                </Typography>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="Phone Number"
-                label="Phone Number"
+                id="phone"
+                label="Phone"
                 fullWidth
                 autoComplete="tel"
                 variant="standard"
-                {...form.register("phonenumber")}
+                {...form.register("phone")}
               />
-              {form.formState.errors.phonenumber && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
-                  {form.formState.errors.phonenumber.message}
+              {form.formState.errors.phone && (
+                <Typography sx={{ color: "red" }}>
+                  {form.formState.errors.phone.message}
                 </Typography>
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="address"
-                label="Address"
+                id="street"
+                label="Street"
                 fullWidth
                 autoComplete="street-address"
                 variant="standard"
-                {...form.register("address")}
+                {...form.register("street")}
               />
-              {form.formState.errors.address && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
-                  {form.formState.errors.address.message}
+              {form.formState.errors.street && (
+                <Typography sx={{ color: "red" }}>
+                  {form.formState.errors.street.message}
                 </Typography>
               )}
             </Grid>
@@ -131,13 +120,11 @@ export default function CheckoutForm() {
                 fullWidth
                 autoComplete="postal-code"
                 variant="standard"
-                {...form.register("zipcode")}
+                {...form.register("zip")}
               />
-              {form.formState.errors.zipcode && (
-                <Typography
-                  sx={{ color: "red" }}
-                >
-                  {form.formState.errors.zipcode.message}
+              {form.formState.errors.zip && (
+                <Typography sx={{ color: "red" }}>
+                  {form.formState.errors.zip.message}
                 </Typography>
               )}
             </Grid>
@@ -152,7 +139,7 @@ export default function CheckoutForm() {
                 {...form.register("city")}
               />
               {form.formState.errors.city && (
-                <Typography  sx={{ color: "red" }}>
+                <Typography sx={{ color: "red" }}>
                   {form.formState.errors.city.message}
                 </Typography>
               )}
