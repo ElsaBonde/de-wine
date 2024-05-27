@@ -34,8 +34,11 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
   const sendForm = async (customer: Customer) => {
     setCustomer(customer);
     const orderInfo = await createOrder(cart, customer);
-    console.log(orderInfo);
-    router.push("/confirmation");
+    if (!orderInfo) {
+      return;
+    }
+    router.push(`/confirmation/${orderInfo.id}`
+    );
   };
 
   return (
@@ -103,7 +106,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 variant="standard"
                 {...form.register("street")}
               />
-              {form.formState.errors.address && (
+              {form.formState.errors.street && (
                 <Typography sx={{ color: "red" }}>
                   {form.formState.errors.street.message}
                 </Typography>
@@ -119,7 +122,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 variant="standard"
                 {...form.register("zip")}
               />
-              {form.formState.errors.zipcode && (
+              {form.formState.errors.zip && (
                 <Typography sx={{ color: "red" }}>
                   {form.formState.errors.zip.message}
                 </Typography>

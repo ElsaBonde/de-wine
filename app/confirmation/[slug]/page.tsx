@@ -1,29 +1,26 @@
-"use client";
-
+import { getOrderById } from "@/app/actions/orderActions";
 import { Box, Card, Divider, Typography } from "@mui/material";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useCart } from "../ui/CartContext";
-import { useCustomer } from "../ui/CustomerContext";
 
-export default function ConfirmationPage() {
-  const { customer } = useCustomer();
-  const { cart: contextCart, calculateTotalPrice, clearCart } = useCart();
-  const [cart] = useState(contextCart);
-  const [orderId, setOrderId] = useState("");
+type PageProps = { params: { slug: string } };
 
-  useEffect(() => {
-    //genererar ett unikt orderId
-    const thisOrderId = uuidv4();
-    setOrderId(thisOrderId);
-  }, []);
+export default async function ConfirmationPage({ params }: PageProps) {
 
-  useEffect(() => {
+  const order = await getOrderById(params.slug);
+
+  if (!order) {
+    return (
+      <Box>
+        <Typography>Order not found</Typography>
+      </Box>
+    )
+  }
+
+  const rows = order.products;
+
+ /*  useEffect(() => {
     clearCart();
-  }, [clearCart]);
-
-  const totalAmount = calculateTotalPrice();
+  }, []); */
 
   return (
     <Box
@@ -55,9 +52,9 @@ export default function ConfirmationPage() {
           Your Wine&apos;Order:
         </Typography>
         <Box>
-          {cart.map((item, index) => (
+          {rows.map((item, index) => (
             <Card
-              key={item.id}
+              key={item.product.id}
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -68,8 +65,8 @@ export default function ConfirmationPage() {
               }}
             >
               <Image
-                src={item.image}
-                alt={item.title}
+                src={item.product.image}
+                alt={item.product.title}
                 height={75}
                 width={75}
                 style={{ height: "100%", width: "auto" }}
@@ -82,12 +79,10 @@ export default function ConfirmationPage() {
                   flexGrow: "1",
                 }}
               >
-                <Typography
-                  sx={{ fontFamily: "Josefin Sans" }}
-                >
-                  {item.title}
+                <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                  {item.product.title}
                 </Typography>
-                {item.salePrice ? (
+                {item.product.salesPrice ? (
                   <>
                     <Typography
                       sx={{
@@ -95,7 +90,7 @@ export default function ConfirmationPage() {
                         color: "red",
                       }}
                     >
-                      Your Price: {item.salePrice * item.quantity} :-
+                      Your Price: {item.product.salesPrice * item.quantity} :-
                     </Typography>
                     <Typography
                       sx={{
@@ -103,20 +98,16 @@ export default function ConfirmationPage() {
                         textDecoration: "line-through",
                       }}
                     >
-                      Old Price: {item.price * item.quantity} :-
+                      Old Price: {item.product.price * item.quantity} :-
                     </Typography>
                   </>
                 ) : (
-                  <Typography
-                    sx={{ fontFamily: "Josefin Sans" }}
-                  >
-                    Price: {item.price * item.quantity} :-
+                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                    Price: {item.product.price * item.quantity} :-
                   </Typography>
                 )}
 
-                <Typography
-                  sx={{ fontFamily: "Josefin Sans" }}
-                >
+                <Typography sx={{ fontFamily: "Josefin Sans" }}>
                   {item.quantity} pc
                 </Typography>
               </Box>
@@ -131,7 +122,7 @@ export default function ConfirmationPage() {
             fontWeight: "bold",
           }}
         >
-          TOTAL: {totalAmount} SEK
+          TOTAL: {order.total} SEK
         </Typography>
       </Box>
 
@@ -160,7 +151,7 @@ export default function ConfirmationPage() {
         <Box
           sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
         >
-          {customer && (
+          {order && (
             <Box
               sx={{
                 display: "flex",
@@ -183,30 +174,30 @@ export default function ConfirmationPage() {
               </Typography>
               <Typography component="span" sx={{}}>
                 {" "}
-                {orderId}
+                {order.id}
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Name:{" "}
-                <Typography component="span">{customer.fullname}</Typography>
+                <Typography component="span">{order.name}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Email:{" "}
-                <Typography component="span">{customer.email}</Typography>
+                <Typography component="span">HÄR SKA SESSION IN MED EMAIL</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Phone number:{" "}
-                <Typography component="span">{customer.phonenumber}</Typography>
+                <Typography component="span">{order.phone}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Adress:{" "}
-                <Typography component="span">{customer.address}</Typography>
+                <Typography component="span">{order.street}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Zip code:{" "}
-                <Typography component="span">{customer.zipcode}</Typography>
+                <Typography component="span">{order.zip}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                City: <Typography component="span">{customer.city}</Typography>
+                City: <Typography component="span">{order.city}</Typography>
               </Typography>
             </Box>
           )}
