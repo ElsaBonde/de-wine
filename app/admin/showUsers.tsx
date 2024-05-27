@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import Image from "next/image";
 import { User, deleteUser, updateUser } from "../actions/userActions";
 
 interface ShowUsersProps {
@@ -28,7 +29,7 @@ export default function ShowUsers({ users }: ShowUsersProps) {
   const handleAccess = async (user: User) => {
     const newAccessLevel = !user.isAdmin;
     await updateUser(user, newAccessLevel);
-  }
+  };
 
   const capitalizeFullName = (fullName: string | undefined) => {
     if (typeof fullName !== "string") {
@@ -48,47 +49,56 @@ export default function ShowUsers({ users }: ShowUsersProps) {
   };
 
   return (
-    <TableContainer component={Paper} sx={{ marginTop: "30px" }}>
-      <Table>
-        <TableHead>
-          <TableRow
-            sx={{
-              background: "#f1ddcf",
-            }}
-          >
-            <TableCell sx={tableCellStyle}>Full Name</TableCell>
-            <TableCell sx={tableCellStyle}>Email</TableCell>
-            <TableCell sx={tableCellStyle}>Access</TableCell>
-            <TableCell sx={tableCellStyle}>Edit Access</TableCell>
-            <TableCell sx={tableCellStyle}>Delete</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{capitalizeFullName(user.name)}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
-             <TableCell>
-              <IconButton
-                  onClick={() => handleAccess(user)}
-                  sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
-                >
-                  <ModeEditOutlineOutlinedIcon />
-                </IconButton>
-              </TableCell>
-              <TableCell>
-                <IconButton
-                  onClick={() => handleDelete(user.id)}
-                  sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
+    <>
+      <TableContainer component={Paper} sx={{ marginTop: "30px" }}>
+        <Table>
+          <TableHead>
+            <TableRow
+              sx={{
+                background: "#f1ddcf",
+              }}
+            >
+              <TableCell sx={tableCellStyle}>Profile Picture</TableCell>
+              <TableCell sx={tableCellStyle}>Full Name</TableCell>
+              <TableCell sx={tableCellStyle}>Email</TableCell>
+              <TableCell sx={tableCellStyle}>Access</TableCell>
+              <TableCell sx={tableCellStyle}></TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell>
+                  <Image
+                    src={user.image ? user.image : "/default-profile.png"}
+                    alt={user.name}
+                    width={50}
+                    height={50}
+                    style={{ borderRadius: "50%" }}
+                  />
+                </TableCell>
+                <TableCell>{capitalizeFullName(user.name)}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
+                <TableCell sx={{ textAlign: "right" }}>
+                  <IconButton
+                    onClick={() => handleAccess(user)}
+                    sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
+                  >
+                    <ModeEditOutlineOutlinedIcon />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => handleDelete(user.id)}
+                    sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

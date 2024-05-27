@@ -10,6 +10,7 @@ export type User = {
   email: string;
   phone: string;
   isAdmin: boolean;
+  image?: string;
 };
 
 export async function getUsers() {
@@ -82,4 +83,9 @@ export async function updateUser(user: User, isAdmin: boolean) {
     console.error("Error updating user:", error);
     throw error;
   }
+}
+
+export async function userNumber() {
+  const users = await db.user.findMany();
+  return users.length;
 }

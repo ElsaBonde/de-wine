@@ -1,7 +1,7 @@
 "use client";
 
-import { Product } from "@/data";
 import { AddShoppingCart } from "@mui/icons-material";
+import { Product } from "../actions/productActions";
 import React from "react";
 import { useCart } from "./CartContext";
 import { useSnackbar } from "./Snackbar";
