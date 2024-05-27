@@ -1,4 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
   IconButton,
   Paper,
@@ -9,7 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { User } from "../actions/userActions";
+import { User, deleteUser, updateUser } from "../actions/userActions";
 
 interface ShowUsersProps {
   users: User[];
@@ -21,26 +22,24 @@ export default function ShowUsers({ users }: ShowUsersProps) {
   }
 
   const handleDelete = async (userId: string) => {
-    // Implementera funktionen för att hantera borttagning av användare här
+    await deleteUser(userId);
   };
 
-  // Funktion för att göra om första bokstaven i varje ord på namnet till stor bokstav
-  // const capitalizeFullName = (fullName: string) => {
-  //   return fullName
-  //     .split(" ")
-  //     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  //     .join(" ");
-  // };
+  const handleAccess = async (user: User) => {
+    const newAccessLevel = !user.isAdmin;
+    await updateUser(user, newAccessLevel);
+  }
+
   const capitalizeFullName = (fullName: string | undefined) => {
     if (typeof fullName !== "string") {
       return "";
     }
-
     return fullName
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
+
   const tableCellStyle = {
     color: "#881c1c",
     fontFamily: "josefin sans",
@@ -59,8 +58,8 @@ export default function ShowUsers({ users }: ShowUsersProps) {
           >
             <TableCell sx={tableCellStyle}>Full Name</TableCell>
             <TableCell sx={tableCellStyle}>Email</TableCell>
-            <TableCell sx={tableCellStyle}>Phone</TableCell>
             <TableCell sx={tableCellStyle}>Access</TableCell>
+            <TableCell sx={tableCellStyle}>Edit Access</TableCell>
             <TableCell sx={tableCellStyle}>Delete</TableCell>
           </TableRow>
         </TableHead>
@@ -69,8 +68,15 @@ export default function ShowUsers({ users }: ShowUsersProps) {
             <TableRow key={user.id}>
               <TableCell>{capitalizeFullName(user.name)}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>{user.phone}</TableCell>
               <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
+             <TableCell>
+              <IconButton
+                  onClick={() => handleAccess(user)}
+                  sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
+                >
+                  <ModeEditOutlineOutlinedIcon />
+                </IconButton>
+              </TableCell>
               <TableCell>
                 <IconButton
                   onClick={() => handleDelete(user.id)}
