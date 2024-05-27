@@ -15,6 +15,7 @@ export type ProductCreate = Prisma.ProductCreateInput & {
 
 export type CartItem = Product & {
   quantity: number;
+  subTotal: number;
 };
 
 export async function getProductById(slug: string) {

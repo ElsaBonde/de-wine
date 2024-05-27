@@ -46,7 +46,29 @@ export async function createOrder(cart: CartItem[], userData: any) {
   }
 
   //här vill vi räkna ut totalen av alla cartitems genom att hämta ut produkterna från db och multiplicera med antalet
-  
+  const productIds = cart.map((item) => item.id);
+  const products = await db.product.findMany({
+    where: {
+      id: {
+        in: productIds,
+      },
+    },
+  });
+
+  let total = 0;
+  const cartWithPrices = cart.map((item) => {
+    const product = products.find((product) => product.id === item.id);
+    if (product) {
+      const subTotal = product.price * item.quantity;
+      total += subTotal;
+      return {
+        ...item,
+        price: product.price,
+        subTotal,
+      };
+    }
+    return item;
+  });
 
   const order = await db.order.create({
     data: {
@@ -58,13 +80,13 @@ export async function createOrder(cart: CartItem[], userData: any) {
       phone: userData.phone,
       orderDate: new Date().toISOString(),
       isShipped: false,
-      total: 945785,
+      total: total,
       products: {
         createMany: {
-          data: cart.map((item) => ({
+          data: cartWithPrices.map((item) => ({
             productId: item.id,
             quantity: item.quantity,
-            subTotal: 957 * item.quantity,
+            subTotal: item.subTotal,
           })),
         },
       },
