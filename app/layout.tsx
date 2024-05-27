@@ -9,6 +9,7 @@ import CustomerContext from "./ui/CustomerContext";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
 import SnackbarProvider from "./ui/Snackbar";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps) {
           flexDirection: "column",
         }}
       >
+        <SessionProvider>
         <CartContext>
           <CustomerContext>
             <AppRouterCacheProvider>
@@ -44,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps) {
             </AppRouterCacheProvider>
           </CustomerContext>
         </CartContext>
+        </SessionProvider>
       </body>
     </html>
   );

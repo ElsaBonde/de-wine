@@ -1,10 +1,7 @@
-edit - varför får vi inte med informationen=???
-
-edit/add - varför fungerar det inte med dom jäkla kategorierna????
-
-
 validera inkommande data och kolla behörighet från david
 
 Revalidate funkar inte, varför? 
 
 Session provider, vart ska vi ha den? 
+
+Hur tömmer vi carten nu när vi kör en serverside på confirmation? 

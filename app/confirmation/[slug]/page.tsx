@@ -1,11 +1,11 @@
 import { getOrderById } from "@/app/actions/orderActions";
+import ClearCart from "@/app/ui/ClearCart";
 import { Box, Card, Divider, Typography } from "@mui/material";
 import Image from "next/image";
 
 type PageProps = { params: { slug: string } };
 
 export default async function ConfirmationPage({ params }: PageProps) {
-
   const order = await getOrderById(params.slug);
 
   if (!order) {
@@ -13,14 +13,10 @@ export default async function ConfirmationPage({ params }: PageProps) {
       <Box>
         <Typography>Order not found</Typography>
       </Box>
-    )
+    );
   }
 
   const rows = order.products;
-
- /*  useEffect(() => {
-    clearCart();
-  }, []); */
 
   return (
     <Box
@@ -177,24 +173,23 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 {order.id}
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Name:{" "}
-                <Typography component="span">{order.name}</Typography>
+                Name: <Typography component="span">{order.name}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Email:{" "}
-                <Typography component="span">HÄR SKA SESSION IN MED EMAIL</Typography>
+                <Typography component="span">
+                  HÄR SKA SESSION IN MED EMAIL
+                </Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Phone number:{" "}
                 <Typography component="span">{order.phone}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Adress:{" "}
-                <Typography component="span">{order.street}</Typography>
+                Adress: <Typography component="span">{order.street}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Zip code:{" "}
-                <Typography component="span">{order.zip}</Typography>
+                Zip code: <Typography component="span">{order.zip}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 City: <Typography component="span">{order.city}</Typography>
@@ -214,6 +209,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           </Box>
         </Box>
       </Box>
+      <ClearCart />
     </Box>
   );
 }
