@@ -13,10 +13,7 @@ export default async function UserProfilePage() {
     const ordersNotShipped = userOrder.filter((order) => !order.isShipped);
 
     return (
-      <Box
-        component="main"
-        sx={{ background: "#F9F1EC", padding: "10px 20px" }}
-      >
+      <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
         <Box
           sx={{
             backgroundColor: "white",
@@ -41,7 +38,7 @@ export default async function UserProfilePage() {
             <Typography
               variant="h4"
               sx={{
-                color: "#881C1C",
+                color: "white",
                 fontSize: "30px",
                 paddingLeft: "20px",
               }}
@@ -49,7 +46,7 @@ export default async function UserProfilePage() {
               Welcomme to you personal space, {session.user.name}!
             </Typography>
             <Typography
-              sx={{ fontSize: "16px", color: "#881C1C", paddingLeft: "20px" }}
+              sx={{ fontSize: "16px", color: "white", paddingLeft: "20px" }}
             >
               Explore your personal hub for all things wine-related! Here, you
               can track your order history, check the status of your deliveries,
@@ -83,7 +80,7 @@ export default async function UserProfilePage() {
               key={order.id}
               sx={{
                 backgroundColor: "white",
-                color: "#881C1C",
+                color: "white",
                 fontSize: "20px",
               }}
             >
@@ -96,16 +93,20 @@ export default async function UserProfilePage() {
               </Typography>
               {order.products.map((product) => (
                 <Box key={product.product.id}>
-                    <Image src={product.product.image} alt={product.product.title} width={100} height={100} />
-                    <Typography variant="h6">
-                        Product: {product.product.title}
-                    </Typography>
-                    <Typography variant="h6">
-                        Quantity: {product.quantity}
-                    </Typography>
-            </Box>
-              
-          ))}
+                  <Image
+                    src={product.product.image}
+                    alt={product.product.title}
+                    width={100}
+                    height={100}
+                  />
+                  <Typography variant="h6">
+                    Product: {product.product.title}
+                  </Typography>
+                  <Typography variant="h6">
+                    Quantity: {product.quantity}
+                  </Typography>
+                </Box>
+              ))}
             </Box>
           ))}
         </Box>
@@ -114,7 +115,7 @@ export default async function UserProfilePage() {
             <Box
               key={order.id}
               sx={{
-                color: "#881C1C",
+                color: "white",
                 fontSize: "20px",
               }}
             >
@@ -127,18 +128,17 @@ export default async function UserProfilePage() {
               </Typography>
               {order.products.map((product) => (
                 <Box key={product.product.id}>
-                    <Typography variant="h6">
-                        Product: {product.product.title}
-                    </Typography>
-                    <Typography variant="h6">
-                        Quantity: {product.quantity}
-                    </Typography>
+                  <Typography variant="h6">
+                    Product: {product.product.title}
+                  </Typography>
+                  <Typography variant="h6">
+                    Quantity: {product.quantity}
+                  </Typography>
+                </Box>
+              ))}
             </Box>
-              
           ))}
         </Box>
-        ))}
-            </Box>
       </Box>
     );
   }

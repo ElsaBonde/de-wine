@@ -1,8 +1,10 @@
 validera inkommande data och kolla behörighet från david
-
+DAVID HANDLEDNING!!
 Revalidate funkar inte, varför? 
-
+Push page
+Use effect i admin.
 Ska man kunna lägga till saker i carten även om inte är inloggad?
+TS FEL
 
 
 
@@ -17,7 +19,7 @@ lägg lite effekter (animationer)
 funktionalitet:
 Pusha vidare när användare blivit inloggad
 på profilsidan ska orderhistorik för användaren visas, lägg inte shipped överst, shipped under? typ?
-
++---+//
 villkor för olika typer inloggningar
 fixa validering i föränderlig actions
 

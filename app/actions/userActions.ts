@@ -1,7 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
 import { db } from "@/prisma/db";
+import { revalidatePath } from "next/cache";
 
 export type User = {
   id: string;
@@ -20,6 +21,12 @@ export async function getUsers() {
 }
 
 export async function deleteUser(userId: string) {
+  const session = await auth();
+ 
+  if (!session || !session.user.isAdmin) {
+    return null;
+  }
+
   try {
     //hämta orders kopplade till användare
     const userOrders = await db.order.findMany({
@@ -66,6 +73,12 @@ export async function deleteUser(userId: string) {
 }
 
 export async function updateUser(user: User, isAdmin: boolean) {
+  const session = await auth();
+  
+  if (!session || !session.user.isAdmin) {
+    return null;
+  }
+
   try {
     const updatedUser = await db.user.update({
       where: {

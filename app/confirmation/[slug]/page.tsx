@@ -29,7 +29,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           flexGrow: "4",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#F1DDCF",
+          backgroundColor: "#4E3D53 ",
           margin: "10px",
           borderRadius: "0px 15px 15px 0px",
           padding: "10px",
@@ -38,7 +38,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
       >
         <Typography
           sx={{
-            color: "#881C1C",
+            color: "white",
             fontSize: "30px",
             textAlign: "center",
             fontVariant: "small-caps",
@@ -110,7 +110,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
             </Card>
           ))}
         </Box>
-        <Divider sx={{ color: "#881C1C", padding: "5px" }} />
+        <Divider sx={{ color: "white", padding: "5px" }} />
         <Typography
           sx={{
             fontFamily: "Josefin Sans",
@@ -128,7 +128,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           display: "flex",
           flexDirection: "column",
           flexGrow: "5",
-          background: "#f1ddcf",
+          background: "#4E3D53 ",
           margin: "10px",
           borderRadius: "10px 0px 0px 10px",
         }}
@@ -138,7 +138,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           sx={{
             textAlign: "center",
             margin: "10px",
-            color: "#881c1c",
+            color: "white",
             fontVariant: "small-caps",
           }}
         >

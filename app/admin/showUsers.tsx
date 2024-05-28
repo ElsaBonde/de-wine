@@ -42,7 +42,7 @@ export default function ShowUsers({ users }: ShowUsersProps) {
   };
 
   const tableCellStyle = {
-    color: "#881c1c",
+    color: "white",
     fontFamily: "josefin sans",
     fontSize: "1rem",
     fontWeight: "bold",
@@ -55,7 +55,7 @@ export default function ShowUsers({ users }: ShowUsersProps) {
           <TableHead>
             <TableRow
               sx={{
-                background: "#f1ddcf",
+                background: "#4E3D53 ",
               }}
             >
               <TableCell sx={tableCellStyle}>Profile Picture</TableCell>
@@ -83,13 +83,13 @@ export default function ShowUsers({ users }: ShowUsersProps) {
                 <TableCell sx={{ textAlign: "right" }}>
                   <IconButton
                     onClick={() => handleAccess(user)}
-                    sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
+                    sx={{ color: "#5A5353", "&:hover": { color: "white" } }}
                   >
                     <ModeEditOutlineOutlinedIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => handleDelete(user.id)}
-                    sx={{ color: "#5A5353", "&:hover": { color: "#881c1c" } }}
+                    sx={{ color: "#5A5353", "&:hover": { color: "white" } }}
                   >
                     <DeleteIcon />
                   </IconButton>

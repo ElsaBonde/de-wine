@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { AdminPanelSettings } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -5,31 +6,35 @@ import XIcon from "@mui/icons-material/X";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
-export default function Footer() {
+export default async function Footer() {
+  const session = await auth();
+
   return (
     <Box
       component="footer"
       sx={{
         display: "flex",
-        background: "#f1ddcf",
+        background: "#3b2f30",
         marginTop: "auto",
         padding: "5px 10px",
         fontFamily: "Josefin sans",
         color: "#5A5353",
       }}
     >
-      <Link
-        href="/admin"
-        style={{
-          textDecoration: "none",
-          color: "#5A5353",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <AdminPanelSettings sx={{ "&:hover": { color: "#881c1c" } }} />
-        Admin
-      </Link>
+      {session?.user.isAdmin && (
+        <Link
+          href="/admin"
+          style={{
+            textDecoration: "none",
+            color: "#5A5353",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <AdminPanelSettings sx={{ "&:hover": { color: "white" } }} />
+          Admin
+        </Link>
+      )}
 
       <Box
         sx={{
@@ -37,7 +42,6 @@ export default function Footer() {
           flexDirection: "column",
           textAlign: "center",
           marginX: "auto",
-          /*  gap: "3px", */
         }}
       >
         <Box
@@ -49,21 +53,21 @@ export default function Footer() {
         >
           <InstagramIcon
             sx={{
-              color: "#881c1c",
+              color: "white",
               width: "30px",
               height: "30px",
             }}
           />
           <FacebookIcon
             sx={{
-              color: "#881c1c",
+              color: "white",
               width: "30px",
               height: "30px",
             }}
           />
           <XIcon
             sx={{
-              color: "#881c1c",
+              color: "white",
               width: "30px",
               height: "30px",
             }}

@@ -48,6 +48,7 @@ export async function totalAmountAllOrders() {
 
 export async function createOrder(cart: CartItem[], userData: any) {
   const session = await auth();
+  
 
   if (!session) {
     return null;

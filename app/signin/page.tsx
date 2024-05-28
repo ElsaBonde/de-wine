@@ -45,7 +45,7 @@ export default function SignInPage() {
                   type="submit"
                   sx={{
                     minWidth: "200px",
-                    backgroundColor: "#881C1C",
+                    backgroundColor: "white",
                     "&:hover": {
                       backgroundColor: "#440000",
                     },
@@ -66,7 +66,7 @@ export default function SignInPage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "#F9F1EC",
+            color: "white ",
             p: 4,
             textAlign: "center",
           }}

@@ -17,7 +17,7 @@ interface ShowOrdersProps {
   orders: Order[];
 }
 const tableCellStyle = {
-  color: "#881c1c",
+  color: "white",
   fontFamily: "josefin sans",
   fontSize: "1rem",
   fontWeight: "bold",
@@ -35,7 +35,7 @@ export default function ShowProducts({ orders }: ShowOrdersProps) {
           <TableHead>
             <TableRow
               sx={{
-                background: "#f1ddcf",
+                background: "#4E3D53 ",
               }}
             >
               <TableCell sx={tableCellStyle}>Order Number</TableCell>
@@ -52,16 +52,18 @@ export default function ShowProducts({ orders }: ShowOrdersProps) {
                 <TableCell>{order.total}</TableCell>
                 <TableCell>
                   {order.isShipped ? (
-                    <Box sx={{display: "flex", alignItems: "center"}}>
-                      <Typography sx={{minWidth: "65px"}}>Shipped</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Typography sx={{ minWidth: "65px" }}>Shipped</Typography>
                       <Checkbox
                         defaultChecked
                         onClick={() => handleShipped(order.id)}
                       />
                     </Box>
                   ) : (
-                    <Box sx ={{display: "flex", alignItems: "center"}}>
-                      <Typography sx={{minWidth: "65px"}}>Progress</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Typography sx={{ minWidth: "65px" }}>
+                        Progress
+                      </Typography>
                       <Checkbox onClick={() => handleShipped(order.id)} />
                     </Box>
                   )}

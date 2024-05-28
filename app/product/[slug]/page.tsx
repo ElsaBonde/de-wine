@@ -22,13 +22,12 @@ export default async function ProductPage({ params }: PageProps) {
     );
   }
 
-
   return (
     <Box
       component="main"
       sx={{
         padding: "10px 20px",
-        background: "#F9F1EC",
+        background: "white ",
         display: "flex",
         flexDirection: "column",
         gap: "25px",
@@ -79,10 +78,7 @@ export default async function ProductPage({ params }: PageProps) {
             <Box component="div">
               {" "}
               {/* boxen där texten och sånt ligger */}
-              <Typography
-                variant="h5"
-                sx={{ fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h5" sx={{ fontFamily: "josefin sans" }}>
                 {product.title}
               </Typography>
               <Box sx={{ display: "flex", gap: "15px" }}>
@@ -116,9 +112,7 @@ export default async function ProductPage({ params }: PageProps) {
               <AddButton product={product} />
             </Box>
           </Box>
-          <Typography
-            sx={{ marginTop: "15px", fontFamily: "josefin sans" }}
-          >
+          <Typography sx={{ marginTop: "15px", fontFamily: "josefin sans" }}>
             {product.description}
           </Typography>
           <Divider sx={{ margin: "20px 0px" }} />
