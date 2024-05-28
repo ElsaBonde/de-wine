@@ -15,12 +15,17 @@ gör om loggan
 lägg lite effekter (animationer)
 
 funktionalitet:
-uppdatera lagersaldo när produkter blir shoppade
-lägg till orderhistorik på admin
-se till att man kan ändra "isShipped"-flaggan från admin
 Pusha vidare när användare blivit inloggad
 på profilsidan ska orderhistorik för användaren visas, lägg inte shipped överst, shipped under? typ?
 
 villkor för olika typer inloggningar
 fixa validering i föränderlig actions
 
+
+
+
+VILLKOR FÖR FRONTEND:
+
+isAdmin? 
+isArchived?
+isLoggedIn/session

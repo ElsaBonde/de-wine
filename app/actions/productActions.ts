@@ -74,13 +74,17 @@ export async function createProduct(incomingData: ProductCreate) {
   revalidatePath("/admin");
 }
 
-export async function deleteProduct(productId: string) {
-  const product = await db.product.delete({ where: { id: productId } });
-  //david kan vi prata om det här? session som väljer vad som visas och inte ta bort nåt alls? is this right? 
-  product.isArchived = true;
+//change to isArchived = true men ta inte bort från databasen
+export async function archiveProduct(productId: string) {
+  await db.product.update({
+    where: { id: productId },
+    data: {
+      isArchived: true,
+    },
+  });
+
   revalidatePath("/");
   revalidatePath("/admin");
-  return product;
 }
 
 export async function updateProduct(
@@ -107,7 +111,7 @@ export async function updateProduct(
 }
 
 //uppdaterar kategorier för en produkt, anropas i updateProduct
-async function updateProductCategories(productId: string, categoryIds: string[]) {
+export async function updateProductCategories(productId: string, categoryIds: string[]) {
   await db.product.update({
     where: { id: productId },
     data: {
@@ -118,7 +122,7 @@ async function updateProductCategories(productId: string, categoryIds: string[])
   });
 }
 
-async function userNumber() {
+export async function userNumber() {
   const userCount = await db.user.count();
   return userCount;
 }
