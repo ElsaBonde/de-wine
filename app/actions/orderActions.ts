@@ -104,5 +104,29 @@ export async function createOrder(cart: CartItem[], userData: any) {
       },
     },
   });
+  
+  //minska lagersaldo för produkterna
+  const productOrderRows = await db.productOrder.findMany({
+    where: {
+      orderId: order.id,
+    },
+  });
+
+  for (const row of productOrderRows) {
+    const product = await db.product.findUnique({
+      where: { id: row.productId },
+    });
+
+    if (product) {
+      await db.product.update({
+        where: { id: row.productId },
+        data: {
+          inventory: product.inventory - row.quantity,
+        },
+      });
+    }
+    
+  }
+ 
   return order;
 }
