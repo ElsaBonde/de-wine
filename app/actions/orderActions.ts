@@ -143,3 +143,19 @@ export async function shipOrder(orderId: string) {
 
   return order;
 }
+
+export async function userOrders(userId: string) {
+  const orders = await db.order.findMany({
+    where: { userId },
+    orderBy: { orderDate: "desc" },
+    include: {
+      products: {
+        include: {
+          product: true,
+        }
+      }
+    }
+  });
+
+  return orders;
+}

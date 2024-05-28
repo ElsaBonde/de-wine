@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import PersonPinTwoToneIcon from '@mui/icons-material/PersonPinTwoTone';
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,8 +42,12 @@ export default async function Header() {
         {session?.user ? (
           <>
             <Typography>Tjena {session.user.name}</Typography> <SignOutButton />
-          </>
-        ) : (
+            <Link href={`/profile/${session.user.id}`}>
+              <PersonPinTwoToneIcon fontSize="large"
+                sx={{ color: "#881C1C", }} />
+            </Link>
+            </>
+            ) : (
           <SignInButton />
         )}
       </Box>

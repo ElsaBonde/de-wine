@@ -22,10 +22,7 @@ villkor för olika typer inloggningar
 fixa validering i föränderlig actions
 
 
-
-
 VILLKOR FÖR FRONTEND:
-
 isAdmin? 
 isArchived?
 isLoggedIn/session
