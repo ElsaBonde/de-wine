@@ -25,6 +25,8 @@ export default async function UserProfilePage() {
             padding: "20px",
           }}
         >
+            <Box sx={{ display: {xs: "none", md: "block"}}}>
+
           <Image
             src={session.user.image ?? ""}
             alt="User profile"
@@ -37,7 +39,8 @@ export default async function UserProfilePage() {
               marginLeft: "10px",
             }}
           />
-          <Box sx={{ alignContent: "center", paddingLeft: "30px" }}>
+            </Box>
+          <Box sx={{ alignContent: "center", paddingLeft: {xs: "0px", md: "20px"} }}>
             <Typography
               variant="h4"
               sx={{
