@@ -14,7 +14,14 @@ export default async function ProductPage({ params }: PageProps) {
         <h1>Product does not exist...</h1>
       </main>
     );
+  } else if (product.isArchived) {
+    return (
+      <main>
+        <h1>Product has been discontinued... 😭</h1>
+      </main>
+    );
   }
+
 
   return (
     <Box
@@ -104,7 +111,6 @@ export default async function ProductPage({ params }: PageProps) {
                   </Typography>
                 )}
               </Box>
-              {/* var tvungna att lägga box runt annars funkar ej pointer  */}
             </Box>
             <Box sx={{ cursor: "pointer" }}>
               <AddButton product={product} />
@@ -133,74 +139,6 @@ export default async function ProductPage({ params }: PageProps) {
           </Box>
         </Box>
       </Box>
-      {/* <Divider /> */}
-      {/* <Box
-        sx={{
-          display: { xs: "none", md: "block" },
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{
-            textAlign: "center",
-            fontFamily: "josefin sans",
-            marginBottom: "15px",
-          }}
-        >
-          YOU MAY ALSO LIKE:
-        </Typography>
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            flexDirection: "row",
-            gap: "15px",
-          }}
-        >
-          {products.slice(0, 3).map((product) => (
-            <Link
-              component={NextLink}
-              href={`/product/${product.id}`}
-              key={product.id}
-              sx={{
-                textDecoration: "none",
-                color: "black",
-              }}
-            >
-              <Box
-                key={product.id}
-                sx={{
-                  marginBottom: "15px",
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
-                  borderRadius: "10px",
-                  "&:hover": {
-                    transform: "scale(1.02)",
-                    backgroundColor: "white",
-                    transition: "transform 0.6s",
-                  },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image={product.image}
-                  alt={product.title}
-                  sx={{ borderRadius: "10px 10px 0px 0px" }}
-                ></CardMedia>
-                <Typography
-                  sx={{
-                    fontFamily: "josefin sans",
-                    marginTop: "5px",
-                    padding: "15px",
-                    textDecoration: "underline",
-                    textUnderlineOffset: "3px",
-                  }}
-                >
-                  {product.title}
-                </Typography>
-              </Box>
-            </Link>
-          ))}
-        </Box>
-      </Box> */}
     </Box>
   );
 }

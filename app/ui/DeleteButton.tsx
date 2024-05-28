@@ -1,5 +1,4 @@
-import { Product } from "@/data";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ArchiveIcon from "@mui/icons-material/Archive";
 import {
   Button,
   Dialog,
@@ -9,19 +8,23 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import { useState } from "react";
 
-interface DeleteButtonProps {
+interface ArchiveButtonProps {
   product: Product;
-  onDelete: (productId: string) => void;
+  onArchive: (productId: string) => void;
 }
 
-// beteende för att ta bort en produkt, öppnar en dialogruta för att bekräfta borttagning
-export default function DeleteButton({ product, onDelete }: DeleteButtonProps) {
+// beteende för att ta bort en produkt, öppnar en dialogruta för att bekräfta arkivering
+export default function ArchiveButton({
+  product,
+  onArchive,
+}: ArchiveButtonProps) {
   const [open, setOpen] = useState(false);
 
-  const handleDelete = () => {
-    onDelete(product.id);
+  const handleArchive = () => {
+    onArchive(product.id);
     setOpen(false);
   };
 
@@ -34,20 +37,17 @@ export default function DeleteButton({ product, onDelete }: DeleteButtonProps) {
         }}
         onClick={() => setOpen(true)}
       >
-        <DeleteIcon />
+        <ArchiveIcon />
       </IconButton>
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>{"Delete"}</DialogTitle>
+        <DialogTitle>{"Archive"}</DialogTitle>
         <DialogContent>
-          <Typography>{`Are you sure you want to delete "${product.title}"?`}</Typography>
+          <Typography>{`Are you sure you want to archive "${product.title}"?`}</Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button
-            onClick={handleDelete}
-            style={{ color: "red" }}
-          >
-            Delete
+          <Button onClick={handleArchive} style={{ color: "red" }}>
+            Archive
           </Button>
         </DialogActions>
       </Dialog>
