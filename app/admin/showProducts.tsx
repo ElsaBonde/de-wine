@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Product } from "@prisma/client";
 import { archiveProduct } from "../actions/productActions";
-import DeleteButton from "../ui/DeleteButton";
+import ArchiveButton from "../ui/DeleteButton";
 import AddProductCard from "./addProductCard";
 
 interface ShowProductsProps {
@@ -46,6 +46,12 @@ export default function ShowProducts({ products }: ShowProductsProps) {
                   }}
                 />
               </CardActionArea>
+              {/* här lägger vi in arkiveringslogik i admin */}
+              {product.isArchived && (
+                <Typography variant="h6" color="error">
+                  Archived
+                </Typography>
+              )}
               <CardContent>
                 <Box
                   style={{
@@ -84,7 +90,7 @@ export default function ShowProducts({ products }: ShowProductsProps) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <DeleteButton product={product} onDelete={handleArchive} />
+                <ArchiveButton product={product} onArchive={handleArchive} />
                 <Link href={`/admin/product/${product.id}`}>
                   <ModeEditOutlineOutlinedIcon
                     sx={{
