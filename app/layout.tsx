@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps) {
         className={inter.className}
         style={{
           margin: "0",
-          background: "black",
+          background: "white",
           height: "100%",
           display: "flex",
           flexDirection: "column",
