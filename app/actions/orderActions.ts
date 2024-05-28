@@ -23,17 +23,12 @@ export async function getOrders() {
 }
 
 export async function getOrderById(slug: string) {
-const order = await db.order.findUnique({
+  const order = await db.order.findUnique({
     where: { id: slug },
     include: { products: { include: { product: true } } },
   });
   return order;
 }
-/* 
-export async function getProductOrderRows() {
-  const rows = await db.productOrder.findMany();
-  return rows;
-} */
 
 export async function orderNumber() {
   const count = await db.order.count();
@@ -67,6 +62,14 @@ export async function createOrder(cart: CartItem[], userData: any) {
     },
   });
 
+  //skapa ett felmeddelande här för bättre felhantering!
+  for (const item of cart) {
+    const product = products.find((product) => product.id === item.id);
+    if (!product || product.inventory < item.quantity) {
+      return console.log("Error: Product not found or not enough inventory");
+    }
+  }
+  
   let total = 0;
   const cartWithPrices = cart.map((item) => {
     const product = products.find((product) => product.id === item.id);
@@ -104,5 +107,28 @@ export async function createOrder(cart: CartItem[], userData: any) {
       },
     },
   });
+
+  //minska lagersaldo för produkterna
+  const productOrderRows = await db.productOrder.findMany({
+    where: {
+      orderId: order.id,
+    },
+  });
+
+  for (const row of productOrderRows) {
+    const product = await db.product.findUnique({
+      where: { id: row.productId },
+    });
+
+    if (product) {
+      await db.product.update({
+        where: { id: row.productId },
+        data: {
+          inventory: product.inventory - row.quantity,
+        },
+      });
+    }
+  }
+
   return order;
 }
