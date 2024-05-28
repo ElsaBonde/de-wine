@@ -117,3 +117,8 @@ async function updateProductCategories(productId: string, categoryIds: string[])
     },
   });
 }
+
+async function userNumber() {
+  const userCount = await db.user.count();
+  return userCount;
+}
