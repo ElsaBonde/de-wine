@@ -132,3 +132,14 @@ export async function createOrder(cart: CartItem[], userData: any) {
 
   return order;
 }
+
+export async function shipOrder(orderId: string) {
+  const order = await db.order.update({
+    where: { id: orderId },
+    data: {
+      isShipped: true,
+    },
+  });
+
+  return order;
+}

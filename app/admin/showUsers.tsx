@@ -17,8 +17,6 @@ interface ShowUsersProps {
   users: User[];
 }
 
-
-
 export default function ShowUsers({ users }: ShowUsersProps) {
   if (!users) {
     return <div>Loading...</div>;
