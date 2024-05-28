@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, keyframes } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -23,7 +23,8 @@ export default function OrderHistory({ orders }: any) {
         <Box
           key={order.id}
           sx={{
-            backgroundColor: "#c9bcbc",
+            backgroundColor: "rgba(242, 239, 239, 0.8)",
+            border: "1px solid #d3cdcd",    
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
             padding: "20px",
@@ -36,21 +37,22 @@ export default function OrderHistory({ orders }: any) {
         >
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              cursor: "pointer",
+                display: "flex",
+                justifyContent: "space-between",
+                cursor: "pointer",
             }}
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
+            <Typography sx={{fontSize: "23px", fontFamily: "josefin sans"}}>Order Overview</Typography>
               <Typography
                 sx={{
                   fontFamily: "Karla",
-                  fontSize: "20px",
+                  fontSize: "18px",
                   fontWeight: "500",
                 }}
               >
-                Order no: {order.id}
+                {order.id}
               </Typography>
               <Typography sx={{ fontFamily: "Karla", color: "#796e6e" }}>
                 Order Date: {order.orderDate.toLocaleDateString()}
@@ -73,14 +75,50 @@ export default function OrderHistory({ orders }: any) {
               overflow: "hidden",
               transition: "max-height 1.3s ease, opacity 1.3s ease",
               maxHeight: openOrders.includes(order.id) ? "1000px" : "0px",
-              opacity: openOrders.includes(order.id) ? 1 : 0,
+
               display: "flex",
-                flexDirection: "column",
+              flexDirection: "column",
               gap: "10px",
             }}
           >
+            <Box
+              sx={{
+                background: "#ffffff80",
+                border: "1px solid #d3cdcda7",
+                padding: "20px",
+                borderRadius: "6px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Josefin sans",
+                  fontSize: "18px",
+                  fontWeight: "500",
+                }}
+              >
+                Your delivery details:
+              </Typography>
+              <Typography sx={{ fontFamily: "Karla" }}>
+                Name: {order.name}
+              </Typography>
+              <Typography sx={{ fontFamily: "Karla" }}>
+                Adress: {order.street}
+              </Typography>
+              <Typography sx={{ fontFamily: "Karla" }}>
+                {order.city}, {order.zip}
+              </Typography>
+            </Box>
             {order.products.map((product: any) => (
-              <Box key={product.product.id} sx={{ display: "flex", padding: "10px", background: "#dfd4d4", borderRadius: "6px" }}>
+              <Box
+                key={product.product.id}
+                sx={{
+                  display: "flex",
+                  padding: "10px",
+                  background: "#ffffff80",
+                border: "1px solid #d3cdcda7",
+                  borderRadius: "6px",
+                }}
+              >
                 <Image
                   src={product.product.image}
                   alt={product.product.title}
