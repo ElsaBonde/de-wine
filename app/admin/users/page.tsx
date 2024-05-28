@@ -1,3 +1,4 @@
+import { deleteUser, updateUser } from "@/app/actions/userActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
@@ -10,14 +11,12 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { User } from "next-auth";
 import Image from "next/image";
-import { User, deleteUser, updateUser } from "../actions/userActions";
 
 interface ShowUsersProps {
   users: User[];
 }
-
-
 
 export default function ShowUsers({ users }: ShowUsersProps) {
   if (!users) {
