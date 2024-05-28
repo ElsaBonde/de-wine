@@ -17,10 +17,10 @@ import CategoriesCards from "./ui/CategoriesCards";
 
 export default async function StartPage() {
   const products = await getProducts();
-  const activeProducts = products.filter(product => !product.isArchived);
+  const activeProducts = products.filter((product) => !product.isArchived);
 
   return (
-    <Box component="main" sx={{ background: "#F9F1EC", padding: "10px 20px" }}>
+    <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
       <CategoriesCards />
       <Divider>
         <Typography
@@ -77,7 +77,7 @@ export default async function StartPage() {
                         component="div"
                         sx={{
                           fontFamily: "josefin sans",
-                          "&:hover": { color: "#881C1C" },
+                          "&:hover": { color: "white" },
                         }}
                       >
                         {product.title}

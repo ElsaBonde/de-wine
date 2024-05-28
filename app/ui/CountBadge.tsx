@@ -11,7 +11,6 @@ export default function CountBadge() {
   const { cart } = useCart();
   const [totalQuantity, setTotalQuantity] = useState(0);
 
-
   useEffect(() => {
     //beräknar totala antalet items i kundkorgen
     const total = cart.reduce((total, item) => total + item.quantity, 0);
@@ -27,18 +26,15 @@ export default function CountBadge() {
             //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
               backgroundColor: "white",
-              color: "#881c1c",
+              color: "black",
               fontSize: "15px",
               fontWeight: "bold",
             },
           }}
         >
           <ShoppingCart
-            sx={{
-              color: "#881C1C",
-              width: "35px",
-              height: "35px",
-            }}
+            sx={{width: "35px",
+            height: "35px", color: "white"}}
           />
         </Badge>
       </Link>

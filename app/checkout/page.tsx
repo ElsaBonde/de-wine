@@ -36,7 +36,7 @@ export default function CheckoutPage() {
   return (
     <Box
       component="main"
-      sx={{ background: "#F9F1EC", padding: "10px 20px", flex: 1 }}
+      sx={{ background: "white ", padding: "10px 20px", flex: 1 }}
     >
       <Typography
         variant="h4"
@@ -77,13 +77,11 @@ export default function CheckoutPage() {
                 flexGrow: "1",
               }}
             >
-              <Typography
-                sx={{ fontFamily: "Josefin Sans" }}
-              >
+              <Typography sx={{ fontFamily: "Josefin Sans" }}>
                 {item.title}
               </Typography>
-        
-        {/* om produkten har reapris, visa det */}
+
+              {/* om produkten har reapris, visa det */}
               {item.salePrice ? (
                 <>
                   <Typography
@@ -103,14 +101,13 @@ export default function CheckoutPage() {
                     Old Price: {item.price * item.quantity} :-
                   </Typography>
                 </>
-              ) : /* annars visa bara vanliga priset */ (
-                <Typography
+              ) : (
+                /* annars visa bara vanliga priset */ <Typography
                   sx={{ fontFamily: "Josefin Sans" }}
                 >
                   Price: {item.price * item.quantity} :-
                 </Typography>
               )}
-
 
               <Box
                 sx={{
@@ -121,7 +118,7 @@ export default function CheckoutPage() {
               >
                 <Button
                   sx={{
-                    color: "#881C1C",
+                    color: "white",
                     fontSize: "18px",
                     fontFamily: "Josefin sans",
                   }}
@@ -129,14 +126,12 @@ export default function CheckoutPage() {
                 >
                   -
                 </Button>
-                <Typography
-                  sx={{ fontFamily: "Josefin Sans" }}
-                >
+                <Typography sx={{ fontFamily: "Josefin Sans" }}>
                   {item.quantity} pc
                 </Typography>
                 <Button
                   sx={{
-                    color: "#881C1C",
+                    color: "white",
                     fontSize: "18px",
                     fontFamily: "josefin sans",
                   }}
@@ -152,9 +147,9 @@ export default function CheckoutPage() {
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           sx={{
-            backgroundColor: "#F1DDCF",
+            backgroundColor: "#4E3D53 ",
             borderRadius: "5px",
-            color: "#881C1C",
+            color: "white",
             textAlign: "center",
             padding: "5px",
             fontFamily: "Karla",
@@ -166,7 +161,7 @@ export default function CheckoutPage() {
         </Box>
         <Box
           sx={{
-            backgroundColor: "#F1DDCF",
+            backgroundColor: "#4E3D53 ",
             borderRadius: "5px",
             color: "red",
             textAlign: "center",

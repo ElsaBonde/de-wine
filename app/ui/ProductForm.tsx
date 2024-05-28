@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -89,9 +89,7 @@ export default function ProductForm({
           {...register("image")}
         />
         {formState.errors.image && (
-          <Typography>
-            {formState.errors.image.message}
-          </Typography>
+          <Typography>{formState.errors.image.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -103,9 +101,7 @@ export default function ProductForm({
           {...register("title")}
         />
         {formState.errors.title && (
-          <Typography>
-            {formState.errors.title.message}
-          </Typography>
+          <Typography>{formState.errors.title.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -117,9 +113,7 @@ export default function ProductForm({
           {...register("price")}
         />
         {formState.errors.price && (
-          <Typography>
-            {formState.errors.price.message}
-          </Typography>
+          <Typography>{formState.errors.price.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -132,9 +126,7 @@ export default function ProductForm({
           {...register("description")}
         />
         {formState.errors.description && (
-          <Typography>
-            {formState.errors.description.message}
-          </Typography>
+          <Typography>{formState.errors.description.message}</Typography>
         )}
       </Grid>
       <Grid item xs={12}>
@@ -146,9 +138,7 @@ export default function ProductForm({
           {...register("inventory")}
         />
         {formState.errors.inventory && (
-          <Typography>
-            {formState.errors.inventory.message}
-          </Typography>
+          <Typography>{formState.errors.inventory.message}</Typography>
         )}
       </Grid>
       <SelectCategories
@@ -159,8 +149,8 @@ export default function ProductForm({
         <Button
           type="submit"
           sx={{
-            backgroundColor: "#F1DDCF",
-            color: "#881C1C",
+            backgroundColor: "#4E3D53 ",
+            color: "white",
             marginTop: "10px",
             fontWeight: "bold",
             justifyContent: "center",

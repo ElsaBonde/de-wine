@@ -80,7 +80,7 @@ export default function AdminDashboard() {
     <>
       <Typography
         variant="h4"
-        sx={{ color: "#881c1c", fontFamily: "josefin sans", marginTop: "30px" }}
+        sx={{ color: "white", fontFamily: "josefin sans", marginTop: "30px" }}
       >
         Dashboard
       </Typography>
@@ -108,7 +108,8 @@ export default function AdminDashboard() {
             <PeopleIcon
               sx={{
                 fontSize: "60px",
-                background: "#F1DDCF",
+                background:
+                  "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
                 color: "white",
                 borderRadius: "50%",
               }}
@@ -116,13 +117,13 @@ export default function AdminDashboard() {
             <Box>
               <Typography
                 variant="h5"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+                sx={{ color: "white", fontFamily: "josefin sans" }}
               >
                 {usersCount}
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+                sx={{ color: "white", fontFamily: "josefin sans" }}
               >
                 Users
               </Typography>
@@ -146,7 +147,8 @@ export default function AdminDashboard() {
             <ShoppingCartIcon
               sx={{
                 fontSize: "60px",
-                background: "#F1DDCF",
+                background:
+                  "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
                 color: "white",
                 borderRadius: "50%",
               }}
@@ -154,13 +156,13 @@ export default function AdminDashboard() {
             <Box>
               <Typography
                 variant="h5"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+                sx={{ color: "white", fontFamily: "josefin sans" }}
               >
                 {ordersCount}
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+                sx={{ color: "white", fontFamily: "josefin sans" }}
               >
                 Orders
               </Typography>
@@ -184,7 +186,8 @@ export default function AdminDashboard() {
             <AttachMoneyIcon
               sx={{
                 fontSize: "60px",
-                background: "#F1DDCF",
+                background:
+                  "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
                 color: "white",
                 borderRadius: "50%",
               }}
@@ -192,13 +195,13 @@ export default function AdminDashboard() {
             <Box>
               <Typography
                 variant="h5"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+                sx={{ color: "white", fontFamily: "josefin sans" }}
               >
                 {productsCount}
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ color: "#881c1c", fontFamily: "josefin sans" }}
+                sx={{ color: "white", fontFamily: "josefin sans" }}
               >
                 Products
               </Typography>

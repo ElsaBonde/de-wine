@@ -2,6 +2,7 @@ import "@fontsource/inspiration";
 import "@fontsource/josefin-sans";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import { LayoutProps } from "./types";
 import CartContext from "./ui/CartContext";
@@ -9,7 +10,6 @@ import CustomerContext from "./ui/CustomerContext";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
 import SnackbarProvider from "./ui/Snackbar";
-import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,25 +27,25 @@ export default function RootLayout({ children }: LayoutProps) {
         className={inter.className}
         style={{
           margin: "0",
-          background: "#F9F1EC",
+          background: "black",
           height: "100%",
           display: "flex",
           flexDirection: "column",
         }}
       >
         <SessionProvider>
-        <CartContext>
-          <CustomerContext>
-            <AppRouterCacheProvider>
-              <SnackbarProvider>
-                <Header />
-                {children}
+          <CartContext>
+            <CustomerContext>
+              <AppRouterCacheProvider>
+                <SnackbarProvider>
+                  <Header />
+                  {children}
 
-                <Footer />
-              </SnackbarProvider>
-            </AppRouterCacheProvider>
-          </CustomerContext>
-        </CartContext>
+                  <Footer />
+                </SnackbarProvider>
+              </AppRouterCacheProvider>
+            </CustomerContext>
+          </CartContext>
         </SessionProvider>
       </body>
     </html>

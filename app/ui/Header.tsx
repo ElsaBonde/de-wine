@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
-import { Box, Typography } from "@mui/material";
+import PersonPinTwoToneIcon from "@mui/icons-material/PersonPinTwoTone";
+import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
@@ -16,10 +17,23 @@ export default async function Header() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        background: "#f1ddcf",
+        background: "#1F1724",
         padding: "20px 20px",
+        position: "relative",
       }}
     >
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "3px",
+          background:
+            "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
+          zIndex: 1,
+        }}
+      />
       <Link
         href="/"
         style={{
@@ -28,7 +42,7 @@ export default async function Header() {
           alignItems: "center",
         }}
       >
-        <Image src="/logotype.png" alt="logotype" width={200} height={60} />
+        {/* <Image src="/logotype.png" alt="logotype" width={200} height={60} /> */}
       </Link>
       <Box
         sx={{
@@ -40,7 +54,10 @@ export default async function Header() {
         <CountBadge />
         {session?.user ? (
           <>
-            <Typography>Tjena {session.user.name}</Typography> <SignOutButton />
+            <SignOutButton />
+            <Link href={`/profile/${session.user.id}`}>
+              <PersonPinTwoToneIcon fontSize="large" sx={{ color: "#b29875" }} />
+            </Link>
           </>
         ) : (
           <SignInButton />

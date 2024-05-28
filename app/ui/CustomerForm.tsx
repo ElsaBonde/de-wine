@@ -37,8 +37,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
     if (!orderInfo) {
       return;
     }
-    router.push(`/confirmation/${orderInfo.id}`
-    );
+    router.push(`/confirmation/${orderInfo.id}`);
   };
 
   return (
@@ -156,8 +155,8 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
               onClick={form.handleSubmit(sendForm)}
               type="submit"
               sx={{
-                backgroundColor: "#F1DDCF",
-                color: "#881C1C",
+                backgroundColor: "#4E3D53 ",
+                color: "white",
                 marginTop: "10px",
                 fontWeight: "bold",
                 justifyContent: "center",

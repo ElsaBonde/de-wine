@@ -1,8 +1,8 @@
 "use client";
 
 import { AddShoppingCart } from "@mui/icons-material";
-import { Product } from "../actions/productActions";
 import React from "react";
+import { Product } from "../actions/productActions";
 import { useCart } from "./CartContext";
 import { useSnackbar } from "./Snackbar";
 
@@ -25,7 +25,7 @@ export default function AddButton(props: Props) {
 
   return (
     <AddShoppingCart
-      sx={{ "&:hover": { color: "#881C1C" } }}
+      sx={{ "&:hover": { color: "white" } }}
       onClick={handleClick}
     />
   );

@@ -48,6 +48,7 @@ export async function totalAmountAllOrders() {
 
 export async function createOrder(cart: CartItem[], userData: any) {
   const session = await auth();
+  
 
   if (!session) {
     return null;
@@ -142,4 +143,20 @@ export async function shipOrder(orderId: string) {
   });
 
   return order;
+}
+
+export async function userOrders(userId: string) {
+  const orders = await db.order.findMany({
+    where: { userId },
+    orderBy: { orderDate: "desc" },
+    include: {
+      products: {
+        include: {
+          product: true,
+        }
+      }
+    }
+  });
+
+  return orders;
 }

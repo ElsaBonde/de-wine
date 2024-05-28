@@ -4,6 +4,7 @@ import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { getCategoryIds } from "./categoryActions";
+import { auth } from "@/auth";
 
 export type Product = Prisma.ProductGetPayload<{
   include: { categories: true };
@@ -31,10 +32,10 @@ export async function getProductById(slug: string) {
     const defaultValues: ProductCreate = {
       ...product,
       categories: categories,
-      categoryIds: categoryIds
+      categoryIds: categoryIds,
     };
 
-    console.log("getproductbyid log", defaultValues); 
+    console.log("getproductbyid log", defaultValues);
 
     return defaultValues;
   }
@@ -51,6 +52,11 @@ export async function getProducts() {
 }
 
 export async function createProduct(incomingData: ProductCreate) {
+  const session = await auth();
+ 
+  if (!session || !session.user.isAdmin) {
+    return null;
+  }
   const { categories, ...productData } = incomingData;
   //hämata kategorier från databasen baserat på dess id
   const categoryIds = await getCategoryIds(categories);
@@ -76,6 +82,11 @@ export async function createProduct(incomingData: ProductCreate) {
 
 //change to isArchived = true men ta inte bort från databasen
 export async function archiveProduct(productId: string) {
+  const session = await auth();
+  if (!session || !session.user.isAdmin) {
+    return null;
+  }
+
   await db.product.update({
     where: { id: productId },
     data: {
@@ -91,6 +102,11 @@ export async function updateProduct(
   productId: string,
   productData: ProductCreate
 ) {
+  const session = await auth();
+ 
+  if (!session || !session.user.isAdmin) {
+    return null;
+  }
   const { categories, ...restData } = productData;
 
   const categoryIds = await getCategoryIds(categories);
@@ -98,7 +114,7 @@ export async function updateProduct(
   const product = await db.product.update({
     where: { id: productId },
     data: {
-      ...restData
+      ...restData,
     },
   });
 
@@ -111,7 +127,10 @@ export async function updateProduct(
 }
 
 //uppdaterar kategorier för en produkt, anropas i updateProduct
-export async function updateProductCategories(productId: string, categoryIds: string[]) {
+export async function updateProductCategories(
+  productId: string,
+  categoryIds: string[]
+) {
   await db.product.update({
     where: { id: productId },
     data: {

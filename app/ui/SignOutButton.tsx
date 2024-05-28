@@ -9,7 +9,7 @@ export default function SignOutButton() {
       variant="contained"
       sx={{
         minWidth: "100px",
-        backgroundColor: "#881C1C",
+        backgroundColor: "white",
         "&:hover": {
           backgroundColor: "#440000",
         },

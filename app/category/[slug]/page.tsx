@@ -1,4 +1,7 @@
-import { getProductsByCategory, getCategoryByTitle } from "@/app/actions/categoryActions";
+import {
+  getCategoryByTitle,
+  getProductsByCategory,
+} from "@/app/actions/categoryActions";
 import AddButton from "@/app/ui/AddButton";
 import {
   Box,
@@ -84,7 +87,7 @@ export default async function CategoryPage({ params }: PageProps) {
                         component="div"
                         sx={{
                           fontFamily: "josefin sans",
-                          "&:hover": { color: "#881C1C" },
+                          "&:hover": { color: "white" },
                         }}
                       >
                         {product.title}

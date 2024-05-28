@@ -66,7 +66,7 @@ export default function ShowProducts({ products }: ShowProductsProps) {
                       component="div"
                       sx={{
                         fontFamily: "josefin sans",
-                        "&:hover": { color: "#881C1C" },
+                        "&:hover": { color: "white" },
                       }}
                     >
                       {product.title}
@@ -95,7 +95,7 @@ export default function ShowProducts({ products }: ShowProductsProps) {
                   <ModeEditOutlineOutlinedIcon
                     sx={{
                       color: "text.secondary",
-                      "&:hover": { color: "#881c1c" },
+                      "&:hover": { color: "white" },
                     }}
                   />
                 </Link>
