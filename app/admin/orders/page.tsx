@@ -11,7 +11,7 @@ import {
 import OrderRow from "../OrderRow";
 
 const tableCellStyle = {
-  color: "white",
+  color: "#1F1724",
   fontFamily: "josefin sans",
   fontSize: "1rem",
   fontWeight: "bold",
@@ -31,7 +31,8 @@ export default async function OrdersPage() {
           <TableHead>
             <TableRow
               sx={{
-                background: "rgba(242, 239, 239, 0.8) ",
+                background: "#e9e5e5c6",
+              border: "1px solid #c8c3c3c5",
               }}
             >
               <TableCell sx={tableCellStyle}>Order Number</TableCell>

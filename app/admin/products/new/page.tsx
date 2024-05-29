@@ -1,19 +1,25 @@
 "use client";
 
+import CloseIcon from '@mui/icons-material/Close';
 import { ProductCreate, createProduct } from "@/app/actions/productActions";
 import ProductForm from "@/app/ui/ProductForm";
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, IconButton } from "@mui/material";
+import { useState } from "react";
 
 export default function AddProduct() {
+  const [open, setOpen] = useState(true);
+
   const handleSave = async (product: ProductCreate) => {
     await createProduct(product);
   };
 
-  const handleClose = () => {};
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Modal
-      open
+      open={open}
       onClose={handleClose}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
@@ -30,6 +36,11 @@ export default function AddProduct() {
           boxSizing: "border-box",
         }}
       >
+        <IconButton sx={{justifyContent: "flex-end", "&:hover": {
+          backgroundColor: "transparent",
+                  },}}>
+          <CloseIcon onClick={handleClose} />
+        </IconButton>
         <ProductForm onSave={handleSave} />
       </Box>
     </Modal>

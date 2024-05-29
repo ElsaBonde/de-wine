@@ -53,16 +53,7 @@ export default async function Header() {
         {session?.user ? (
           <>
             <Link href={`/profile/${session.user.id}`}>
-              <PersonIcon
-                sx={{
-                  height: "40px",
-                  width: "40px",
-                  color: "#c6c6c6",
-                  cursor: "pointer",
-                  "&:hover": {
-                    color: "#6A584B",
-                  },
-                }}
+              <PersonOutlineIconGold
               />
             </Link>
           </>
@@ -73,3 +64,15 @@ export default async function Header() {
     </Box>
   );
 }
+
+const PersonOutlineIconGold = (props: IconProps) => (
+  <>
+    <svg width={0} height={0}>
+      <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
+        <stop offset={0} stopColor="#AE8625" />
+        <stop offset={1} stopColor="#F7EF8A" />
+      </linearGradient>
+    </svg>
+    <PersonIcon onClick={props.onClick} sx={{ fill: "url(#linearColors)", width: "33px", height: "33px", cursor: "pointer" }} />
+  </>
+)
