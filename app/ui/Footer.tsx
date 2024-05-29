@@ -20,6 +20,7 @@ export default async function Footer() {
           padding: "5px 10px",
           fontFamily: "Josefin sans",
           color: "#5A5353",
+          position: "relative",
         }}
       >
         <Box
