@@ -54,7 +54,6 @@ export default async function Header() {
         <CountBadge />
         {session?.user ? (
           <>
-            <SignOutButton />
             <Link href={`/profile/${session.user.id}`}>
               <PersonPinTwoToneIcon fontSize="large" sx={{ color: "#b29875" }} />
             </Link>

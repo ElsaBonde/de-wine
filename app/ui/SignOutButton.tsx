@@ -9,13 +9,15 @@ export default function SignOutButton() {
       variant="contained"
       sx={{
         minWidth: "100px",
-        backgroundColor: "white",
+        fontSize: "13px",
+        background: "white",
+        color: "#1F1724",
         "&:hover": {
-          backgroundColor: "#440000",
+          backgroundColor: "#cbc8c8",
         },
       }}
       onClick={() => signOut()}
-      className="bg-blue-400 text-white rounded-md p-2"
+      
     >
       Sign out
     </Button>
