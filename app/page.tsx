@@ -39,7 +39,7 @@ export default async function StartPage() {
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Link
               component={NextLink}
-              href={`/products/${product.id}`}
+              href={`/product/${product.id}`}
               sx={{
                 textDecoration: "none",
                 color: "black",

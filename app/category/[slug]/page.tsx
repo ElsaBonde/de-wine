@@ -30,6 +30,8 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   const products = await getProductsByCategory(category.id);
+  const activeProducts = products.filter((product) => !product.isArchived);
+  
   return (
     <>
       <Divider>
@@ -45,7 +47,7 @@ export default async function CategoryPage({ params }: PageProps) {
         </Typography>
       </Divider>
       <Grid container spacing={4}>
-        {products.map((product) => (
+        {activeProducts.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Link
               component={NextLink}
