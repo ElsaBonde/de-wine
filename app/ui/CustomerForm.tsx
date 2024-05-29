@@ -9,9 +9,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import NextLink from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createOrder } from "../actions/orderActions";
@@ -27,6 +27,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
   const router = useRouter();
   const { setCustomer } = useCustomer();
   const { data: session, status } = useSession();
+  const pathname = usePathname();
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -197,6 +198,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                   component={NextLink}
                   href={"/signin"}
                   sx={{ color: "#1F1724", fontFamily: "josefin sans" }}
+                  onClick={() => signIn(undefined, { callbackUrl: pathname })}
                 >
                   sign in
                 </Typography>{" "}
