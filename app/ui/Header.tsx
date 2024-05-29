@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
 import SignInButton from "./SignInButton";
+import Image from "next/image";
 
 export default async function Header() {
   const session = await auth();
