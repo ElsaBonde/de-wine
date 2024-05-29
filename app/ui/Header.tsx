@@ -1,11 +1,9 @@
 import { auth } from "@/auth";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
 import SignInButton from "./SignInButton";
-import SignOutButton from "./SignOutButton";
 
 export default async function Header() {
   const session = await auth();
@@ -55,13 +53,17 @@ export default async function Header() {
         {session?.user ? (
           <>
             <Link href={`/profile/${session.user.id}`}>
-              <PersonIcon sx={{ height: "40px",
-        width: "40px",
-        color: "#B29875",
-        cursor: "pointer",
-        "&:hover": {
-          color: "#6A584B"
-        }, }} />
+              <PersonIcon
+                sx={{
+                  height: "40px",
+                  width: "40px",
+                  color: "#c6c6c6",
+                  cursor: "pointer",
+                  "&:hover": {
+                    color: "#6A584B",
+                  },
+                }}
+              />
             </Link>
           </>
         ) : (

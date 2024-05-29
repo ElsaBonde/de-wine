@@ -33,8 +33,7 @@ export default function CountBadge() {
           }}
         >
           <ShoppingCart
-            sx={{width: "35px",
-            height: "35px", color: "white"}}
+            sx={{ width: "35px", height: "35px", color: "#c6c6c6" }}
           />
         </Badge>
       </Link>

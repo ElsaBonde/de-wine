@@ -19,7 +19,7 @@ export default function SignInPage({ searchParams }: any) {
           <Typography
             variant="h4"
             sx={{
-              color: "#5A5353",
+              color: "#c6c6c6",
               fontSize: {
                 xs: "1.2rem",
                 sm: "1.3rem",

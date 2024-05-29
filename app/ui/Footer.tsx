@@ -19,7 +19,7 @@ export default async function Footer() {
           marginTop: "auto",
           padding: "10px",
           fontFamily: "Josefin sans",
-          color: "#5A5353",
+          color: "#c6c6c6",
           position: "relative",
         }}
       >
@@ -40,7 +40,7 @@ export default async function Footer() {
             href="/admin/products"
             style={{
               textDecoration: "none",
-              color: "#5A5353",
+              color: "#c6c6c6",
               display: "flex",
               alignItems: "center",
             }}
@@ -67,21 +67,21 @@ export default async function Footer() {
           >
             <InstagramIcon
               sx={{
-                color: "white",
+                color: "#c6c6c6",
                 width: "30px",
                 height: "30px",
               }}
             />
             <FacebookIcon
               sx={{
-                color: "white",
+                color: "#c6c6c6",
                 width: "30px",
                 height: "30px",
               }}
             />
             <XIcon
               sx={{
-                color: "white",
+                color: "#c6c6c6",
                 width: "30px",
                 height: "30px",
               }}
@@ -90,7 +90,7 @@ export default async function Footer() {
           <Link
             style={{
               textDecoration: "none",
-              color: "#5A5353",
+              color: "#c6c6c6",
               lineHeight: "1.5",
             }}
             href="mailto:costumerservice@wineoclock.com"
