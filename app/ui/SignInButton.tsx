@@ -15,8 +15,7 @@ export default function SignInButton() {
           backgroundColor: "#cbc8c8",
         },
       }}
-      onClick={() => signIn()}
-      className="bg-blue-400 text-white rounded-md p-2"
+      onClick={() => signIn(undefined, { "callbackUrl": "/" })}
     >
       Sign in
     </Button>

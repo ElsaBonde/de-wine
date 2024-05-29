@@ -110,7 +110,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "white",
+                color: "black",
                 borderRadius: "50%",
               }}
             />
@@ -149,7 +149,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "white",
+                color: "black",
                 borderRadius: "50%",
               }}
             />
@@ -188,7 +188,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "white",
+                color: "black",
                 borderRadius: "50%",
               }}
             />
