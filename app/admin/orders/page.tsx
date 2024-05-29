@@ -31,7 +31,7 @@ export default async function OrdersPage() {
           <TableHead>
             <TableRow
               sx={{
-                background: "#4E3D53 ",
+                background: "rgba(242, 239, 239, 0.8) ",
               }}
             >
               <TableCell sx={tableCellStyle}>Order Number</TableCell>

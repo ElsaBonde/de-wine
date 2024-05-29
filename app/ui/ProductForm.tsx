@@ -149,7 +149,7 @@ export default function ProductForm({
         <Button
           type="submit"
           sx={{
-            backgroundColor: "#4E3D53 ",
+            backgroundColor: "rgba(242, 239, 239, 0.8) ",
             color: "white",
             marginTop: "10px",
             fontWeight: "bold",

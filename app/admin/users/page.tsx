@@ -1,3 +1,4 @@
+import { getUsers } from "@/app/actions/userActions";
 import {
   Paper,
   Table,
@@ -8,7 +9,6 @@ import {
   TableRow,
 } from "@mui/material";
 import UserRow from "../UserRow";
-import { getUsers } from "@/app/actions/userActions";
 
 export default async function UsersPage() {
   const users = await getUsers();
@@ -30,7 +30,7 @@ export default async function UsersPage() {
           <TableHead>
             <TableRow
               sx={{
-                background: "#4E3D53 ",
+                background: "rgba(242, 239, 239, 0.8) ",
               }}
             >
               <TableCell sx={tableCellStyle}>Profile Picture</TableCell>

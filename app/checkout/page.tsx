@@ -147,7 +147,7 @@ export default function CheckoutPage() {
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           sx={{
-            backgroundColor: "#4E3D53 ",
+            backgroundColor: "rgba(242, 239, 239, 0.8) ",
             borderRadius: "5px",
             color: "white",
             textAlign: "center",
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
         </Box>
         <Box
           sx={{
-            backgroundColor: "#4E3D53 ",
+            backgroundColor: "rgba(242, 239, 239, 0.8) ",
             borderRadius: "5px",
             color: "red",
             textAlign: "center",

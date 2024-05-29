@@ -16,7 +16,7 @@ export default function AddProductCard() {
       >
         <CardActionArea
           sx={{
-            background: "#4E3D53 ",
+            background: "rgba(242, 239, 239, 0.8) ",
             borderRadius: "8px",
             padding: "10px",
             display: "flex",
