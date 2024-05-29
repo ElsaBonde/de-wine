@@ -60,6 +60,7 @@ export default function CheckoutPage() {
               alignItems: "center",
               background: "white",
               marginBottom: "10px",
+              padding: "10px",
             }}
           >
             <Image

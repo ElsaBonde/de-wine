@@ -60,6 +60,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 background: "white",
                 marginBottom: "10px",
                 borderRadius: "0px 10px 10px 0px",
+                padding: "10px",
               }}
             >
               <Image
