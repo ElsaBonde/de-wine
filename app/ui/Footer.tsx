@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { AdminPanelSettings } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
@@ -35,21 +34,6 @@ export default async function Footer() {
             zIndex: 1,
           }}
         />
-        {session?.user.isAdmin && (
-          <Link
-            href="/admin/products"
-            style={{
-              textDecoration: "none",
-              color: "#c6c6c6",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <AdminPanelSettings sx={{ "&:hover": { color: "white" } }} />
-            Admin
-          </Link>
-        )}
-
         <Box
           sx={{
             display: "flex",

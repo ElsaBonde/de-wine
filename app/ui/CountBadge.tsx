@@ -38,7 +38,7 @@ export default function CountBadge() {
           sx={{
             //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
-              backgroundColor: "white",
+              backgroundColor: "#c6c6c6",
               color: "black",
               fontSize: "15px",
               fontWeight: "bold",
