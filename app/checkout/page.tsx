@@ -149,7 +149,7 @@ export default function CheckoutPage() {
           sx={{
             backgroundColor: "rgba(242, 239, 239, 0.8) ",
             borderRadius: "5px",
-            color: "white",
+            color: "black",
             textAlign: "center",
             padding: "5px",
             fontFamily: "Karla",

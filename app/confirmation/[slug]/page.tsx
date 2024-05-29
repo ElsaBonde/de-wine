@@ -40,7 +40,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
       >
         <Typography
           sx={{
-            color: "white",
+            color: "black",
             fontSize: "30px",
             textAlign: "center",
             fontVariant: "small-caps",
@@ -140,7 +140,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           sx={{
             textAlign: "center",
             margin: "10px",
-            color: "white",
+            color: "black",
             fontVariant: "small-caps",
           }}
         >
