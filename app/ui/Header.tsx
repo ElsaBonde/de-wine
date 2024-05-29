@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { AdminPanelSettings } from "@mui/icons-material";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/material";
 import Link from "next/link";
@@ -32,6 +33,20 @@ export default async function Header() {
           zIndex: 1,
         }}
       />
+      {session?.user.isAdmin && (
+        <Link
+          href="/admin/products"
+          style={{
+            textDecoration: "none",
+            color: "#c6c6c6",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <AdminPanelSettings sx={{ "&:hover": { color: "white" } }} />
+          Admin
+        </Link>
+      )}
       <Link
         href="/"
         style={{
