@@ -159,7 +159,19 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
             <Grid item xs={12}>
               <FormControlLabel
                 control={
-                  <Checkbox color="secondary" name="saveAddress" value="yes" />
+                  <Checkbox
+                    name="saveAddress"
+                    value="yes"
+                    sx={{
+                      color: "#757575",
+                      "&.Mui-checked": {
+                        color: "#424242",
+                      },
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 28,
+                      },
+                    }}
+                  />
                 }
                 label="I accept the terms and conditions."
               />
