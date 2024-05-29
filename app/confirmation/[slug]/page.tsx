@@ -2,10 +2,12 @@ import { getOrderById } from "@/app/actions/orderActions";
 import ClearCart from "@/app/ui/ClearCart";
 import { Box, Card, Divider, Typography } from "@mui/material";
 import Image from "next/image";
+import { auth } from "@/auth";
 
 type PageProps = { params: { slug: string } };
 
 export default async function ConfirmationPage({ params }: PageProps) {
+  const session = await auth();
   const order = await getOrderById(params.slug);
 
   if (!order) {
@@ -178,7 +180,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
               <Typography sx={{ fontWeight: "bold" }}>
                 Email:{" "}
                 <Typography component="span">
-                  HÄR SKA SESSION IN MED EMAIL
+                  {session?.user?.email}
                 </Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
