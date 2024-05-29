@@ -141,7 +141,8 @@ export async function shipOrder(orderId: string) {
       isShipped: true,
     },
   });
-
+  revalidatePath("/admin/orders");
+  revalidatePath("/profile");
   return order;
 }
 

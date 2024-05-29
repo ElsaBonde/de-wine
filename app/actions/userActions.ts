@@ -9,7 +9,7 @@ export type User = {
   name: string;
   userName: string;
   email: string;
-  phone: string;
+  phone?: string;
   isAdmin: boolean;
   image?: string;
 };

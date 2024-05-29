@@ -23,7 +23,7 @@ export default async function Footer() {
     >
       {session?.user.isAdmin && (
         <Link
-          href="/admin"
+          href="/admin/products"
           style={{
             textDecoration: "none",
             color: "#5A5353",

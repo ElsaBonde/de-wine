@@ -2,23 +2,25 @@
 
 import { Button } from "@mui/material";
 import { signIn } from "next-auth/react";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 export default function SignInButton() {
   return (
-    <Button
-      variant="contained"
+    <>
+    <PersonOutlineIcon 
+      
       sx={{
-        minWidth: "100px",
-        backgroundColor: "white",
-        color: "#1F1724",
+        height: "40px",
+        width: "40px",
+        color: "#B29875",
+        cursor: "pointer",
         "&:hover": {
-          backgroundColor: "#cbc8c8",
+          color: "#6A584B"
         },
       }}
-      onClick={() => signIn()}
-      className="bg-blue-400 text-white rounded-md p-2"
-    >
-      Sign in
-    </Button>
+      onClick={() => signIn(undefined, { "callbackUrl": "/" })}
+    />
+    </>
+    
   );
 }

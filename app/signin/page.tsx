@@ -1,5 +1,8 @@
-import { providerMap, signIn } from "@/auth";
+"use client";
+
+import { providerMap } from "@/auth";
 import { Box, Button, Typography } from "@mui/material";
+import { signIn } from "next-auth/react";
 
 export default function SignInPage() {
   return (
@@ -36,8 +39,7 @@ export default function SignInPage() {
                 component="form"
                 key={provider.id}
                 action={async () => {
-                  "use server";
-                  await signIn(provider.id);
+                  await signIn(provider.id, { callbackUrl: "/" });
                 }}
               >
                 <Button

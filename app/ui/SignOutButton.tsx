@@ -16,8 +16,7 @@ export default function SignOutButton() {
           backgroundColor: "#cbc8c8",
         },
       }}
-      onClick={() => signOut()}
-      
+      onClick={() => signOut({ callbackUrl: "/" })}
     >
       Sign out
     </Button>

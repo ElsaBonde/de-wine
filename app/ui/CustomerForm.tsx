@@ -15,6 +15,9 @@ import { useForm } from "react-hook-form";
 import { createOrder } from "../actions/orderActions";
 import { CartItem } from "../actions/productActions";
 import { Customer, CustomerSchema, useCustomer } from "./CustomerContext";
+import { useSession } from "next-auth/react";
+import {useState, useEffect} from "react";
+import NextLink from "next/link";
 
 type ChecokoutFormProps = {
   cart: CartItem[];
@@ -24,6 +27,18 @@ type ChecokoutFormProps = {
 export default function CheckoutForm({ cart }: ChecokoutFormProps) {
   const router = useRouter();
   const { setCustomer } = useCustomer();
+  const { data: session, status} = useSession();
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    if (session) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [session]);
+
 
   //useForm hook för att hantera formuläret, resolver för att använda zodschema
   const form = useForm<Customer>({
@@ -151,6 +166,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 label="I accept the terms and conditions."
               />
             </Grid>
+            {isAuthenticated ?  (
             <Button
               onClick={form.handleSubmit(sendForm)}
               type="submit"
@@ -162,8 +178,15 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 justifyContent: "center",
               }}
             >
-              Place Order
+      Place Order
             </Button>
+              ) :<Typography sx={{color: "#1F1724", fontFamily: "josefin sans"}}>
+                  Please {" "}
+                  <Typography component={NextLink} href={"/signin"} sx={{ color: "#1F1724", fontFamily: "josefin sans"}}>
+                  sign in
+                  </Typography>
+                  {" "} to place an order
+                </Typography>}
           </Grid>
         </React.Fragment>
       </Container>
