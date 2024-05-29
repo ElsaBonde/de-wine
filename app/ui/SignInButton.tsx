@@ -10,8 +10,9 @@ export default function SignInButton() {
       sx={{
         minWidth: "100px",
         backgroundColor: "white",
+        color: "#1F1724",
         "&:hover": {
-          backgroundColor: "#440000",
+          backgroundColor: "#cbc8c8",
         },
       }}
       onClick={() => signIn()}
