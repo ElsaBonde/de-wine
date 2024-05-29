@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { AdminPanelSettings } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
@@ -17,9 +16,10 @@ export default async function Footer() {
           display: "flex",
           background: "#1F1724",
           marginTop: "auto",
-          padding: "5px 10px",
+          padding: "10px",
           fontFamily: "Josefin sans",
-          color: "#5A5353",
+          color: "#c6c6c6",
+          position: "relative",
         }}
       >
         <Box
@@ -34,21 +34,6 @@ export default async function Footer() {
             zIndex: 1,
           }}
         />
-        {session?.user.isAdmin && (
-          <Link
-            href="/admin/products"
-            style={{
-              textDecoration: "none",
-              color: "#5A5353",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <AdminPanelSettings sx={{ "&:hover": { color: "white" } }} />
-            Admin
-          </Link>
-        )}
-
         <Box
           sx={{
             display: "flex",
@@ -66,21 +51,21 @@ export default async function Footer() {
           >
             <InstagramIcon
               sx={{
-                color: "white",
+                color: "#c6c6c6",
                 width: "30px",
                 height: "30px",
               }}
             />
             <FacebookIcon
               sx={{
-                color: "white",
+                color: "#c6c6c6",
                 width: "30px",
                 height: "30px",
               }}
             />
             <XIcon
               sx={{
-                color: "white",
+                color: "#c6c6c6",
                 width: "30px",
                 height: "30px",
               }}
@@ -89,7 +74,7 @@ export default async function Footer() {
           <Link
             style={{
               textDecoration: "none",
-              color: "#5A5353",
+              color: "#c6c6c6",
               lineHeight: "1.5",
             }}
             href="mailto:costumerservice@wineoclock.com"

@@ -1,11 +1,10 @@
 import { auth } from "@/auth";
-import PersonIcon from '@mui/icons-material/Person';
+import { AdminPanelSettings } from "@mui/icons-material";
+import PersonIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import CountBadge from "./CountBadge";
 import SignInButton from "./SignInButton";
-import SignOutButton from "./SignOutButton";
 
 export default async function Header() {
   const session = await auth();
@@ -34,6 +33,20 @@ export default async function Header() {
           zIndex: 1,
         }}
       />
+      {session?.user.isAdmin && (
+        <Link
+          href="/admin/products"
+          style={{
+            textDecoration: "none",
+            color: "#c6c6c6",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <AdminPanelSettings sx={{ "&:hover": { color: "white" } }} />
+          Admin
+        </Link>
+      )}
       <Link
         href="/"
         style={{
@@ -55,13 +68,8 @@ export default async function Header() {
         {session?.user ? (
           <>
             <Link href={`/profile/${session.user.id}`}>
-              <PersonIcon sx={{ height: "40px",
-        width: "40px",
-        color: "#B29875",
-        cursor: "pointer",
-        "&:hover": {
-          color: "#6A584B"
-        }, }} />
+              <PersonOutlineIconGold
+              />
             </Link>
           </>
         ) : (
@@ -71,3 +79,15 @@ export default async function Header() {
     </Box>
   );
 }
+
+const PersonOutlineIconGold = (props: IconProps) => (
+  <>
+    <svg width={0} height={0}>
+      <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
+        <stop offset={0} stopColor="#AE8625" />
+        <stop offset={1} stopColor="#F7EF8A" />
+      </linearGradient>
+    </svg>
+    <PersonIcon onClick={props.onClick} sx={{ fill: "url(#linearColors)", width: "33px", height: "33px", cursor: "pointer" }} />
+  </>
+)

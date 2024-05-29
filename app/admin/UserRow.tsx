@@ -57,13 +57,13 @@ export default function UserRow({ user }: Props) {
       <TableCell sx={{ textAlign: "right" }}>
         <IconButton
           onClick={() => handleAccess(user)}
-          sx={{ color: "#5A5353", "&:hover": { color: "white" } }}
+          sx={{ color: "#c6c6c6", "&:hover": { color: "white" } }}
         >
           <ModeEditOutlineOutlinedIcon />
         </IconButton>
         <IconButton
           onClick={() => handleDelete(user.id)}
-          sx={{ color: "#5A5353", "&:hover": { color: "white" } }}
+          sx={{ color: "#c6c6c6", "&:hover": { color: "white" } }}
         >
           <DeleteIcon />
         </IconButton>

@@ -60,6 +60,7 @@ export default function CheckoutPage() {
               alignItems: "center",
               background: "white",
               marginBottom: "10px",
+              padding: "10px",
             }}
           >
             <Image
@@ -147,9 +148,9 @@ export default function CheckoutPage() {
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           sx={{
-            backgroundColor: "#4E3D53 ",
+            backgroundColor: "rgba(242, 239, 239, 0.8) ",
             borderRadius: "5px",
-            color: "white",
+            color: "black",
             textAlign: "center",
             padding: "5px",
             fontFamily: "Karla",
@@ -161,7 +162,7 @@ export default function CheckoutPage() {
         </Box>
         <Box
           sx={{
-            backgroundColor: "#4E3D53 ",
+            backgroundColor: "rgba(242, 239, 239, 0.8) ",
             borderRadius: "5px",
             color: "red",
             textAlign: "center",

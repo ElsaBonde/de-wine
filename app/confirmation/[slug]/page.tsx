@@ -1,8 +1,8 @@
 import { getOrderById } from "@/app/actions/orderActions";
 import ClearCart from "@/app/ui/ClearCart";
+import { auth } from "@/auth";
 import { Box, Card, Divider, Typography } from "@mui/material";
 import Image from "next/image";
-import { auth } from "@/auth";
 
 type PageProps = { params: { slug: string } };
 
@@ -31,7 +31,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           flexGrow: "4",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#4E3D53 ",
+          backgroundColor: "rgba(242, 239, 239, 0.8)",
           margin: "10px",
           borderRadius: "0px 15px 15px 0px",
           padding: "10px",
@@ -40,7 +40,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
       >
         <Typography
           sx={{
-            color: "white",
+            color: "black",
             fontSize: "30px",
             textAlign: "center",
             fontVariant: "small-caps",
@@ -60,6 +60,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 background: "white",
                 marginBottom: "10px",
                 borderRadius: "0px 10px 10px 0px",
+                padding: "10px",
               }}
             >
               <Image
@@ -130,7 +131,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           display: "flex",
           flexDirection: "column",
           flexGrow: "5",
-          background: "#4E3D53 ",
+          background: "rgba(242, 239, 239, 0.8) ",
           margin: "10px",
           borderRadius: "10px 0px 0px 10px",
         }}
@@ -140,7 +141,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           sx={{
             textAlign: "center",
             margin: "10px",
-            color: "white",
+            color: "black",
             fontVariant: "small-caps",
           }}
         >
@@ -179,9 +180,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Email:{" "}
-                <Typography component="span">
-                  {session?.user?.email}
-                </Typography>
+                <Typography component="span">{session?.user?.email}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Phone number:{" "}
