@@ -10,7 +10,7 @@ export default function AddProductCard() {
   return (
     <Grid item xs={12} sm={6} md={4} sx={{ marginTop: "30px" }}>
       <Link
-        href="/admin/product/new"
+        href="/admin/products/new"
         color="text.secondary"
         sx={{ textDecoration: "none" }}
       >

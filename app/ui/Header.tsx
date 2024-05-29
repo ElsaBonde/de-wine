@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import PersonPinTwoToneIcon from "@mui/icons-material/PersonPinTwoTone";
+import PersonIcon from '@mui/icons-material/Person';
 import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -55,7 +55,13 @@ export default async function Header() {
         {session?.user ? (
           <>
             <Link href={`/profile/${session.user.id}`}>
-              <PersonPinTwoToneIcon fontSize="large" sx={{ color: "#b29875" }} />
+              <PersonIcon sx={{ height: "40px",
+        width: "40px",
+        color: "#B29875",
+        cursor: "pointer",
+        "&:hover": {
+          color: "#6A584B"
+        }, }} />
             </Link>
           </>
         ) : (

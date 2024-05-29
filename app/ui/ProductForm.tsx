@@ -67,7 +67,7 @@ export default function ProductForm({
       } else {
         await createProduct(combinedData);
       }
-      router.push("/admin");
+      router.push("/admin/products");
     } catch (error) {
       console.error("Error saving product:", error);
     }
