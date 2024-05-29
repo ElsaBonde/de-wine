@@ -17,7 +17,7 @@ export default async function Footer() {
           display: "flex",
           background: "#1F1724",
           marginTop: "auto",
-          padding: "5px 10px",
+          padding: "10px",
           fontFamily: "Josefin sans",
           color: "#5A5353",
           position: "relative",

@@ -85,7 +85,7 @@ export default function ProductRow({ product }: Props) {
           </CardContent>
           <CardActions>
             <ArchiveButton product={product} onArchive={handleArchive} />
-            <Link href={`/admin/product/${product.id}`}>
+            <Link href={`/admin/products/${product.id}`}>
               <ModeEditOutlineOutlinedIcon
                 sx={{
                   color: "text.secondary",

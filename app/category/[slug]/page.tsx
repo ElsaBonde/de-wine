@@ -49,7 +49,7 @@ export default async function CategoryPage({ params }: PageProps) {
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Link
               component={NextLink}
-              href={`/product/${product.id}`}
+              href={`/products/${product.id}`}
               sx={{
                 textDecoration: "none",
                 color: "black",
