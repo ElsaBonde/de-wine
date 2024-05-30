@@ -40,19 +40,24 @@ export default function CheckoutPage() {
         background: "white ",
         padding: "10px 20px",
         flex: 1,
+        marginTop: "40px",
       }}
     >
       <Typography
-        variant="h4"
+        variant="h5"
+        gutterBottom
+        justifyContent={"center"}
         sx={{
-          textAlign: "center",
-          margin: "10px",
           fontFamily: "Karla",
-          fontWeight: "400",
+          fontWeight: "800",
           fontVariant: "small-caps",
+          marginX: "200px",
+          "@media (max-width:600px)": {
+            marginX: "0px",
+          },
         }}
       >
-        Your Wine&apos;Order:
+        Your wine order
       </Typography>
       <Box>
         <Card
