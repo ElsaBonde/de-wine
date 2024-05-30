@@ -8,12 +8,11 @@ export default function SignOutButton() {
     <Button
       variant="contained"
       sx={{
-        minWidth: "100px",
-        fontSize: "13px",
-        background: "white",
-        color: "#1F1724",
+        minWidth: "150px",
+        color: "#d2d0d0",
+        backgroundColor: "#1F1724",
         "&:hover": {
-          backgroundColor: "#cbc8c8",
+          backgroundColor: "#36283E",
         },
       }}
       onClick={() => signOut({ callbackUrl: "/" })}

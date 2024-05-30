@@ -19,7 +19,7 @@ export default function SignInPage({ searchParams }: any) {
           <Typography
             variant="h4"
             sx={{
-              color: "#c6c6c6",
+              color: "#7b7878",
               fontSize: {
                 xs: "1.2rem",
                 sm: "1.3rem",
@@ -46,10 +46,12 @@ export default function SignInPage({ searchParams }: any) {
                   variant="contained"
                   type="submit"
                   sx={{
-                    minWidth: "200px",
-                    backgroundColor: "white",
+                    fontFamily: "Josefin sans",
+                    minWidth: "230px",
+                    color: "#d2d0d0",
+                    backgroundColor: "#1F1724",
                     "&:hover": {
-                      backgroundColor: "#440000",
+                      backgroundColor: "#36283E",
                     },
                   }}
                 >
@@ -62,12 +64,13 @@ export default function SignInPage({ searchParams }: any) {
         <Box
           sx={{
             flex: 1,
-            backgroundImage: "url('/winebackground.webp')",
+            backgroundImage: "url('/newwine.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            fontFamily: "Josefin sans",
             color: "white ",
             p: 4,
             textAlign: "center",

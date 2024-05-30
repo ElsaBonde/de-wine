@@ -1,6 +1,7 @@
 "use client";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import { IconProps } from "@mui/material";
 import { signIn } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
@@ -8,9 +9,9 @@ export default function SignInButton() {
   const pathname = usePathname();
 
   return (
-      <PersonOutlineIconGold
-        onClick={() => signIn(undefined, { callbackUrl: pathname })}
-      />
+    <PersonOutlineIconGold
+      onClick={() => signIn(undefined, { callbackUrl: pathname })}
+    />
   );
 }
 
@@ -22,6 +23,14 @@ const PersonOutlineIconGold = (props: IconProps) => (
         <stop offset={1} stopColor="#F7EF8A" />
       </linearGradient>
     </svg>
-    <PersonOutlineIcon onClick={props.onClick} sx={{ fill: "url(#linearColors)", width: "33px", height: "33px", cursor: "pointer" }} />
+    <PersonOutlineIcon
+      onClick={props.onClick}
+      sx={{
+        fill: "url(#linearColors)",
+        width: "33px",
+        height: "33px",
+        cursor: "pointer",
+      }}
+    />
   </>
-)
+);
