@@ -5,7 +5,6 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Divider,
   Grid,
   Link,
   Typography,
@@ -22,18 +21,19 @@ export default async function StartPage() {
   return (
     <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
       <CategoriesCards />
-      <Divider>
-        <Typography
-          variant="h4"
-          sx={{
-            fontFamily: "Josefin sans",
-            textAlign: "center",
-            marginY: "15px",
-          }}
-        >
-          Our wine boxes:
-        </Typography>
-      </Divider>
+
+      <Typography
+        variant="h5"
+        sx={{
+          fontFamily: "Josefin sans",
+          marginTop: "25px",
+          marginBottom: "10px",
+          color: "#1F1724",
+        }}
+      >
+        Our selection of wines:
+      </Typography>
+
       <Grid container spacing={4}>
         {activeProducts.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
@@ -90,7 +90,7 @@ export default async function StartPage() {
                           sx={{
                             fontFamily: "josefin sans",
                             color: "black",
-                            marginBottom: "10px", 
+                            marginBottom: "10px",
                           }}
                         >
                           {product.price.toString()} $

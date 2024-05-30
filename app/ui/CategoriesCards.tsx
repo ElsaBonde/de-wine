@@ -51,6 +51,7 @@ export default function CategoriesCards() {
             fontFamily: "Josefin sans",
             textAlign: "center",
             marginY: "15px",
+            color: "#1F1724",
           }}
         >
           Select by category:
