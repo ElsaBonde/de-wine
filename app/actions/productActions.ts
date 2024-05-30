@@ -1,10 +1,10 @@
 "use server";
 
+import { auth } from "@/auth";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { getCategoryIds } from "./categoryActions";
-import { auth } from "@/auth";
 
 export type Product = Prisma.ProductGetPayload<{
   include: { categories: true };
@@ -19,17 +19,20 @@ export type CartItem = Product & {
   subTotal: number;
 };
 
-export async function getProductById(slug: string) {
+export async function getProductById(
+  slug: string
+): Promise<Prisma.ProductGetPayload<{ include: { categories: true } }> | null> {
   const product = await db.product.findUnique({
     where: { id: slug },
     include: { categories: true },
   });
 
+  return product;
+  /*
   if (product) {
-    const categories = product.categories.map((category) => category.title);
-    const categoryIds = await getCategoryIds(categories);
+    const categoryIds = product.categories.map((category) => category.id);
 
-    const defaultValues: ProductCreate = {
+    const defaultValues = {
       ...product,
       categories: categories,
       categoryIds: categoryIds,
@@ -40,7 +43,7 @@ export async function getProductById(slug: string) {
     return defaultValues;
   }
 
-  return null;
+  return null;*/
 }
 
 export async function getProducts() {
@@ -53,7 +56,7 @@ export async function getProducts() {
 
 export async function createProduct(incomingData: ProductCreate) {
   const session = await auth();
- 
+
   if (!session || !session.user.isAdmin) {
     return null;
   }
@@ -103,7 +106,7 @@ export async function updateProduct(
   productData: ProductCreate
 ) {
   const session = await auth();
- 
+
   if (!session || !session.user.isAdmin) {
     return null;
   }
