@@ -56,7 +56,7 @@ export default async function Header() {
           alignItems: "center",
         }}
       >
-        <Image src="/logotype.png" alt="logotype" width={100} height={85} />
+        <Image src="/logotype.png" alt="logotype" width={70} height={65} />
       </Link>
       <Box
         sx={{
