@@ -91,7 +91,7 @@ export default function CheckoutPage() {
                       color: "red",
                     }}
                   >
-                    Your Price: {item.salePrice * item.quantity} :-
+                    Your Price: {item.salePrice * item.quantity} $
                   </Typography>
                   <Typography
                     sx={{
@@ -99,14 +99,14 @@ export default function CheckoutPage() {
                       textDecoration: "line-through",
                     }}
                   >
-                    Old Price: {item.price * item.quantity} :-
+                    Old Price: {item.price * item.quantity} $
                   </Typography>
                 </>
               ) : (
                 /* annars visa bara vanliga priset */ <Typography
                   sx={{ fontFamily: "Josefin Sans" }}
                 >
-                  Price: {item.price * item.quantity} :-
+                  Price: {item.price * item.quantity} $
                 </Typography>
               )}
 

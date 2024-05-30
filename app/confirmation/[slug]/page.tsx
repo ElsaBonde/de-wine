@@ -89,7 +89,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
                         color: "red",
                       }}
                     >
-                      Your Price: {item.product.salesPrice * item.quantity} :-
+                      Your Price: {item.product.salesPrice * item.quantity} $
                     </Typography>
                     <Typography
                       sx={{
@@ -97,12 +97,12 @@ export default async function ConfirmationPage({ params }: PageProps) {
                         textDecoration: "line-through",
                       }}
                     >
-                      Old Price: {item.product.price * item.quantity} :-
+                      Old Price: {item.product.price * item.quantity} $
                     </Typography>
                   </>
                 ) : (
                   <Typography sx={{ fontFamily: "Josefin Sans" }}>
-                    Price: {item.product.price * item.quantity} :-
+                    Price: {item.product.price * item.quantity} $
                   </Typography>
                 )}
 

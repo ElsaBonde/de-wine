@@ -71,7 +71,7 @@ export default function ProductRow({ product }: Props) {
                   color="text.secondary"
                   sx={{ fontFamily: "josefin sans" }}
                 >
-                  {product.price.toString()} :-
+                  {product.price.toString()} $
                 </Typography>
               </Box>
             </Box>
