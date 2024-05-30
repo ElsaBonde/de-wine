@@ -18,7 +18,7 @@ export default async function Header() {
         justifyContent: "space-between",
         alignItems: "center",
         background: "#1F1724",
-        padding: "20px 20px",
+        padding: "10px 20px",
         position: "relative",
       }}
     >
@@ -56,7 +56,7 @@ export default async function Header() {
           alignItems: "center",
         }}
       >
-        <Image src="/logotype.png" alt="logotype" width={100} height={80} />
+        <Image src="/logotype.png" alt="logotype" width={100} height={85} />
       </Link>
       <Box
         sx={{
