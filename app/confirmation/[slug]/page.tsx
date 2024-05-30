@@ -1,3 +1,4 @@
+import "@fontsource/karla";
 import { getOrderById } from "@/app/actions/orderActions";
 import ClearCart from "@/app/ui/ClearCart";
 import { auth } from "@/auth";
@@ -30,7 +31,6 @@ export default async function ConfirmationPage({ params }: PageProps) {
         padding: "10px 20px",
         flex: 1,
         marginTop: "40px",
-        // maxWidth: "1000px", // Increase maxWidth to make it wider
         margin: "auto",
       }}
     >
@@ -39,11 +39,11 @@ export default async function ConfirmationPage({ params }: PageProps) {
         sx={{
           display: "flex",
           flexDirection: "column",
-          flexGrow: "5",
-          background: "rgba(242, 239, 239, 0.8)",
-          margin: "50px",
-          borderRadius: "10px",
-          padding: "10px",
+          alignItems: "center",
+          background: "white",
+          marginBottom: "40px",
+          padding: "20px",
+          width: "100%",
         }}
       >
         <Typography
@@ -54,30 +54,43 @@ export default async function ConfirmationPage({ params }: PageProps) {
             color: "black",
             fontVariant: "small-caps",
             fontFamily: "Karla",
+            // marginbottom: "10px",
           }}
         >
           Thank you for your purchase!
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
+            alignItems: "stretch",
+            gap: "20px",
+          }}
+        >
           {order && (
-            <Box
+            <Card
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                flexGrow: "8",
-                margin: "auto",
                 textAlign: "left",
-                padding: "10px 20px",
+                padding: {
+                  xs: "10px 20px 20px 5px", // mindre för små skärmar
+                  sm: "10px 60px 20px 20px", // medium  för medelstora skärmar
+                  md: "10px 150px 20px 20px", // större för stora skärmar
+                },
                 gap: "3px",
+                flex: 1,
+                width: "100%",
               }}
             >
               <Typography
                 variant="h5"
-                sx={{ fontFamily: "Karla", marginTop: "20px" }}
+                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "10px"}}
               >
                 Your Shipping Information:
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>Your orderId is:</Typography>
+              <Typography sx={{ fontWeight: "bold" }}>Your order number:</Typography>
               <Typography component="span">{order.id}</Typography>
               <Typography sx={{ fontWeight: "bold" }}>
                 Name: <Typography component="span">{order.name}</Typography>
@@ -97,7 +110,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
               <Typography sx={{ fontWeight: "bold" }}>
                 City: <Typography component="span">{order.city}</Typography>
               </Typography>
-            </Box>
+            </Card>
           )}
         </Box>
       </Box>
@@ -106,31 +119,33 @@ export default async function ConfirmationPage({ params }: PageProps) {
       <Typography
         variant="h5"
         gutterBottom
-        justifyContent={"center"}
         sx={{
           fontFamily: "Karla",
           fontWeight: "800",
           fontVariant: "small-caps",
-          // marginX: "0", // Set marginX for full width
-          // padding: "0 10px", // Add padding fspace around the text
-          textAlign: "center", 
+          textAlign: "left",
         }}
       >
-        Your Wine Order
+        Your wine order
       </Typography>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "stretch",
+          width: "100%",
+        }}
+      >
         <Card
           sx={{
             display: "flex",
             flexDirection: "column",
-            // padding: "10px",
             alignItems: "center",
             background: "white",
             marginBottom: "40px",
             padding: "20px",
-            // marginX: "auto", // Center the card page
-            width: "100%", // Make card full width
-            // maxWidth: "1000px", // Control max width to make it bigger???
+            flex: 1,
+            maxWidth: "100%"
           }}
         >
           {rows.map((item, index) => (
@@ -173,7 +188,6 @@ export default async function ConfirmationPage({ params }: PageProps) {
               padding: "5px",
               fontFamily: "Josefin Sans",
               textAlign: "center",
-              fontWeight: "bold",
               width: "100%",
             }}
           >
