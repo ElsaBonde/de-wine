@@ -41,7 +41,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           flexDirection: "column",
           alignItems: "center",
           background: "white",
-          marginBottom: "40px",
+          marginBottom: "20px",
           padding: "20px",
           width: "100%",
         }}
@@ -51,10 +51,9 @@ export default async function ConfirmationPage({ params }: PageProps) {
           sx={{
             textAlign: "center",
             margin: "10px",
-            color: "black",
+            color: "darkpurple",
             fontVariant: "small-caps",
             fontFamily: "Karla",
-            // marginbottom: "10px",
           }}
         >
           Thank you for your purchase!
@@ -65,7 +64,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
             alignItems: "stretch",
-            gap: "20px",
+            // gap: "10px",
           }}
         >
           {order && (
@@ -86,7 +85,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
             >
               <Typography
                 variant="h5"
-                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "10px"}}
+                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "20px"}}
               >
                 Your Shipping Information:
               </Typography>
@@ -124,6 +123,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           fontWeight: "800",
           fontVariant: "small-caps",
           textAlign: "left",
+          color: "darkpurple",
         }}
       >
         Your wine order
@@ -157,7 +157,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
                     alt={item.product.title}
                     height={100}
                     width={100}
-                    style={{ height: "100%", width: "auto" }}
+                    style={{ height: "100%", width: "auto" , borderRadius: "5px" }}
                   />
                 </Box>
                 <Box
@@ -168,13 +168,13 @@ export default async function ConfirmationPage({ params }: PageProps) {
                     paddingLeft: "10px",
                   }}
                 >
-                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                  <Typography sx={{ fontFamily: "Karla" }}>
                     {item.product.title}
                   </Typography>
-                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                  <Typography sx={{ fontFamily: "Karla" }}>
                     Price: {item.product.price * item.quantity} $
                   </Typography>
-                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                  <Typography sx={{ fontFamily: "Karla" }}>
                     {item.quantity} pc
                   </Typography>
                 </Box>
@@ -186,7 +186,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
             sx={{
               color: "black",
               padding: "5px",
-              fontFamily: "Josefin Sans",
+              fontFamily: "Karla",
               textAlign: "center",
               width: "100%",
             }}
