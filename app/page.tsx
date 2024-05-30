@@ -77,7 +77,7 @@ export default async function StartPage() {
                         component="div"
                         sx={{
                           fontFamily: "josefin sans",
-                          "&:hover": { color: "white" },
+                          "&:hover": { color: "grey" },
                         }}
                       >
                         {product.title}

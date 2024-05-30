@@ -25,7 +25,7 @@ export default function AddButton(props: Props) {
 
   return (
     <AddShoppingCart
-      sx={{ "&:hover": { color: "white" } }}
+      sx={{ "&:hover": { color: "grey" } }}
       onClick={handleClick}
     />
   );
