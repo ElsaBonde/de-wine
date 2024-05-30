@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { orderNumber } from "../actions/orderActions";
 import { getProducts } from "../actions/productActions";
 import { userNumber } from "../actions/userActions";
+import AddProductCard from "../admin/addProductCard";
 
 export default function AdminDashboard() {
   const [usersCount, setUsersCount] = useState<number>(0);
@@ -44,12 +45,31 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        sx={{ color: "#1F1724", fontFamily: "josefin sans", marginTop: "30px" }}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: {xs: "column", sm: "row"},
+          justifyContent: "space-between",
+          alignItems: {xs: "flex-start", sm: "center"},
+          marginTop: "20px",
+          gap: {xs: "20px", sm: "0px"},
+        }}
       >
-        Dashboard
-      </Typography>
+        <Box>
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#1F1724",
+            fontFamily: "josefin sans",
+          }}
+        >
+          Dashboard
+        </Typography>
+        </Box>
+        <Box>
+        <AddProductCard />
+        </Box>
+      </Box>
       <Grid
         container
         spacing={4}
