@@ -6,15 +6,14 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Box, Grid, Typography } from "@mui/material";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
-import { getOrders, orderNumber } from "../actions/orderActions";
+import { orderNumber } from "../actions/orderActions";
 import { getProducts } from "../actions/productActions";
-import { getUsers, userNumber } from "../actions/userActions";
+import { userNumber } from "../actions/userActions";
 
 export default function AdminDashboard() {
   const [usersCount, setUsersCount] = useState<number>(0);
   const [ordersCount, setOrdersCount] = useState<number>(0);
   const [productsCount, setProductsCount] = useState<number>(0);
-
 
   //david kan man göra detta på ett bättre sätt eller duger det?
   useEffect(() => {
@@ -72,7 +71,7 @@ export default function AdminDashboard() {
               gap: "20px",
               padding: "20px",
               cursor: "pointer",
-              color: "#1F1724"
+              color: "#1F1724",
             }}
           >
             <PeopleIcon
@@ -85,16 +84,10 @@ export default function AdminDashboard() {
               }}
             />
             <Box>
-              <Typography
-                variant="h5"
-                sx={{ fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h5" sx={{ fontFamily: "josefin sans" }}>
                 {usersCount}
               </Typography>
-              <Typography
-                variant="h6"
-                sx={{ fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h6" sx={{ fontFamily: "josefin sans" }}>
                 Users
               </Typography>
             </Box>
@@ -114,7 +107,7 @@ export default function AdminDashboard() {
               gap: "20px",
               padding: "20px",
               cursor: "pointer",
-              color: "#1F1724"
+              color: "#1F1724",
             }}
           >
             <ShoppingCartIcon
@@ -127,16 +120,10 @@ export default function AdminDashboard() {
               }}
             />
             <Box>
-              <Typography
-                variant="h5"
-                sx={{ fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h5" sx={{ fontFamily: "josefin sans" }}>
                 {ordersCount}
               </Typography>
-              <Typography
-                variant="h6"
-                sx={{ fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h6" sx={{ fontFamily: "josefin sans" }}>
                 Orders
               </Typography>
             </Box>
@@ -156,7 +143,7 @@ export default function AdminDashboard() {
               gap: "20px",
               padding: "20px",
               cursor: "pointer",
-              color: "#1F1724"
+              color: "#1F1724",
             }}
           >
             <AttachMoneyIcon
@@ -169,22 +156,16 @@ export default function AdminDashboard() {
               }}
             />
             <Box>
-              <Typography
-                variant="h5"
-                sx={{fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h5" sx={{ fontFamily: "josefin sans" }}>
                 {productsCount}
               </Typography>
-              <Typography
-                variant="h6"
-                sx={{ fontFamily: "josefin sans" }}
-              >
+              <Typography variant="h6" sx={{ fontFamily: "josefin sans" }}>
                 Products
               </Typography>
             </Box>
           </Box>
         </Grid>
-    </Grid>
+      </Grid>
     </>
   );
 }

@@ -2,6 +2,7 @@ import { getProducts } from "@/app/actions/productActions";
 import { Grid } from "@mui/material";
 import ProductRow from "../ProductRow";
 import AddProductCard from "../addProductCard";
+import { PropsWithChildren } from "react";
 
 export default async function ProductsPage(props: PropsWithChildren) {
   const products = await getProducts();
