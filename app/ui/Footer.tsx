@@ -77,15 +77,15 @@ export default async function Footer() {
               color: "#c6c6c6",
               lineHeight: "1.5",
             }}
-            href="mailto:costumerservice@wineoclock.com"
+            href="mailto:costumerservice@diwine.com"
           >
-            costumerservice@wineoclock.com
+            costumerservice@diwine.com
           </Link>
           <Typography sx={{ fontFamily: "Josefin sans" }}>
             +46 31-487 30 73
           </Typography>
           <Typography sx={{ fontFamily: "Josefin sans" }}>
-            © 2024 Wine O`clock
+            © 2024 Diwine
           </Typography>
         </Box>
       </Box>
