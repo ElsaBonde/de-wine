@@ -10,7 +10,7 @@ export default function VideoCategory({
   category: { title: string };
 }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   let videoSrc;
