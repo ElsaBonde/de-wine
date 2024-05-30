@@ -9,20 +9,22 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getProducts } from "../actions/productActions";
+import { Product, getProducts } from "../actions/productActions";
 import AddButton from "./AddButton";
 
 type Props = {
-    currentProductId: string;
-}
+  currentProductId: string;
+};
 
 export default function RandomProducts({ currentProductId }: Props) {
-  const [randomProducts, setRandomProducts] = useState([]);
+  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const handleRandomProducts = async () => {
       const products = await getProducts();
-      const activeProducts = products.filter((product) => !product.isArchived && product.id !== currentProductId);
+      const activeProducts = products.filter(
+        (product) => !product.isArchived && product.id !== currentProductId
+      );
       const randomProducts = activeProducts
         .sort(() => 0.5 - Math.random())
         .slice(0, 4);
@@ -35,7 +37,10 @@ export default function RandomProducts({ currentProductId }: Props) {
   return (
     <Box sx={{ padding: "10px 20px", display: { xs: "none", md: "block" } }}>
       <Box>
-        <Typography variant="h5" sx={{ fontFamily: "josefin sans", paddingBottom: "10px" }}>
+        <Typography
+          variant="h5"
+          sx={{ fontFamily: "josefin sans", paddingBottom: "10px" }}
+        >
           You might also like:
         </Typography>
       </Box>

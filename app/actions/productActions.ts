@@ -12,6 +12,7 @@ export type Product = Prisma.ProductGetPayload<{
 
 export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
+  categoryIds: string[];
 };
 
 export type CartItem = Product & {

@@ -1,4 +1,5 @@
-import { getProductById } from "@/app/actions/productActions";
+import { getCategoryIds } from "@/app/actions/categoryActions";
+import { ProductCreate, getProductById } from "@/app/actions/productActions";
 import EditProductModal from "@/app/ui/Modal";
 import ProductForm from "@/app/ui/ProductForm";
 import { Box } from "@mui/material";
@@ -8,11 +9,13 @@ type PageProps = { params: { slug: string } };
 export default async function EditProductPage({ params }: PageProps) {
   const product = await getProductById(params.slug);
   if (product) {
-    const categoryIds = product.categories.map((category) => category.id);
+    const categories = product.categories.map((category) => category.title);
+    const categoryIds = await getCategoryIds(categories);
 
-    const defaultValues = {
+    const defaultValues: ProductCreate = {
       ...product,
-      categories: categoryIds,
+      categories: categories,
+      categoryIds: categoryIds,
     };
 
     return (
