@@ -1,7 +1,7 @@
 "use client";
 
 import "@fontsource/karla";
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Card, Divider, Typography } from "@mui/material";
 import Image from "next/image";
 import { useCart } from "../ui/CartContext";
 import CheckoutForm from "../ui/CustomerForm";
@@ -36,7 +36,11 @@ export default function CheckoutPage() {
   return (
     <Box
       component="main"
-      sx={{ background: "white ", padding: "10px 20px", flex: 1 }}
+      sx={{
+        background: "white ",
+        padding: "10px 20px",
+        flex: 1,
+      }}
     >
       <Typography
         variant="h4"
@@ -57,6 +61,7 @@ export default function CheckoutPage() {
             flexDirection: "column",
             alignItems: "center",
             background: "white",
+            marginBottom: "40px",
             padding: "20px",
             marginX: "200px",
             height: "auto",
@@ -66,8 +71,8 @@ export default function CheckoutPage() {
           }}
         >
           {cart.map((item, index) => (
-            <Box key={item.id} sx={{ width: "100%", marginBottom: "35px" }}>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box key={item.id} sx={{ width: "100%" }}>
+              <Box sx={{ display: "flex" }}>
                 <Box sx={{ marginRight: "10px" }}>
                   <Image
                     src={item.image}
@@ -82,6 +87,7 @@ export default function CheckoutPage() {
                     display: "flex",
                     flexDirection: "column",
                     flexGrow: 1,
+                    paddingLeft: "20px",
                   }}
                 >
                   <Typography sx={{ fontFamily: "Josefin Sans" }}>
@@ -171,27 +177,25 @@ export default function CheckoutPage() {
                   </Box>
                 </Box>
               </Box>
+
+              <Divider
+                sx={{ margin: "20px 0 20px 0", background: "#796e6e" }}
+              />
             </Box>
           ))}
+          <Box
+            sx={{
+              color: "black",
+              padding: "5px",
+              fontFamily: "Josefin Sans",
+              textAlign: "left",
+            }}
+          >
+            Your price: {calculateTotalSalePrice()} SEK
+          </Box>
         </Card>
       </Box>
 
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Box
-          sx={{
-            backgroundColor: "rgba(242, 239, 239, 0.8) ",
-            borderRadius: "5px",
-            color: "red",
-            textAlign: "center",
-            padding: "5px",
-            fontFamily: "Karla",
-            fontWeight: "400",
-            fontVariant: "small-caps",
-          }}
-        >
-          Your price: {calculateTotalSalePrice()} SEK
-        </Box>
-      </Box>
       <Box>
         <CheckoutForm cart={cart} />
       </Box>
