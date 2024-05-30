@@ -49,6 +49,7 @@ export default function VideoCategory({
         width: "100%",
         height: { xs: "250px", md: "500px" },
         overflow: "hidden",
+        marginTop: "10px",
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
