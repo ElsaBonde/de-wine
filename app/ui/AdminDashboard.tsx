@@ -14,21 +14,7 @@ export default function AdminDashboard() {
   const [usersCount, setUsersCount] = useState<number>(0);
   const [ordersCount, setOrdersCount] = useState<number>(0);
   const [productsCount, setProductsCount] = useState<number>(0);
-  const [showUsers, setShowUsers] = useState(false);
-  const [showProducts, setShowProducts] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-    if (showProducts) {
-      getProducts().then((data) => setProducts(data));
-    } else if (showUsers) {
-      getUsers().then((data) => setUsers(data));
-    } else {
-      getOrders().then((data) => setOrders(data));
-    }
-  }, [showProducts]);
 
   //david kan man göra detta på ett bättre sätt eller duger det?
   useEffect(() => {
