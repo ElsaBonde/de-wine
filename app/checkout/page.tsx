@@ -116,16 +116,27 @@ export default function CheckoutPage() {
                   <Box
                     sx={{
                       display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      // alignItems: "center",
+                      // justifyContent: "center",
                       marginTop: "5px",
                     }}
                   >
                     <Button
                       sx={{
                         color: "white",
-                        fontSize: "18px",
+                        fontSize: "20px",
                         fontFamily: "Josefin Sans",
+                        backgroundColor: "black",
+                        borderRadius: "50%",
+                        width: "25px",
+                        height: "25px",
+                        minWidth: "25px", // Ensures the button remains circular regardless of content
+                        "&:hover": {
+                          backgroundColor: "darkgrey",
+                        },
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                       onClick={() => decreaseQuantity(item.id)}
                     >
@@ -139,8 +150,19 @@ export default function CheckoutPage() {
                     <Button
                       sx={{
                         color: "white",
-                        fontSize: "18px",
+                        fontSize: "20px",
                         fontFamily: "Josefin Sans",
+                        backgroundColor: "black",
+                        borderRadius: "50%",
+                        width: "25px",
+                        height: "25px",
+                        minWidth: "25px", // Ensures the button remains circular regardless of content
+                        "&:hover": {
+                          backgroundColor: "darkgrey",
+                        },
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                       onClick={() => increaseQuantity(item.id)}
                     >
