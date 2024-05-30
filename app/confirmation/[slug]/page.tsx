@@ -41,8 +41,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           flexDirection: "column",
           alignItems: "center",
           background: "white",
-          marginBottom: "20px",
-          padding: "20px",
+          marginBottom: "40px",
           width: "100%",
         }}
       >
@@ -50,10 +49,12 @@ export default async function ConfirmationPage({ params }: PageProps) {
           variant="h4"
           sx={{
             textAlign: "center",
-            margin: "10px",
+            marginTop: "30px",
             color: "darkpurple",
             fontVariant: "small-caps",
             fontFamily: "Karla",
+            fontWeight: "800",
+            marginBottom: "20px",
           }}
         >
           Thank you for your purchase!
@@ -64,7 +65,6 @@ export default async function ConfirmationPage({ params }: PageProps) {
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
             alignItems: "stretch",
-            // gap: "10px",
           }}
         >
           {order && (
@@ -74,8 +74,8 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 flexDirection: "column",
                 textAlign: "left",
                 padding: {
-                  xs: "10px 20px 20px 5px", // mindre för små skärmar
-                  sm: "10px 60px 20px 20px", // medium  för medelstora skärmar
+                  xs: "10px 0px 10px 10px", // mindre för små skärmar
+                  sm: "10px 0px 20px 20px", // medium  för medelstora skärmar
                   md: "10px 150px 20px 20px", // större för stora skärmar
                 },
                 gap: "3px",
@@ -85,29 +85,30 @@ export default async function ConfirmationPage({ params }: PageProps) {
             >
               <Typography
                 variant="h5"
-                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "20px"}}
-              >
+                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "20px"}}>
                 Your Shipping Information:
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>Your order number:</Typography>
-              <Typography component="span">{order.id}</Typography>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography sx={{ fontWeight: "bold" }}>Order number: </Typography>
+            <Typography component="span" sx={{ fontFamily: "Karla" , marginLeft: 1}}>{order.id}</Typography>
+              </Box>
               <Typography sx={{ fontWeight: "bold" }}>
-                Name: <Typography component="span">{order.name}</Typography>
+                Name: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.name}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Email: <Typography component="span">{session?.user?.email}</Typography>
+                Email: <Typography component="span" sx={{ fontFamily: "Karla" }}>{session?.user?.email}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Phone number: <Typography component="span">{order.phone}</Typography>
+                Phone number: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.phone}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Address: <Typography component="span">{order.street}</Typography>
+                Address: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.street}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                Zip code: <Typography component="span">{order.zip}</Typography>
+                Zip code: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.zip}</Typography>
               </Typography>
               <Typography sx={{ fontWeight: "bold" }}>
-                City: <Typography component="span">{order.city}</Typography>
+                City: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.city}</Typography>
               </Typography>
             </Card>
           )}
@@ -142,10 +143,11 @@ export default async function ConfirmationPage({ params }: PageProps) {
             flexDirection: "column",
             alignItems: "center",
             background: "white",
-            marginBottom: "40px",
+            marginBottom: "45px",
             padding: "20px",
             flex: 1,
-            maxWidth: "100%"
+            maxWidth: "100%",
+            // width: "80vh",
           }}
         >
           {rows.map((item, index) => (
