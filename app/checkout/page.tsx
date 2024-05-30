@@ -51,115 +51,110 @@ export default function CheckoutPage() {
         Your Wine&apos;Order:
       </Typography>
       <Box>
-        {cart.map((item, index) => (
-          <Card
-            key={item.id}
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              background: "white",
-              marginBottom: "10px",
-              padding: "10px",
-            }}
-          >
-            <Image
-              src={item.image}
-              alt={item.title}
-              height={75}
-              width={75}
-              style={{ height: "100%", width: "auto" }}
-            />
-            <Box
-              sx={{
-                paddingLeft: "10px",
-                display: "flex",
-                flexDirection: "column",
-                flexGrow: "1",
-              }}
-            >
-              <Typography sx={{ fontFamily: "Josefin Sans" }}>
-                {item.title}
-              </Typography>
-
-              {/* om produkten har reapris, visa det */}
-              {item.salePrice ? (
-                <>
-                  <Typography
-                    sx={{
-                      fontFamily: "Josefin Sans",
-                      color: "red",
-                    }}
-                  >
-                    Your Price: {item.salePrice * item.quantity} $
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "Josefin Sans",
-                      textDecoration: "line-through",
-                    }}
-                  >
-                    Old Price: {item.price * item.quantity} $
-                  </Typography>
-                </>
-              ) : (
-                /* annars visa bara vanliga priset */ <Typography
-                  sx={{ fontFamily: "Josefin Sans" }}
-                >
-                  Price: {item.price * item.quantity} $
-                </Typography>
-              )}
-
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Button
-                  sx={{
-                    color: "white",
-                    fontSize: "18px",
-                    fontFamily: "Josefin sans",
-                  }}
-                  onClick={() => decreaseQuantity(item.id)}
-                >
-                  -
-                </Button>
-                <Typography sx={{ fontFamily: "Josefin Sans" }}>
-                  {item.quantity} pc
-                </Typography>
-                <Button
-                  sx={{
-                    color: "white",
-                    fontSize: "18px",
-                    fontFamily: "josefin sans",
-                  }}
-                  onClick={() => increaseQuantity(item.id)}
-                >
-                  +
-                </Button>
-              </Box>
-            </Box>
-          </Card>
-        ))}
-      </Box>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Box
+        <Card
           sx={{
-            backgroundColor: "rgba(242, 239, 239, 0.8) ",
-            borderRadius: "5px",
-            color: "black",
-            textAlign: "center",
-            padding: "5px",
-            fontFamily: "Karla",
-            fontWeight: "400",
-            fontVariant: "small-caps",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            background: "white",
+            padding: "20px",
+            marginX: "200px",
+            height: "auto",
+            "@media (max-width:600px)": {
+              marginX: "0px",
+            },
           }}
         >
-          Old price: {calculateTotalPrice()} SEK
-        </Box>
+          {cart.map((item, index) => (
+            <Box key={item.id} sx={{ width: "100%", marginBottom: "35px" }}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box sx={{ marginRight: "10px" }}>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    height={75}
+                    width={75}
+                    style={{ height: "100%", width: "auto" }}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                  }}
+                >
+                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                    {item.title}
+                  </Typography>
+
+                  {item.salePrice ? (
+                    <>
+                      <Typography
+                        sx={{
+                          fontFamily: "Josefin Sans",
+                          color: "red",
+                        }}
+                      >
+                        Your Price: {item.salePrice * item.quantity} $
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontFamily: "Josefin Sans",
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        Old Price: {item.price * item.quantity} $
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                      Price: {item.price * item.quantity} $
+                    </Typography>
+                  )}
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginTop: "5px",
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "18px",
+                        fontFamily: "Josefin Sans",
+                      }}
+                      onClick={() => decreaseQuantity(item.id)}
+                    >
+                      -
+                    </Button>
+                    <Typography
+                      sx={{ fontFamily: "Josefin Sans", margin: "0 10px" }}
+                    >
+                      {item.quantity} pc
+                    </Typography>
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "18px",
+                        fontFamily: "Josefin Sans",
+                      }}
+                      onClick={() => increaseQuantity(item.id)}
+                    >
+                      +
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          ))}
+        </Card>
+      </Box>
+
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           sx={{
             backgroundColor: "rgba(242, 239, 239, 0.8) ",
