@@ -3,6 +3,7 @@ import {
   getProductsByCategory,
 } from "@/app/actions/categoryActions";
 import AddButton from "@/app/ui/AddButton";
+import VideoCategory from "@/app/ui/VideoCategory";
 import {
   Box,
   CardActionArea,
@@ -31,9 +32,10 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const products = await getProductsByCategory(category.id);
   const activeProducts = products.filter((product) => !product.isArchived);
-  
+
   return (
-    <>
+    <Box sx={{ padding: "10px 20px" }}>
+      <VideoCategory category={category} />
       <Divider>
         <Typography
           variant="h4"
@@ -105,7 +107,7 @@ export default async function CategoryPage({ params }: PageProps) {
                             marginBottom: "10px",
                           }}
                         >
-                          {product.price.toString()} 
+                          {product.price.toString()}
                         </Typography>
                       </Box>
                     </Box>
@@ -126,6 +128,6 @@ export default async function CategoryPage({ params }: PageProps) {
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
   );
 }
