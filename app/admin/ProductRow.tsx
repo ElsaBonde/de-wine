@@ -28,7 +28,14 @@ export default function ProductRow({ product }: Props) {
   return (
     <>
       <Grid item xs={12} sm={6} md={4} key={product.id}>
-        <Card sx={{ background: "white", borderRadius: "8px" }}>
+        <Card
+          sx={{
+            background: product.isArchived ? "#e7e7e7" : "white",
+            borderRadius: "8px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
           <CardActionArea>
             <CardMedia
               component="img"
@@ -37,13 +44,23 @@ export default function ProductRow({ product }: Props) {
               sx={{
                 maxWidth: "100%",
                 height: "auto",
+                filter: product.isArchived ? "blur(3px)" : "none",
               }}
             />
           </CardActionArea>
           {/* här lägger vi in arkiveringslogik i admin */}
           {product.isArchived && (
-            <Typography variant="h6" color="error">
-              Archived
+            <Typography
+              variant="h6"
+              color="#1F1724"
+              sx={{
+                fontWeight: "bold",
+                textAlign: "center",
+                color: "white",
+                backgroundColor: "#1F1724",
+              }}
+            >
+              ARCHIVED
             </Typography>
           )}
           <CardContent>
@@ -60,12 +77,11 @@ export default function ProductRow({ product }: Props) {
                   component="div"
                   sx={{
                     fontFamily: "josefin sans",
-                    "&:hover": { color: "white" },
                   }}
                 >
                   {product.title}
                 </Typography>
-                <Typography>{product.id}</Typography>
+                <Typography>Product Id: {product.id}</Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -89,7 +105,7 @@ export default function ProductRow({ product }: Props) {
               <ModeEditOutlineOutlinedIcon
                 sx={{
                   color: "text.secondary",
-                  "&:hover": { color: "white" },
+                  "&:hover": { color: "black" },
                 }}
               />
             </Link>

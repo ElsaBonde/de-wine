@@ -33,7 +33,7 @@ export default function ArchiveButton({
       <IconButton
         sx={{
           color: "text.secondary",
-          "&:hover": { color: "white", backgroundColor: "white" },
+          "&:hover": { color: "black", backgroundColor: "transparent" },
         }}
         onClick={() => setOpen(true)}
       >
