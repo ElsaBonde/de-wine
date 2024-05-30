@@ -56,9 +56,8 @@ export default function ProductRow({ product }: Props) {
               sx={{
                 fontWeight: "bold",
                 textAlign: "center",
-                marginTop: "5px",
-                borderStyle: "solid",
-                borderColor: "#1F1724",
+                color: "white",
+                backgroundColor: "#1F1724",
               }}
             >
               ARCHIVED
@@ -78,7 +77,6 @@ export default function ProductRow({ product }: Props) {
                   component="div"
                   sx={{
                     fontFamily: "josefin sans",
-                    "&:hover": { color: "grey" },
                   }}
                 >
                   {product.title}
