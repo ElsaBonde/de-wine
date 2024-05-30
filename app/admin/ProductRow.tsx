@@ -28,7 +28,15 @@ export default function ProductRow({ product }: Props) {
   return (
     <>
       <Grid item xs={12} sm={6} md={4} key={product.id}>
-        <Card sx={{ background: "white", borderRadius: "8px" }}>
+        <Card
+          sx={{
+            background: "white",
+            borderRadius: "8px",
+            position: "relative",
+            overflow: "hidden",
+            filter: product.isArchived ? "blur(4px)" : "none",
+          }}
+        >
           <CardActionArea>
             <CardMedia
               component="img"
@@ -60,12 +68,12 @@ export default function ProductRow({ product }: Props) {
                   component="div"
                   sx={{
                     fontFamily: "josefin sans",
-                    "&:hover": { color: "white" },
+                    "&:hover": { color: "grey" },
                   }}
                 >
                   {product.title}
                 </Typography>
-                <Typography>{product.id}</Typography>
+                <Typography>Product Id: {product.id}</Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -89,7 +97,7 @@ export default function ProductRow({ product }: Props) {
               <ModeEditOutlineOutlinedIcon
                 sx={{
                   color: "text.secondary",
-                  "&:hover": { color: "white" },
+                  "&:hover": { color: "black" },
                 }}
               />
             </Link>
