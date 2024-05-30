@@ -79,7 +79,7 @@ export default function VideoCategory({
         >
           <IconButton
             onClick={togglePlay}
-            sx={{ color: "white", height: "70px", width: "70px", opacity: 0.8, "&:hover": { opacity: 1, backgroundColor: "rgba(0, 0, 0, 0.5)"}}}
+            sx={{ color: "white", height: "70px", width: "70px", opacity: 0.8, backgroundColor: "rgba(0, 0, 0, 0.5)", " &:hover": { opacity: 1, backgroundColor: "rgba(0, 0, 0, 0.6)"}}}
           >
             {isPlaying ? (
               <Pause sx={{ height: "70px", width: "70px" }} />
