@@ -72,8 +72,8 @@ export default function CheckoutPage() {
                   <Image
                     src={item.image}
                     alt={item.title}
-                    height={75}
-                    width={75}
+                    height={100}
+                    width={100}
                     style={{ height: "100%", width: "auto" }}
                   />
                 </Box>
