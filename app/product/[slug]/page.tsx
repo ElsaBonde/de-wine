@@ -82,7 +82,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <Typography
                   sx={{
                     fontFamily: "josefin sans",
-                    color: "black",
+                    color: "#1F1724",
                     marginBottom: "10px",
                     fontSize: "22px",
                   }}
@@ -153,12 +153,11 @@ export default async function ProductPage({ params }: PageProps) {
           </Box>
         </Box>
       </Box>
-      <Box sx={{padding: "10px 20px"}}>
-      <Divider/>
+      <Box sx={{ padding: "10px 20px" }}>
+        <Divider />
       </Box>
-      <Box
-      >
-        <RandomProducts currentProductId={product.id as string}/>
+      <Box>
+        <RandomProducts currentProductId={product.id as string} />
       </Box>
     </>
   );

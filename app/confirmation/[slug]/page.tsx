@@ -40,7 +40,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
       >
         <Typography
           sx={{
-            color: "black",
+            color: "#1F1724",
             fontSize: "30px",
             textAlign: "center",
             fontVariant: "small-caps",
@@ -81,9 +81,9 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 <Typography sx={{ fontFamily: "Josefin Sans" }}>
                   {item.product.title}
                 </Typography>
-                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
-                    Price: {item.product.price * item.quantity} $
-                  </Typography>
+                <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                  Price: {item.product.price * item.quantity} $
+                </Typography>
                 <Typography sx={{ fontFamily: "Josefin Sans" }}>
                   {item.quantity} pc
                 </Typography>
@@ -119,7 +119,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           sx={{
             textAlign: "center",
             margin: "10px",
-            color: "black",
+            color: "#1F1724",
             fontVariant: "small-caps",
           }}
         >

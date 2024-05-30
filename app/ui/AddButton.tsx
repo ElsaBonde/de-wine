@@ -35,7 +35,7 @@ export default function AddButton(props: Props) {
             borderRadius: "8px",
             padding: "10px",
             fontFamily: "josefin sans",
-            color: "black",
+            color: "#1F1724",
             fontWeight: "600",
             border: "1px solid #ccc4c4c3",
             "&:hover": {
@@ -48,7 +48,7 @@ export default function AddButton(props: Props) {
         </Button>
       ) : (
         <AddShoppingCart
-          sx={{ color: "grey", "&:hover": { color: "black" } }}
+          sx={{ color: "grey", "&:hover": { color: "#1F1724" } }}
           onClick={handleClick}
         />
       )}

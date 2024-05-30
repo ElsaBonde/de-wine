@@ -42,7 +42,7 @@ export default async function StartPage() {
               href={`/product/${product.id}`}
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "#1F1724",
               }}
             >
               <CardActionArea
@@ -88,7 +88,7 @@ export default async function StartPage() {
                           color="text.secondary"
                           sx={{
                             fontFamily: "josefin sans",
-                            color: "black",
+                            color: "#1F1724",
                             marginBottom: "10px",
                           }}
                         >
@@ -97,7 +97,7 @@ export default async function StartPage() {
                       </Box>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} isProductPage={false}/>
+                      <AddButton product={product} isProductPage={false} />
                     </CardActions>
                   </Box>
                   <Typography

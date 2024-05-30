@@ -137,7 +137,7 @@ export default function CheckoutPage() {
                         color: "white",
                         fontSize: "20px",
                         fontFamily: "Josefin Sans",
-                        backgroundColor: "black",
+                        backgroundColor: "#1F1724",
                         borderRadius: "50%",
                         width: "25px",
                         height: "25px",
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
                         color: "white",
                         fontSize: "20px",
                         fontFamily: "Josefin Sans",
-                        backgroundColor: "black",
+                        backgroundColor: "#1F1724",
                         borderRadius: "50%",
                         width: "25px",
                         height: "25px",
@@ -190,7 +190,7 @@ export default function CheckoutPage() {
           ))}
           <Box
             sx={{
-              color: "black",
+              color: "#1F1724",
               padding: "5px",
               fontFamily: "Josefin Sans",
               textAlign: "left",

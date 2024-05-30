@@ -105,7 +105,7 @@ export default function ProductRow({ product }: Props) {
               <ModeEditOutlineOutlinedIcon
                 sx={{
                   color: "text.secondary",
-                  "&:hover": { color: "black" },
+                  "&:hover": { color: "#1F1724" },
                 }}
               />
             </Link>
