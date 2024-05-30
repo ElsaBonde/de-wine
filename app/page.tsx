@@ -97,7 +97,7 @@ export default async function StartPage() {
                       </Box>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} />
+                      <AddButton product={product} isProductPage={false}/>
                     </CardActions>
                   </Box>
                   <Typography
