@@ -200,11 +200,13 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 onClick={form.handleSubmit(sendForm)}
                 type="submit"
                 sx={{
-                  backgroundColor: "rgba(242, 239, 239, 0.8) ",
-                  color: "white",
-                  marginTop: "10px",
-                  fontWeight: "bold",
-                  justifyContent: "center",
+                  minWidth: "150px",
+                  margin: "25px",
+                  color: "#d2d0d0",
+                  backgroundColor: "#1F1724",
+                  "&:hover": {
+                    backgroundColor: "#36283E",
+                  },
                 }}
               >
                 Place Order

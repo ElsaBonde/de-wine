@@ -194,6 +194,7 @@ export default function CheckoutPage() {
               padding: "5px",
               fontFamily: "Josefin Sans",
               textAlign: "left",
+              fontWeight: "bold",
             }}
           >
             Your price: {calculateTotalSalePrice()} SEK
