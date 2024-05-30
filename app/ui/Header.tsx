@@ -35,20 +35,6 @@ export default async function Header() {
           zIndex: 1,
         }}
       />
-      {session?.user.isAdmin && (
-        <Link
-          href="/admin/products"
-          style={{
-            textDecoration: "none",
-            color: "#c6c6c6",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <AdminPanelSettings sx={{ "&:hover": { color: "white" } }} />
-          Admin
-        </Link>
-      )}
       <Link
         href="/"
         style={{
@@ -72,8 +58,23 @@ export default async function Header() {
             <Link href={`/profile/${session.user.id}`}>
               <PersonOutlineIconGold />
             </Link>
+            {session?.user.isAdmin && (
+        <Link
+          href="/admin/products"
+          style={{
+            textDecoration: "none",
+            color: "#c6c6c6",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <AdminPanelSettingsGold/>
+          
+        </Link>
+      )}
           </>
-        ) : (
+        ) 
+        : (
           <SignInButton />
         )}
       </Box>
@@ -99,4 +100,23 @@ const PersonOutlineIconGold = (props: { onClick?: MouseEventHandler }) => (
       }}
     />
   </>
+);
+
+const AdminPanelSettingsGold = () => (
+  <>
+  <svg width={0} height={0}>
+    <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
+      <stop offset={0} stopColor="#AE8625" />
+      <stop offset={1} stopColor="#F7EF8A" />
+    </linearGradient>
+  </svg>
+  <AdminPanelSettings
+    sx={{
+      fill: "url(#linearColors)",
+      width: "33px",
+      height: "33px",
+      cursor: "pointer",
+    }}
+  />
+</>
 );
