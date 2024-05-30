@@ -30,11 +30,10 @@ export default function ProductRow({ product }: Props) {
       <Grid item xs={12} sm={6} md={4} key={product.id}>
         <Card
           sx={{
-            background: "white",
+            background: product.isArchived ? "#e7e7e7" : "white",
             borderRadius: "8px",
             position: "relative",
             overflow: "hidden",
-            filter: product.isArchived ? "blur(4px)" : "none",
           }}
         >
           <CardActionArea>
@@ -45,13 +44,24 @@ export default function ProductRow({ product }: Props) {
               sx={{
                 maxWidth: "100%",
                 height: "auto",
+                filter: product.isArchived ? "blur(3px)" : "none",
               }}
             />
           </CardActionArea>
           {/* här lägger vi in arkiveringslogik i admin */}
           {product.isArchived && (
-            <Typography variant="h6" color="error">
-              Archived
+            <Typography
+              variant="h6"
+              color="#1F1724"
+              sx={{
+                fontWeight: "bold",
+                textAlign: "center",
+                marginTop: "5px",
+                borderStyle: "solid",
+                borderColor: "#1F1724",
+              }}
+            >
+              ARCHIVED
             </Typography>
           )}
           <CardContent>
