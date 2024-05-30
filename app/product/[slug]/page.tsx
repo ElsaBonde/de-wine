@@ -87,25 +87,10 @@ export default async function ProductPage({ params }: PageProps) {
                     fontFamily: "josefin sans",
                     color: "black",
                     marginBottom: "10px",
-                    ...(product.salesPrice && {
-                      textDecoration: "line-through",
-                    }),
                   }}
                 >
-                  {product.price.toString()} :-
+                  {product.price.toString()}$
                 </Typography>
-
-                {product.salesPrice && (
-                  <Typography
-                    sx={{
-                      fontFamily: "josefin sans",
-                      color: "red",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {product.salesPrice.toString()} :-
-                  </Typography>
-                )}
               </Box>
             </Box>
             <Box sx={{ cursor: "pointer" }}>

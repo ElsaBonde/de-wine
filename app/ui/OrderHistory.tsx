@@ -66,7 +66,7 @@ export default function OrderHistory({ orders }: any) {
                 fontWeight: "500",
               }}
             >
-              Total: {order.total} :-
+              Total: {order.total}$
             </Typography>
           </Box>
 
@@ -136,7 +136,7 @@ export default function OrderHistory({ orders }: any) {
                     {product.product.title}
                   </Typography>
                   <Typography sx={{ fontFamily: "Karla" }}>
-                    Price/pc: {product.product.price} :-
+                    Price/pc: {product.product.price}$
                   </Typography>
                   <Typography sx={{ fontFamily: "Karla" }}>
                     Quantity: {product.quantity}

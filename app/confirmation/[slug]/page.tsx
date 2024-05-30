@@ -81,31 +81,9 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 <Typography sx={{ fontFamily: "Josefin Sans" }}>
                   {item.product.title}
                 </Typography>
-                {item.product.salesPrice ? (
-                  <>
-                    <Typography
-                      sx={{
-                        fontFamily: "Josefin Sans",
-                        color: "red",
-                      }}
-                    >
-                      Your Price: {item.product.salesPrice * item.quantity} $
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontFamily: "Josefin Sans",
-                        textDecoration: "line-through",
-                      }}
-                    >
-                      Old Price: {item.product.price * item.quantity} $
-                    </Typography>
-                  </>
-                ) : (
                   <Typography sx={{ fontFamily: "Josefin Sans" }}>
                     Price: {item.product.price * item.quantity} $
                   </Typography>
-                )}
-
                 <Typography sx={{ fontFamily: "Josefin Sans" }}>
                   {item.quantity} pc
                 </Typography>
@@ -121,7 +99,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
             fontWeight: "bold",
           }}
         >
-          TOTAL: {order.total} SEK
+          TOTAL: {order.total} $
         </Typography>
       </Box>
 

@@ -103,27 +103,10 @@ export default async function CategoryPage({ params }: PageProps) {
                             fontFamily: "josefin sans",
                             color: "black",
                             marginBottom: "10px",
-                            ...(product.salesPrice && {
-                              textDecoration: "line-through",
-                            }), //överstruket på normalpris om reapris finns
                           }}
                         >
-                          {product.price.toString()} :-
+                          {product.price.toString()} 
                         </Typography>
-
-                        {product.salesPrice && (
-                          <Typography
-                            variant="body1"
-                            color="red" //röd färg på reapris
-                            sx={{
-                              fontFamily: "josefin sans",
-                              color: "red",
-                              marginBottom: "10px",
-                            }}
-                          >
-                            {product.salesPrice.toString()} :-
-                          </Typography>
-                        )}
                       </Box>
                     </Box>
                     <CardActions>
