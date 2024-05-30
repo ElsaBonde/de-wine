@@ -23,8 +23,94 @@ export default async function ConfirmationPage({ params }: PageProps) {
   return (
     <Box
       component="main"
-      sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+      sx={{ display: "flex", flexDirection: { xs: "column" } , maxWidth: "800px",  margin: "auto"
+
+    }}
     >
+        {/*    sektion Thank for your Purschase */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: "5",
+            background: "rgba(242, 239, 239, 0.8) ",
+            margin: "50px",
+            borderRadius: "10px",
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "center",
+              margin: "10px",
+              color: "black",
+              fontVariant: "small-caps",
+            }}
+          >
+            Thank you for your purchase!
+          </Typography>
+          <Box
+            sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+          >
+            {order && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  flexGrow: "8",
+                  margin: "auto",
+                  textAlign: "left",
+                  padding: "10px 20px",
+                  gap: "3px",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{ fontFamily: "karla", marginTop: "20px" }}
+                >
+                  Your Shipping Information:
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Your orderId is:
+                </Typography>
+                <Typography component="span" sx={{}}>
+                  {" "}
+                  {order.id}
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Name: <Typography component="span">{order.name}</Typography>
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Email:{" "}
+                  <Typography component="span">{session?.user?.email}</Typography>
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Phone number:{" "}
+                  <Typography component="span">{order.phone}</Typography>
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Adress: <Typography component="span">{order.street}</Typography>
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Zip code: <Typography component="span">{order.zip}</Typography>
+                </Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  City: <Typography component="span">{order.city}</Typography>
+                </Typography>
+              </Box>
+            )}
+            <Box
+              sx={{
+                display: "flex",
+                flexGrow: "2",
+                justifyContent: "center",
+                alignItems: "center",
+                marginRight: "20px",
+              }}
+            >
+            </Box>
+          </Box>
+        </Box>
       <Box
         component="div"
         sx={{
@@ -33,7 +119,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           flexDirection: "column",
           backgroundColor: "rgba(242, 239, 239, 0.8)",
           margin: "10px",
-          borderRadius: "0px 15px 15px 0px",
+          borderRadius: "10px",
           padding: "10px",
           justifyContent: "space-evenly",
         }}
@@ -103,91 +189,6 @@ export default async function ConfirmationPage({ params }: PageProps) {
         </Typography>
       </Box>
 
-      {/*    sektion 2 */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexGrow: "5",
-          background: "rgba(242, 239, 239, 0.8) ",
-          margin: "10px",
-          borderRadius: "10px 0px 0px 10px",
-        }}
-      >
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: "center",
-            margin: "10px",
-            color: "black",
-            fontVariant: "small-caps",
-          }}
-        >
-          Thank you for your purchase!
-        </Typography>
-        <Box
-          sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
-        >
-          {order && (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                flexGrow: "8",
-                margin: "auto",
-                textAlign: "left",
-                padding: "15px 10px",
-                gap: "5px",
-              }}
-            >
-              <Typography
-                variant="h5"
-                sx={{ fontFamily: "karla", marginTop: "30px" }}
-              >
-                Your Shipping Information:
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Your orderId is:
-              </Typography>
-              <Typography component="span" sx={{}}>
-                {" "}
-                {order.id}
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Name: <Typography component="span">{order.name}</Typography>
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Email:{" "}
-                <Typography component="span">{session?.user?.email}</Typography>
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Phone number:{" "}
-                <Typography component="span">{order.phone}</Typography>
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Adress: <Typography component="span">{order.street}</Typography>
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Zip code: <Typography component="span">{order.zip}</Typography>
-              </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
-                City: <Typography component="span">{order.city}</Typography>
-              </Typography>
-            </Box>
-          )}
-          <Box
-            sx={{
-              display: "flex",
-              flexGrow: "2",
-              justifyContent: "center",
-              alignItems: "center",
-              marginRight: "20px",
-            }}
-          >
-            <Image src="/cheers.gif" alt="cheers" width={100} height={100} />
-          </Box>
-        </Box>
-      </Box>
       <ClearCart />
     </Box>
   );
