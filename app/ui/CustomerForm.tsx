@@ -2,8 +2,8 @@ import "@fontsource/karla";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
+  Card,
   Checkbox,
-  Container,
   FormControlLabel,
   Grid,
   TextField,
@@ -56,20 +56,38 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
 
   return (
     <>
-      <Container>
+      <Typography
+        variant="h5"
+        gutterBottom
+        justifyContent={"center"}
+        sx={{
+          fontFamily: "Karla",
+          fontWeight: "800",
+          fontVariant: "small-caps",
+          marginX: "200px",
+          "@media (max-width:600px)": {
+            marginX: "0px",
+          },
+        }}
+      >
+        Checkout information
+      </Typography>
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          background: "white",
+          marginBottom: "40px",
+          padding: "20px",
+          marginX: "200px",
+          height: "auto",
+          "@media (max-width:600px)": {
+            marginX: "0px",
+          },
+        }}
+      >
         <React.Fragment>
-          <Typography
-            variant="h5"
-            gutterBottom
-            justifyContent={"center"}
-            sx={{
-              fontFamily: "Karla",
-              fontWeight: "800",
-              fontVariant: "small-caps",
-            }}
-          >
-            Checkout information
-          </Typography>
           <Grid
             component="form"
             onSubmit={form.handleSubmit(sendForm)}
@@ -207,7 +225,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
             )}
           </Grid>
         </React.Fragment>
-      </Container>
+      </Card>
     </>
   );
 }
