@@ -99,7 +99,7 @@ export default function CheckoutPage() {
                     {item.title}
                   </Typography>
 
-                  {item.salePrice ? (
+                  {item.salesPrice ? (
                     <>
                       <Typography
                         sx={{
@@ -107,7 +107,7 @@ export default function CheckoutPage() {
                           color: "red",
                         }}
                       >
-                        Your Price: {item.salePrice * item.quantity} $
+                        Your Price: {item.salesPrice * item.quantity} $
                       </Typography>
                       <Typography
                         sx={{

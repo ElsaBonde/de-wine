@@ -29,22 +29,7 @@ export async function getProductById(
   });
 
   return product;
-  /*
-  if (product) {
-    const categoryIds = product.categories.map((category) => category.id);
-
-    const defaultValues = {
-      ...product,
-      categories: categories,
-      categoryIds: categoryIds,
-    };
-
-    console.log("getproductbyid log", defaultValues);
-
-    return defaultValues;
-  }
-
-  return null;*/
+ 
 }
 
 export async function getProducts() {

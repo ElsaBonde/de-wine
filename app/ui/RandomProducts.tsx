@@ -32,7 +32,7 @@ export default function RandomProducts({ currentProductId }: Props) {
     };
 
     handleRandomProducts();
-  }, []);
+  }, [currentProductId]);
 
   return (
     <Box sx={{ padding: "10px 20px", display: { xs: "none", md: "block" } }}>
@@ -45,7 +45,7 @@ export default function RandomProducts({ currentProductId }: Props) {
         </Typography>
       </Box>
       <Grid container spacing={2}>
-        {randomProducts.map((product: any) => (
+        {randomProducts.map((product) => (
           <Grid item xs={12} sm={6} md={3} key={product.id}>
             <CardActionArea>
               <CardMedia

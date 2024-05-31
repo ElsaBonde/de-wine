@@ -9,10 +9,6 @@ import { useState } from "react";
 export default function AddProduct() {
   const [open, setOpen] = useState(true);
 
-  const handleSave = async (product: ProductCreate) => {
-    await createProduct(product);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -41,7 +37,7 @@ export default function AddProduct() {
                   },}}>
           <CloseIcon onClick={handleClose} />
         </IconButton>
-        <ProductForm onSave={handleSave} />
+        <ProductForm />
       </Box>
     </Modal>
   );

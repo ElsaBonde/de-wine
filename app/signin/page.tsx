@@ -1,7 +1,11 @@
 import { providerMap, signIn } from "@/auth";
 import { Box, Button, Typography } from "@mui/material";
 
-export default function SignInPage({ searchParams }: any) {
+interface Props {
+  searchParams: { callbackUrl: string };
+}
+
+export default function SignInPage({ searchParams }: Props) {
   return (
     <>
       <Box component="div" sx={{ display: "flex", height: "100%" }}>

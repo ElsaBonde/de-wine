@@ -1,5 +1,3 @@
-// SelectCategories.tsx
-
 import {
   FormControl,
   Grid,
@@ -34,7 +32,7 @@ export default function SelectCategories(props: Props) {
 
     fetchCategories();
   }, []);
-  //ändrat typ här från: event: React.ChangeEvent<{ value: unknown }> verkar funka
+
   const handleCategoryChange = (event: SelectChangeEvent<string[]>) => {
     props.onChange(event.target.value as string[]);
   };

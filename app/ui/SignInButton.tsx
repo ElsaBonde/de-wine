@@ -1,7 +1,6 @@
 "use client";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { IconProps } from "@mui/material";
 import { signIn } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
@@ -15,7 +14,11 @@ export default function SignInButton() {
   );
 }
 
-const PersonOutlineIconGold = (props: IconProps) => (
+interface Props {
+  onClick: () => void;
+}
+
+const PersonOutlineIconGold = (props: Props) => (
   <>
     <svg width={0} height={0}>
       <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>

@@ -96,7 +96,6 @@ export default async function ProductPage({ params }: PageProps) {
             <AddButton
               product={product}
               isProductPage={true}
-              sx={{ cursor: "pointer" }}
             />
             <Box
               sx={{
