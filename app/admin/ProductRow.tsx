@@ -21,9 +21,9 @@ import { Product } from "@prisma/client";
 import { archiveProduct } from "../actions/productActions";
 import ArchiveButton from "../ui/DeleteButton";
 import { useState } from "react";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import "@fontsource/karla";
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 interface Props {
   product: Product;
 }
@@ -100,8 +100,8 @@ export default function ProductRow({ product }: Props) {
                 >
                   {product.title}
                 </Typography>
-                <Typography>Product Id:</Typography>
-                <Typography>{product.id}</Typography>
+                <Typography sx={{ fontFamily: 'Karla' }}>Product Id:</Typography>
+                <Typography sx={{ fontFamily: 'Karla' }}>{product.id}</Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -129,41 +129,43 @@ export default function ProductRow({ product }: Props) {
                 }}
               />
             </Link>
-  <ArrowDropDownIcon
+  <ExpandMoreIcon
   onClick={handleClickOpen}
+  sx={{
+    color: "text.secondary",
+    "&:hover": { color: "#1F1724" }, fontFamily: "Karla" 
+  }}
 />
 <Dialog
   open={open}
   onClose={handleClose}
 >
-<DialogContent  style={{
-    fontFamily: 'Karla, sans-serif',
-  }}>
-<img
-    src={product.image}
-    alt={product.title}
-    style={{
-      width: '200px',
-      padding: '1em',
-      objectFit: 'cover',
-      borderRadius: '12px',
-    }}
-  />
-<DialogTitle style={{ fontFamily: 'Karla'}} >{"Produktinformation"}</DialogTitle>
-  <DialogContent style={{ fontFamily: 'Karla'}} >
-    <DialogContentText>
-      <Typography>Produkt-ID:</Typography> {product.id}
-    <DialogContentText>
-      <Typography>Produktpris:</Typography> {product.price} $
-    </DialogContentText>
-    </DialogContentText>
-    <DialogContentText>
-      <Typography>Produktbeskrivning:</Typography> {product.description}
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions>
-    <ArrowDropDownIcon onClick={handleClose}/>
-  </DialogActions>
+  <DialogContent sx={{ fontFamily: 'Karla' }}>
+    <img
+      src={product.image}
+      style={{
+        width: '200px',
+        padding: '10px',
+        borderRadius: '15px',
+      }}
+    />
+    <DialogTitle sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>{"Produktinformation"}</DialogTitle>
+    <DialogContent>
+      <Typography sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>
+        Produkt-ID: <Typography component="span" sx={{ fontFamily: "Karla" }}>{product.id}</Typography>
+      </Typography>
+      <Typography sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>
+        Produktpris: <Typography component="span" sx={{ fontFamily: "Karla" }}>{product.price} $</Typography>
+      </Typography>
+      <Typography sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>
+        Produktbeskrivning: <Typography component="span" sx={{ fontFamily: "Karla" }}>{product.description}</Typography>
+      </Typography>
+    </DialogContent>
+    <DialogActions>
+      <ExpandLessIcon onClick={handleClose} 
+      sx={{color: "text.secondary", 
+      "&:hover": { color: "#1F1724" }, fontFamily: "Karla"}}/>
+    </DialogActions>
   </DialogContent>
 </Dialog>
           </CardActions>
