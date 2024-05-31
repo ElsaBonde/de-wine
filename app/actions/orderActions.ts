@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import { db } from "@/prisma/db";
+import { Prisma, User } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { CartItem } from "./productActions";
 
@@ -15,6 +16,16 @@ export type Order = {
   isShipped: boolean;
   total: number;
 };
+
+type UserDataProps = {
+  name: string;
+  phone: string;
+  street: string;
+  city: string;
+  zip: number;
+};
+
+export type OrdersWithProducts = Prisma.PromiseReturnType<typeof userOrders>;
 
 export async function getOrders() {
   const orders = await db.order.findMany({ orderBy: { orderDate: "desc" } });
@@ -46,9 +57,8 @@ export async function totalAmountAllOrders() {
   return total._sum.total;
 }
 
-export async function createOrder(cart: CartItem[], userData: any) {
+export async function createOrder(cart: CartItem[], userData: UserDataProps) {
   const session = await auth();
-  
 
   if (!session) {
     return null;
@@ -70,7 +80,7 @@ export async function createOrder(cart: CartItem[], userData: any) {
       return console.log("Error: Product not found or not enough inventory");
     }
   }
-  
+
   let total = 0;
   const cartWithPrices = cart.map((item) => {
     const product = products.find((product) => product.id === item.id);
@@ -102,14 +112,13 @@ export async function createOrder(cart: CartItem[], userData: any) {
           data: cartWithPrices.map((item) => ({
             productId: item.id,
             quantity: item.quantity,
-            subTotal: item.subTotal,
+            subTotal: item.subTotal ?? 0,
           })),
         },
       },
     },
   });
 
-  //minska lagersaldo för produkterna
   const productOrderRows = await db.productOrder.findMany({
     where: {
       orderId: order.id,
@@ -154,9 +163,9 @@ export async function userOrders(userId: string) {
       products: {
         include: {
           product: true,
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   return orders;

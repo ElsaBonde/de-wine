@@ -13,11 +13,10 @@ import SnackbarProvider from "./ui/Snackbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
-/* Beskriv din hemsida för sökmotorerna */
 export const metadata: Metadata = {
-  title: "Wine O'Clock - Your Destination for Quality Wine Online",
+  title: "DiWine - Exclusive Wine Selections",
   description:
-    "Explore our exclusive selection of quality wines from the world's premier wine regions. Find your favorite products at an unbeatable price.",
+    "DiWine offers a wide selection of exclusive wines from around the world. We have a wine for every occasion. Order online and have your wine delivered to your door.",
 };
 
 export default function RootLayout({ children }: LayoutProps) {

@@ -1,6 +1,11 @@
-// SelectCategories.tsx
-
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { getCategories } from "../actions/categoryActions";
 
@@ -17,7 +22,7 @@ export default function SelectCategories(props: Props) {
     const fetchCategories = async () => {
       try {
         const fetchedCategories = await getCategories();
-        setCategories(fetchedCategories.map(category => category.title));
+        setCategories(fetchedCategories.map((category) => category.title));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -28,7 +33,7 @@ export default function SelectCategories(props: Props) {
     fetchCategories();
   }, []);
 
-  const handleCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleCategoryChange = (event: SelectChangeEvent<string[]>) => {
     props.onChange(event.target.value as string[]);
   };
 

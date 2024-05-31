@@ -74,9 +74,9 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 flexDirection: "column",
                 textAlign: "left",
                 padding: {
-                  xs: "10px 0px 10px 10px", // mindre för små skärmar
-                  sm: "10px 0px 20px 20px", // medium  för medelstora skärmar
-                  md: "10px 150px 20px 20px", // större för stora skärmar
+                  xs: "10px 0px 10px 10px",
+                  sm: "10px 0px 20px 20px", 
+                  md: "10px 150px 20px 20px", 
                 },
                 gap: "3px",
                 flex: 1,

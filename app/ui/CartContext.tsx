@@ -1,13 +1,17 @@
 "use client";
 
-import { CartItem, Product } from "@/data";
+import { Product } from "@prisma/client";
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
+interface CartItem extends Product {
+  quantity: number;
+}
 
 //Vad som skickas över kontexten
 interface ContextValue {
@@ -66,7 +70,7 @@ export default function CartContext(props: PropsWithChildren) {
     //om produkten inte finns i kundkorgen, lägg till den
     const updatedCart = [
       ...cart,
-      { ...product, quantity: 1, salePrice: product.salePrice}, //spara ner reapris i cart om de finns ett
+      { ...product, quantity: 1, salePrice: product.salesPrice }, //spara ner reapris i cart om de finns ett
     ];
     setCart(updatedCart);
     saveCartInLocalStorage(updatedCart);
@@ -91,8 +95,8 @@ export default function CartContext(props: PropsWithChildren) {
 
   const calculateTotalSalePrice = () => {
     return cart.reduce((total, item) => {
-      if (item.salePrice) {
-        return total + item.salePrice * item.quantity;
+      if (item.salesPrice) {
+        return total + item.salesPrice * item.quantity;
       } else {
         return total + item.price * item.quantity;
       }
@@ -140,10 +144,10 @@ export default function CartContext(props: PropsWithChildren) {
   };
 
   //rensar kundvagnen och ls från alla produkter
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCart([]);
     localStorage.removeItem("cart");
-  };
+  }, []);
 
   //Eventuellt lägger man uppdateringslogik här (incrament, decrament (add to cart, remove from cart))
   return (

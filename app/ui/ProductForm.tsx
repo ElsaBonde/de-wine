@@ -14,7 +14,6 @@ import {
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
-  onSave: (product: ProductCreate) => Promise<void>;
   defaultValues?: ProductCreate;
 }
 
@@ -35,7 +34,6 @@ export const ProductSchema = z.object({
 });
 
 export default function ProductForm({
-  onSave,
   defaultValues,
 }: ProductFormProps) {
   const router = useRouter();

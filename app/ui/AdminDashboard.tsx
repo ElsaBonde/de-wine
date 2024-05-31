@@ -16,7 +16,6 @@ export default function AdminDashboard() {
   const [ordersCount, setOrdersCount] = useState<number>(0);
   const [productsCount, setProductsCount] = useState<number>(0);
 
-  //david kan man göra detta på ett bättre sätt eller duger det?
   useEffect(() => {
     const fetchAndSetUserNumber = async () => {
       const userCount = await userNumber();

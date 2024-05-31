@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
@@ -6,8 +5,6 @@ import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
 export default async function Footer() {
-  const session = await auth();
-
   return (
     <>
       <Box

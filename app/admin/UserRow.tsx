@@ -11,6 +11,7 @@ interface Props {
   user: User;
 }
 
+
 export default function UserRow({ user }: Props) {
   const handleDelete = async (userId: string) => {
     await deleteUser(userId);
@@ -23,6 +24,8 @@ export default function UserRow({ user }: Props) {
     const updatedUser = {
       ...user,
       name,
+      userName: user.userName || "John Doe", 
+      image: user.image || "cute bild", 
     };
 
     await updateUser(updatedUser, newAccessLevel);

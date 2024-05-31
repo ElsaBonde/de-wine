@@ -1,46 +1,37 @@
 "use server";
 
+import { auth } from "@/auth";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { getCategoryIds } from "./categoryActions";
-import { auth } from "@/auth";
 
 export type Product = Prisma.ProductGetPayload<{
   include: { categories: true };
 }>;
 
+type ProductWithOutCategories = Prisma.ProductGetPayload<{}>;
+
 export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
+  categoryIds: string[];
 };
 
-export type CartItem = Product & {
+export type CartItem = ProductWithOutCategories & {
   quantity: number;
-  subTotal: number;
+  subTotal?: number;
 };
 
-export async function getProductById(slug: string) {
+export async function getProductById(
+  slug: string
+): Promise<Prisma.ProductGetPayload<{ include: { categories: true } }> | null> {
   const product = await db.product.findUnique({
     where: { id: slug },
     include: { categories: true },
   });
 
-  if (product) {
-    const categories = product.categories.map((category) => category.title);
-    const categoryIds = await getCategoryIds(categories);
-
-    const defaultValues: ProductCreate = {
-      ...product,
-      categories: categories,
-      categoryIds: categoryIds,
-    };
-
-    console.log("getproductbyid log", defaultValues);
-
-    return defaultValues;
-  }
-
-  return null;
+  return product;
+ 
 }
 
 export async function getProducts() {
@@ -53,7 +44,7 @@ export async function getProducts() {
 
 export async function createProduct(incomingData: ProductCreate) {
   const session = await auth();
- 
+
   if (!session || !session.user.isAdmin) {
     return null;
   }
@@ -103,7 +94,7 @@ export async function updateProduct(
   productData: ProductCreate
 ) {
   const session = await auth();
- 
+
   if (!session || !session.user.isAdmin) {
     return null;
   }

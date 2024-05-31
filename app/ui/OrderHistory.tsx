@@ -3,9 +3,15 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { OrdersWithProducts } from "../actions/orderActions";
 
-export default function OrderHistory({ orders }: any) {
+interface Props {
+  orders: OrdersWithProducts;
+}
+
+export default function OrderHistory({ orders }: Props) {
   const [openOrders, setOpenOrders] = useState<string[]>([]);
+  orders[0];
 
   const handleOrderClick = (orderId: string) => {
     setOpenOrders((prevOrders) => {
@@ -19,12 +25,12 @@ export default function OrderHistory({ orders }: any) {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      {orders.map((order: any) => (
+      {orders.map((order) => (
         <Box
           key={order.id}
           sx={{
             backgroundColor: "rgba(242, 239, 239, 0.8)",
-            border: "1px solid #d3cdcd",    
+            border: "1px solid #d3cdcd",
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
             padding: "20px",
@@ -37,14 +43,16 @@ export default function OrderHistory({ orders }: any) {
         >
           <Box
             sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                cursor: "pointer",
+              display: "flex",
+              justifyContent: "space-between",
+              cursor: "pointer",
             }}
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
-            <Typography sx={{fontSize: "23px", fontFamily: "josefin sans"}}>Order Overview</Typography>
+              <Typography sx={{ fontSize: "23px", fontFamily: "josefin sans" }}>
+                Order Overview
+              </Typography>
               <Typography
                 sx={{
                   fontFamily: "Karla",
@@ -108,14 +116,14 @@ export default function OrderHistory({ orders }: any) {
                 {order.city}, {order.zip}
               </Typography>
             </Box>
-            {order.products.map((product: any) => (
+            {order.products.map((product) => (
               <Box
                 key={product.product.id}
                 sx={{
                   display: "flex",
                   padding: "10px",
                   background: "#ffffff80",
-                border: "1px solid #d3cdcda7",
+                  border: "1px solid #d3cdcda7",
                   borderRadius: "6px",
                 }}
               >

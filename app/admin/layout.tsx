@@ -1,5 +1,3 @@
-
-
 import { Box } from "@mui/material";
 import { PropsWithChildren } from "react";
 import AdminDashboard from "../ui/AdminDashboard";
