@@ -1,8 +1,9 @@
 import { userOrders } from "@/app/actions/orderActions";
 import OrderHistory from "@/app/ui/OrderHistory";
 import SignOutButton from "@/app/ui/SignOutButton";
+
 import { auth } from "@/auth";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default async function UserProfilePage() {
@@ -15,10 +16,17 @@ export default async function UserProfilePage() {
     const ordersNotShipped = userOrder.filter((order) => !order.isShipped);
 
     return (
-      <Box component="main" sx={{ background: "white ", padding: "10px 20px", marginX: {xs: "0px", md: "100px"} }}>
+      <Box
+        component="main"
+        sx={{
+          background: "white ",
+          padding: "10px 20px",
+          marginX: { xs: "0px", md: "100px" },
+        }}
+      >
         <Box
           sx={{
-            backgroundColor: "#c9bcbc",
+            backgroundColor: "#1F1724",
             borderRadius: "0px 15px 15px 0px",
             display: "flex",
             padding: "20px",
@@ -65,27 +73,35 @@ export default async function UserProfilePage() {
             <SignOutButton />
           </Box>
         </Box>
-        <Divider>
-          <Typography
-            variant="h4"
-            sx={{
-              fontFamily: "Josefin sans",
-              textAlign: "center",
-              marginY: "15px",
-            }}
-          >
-            Your Orders:
-          </Typography>
-        </Divider>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            marginTop: "35px",
+          }}
+        >
           <Box>
-            <Typography sx={{ fontFamily: "Josefin sans" }}>
+            <Typography
+              sx={{
+                fontFamily: "Josefin sans",
+                fontSize: "22px",
+                fontWeight: "bold",
+                marginBottom: "20px",
+              }}
+            >
               Is being processed:
             </Typography>
             <OrderHistory orders={ordersNotShipped} />
           </Box>
-          <Box>
-            <Typography sx={{ fontFamily: "Josefin sans" }}>
+          <Box sx={{ marginTop: "35px" }}>
+            <Typography
+              sx={{
+                fontFamily: "Josefin sans",
+                fontSize: "22px",
+                fontWeight: "bold",
+              }}
+            >
               Has been shipped:
             </Typography>
             <OrderHistory orders={ordersShipped} />

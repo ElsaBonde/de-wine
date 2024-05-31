@@ -29,7 +29,15 @@ export default function OrderHistory({ orders }: Props) {
         <Box
           key={order.id}
           sx={{
-            backgroundColor: "rgba(242, 239, 239, 0.8)",
+            background: "white",
+            // borderRadius: "8px",
+            "&:hover": {
+              background: "#F6F6F6",
+              transform: "scale(1.02)",
+              transition: "transform 0.6s",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+            },
+
             border: "1px solid #d3cdcd",
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
@@ -39,6 +47,8 @@ export default function OrderHistory({ orders }: Props) {
             flexDirection: "column",
             gap: "20px",
             textDecoration: "none",
+            oxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+            marginBottom: "20px",
           }}
         >
           <Box
@@ -50,7 +60,13 @@ export default function OrderHistory({ orders }: Props) {
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
-              <Typography sx={{ fontSize: "23px", fontFamily: "josefin sans" }}>
+              <Typography
+                sx={{
+                  fontSize: "20px",
+                  fontFamily: "josefin sans",
+                  fontWeight: "bold",
+                }}
+              >
                 Order Overview
               </Typography>
               <Typography
@@ -101,7 +117,7 @@ export default function OrderHistory({ orders }: Props) {
                 sx={{
                   fontFamily: "Josefin sans",
                   fontSize: "18px",
-                  fontWeight: "500",
+                  fontWeight: "bold",
                 }}
               >
                 Your delivery details:
@@ -125,18 +141,19 @@ export default function OrderHistory({ orders }: Props) {
                   background: "#ffffff80",
                   border: "1px solid #d3cdcda7",
                   borderRadius: "6px",
+                  fontFamily: "Josefin Sans",
                 }}
               >
                 <Image
                   src={product.product.image}
                   alt={product.product.title}
-                  width={130}
-                  height={100}
+                  width={125}
+                  height={130}
                 />
                 <Box sx={{ paddingLeft: "20px" }}>
                   <Typography
                     sx={{
-                      fontFamily: "Karla",
+                      fontFamily: "Josefin Sans",
                       fontSize: "18px",
                       fontWeight: "500",
                     }}
