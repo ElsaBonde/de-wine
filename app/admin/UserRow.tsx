@@ -52,21 +52,21 @@ export default function UserRow({ user }: Props) {
           style={{ borderRadius: "50%" }}
         />
       </TableCell>
-      <TableCell>
+      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>
         {capitalizeFullName(user.name ? user.name : "John Doe")}
       </TableCell>
-      <TableCell>{user.email}</TableCell>
-      <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
-      <TableCell sx={{ textAlign: "right" }}>
+      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{user.email}</TableCell>
+      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{user.isAdmin ? "Admin" : "User"}</TableCell>
+      <TableCell sx={{ textAlign: "right", fontFamily: "Karla", fontSize: "16px" }}>
         <IconButton
           onClick={() => handleAccess(user)}
-          sx={{ color: "#c6c6c6", "&:hover": { color: "white" } }}
+          sx={{ color: "text.secondary", "&:hover": { color: "#1F1724" } }}
         >
           <ModeEditOutlineOutlinedIcon />
         </IconButton>
         <IconButton
           onClick={() => handleDelete(user.id)}
-          sx={{ color: "#c6c6c6", "&:hover": { color: "white" } }}
+          sx={{ color: "text.secondary", "&:hover": { color: "#1F1724" } }}
         >
           <DeleteIcon />
         </IconButton>

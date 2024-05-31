@@ -144,7 +144,7 @@ export default async function ProductPage({ params }: PageProps) {
               {product.description}
             </Typography>
             <Box>
-            <Typography sx={{ fontFamily: "josefin sans", fontStyle: "italic", marginTop: "15px", color: "#3d3d3dc3",}}>
+            <Typography sx={{ fontFamily: "josefin sans", fontStyle: "italic", marginTop: "15px", }}>
               Categories: {product.categories.map((category) => category.title).join(", ")}
               </Typography>
             <Divider sx={{ margin: "20px 0px" }} />
