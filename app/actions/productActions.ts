@@ -10,14 +10,16 @@ export type Product = Prisma.ProductGetPayload<{
   include: { categories: true };
 }>;
 
+type ProductWithOutCategories = Prisma.ProductGetPayload<{}>;
+
 export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
   categoryIds: string[];
 };
 
-export type CartItem = Product & {
+export type CartItem = ProductWithOutCategories & {
   quantity: number;
-  subTotal: number;
+  subTotal?: number;
 };
 
 export async function getProductById(

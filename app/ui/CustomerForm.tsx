@@ -104,7 +104,6 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 variant="standard"
                 {...form.register("name")}
               />
-              {/* Visa felmeddelanden om validering misslyckas */}
               {form.formState.errors.name && (
                 <Typography sx={{ color: "red" }}>
                   {form.formState.errors.name.message}

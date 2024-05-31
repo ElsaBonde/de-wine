@@ -42,7 +42,6 @@ export default async function ProductPage({ params }: PageProps) {
           gap: "20px",
         }}
       >
-        {/*  box för produktens bild */}
         <Box sx={{ width: { xs: "100%", md: "80%" }, overflow: "hidden" }}>
           <CardMedia
             component="img"
@@ -59,7 +58,7 @@ export default async function ProductPage({ params }: PageProps) {
           />
         </Box>
 
-        <Box /* box där informationen om produkten ligger */
+        <Box 
           component="div"
           sx={{
             width: "100%",
@@ -74,7 +73,6 @@ export default async function ProductPage({ params }: PageProps) {
           >
             <Box component="div">
               {" "}
-              {/* boxen där texten och sånt ligger */}
               <Typography variant="h4" sx={{ fontFamily: "josefin sans" }}>
                 {product.title}
               </Typography>

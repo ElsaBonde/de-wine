@@ -9,11 +9,10 @@ import CheckoutForm from "../ui/CustomerForm";
 export default function CheckoutPage() {
   const {
     cart,
-    calculateTotalPrice,
     calculateTotalSalePrice,
     decreaseQuantity,
     increaseQuantity,
-  } = useCart(); //hämtar alla funktioner som behövs här från contexten
+  } = useCart(); 
 
   if (cart.length === 0) {
     return (
@@ -98,37 +97,13 @@ export default function CheckoutPage() {
                   <Typography sx={{ fontFamily: "Josefin Sans" }}>
                     {item.title}
                   </Typography>
-
-                  {item.salesPrice ? (
-                    <>
-                      <Typography
-                        sx={{
-                          fontFamily: "Josefin Sans",
-                          color: "red",
-                        }}
-                      >
-                        Your Price: {item.salesPrice * item.quantity} $
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontFamily: "Josefin Sans",
-                          textDecoration: "line-through",
-                        }}
-                      >
-                        Old Price: {item.price * item.quantity} $
-                      </Typography>
-                    </>
-                  ) : (
-                    <Typography sx={{ fontFamily: "Josefin Sans" }}>
+                  <Typography sx={{ fontFamily: "Josefin Sans" }}>
                       Price: {item.price * item.quantity} $
                     </Typography>
-                  )}
-
                   <Box
                     sx={{
                       display: "flex",
-                      // alignItems: "center",
-                      // justifyContent: "center",
+
                       marginTop: "5px",
                     }}
                   >
@@ -141,7 +116,7 @@ export default function CheckoutPage() {
                         borderRadius: "50%",
                         width: "25px",
                         height: "25px",
-                        minWidth: "25px", // Ensures the button remains circular regardless of content
+                        minWidth: "25px", 
                         "&:hover": {
                           backgroundColor: "darkgrey",
                         },
@@ -167,7 +142,7 @@ export default function CheckoutPage() {
                         borderRadius: "50%",
                         width: "25px",
                         height: "25px",
-                        minWidth: "25px", // Ensures the button remains circular regardless of content
+                        minWidth: "25px",
                         "&:hover": {
                           backgroundColor: "darkgrey",
                         },
@@ -197,7 +172,7 @@ export default function CheckoutPage() {
               fontWeight: "bold",
             }}
           >
-            Your price: {calculateTotalSalePrice()} SEK
+            Your price: {calculateTotalSalePrice()}$
           </Box>
         </Card>
       </Box>

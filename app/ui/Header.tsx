@@ -69,7 +69,6 @@ export default async function Header() {
           }}
         >
           <AdminPanelSettingsGold/>
-          
         </Link>
       )}
           </>
