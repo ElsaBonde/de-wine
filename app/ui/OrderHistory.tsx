@@ -34,7 +34,7 @@ export default function OrderHistory({ orders }: Props) {
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
             padding: "20px",
-            color: "black",
+            color: "#1F1724",
             display: "flex",
             flexDirection: "column",
             gap: "20px",

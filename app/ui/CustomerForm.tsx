@@ -64,10 +64,8 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
           fontFamily: "Karla",
           fontWeight: "800",
           fontVariant: "small-caps",
-          marginX: "200px",
-          "@media (max-width:600px)": {
-            marginX: "0px",
-          },
+          marginX: { xs: "0px", md: "200px" },
+
         }}
       >
         Checkout information
@@ -80,7 +78,7 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
           background: "white",
           marginBottom: "40px",
           padding: "20px",
-          marginX: "200px",
+          marginX: { xs: "0px", md: "200px" },
           height: "auto",
           "@media (max-width:600px)": {
             marginX: "0px",

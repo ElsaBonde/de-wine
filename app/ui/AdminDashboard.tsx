@@ -47,26 +47,26 @@ export default function AdminDashboard() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: {xs: "column", sm: "row"},
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "space-between",
-          alignItems: {xs: "flex-start", sm: "center"},
+          alignItems: { xs: "flex-start", sm: "center" },
           marginTop: "20px",
-          gap: {xs: "20px", sm: "0px"},
+          gap: { xs: "20px", sm: "0px" },
         }}
       >
         <Box>
-        <Typography
-          variant="h4"
-          sx={{
-            color: "#1F1724",
-            fontFamily: "josefin sans",
-          }}
-        >
-          Dashboard
-        </Typography>
+          <Typography
+            variant="h4"
+            sx={{
+              color: "#1F1724",
+              fontFamily: "josefin sans",
+            }}
+          >
+            Dashboard
+          </Typography>
         </Box>
         <Box>
-        <AddProductCard />
+          <AddProductCard />
         </Box>
       </Box>
       <Grid
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "black",
+                color: "#1F1724",
                 borderRadius: "50%",
               }}
             />
@@ -134,7 +134,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "black",
+                color: "#1F1724",
                 borderRadius: "50%",
               }}
             />
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "black",
+                color: "#1F1724",
                 borderRadius: "50%",
               }}
             />

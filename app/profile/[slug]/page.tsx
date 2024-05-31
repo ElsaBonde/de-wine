@@ -15,7 +15,7 @@ export default async function UserProfilePage() {
     const ordersNotShipped = userOrder.filter((order) => !order.isShipped);
 
     return (
-      <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
+      <Box component="main" sx={{ background: "white ", padding: "10px 20px", marginX: {xs: "0px", md: "100px"} }}>
         <Box
           sx={{
             backgroundColor: "#c9bcbc",

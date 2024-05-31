@@ -19,7 +19,7 @@ export default async function StartPage() {
   const activeProducts = products.filter((product) => !product.isArchived);
 
   return (
-    <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
+    <Box component="main" sx={{ background: "white ", padding: "10px 20px", marginX: {xs: "0px", md: "100px"}, }}>
       <CategoriesCards />
 
       <Typography
@@ -42,7 +42,7 @@ export default async function StartPage() {
               href={`/product/${product.id}`}
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "#1F1724",
               }}
             >
               <CardActionArea
@@ -88,7 +88,7 @@ export default async function StartPage() {
                           color="text.secondary"
                           sx={{
                             fontFamily: "josefin sans",
-                            color: "black",
+                            color: "#1F1724",
                             marginBottom: "10px",
                           }}
                         >
