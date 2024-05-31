@@ -40,6 +40,7 @@ export default async function ProductPage({ params }: PageProps) {
             md: "row",
           },
           gap: "20px",
+          marginX: { xs: "0px", md: "100px" },
         }}
       >
         <Box sx={{ width: { xs: "100%", md: "80%" }, overflow: "hidden" }}>
@@ -58,7 +59,7 @@ export default async function ProductPage({ params }: PageProps) {
           />
         </Box>
 
-        <Box 
+        <Box
           component="div"
           sx={{
             width: "100%",
@@ -80,7 +81,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <Typography
                   sx={{
                     fontFamily: "josefin sans",
-                    color: "black",
+                    color: "#1F1724",
                     marginBottom: "10px",
                     fontSize: "22px",
                   }}
@@ -91,10 +92,7 @@ export default async function ProductPage({ params }: PageProps) {
             </Box>
           </Box>
           <Box>
-            <AddButton
-              product={product}
-              isProductPage={true}
-            />
+            <AddButton product={product} isProductPage={true} />
             <Box
               sx={{
                 display: "flex",
@@ -150,12 +148,11 @@ export default async function ProductPage({ params }: PageProps) {
           </Box>
         </Box>
       </Box>
-      <Box sx={{padding: "10px 20px"}}>
-      <Divider/>
+      <Box sx={{ padding: "10px 20px", marginX: { xs: "0px", md: "100px" } }}>
+        <Divider />
       </Box>
-      <Box
-      >
-        <RandomProducts currentProductId={product.id as string}/>
+      <Box sx={{ marginX: { xs: "0px", md: "100px" } }}>
+        <RandomProducts currentProductId={product.id as string} />
       </Box>
     </>
   );

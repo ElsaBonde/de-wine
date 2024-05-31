@@ -7,12 +7,8 @@ import { useCart } from "../ui/CartContext";
 import CheckoutForm from "../ui/CustomerForm";
 
 export default function CheckoutPage() {
-  const {
-    cart,
-    calculateTotalSalePrice,
-    decreaseQuantity,
-    increaseQuantity,
-  } = useCart(); 
+  const { cart, calculateTotalSalePrice, decreaseQuantity, increaseQuantity } =
+    useCart();
 
   if (cart.length === 0) {
     return (
@@ -40,25 +36,23 @@ export default function CheckoutPage() {
         padding: "10px 20px",
         flex: 1,
         marginTop: "40px",
+        marginX: { xs: "0px", md: "100px" },
       }}
     >
-      <Typography
-        variant="h5"
-        gutterBottom
-        justifyContent={"center"}
-        sx={{
-          fontFamily: "Karla",
-          fontWeight: "800",
-          fontVariant: "small-caps",
-          marginX: "200px",
-          "@media (max-width:600px)": {
-            marginX: "0px",
-          },
-        }}
-      >
-        Your wine order
-      </Typography>
       <Box>
+        <Typography
+          variant="h5"
+          gutterBottom
+          justifyContent={"center"}
+          sx={{
+            fontFamily: "Karla",
+            fontWeight: "800",
+            fontVariant: "small-caps",
+            marginX: { xs: "0px", md: "200px" },
+          }}
+        >
+          Your wine order
+        </Typography>
         <Card
           sx={{
             display: "flex",
@@ -67,11 +61,8 @@ export default function CheckoutPage() {
             background: "white",
             marginBottom: "40px",
             padding: "20px",
-            marginX: "200px",
             height: "auto",
-            "@media (max-width:600px)": {
-              marginX: "0px",
-            },
+            marginX: { xs: "0px", md: "200px" },
           }}
         >
           {cart.map((item, index) => (
@@ -98,8 +89,8 @@ export default function CheckoutPage() {
                     {item.title}
                   </Typography>
                   <Typography sx={{ fontFamily: "Josefin Sans" }}>
-                      Price: {item.price * item.quantity} $
-                    </Typography>
+                    Price: {item.price * item.quantity} $
+                  </Typography>
                   <Box
                     sx={{
                       display: "flex",
@@ -112,11 +103,11 @@ export default function CheckoutPage() {
                         color: "white",
                         fontSize: "20px",
                         fontFamily: "Josefin Sans",
-                        backgroundColor: "black",
+                        backgroundColor: "#1F1724",
                         borderRadius: "50%",
                         width: "25px",
                         height: "25px",
-                        minWidth: "25px", 
+                        minWidth: "25px",
                         "&:hover": {
                           backgroundColor: "darkgrey",
                         },
@@ -138,7 +129,7 @@ export default function CheckoutPage() {
                         color: "white",
                         fontSize: "20px",
                         fontFamily: "Josefin Sans",
-                        backgroundColor: "black",
+                        backgroundColor: "#1F1724",
                         borderRadius: "50%",
                         width: "25px",
                         height: "25px",
@@ -165,7 +156,7 @@ export default function CheckoutPage() {
           ))}
           <Box
             sx={{
-              color: "black",
+              color: "#1F1724",
               padding: "5px",
               fontFamily: "Josefin Sans",
               textAlign: "left",

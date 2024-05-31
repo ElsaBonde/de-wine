@@ -25,38 +25,26 @@ export default async function ConfirmationPage({ params }: PageProps) {
     <Box
       component="main"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        background: "white",
+        background: "white ",
         padding: "10px 20px",
         flex: 1,
-        marginTop: "40px",
-        margin: "auto",
+        marginTop: "40px", marginX: {xs: "0px", md: "100px"},
       }}
     >
-      {/* Thank you for your purchase section */}
       <Box
+      >
+       <Typography
+        variant="h5"
+        gutterBottom
+        justifyContent={"center"}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          background: "white",
-          marginBottom: "40px",
-          width: "100%",
+          fontFamily: "Karla",
+          fontWeight: "800",
+          fontVariant: "small-caps",
+          marginX: { xs: "0px", md: "200px" },
+          
         }}
       >
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: "center",
-            marginTop: "30px",
-            color: "darkpurple",
-            fontVariant: "small-caps",
-            fontFamily: "Karla",
-            fontWeight: "800",
-            marginBottom: "20px",
-          }}
-        >
           Thank you for your purchase!
         </Typography>
         <Box
@@ -65,6 +53,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
             alignItems: "stretch",
+            marginX: { xs: "0px", md: "200px" },
           }}
         >
           {order && (
@@ -73,41 +62,37 @@ export default async function ConfirmationPage({ params }: PageProps) {
                 display: "flex",
                 flexDirection: "column",
                 textAlign: "left",
-                padding: {
-                  xs: "10px 0px 10px 10px",
-                  sm: "10px 0px 20px 20px", 
-                  md: "10px 150px 20px 20px", 
-                },
-                gap: "3px",
-                flex: 1,
                 width: "100%",
+                gap: "3px",
+                marginBottom: "40px",
+                padding: "20px",
               }}
             >
               <Typography
-                variant="h5"
-                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "20px"}}>
+                
+                sx={{ fontFamily: "Karla", marginTop: "10px" , marginBottom: "20px", fontSize: "23px"}}>
                 Your Shipping Information:
               </Typography>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography sx={{ fontWeight: "bold" }}>Order number: </Typography>
+            <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>Order number: </Typography>
             <Typography component="span" sx={{ fontFamily: "Karla" , marginLeft: 1}}>{order.id}</Typography>
               </Box>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Name: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.name}</Typography>
+              <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>
+                Name: <Typography component="span" sx={{ fontFamily: "Karla"}}>{order.name}</Typography>
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>
                 Email: <Typography component="span" sx={{ fontFamily: "Karla" }}>{session?.user?.email}</Typography>
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>
                 Phone number: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.phone}</Typography>
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>
                 Address: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.street}</Typography>
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>
                 Zip code: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.zip}</Typography>
               </Typography>
-              <Typography sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold" , fontFamily: "Karla"}}>
                 City: <Typography component="span" sx={{ fontFamily: "Karla" }}>{order.city}</Typography>
               </Typography>
             </Card>
@@ -115,41 +100,35 @@ export default async function ConfirmationPage({ params }: PageProps) {
         </Box>
       </Box>
 
-      {/* Order information  */}
       <Typography
         variant="h5"
         gutterBottom
+        justifyContent={"center"}
         sx={{
           fontFamily: "Karla",
           fontWeight: "800",
           fontVariant: "small-caps",
-          textAlign: "left",
-          color: "darkpurple",
+          marginX: { xs: "0px", md: "200px" },
+          
         }}
       >
         Your wine order
       </Typography>
-      <Box
+      <Card
         sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "stretch",
-          width: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          background: "white",
+          marginBottom: "40px",
+          padding: "20px",
+          marginX: { xs: "0px", md: "200px" },
+          height: "auto",
+          "@media (max-width:600px)": {
+            marginX: "0px",
+          },
         }}
       >
-        <Card
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            background: "white",
-            marginBottom: "45px",
-            padding: "20px",
-            flex: 1,
-            maxWidth: "100%",
-            // width: "80vh",
-          }}
-        >
           {rows.map((item, index) => (
             <Box key={item.product.id} sx={{ width: "100%" }}>
               <Box sx={{ display: "flex" }}>
@@ -186,18 +165,17 @@ export default async function ConfirmationPage({ params }: PageProps) {
           ))}
           <Box
             sx={{
-              color: "black",
+              color: "#1F1724",
               padding: "5px",
               fontFamily: "Karla",
               textAlign: "center",
               width: "100%",
+              fontWeight: "bold",
             }}
           >
-            TOTAL: {order.total} $
+            Total: {order.total}$
           </Box>
         </Card>
-      </Box>
-
       <ClearCart />
     </Box>
   );

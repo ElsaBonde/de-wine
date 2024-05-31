@@ -34,7 +34,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const activeProducts = products.filter((product) => !product.isArchived);
 
   return (
-    <Box sx={{ padding: "10px 20px" }}>
+    <Box sx={{ padding: "10px 20px", marginX: { xs: "0px", md: "100px" } }}>
       <VideoCategory category={category} />
       <Divider>
         <Typography
@@ -56,7 +56,7 @@ export default async function CategoryPage({ params }: PageProps) {
               href={`/product/${product.id}`}
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "#1F1724",
               }}
             >
               <CardActionArea
@@ -103,7 +103,7 @@ export default async function CategoryPage({ params }: PageProps) {
                           color="text.secondary"
                           sx={{
                             fontFamily: "josefin sans",
-                            color: "black",
+                            color: "#1F1724",
                             marginBottom: "10px",
                           }}
                         >
@@ -112,7 +112,7 @@ export default async function CategoryPage({ params }: PageProps) {
                       </Box>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} isProductPage={false}/>
+                      <AddButton product={product} isProductPage={false} />
                     </CardActions>
                   </Box>
                   <Typography
