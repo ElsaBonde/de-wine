@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth";
 import { db } from "@/prisma/db";
-import { Prisma, User } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { CartItem } from "./productActions";
 
@@ -168,5 +168,6 @@ export async function userOrders(userId: string) {
     },
   });
 
+  revalidatePath("/profile");
   return orders;
 }
