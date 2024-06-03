@@ -68,13 +68,25 @@ export default async function UserProfilePage() {
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <Box>
-            <Typography sx={{ fontFamily: "Josefin sans", fontSize: "24px" }}>
+            <Typography
+              sx={{
+                fontFamily: "Josefin sans",
+                fontSize: "24px",
+                marginTop: "40px",
+              }}
+            >
               Is being processed:
             </Typography>
             <OrderHistory orders={ordersNotShipped} />
           </Box>
           <Box>
-            <Typography sx={{ fontFamily: "Josefin sans", fontSize: "24px" }}>
+            <Typography
+              sx={{
+                fontFamily: "Josefin sans",
+                fontSize: "24px",
+                marginTop: "20px",
+              }}
+            >
               Has been shipped:
             </Typography>
             <OrderHistory orders={ordersShipped} />
