@@ -23,7 +23,7 @@ export default function OrderHistory({ orders }: any) {
         <Box
           key={order.id}
           sx={{
-            backgroundColor: "rgba(242, 239, 239, 0.8)",
+            backgroundColor: "white",
             border: "1px solid #d3cdcd",
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
@@ -33,10 +33,6 @@ export default function OrderHistory({ orders }: any) {
             flexDirection: "column",
             gap: "20px",
             textDecoration: "none",
-            "&:hover": {
-              transform: "scale(1.02)",
-              transition: "transform 0.6s",
-            },
           }}
         >
           <Box
@@ -89,7 +85,7 @@ export default function OrderHistory({ orders }: any) {
           >
             <Box
               sx={{
-                background: "#ffffff80",
+                background: "rgba(242, 239, 239, 0.8)",
                 border: "1px solid #d3cdcda7",
                 padding: "20px",
                 borderRadius: "6px",
@@ -120,7 +116,7 @@ export default function OrderHistory({ orders }: any) {
                 sx={{
                   display: "flex",
                   padding: "10px",
-                  background: "#ffffff80",
+                  background: "rgba(242, 239, 239, 0.8)",
                   border: "1px solid #d3cdcda7",
                   borderRadius: "6px",
                 }}
