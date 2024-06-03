@@ -1,9 +1,12 @@
 "use client";
+
 import LogoutIcon from "@mui/icons-material/Logout";
+import { signOut } from "next-auth/react";
 import { MouseEventHandler } from "react";
 
 export default function SignOutButton() {
-  const LogoutIconGold = (props: { onClick?: MouseEventHandler }) => (
+  const LogoutOutlineIconGold = (props: { onClick?: MouseEventHandler }) => (
+
     <>
       <svg width={0} height={0}>
         <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
@@ -24,8 +27,8 @@ export default function SignOutButton() {
   );
 
   return (
-    <>
-      <LogoutIconGold />
-    </>
+
+    <LogoutOutlineIconGold onClick={() => signOut({ callbackUrl: "/" })} />
+
   );
 }

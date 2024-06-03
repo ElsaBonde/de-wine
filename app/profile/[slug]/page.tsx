@@ -3,6 +3,10 @@ import OrderHistory from "@/app/ui/OrderHistory";
 import SignOutButton from "@/app/ui/SignOutButton";
 
 import { auth } from "@/auth";
+
+import "@fontsource/josefin-sans";
+import "@fontsource/karla";
+
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -58,11 +62,19 @@ export default async function UserProfilePage() {
                 color: "white",
                 fontSize: "26px",
                 paddingBottom: "10px",
+                fontFamily: "Josefin sans",
               }}
             >
               Welcome to you personal space, {session.user.name}!
             </Typography>
-            <Typography sx={{ fontSize: "16px", color: "white", width: "80%" }}>
+            <Typography
+              sx={{
+                fontSize: "16px",
+                color: "white",
+                width: "80%",
+                fontFamily: "Karla",
+              }}
+            >
               Over here you can explore your personal hub for all things
               wine-related! Here, you can track your order history, check the
               status of your deliveries, and discover the delightful contents of
@@ -73,6 +85,7 @@ export default async function UserProfilePage() {
             <SignOutButton />
           </Box>
         </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -85,8 +98,9 @@ export default async function UserProfilePage() {
             <Typography
               sx={{
                 fontFamily: "Josefin sans",
+
                 fontSize: "22px",
-                fontWeight: "bold",
+
                 marginBottom: "20px",
               }}
             >
@@ -94,12 +108,12 @@ export default async function UserProfilePage() {
             </Typography>
             <OrderHistory orders={ordersNotShipped} />
           </Box>
+
           <Box sx={{ marginTop: "35px" }}>
             <Typography
               sx={{
                 fontFamily: "Josefin sans",
                 fontSize: "22px",
-                fontWeight: "bold",
               }}
             >
               Has been shipped:

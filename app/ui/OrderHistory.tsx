@@ -1,5 +1,7 @@
 "use client";
 
+import "@fontsource/josefin-sans";
+import "@fontsource/karla";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
@@ -69,15 +71,7 @@ export default function OrderHistory({ orders }: Props) {
               >
                 Order Overview
               </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Karla",
-                  fontSize: "18px",
-                  fontWeight: "500",
-                }}
-              >
-                {order.id}
-              </Typography>
+
               <Typography sx={{ fontFamily: "Karla", color: "#796e6e" }}>
                 Order Date: {order.orderDate.toLocaleDateString()}
               </Typography>
@@ -107,7 +101,7 @@ export default function OrderHistory({ orders }: Props) {
           >
             <Box
               sx={{
-                background: "#ffffff80",
+                background: "rgba(242, 239, 239, 0.8)",
                 border: "1px solid #d3cdcda7",
                 padding: "20px",
                 borderRadius: "6px",
@@ -138,7 +132,9 @@ export default function OrderHistory({ orders }: Props) {
                 sx={{
                   display: "flex",
                   padding: "10px",
-                  background: "#ffffff80",
+
+                  background: "rgba(242, 239, 239, 0.8)",
+
                   border: "1px solid #d3cdcda7",
                   borderRadius: "6px",
                   fontFamily: "Josefin Sans",
@@ -147,7 +143,7 @@ export default function OrderHistory({ orders }: Props) {
                 <Image
                   src={product.product.image}
                   alt={product.product.title}
-                  width={125}
+                  width={130}
                   height={130}
                 />
                 <Box sx={{ paddingLeft: "20px" }}>
