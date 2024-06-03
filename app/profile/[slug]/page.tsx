@@ -4,6 +4,7 @@ import SignOutButton from "@/app/ui/SignOutButton";
 import { auth } from "@/auth";
 import "@fontsource/josefin-sans";
 import "@fontsource/karla";
+
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
