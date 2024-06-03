@@ -1,5 +1,7 @@
 "use client";
 
+import "@fontsource/josefin-sans";
+import "@fontsource/karla";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
@@ -49,9 +51,9 @@ export default function OrderHistory({ orders }: any) {
               </Typography>
               <Typography
                 sx={{
-                  fontFamily: "Karla",
                   fontSize: "18px",
                   fontWeight: "500",
+                  fontFamily: "Karla",
                 }}
               >
                 {order.id}

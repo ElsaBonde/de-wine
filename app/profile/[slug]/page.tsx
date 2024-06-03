@@ -2,6 +2,7 @@ import { userOrders } from "@/app/actions/orderActions";
 import OrderHistory from "@/app/ui/OrderHistory";
 import SignOutButton from "@/app/ui/SignOutButton";
 import { auth } from "@/auth";
+import "@fontsource/josefin-sans";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
