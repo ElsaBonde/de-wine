@@ -46,7 +46,13 @@ export default function OrderHistory({ orders }: any) {
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
-              <Typography sx={{ fontSize: "23px", fontFamily: "josefin sans" }}>
+              <Typography
+                sx={{
+                  fontSize: "20px",
+                  fontFamily: "josefin sans",
+                  fontWeight: "bold",
+                }}
+              >
                 Order Overview
               </Typography>
               <Typography
@@ -97,7 +103,7 @@ export default function OrderHistory({ orders }: any) {
                 sx={{
                   fontFamily: "Josefin sans",
                   fontSize: "18px",
-                  fontWeight: "500",
+                  fontWeight: "bold",
                 }}
               >
                 Your delivery details:
