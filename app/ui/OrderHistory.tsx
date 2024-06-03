@@ -24,7 +24,7 @@ export default function OrderHistory({ orders }: any) {
           key={order.id}
           sx={{
             backgroundColor: "rgba(242, 239, 239, 0.8)",
-            border: "1px solid #d3cdcd",    
+            border: "1px solid #d3cdcd",
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
             padding: "20px",
@@ -37,14 +37,16 @@ export default function OrderHistory({ orders }: any) {
         >
           <Box
             sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                cursor: "pointer",
+              display: "flex",
+              justifyContent: "space-between",
+              cursor: "pointer",
             }}
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
-            <Typography sx={{fontSize: "23px", fontFamily: "josefin sans"}}>Order Overview</Typography>
+              <Typography sx={{ fontSize: "23px", fontFamily: "josefin sans" }}>
+                Order Overview
+              </Typography>
               <Typography
                 sx={{
                   fontFamily: "Karla",
@@ -115,7 +117,7 @@ export default function OrderHistory({ orders }: any) {
                   display: "flex",
                   padding: "10px",
                   background: "#ffffff80",
-                border: "1px solid #d3cdcda7",
+                  border: "1px solid #d3cdcda7",
                   borderRadius: "6px",
                 }}
               >
@@ -123,7 +125,7 @@ export default function OrderHistory({ orders }: any) {
                   src={product.product.image}
                   alt={product.product.title}
                   width={130}
-                  height={100}
+                  height={130}
                 />
                 <Box sx={{ paddingLeft: "20px" }}>
                   <Typography
