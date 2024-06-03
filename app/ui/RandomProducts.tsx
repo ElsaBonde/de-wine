@@ -48,15 +48,22 @@ export default function RandomProducts({ currentProductId }: Props) {
         {randomProducts.map((product) => (
           <Grid item xs={12} sm={6} md={3} key={product.id}>
             <CardActionArea>
-              <CardMedia
-                component="img"
-                image={product.image}
-                alt={product.title}
-                sx={{
-                  objectFit: "cover",
-                  height: "auto",
-                }}
-              />
+              ¨
+              <Box sx={{ overflow: "hidden" }}>
+                <CardMedia
+                  component="img"
+                  image={product.image}
+                  alt={product.title}
+                  sx={{
+                    objectFit: "cover",
+                    height: "auto",
+                    transition: "transform 0.8s",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              </Box>
               <CardContent
                 sx={{
                   display: "flex",

@@ -15,18 +15,26 @@ export default function OrderRow({order}: Props) {
 
   return (
     <TableRow>
-      <TableCell>{order.id}</TableCell>
-      <TableCell>{order.orderDate.toLocaleDateString()}</TableCell>
-      <TableCell>{order.total}</TableCell>
+      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{order.id}</TableCell>
+      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{order.orderDate.toLocaleDateString()}</TableCell>
+      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{order.total}</TableCell>
       <TableCell>
         {order.isShipped ? (
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography sx={{ minWidth: "65px" }}>Shipped</Typography>
-            <Checkbox defaultChecked onClick={() => handleShipped(order.id)} />
+            <Typography sx={{ minWidth: "65px", fontFamily: "Karla", fontSize: "16px" }}>Shipped</Typography>
+            <Checkbox defaultChecked onClick={() => handleShipped(order.id)} sx={{
+                      color: "#757575",
+                      "&.Mui-checked": {
+                        color: "#424242",
+                      },
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 24,
+                      },
+                    }}/>
           </Box>
         ) : (
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography sx={{ minWidth: "65px" }}>Progress</Typography>
+            <Typography sx={{ minWidth: "65px", fontFamily: "Karla", fontSize: "16px"}}>Progress</Typography>
             <Checkbox onClick={() => handleShipped(order.id)} />
           </Box>
         )}
