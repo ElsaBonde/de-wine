@@ -72,16 +72,6 @@ export default function OrderHistory({ orders }: Props) {
                 Order Overview
               </Typography>
 
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  fontFamily: "josefin sans",
-                  fontWeight: "bold",
-                }}
-              >
-                Order Overview
-              </Typography>
-
               <Typography sx={{ fontFamily: "Karla", color: "#796e6e" }}>
                 Order Date: {order.orderDate.toLocaleDateString()}
               </Typography>
