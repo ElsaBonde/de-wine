@@ -31,7 +31,6 @@ export default function OrderHistory({ orders }: Props) {
         <Box
           key={order.id}
           sx={{
-
             background: "white",
             // borderRadius: "8px",
             "&:hover": {
@@ -40,7 +39,6 @@ export default function OrderHistory({ orders }: Props) {
               transition: "transform 0.6s",
               boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
             },
-
 
             border: "1px solid #d3cdcd",
             fontSize: "20px",
@@ -64,7 +62,6 @@ export default function OrderHistory({ orders }: Props) {
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
-
               <Typography
                 sx={{
                   fontSize: "20px",
@@ -84,15 +81,7 @@ export default function OrderHistory({ orders }: Props) {
               >
                 Order Overview
               </Typography>
-              <Typography
-                sx={{
-                  fontSize: "18px",
-                  fontWeight: "500",
-                  fontFamily: "Karla",
-                }}
-              >
-                {order.id}
-              </Typography>
+
               <Typography sx={{ fontFamily: "Karla", color: "#796e6e" }}>
                 Order Date: {order.orderDate.toLocaleDateString()}
               </Typography>
@@ -164,9 +153,7 @@ export default function OrderHistory({ orders }: Props) {
                 <Image
                   src={product.product.image}
                   alt={product.product.title}
-
                   width={130}
-
                   height={130}
                 />
                 <Box sx={{ paddingLeft: "20px" }}>

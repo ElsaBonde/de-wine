@@ -7,7 +7,6 @@ import { auth } from "@/auth";
 import "@fontsource/josefin-sans";
 import "@fontsource/karla";
 
-
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -101,7 +100,7 @@ export default async function UserProfilePage() {
                 fontFamily: "Josefin sans",
 
                 fontSize: "22px",
-                fontWeight: "bold",
+
                 marginBottom: "20px",
               }}
             >
@@ -115,8 +114,6 @@ export default async function UserProfilePage() {
               sx={{
                 fontFamily: "Josefin sans",
                 fontSize: "22px",
-                fontWeight: "bold",
-
               }}
             >
               Has been shipped:
