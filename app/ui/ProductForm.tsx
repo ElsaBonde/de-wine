@@ -14,7 +14,6 @@ import {
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
-  onSave: (product: ProductCreate) => Promise<void>;
   defaultValues?: ProductCreate;
 }
 
@@ -35,7 +34,6 @@ export const ProductSchema = z.object({
 });
 
 export default function ProductForm({
-  onSave,
   defaultValues,
 }: ProductFormProps) {
   const router = useRouter();
@@ -149,11 +147,15 @@ export default function ProductForm({
         <Button
           type="submit"
           sx={{
-            backgroundColor: "rgba(242, 239, 239, 0.8) ",
-            color: "white",
+            minWidth: "80px",
+            color: "#d2d0d0",
+        backgroundColor: "#1F1724",
             marginTop: "10px",
             fontWeight: "bold",
             justifyContent: "center",
+            "&:hover": {
+              backgroundColor: "#36283E",
+            },
           }}
         >
           Save

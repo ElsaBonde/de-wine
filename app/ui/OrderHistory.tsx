@@ -5,9 +5,15 @@ import "@fontsource/karla";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { OrdersWithProducts } from "../actions/orderActions";
 
-export default function OrderHistory({ orders }: any) {
+interface Props {
+  orders: OrdersWithProducts;
+}
+
+export default function OrderHistory({ orders }: Props) {
   const [openOrders, setOpenOrders] = useState<string[]>([]);
+  orders[0];
 
   const handleOrderClick = (orderId: string) => {
     setOpenOrders((prevOrders) => {
@@ -21,20 +27,32 @@ export default function OrderHistory({ orders }: any) {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      {orders.map((order: any) => (
+      {orders.map((order) => (
         <Box
           key={order.id}
           sx={{
-            backgroundColor: "white",
+
+            background: "white",
+            // borderRadius: "8px",
+            "&:hover": {
+              background: "#F6F6F6",
+              transform: "scale(1.02)",
+              transition: "transform 0.6s",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+            },
+
+
             border: "1px solid #d3cdcd",
             fontSize: "20px",
             borderRadius: "0px 15px 15px 0px",
             padding: "20px",
-            color: "black",
+            color: "#1F1724",
             display: "flex",
             flexDirection: "column",
             gap: "20px",
             textDecoration: "none",
+            oxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+            marginBottom: "20px",
           }}
         >
           <Box
@@ -46,6 +64,17 @@ export default function OrderHistory({ orders }: any) {
             onClick={() => handleOrderClick(order.id)}
           >
             <Box>
+
+              <Typography
+                sx={{
+                  fontSize: "20px",
+                  fontFamily: "josefin sans",
+                  fontWeight: "bold",
+                }}
+              >
+                Order Overview
+              </Typography>
+
               <Typography
                 sx={{
                   fontSize: "20px",
@@ -118,27 +147,32 @@ export default function OrderHistory({ orders }: any) {
                 {order.city}, {order.zip}
               </Typography>
             </Box>
-            {order.products.map((product: any) => (
+            {order.products.map((product) => (
               <Box
                 key={product.product.id}
                 sx={{
                   display: "flex",
                   padding: "10px",
+
                   background: "rgba(242, 239, 239, 0.8)",
+
                   border: "1px solid #d3cdcda7",
                   borderRadius: "6px",
+                  fontFamily: "Josefin Sans",
                 }}
               >
                 <Image
                   src={product.product.image}
                   alt={product.product.title}
+
                   width={130}
+
                   height={130}
                 />
                 <Box sx={{ paddingLeft: "20px" }}>
                   <Typography
                     sx={{
-                      fontFamily: "Karla",
+                      fontFamily: "Josefin Sans",
                       fontSize: "18px",
                       fontWeight: "500",
                     }}

@@ -5,6 +5,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getCategories } from "../actions/categoryActions";
@@ -32,9 +33,7 @@ export default function FormCategories() {
     fetchCategories();
   }, []);
 
-  const handleCategoriesChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
+  const handleCategoriesChange = (event: SelectChangeEvent<string[]>) => {
     setSelectedCategories(event.target.value as string[]);
   };
 

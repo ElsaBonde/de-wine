@@ -3,6 +3,7 @@ import {
   getProductsByCategory,
 } from "@/app/actions/categoryActions";
 import AddButton from "@/app/ui/AddButton";
+import VideoCategory from "@/app/ui/VideoCategory";
 import {
   Box,
   CardActionArea,
@@ -31,9 +32,10 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const products = await getProductsByCategory(category.id);
   const activeProducts = products.filter((product) => !product.isArchived);
-  
+
   return (
-    <>
+    <Box sx={{ padding: "10px 20px", marginX: { xs: "0px", md: "100px" } }}>
+      <VideoCategory category={category} />
       <Divider>
         <Typography
           variant="h4"
@@ -51,10 +53,10 @@ export default async function CategoryPage({ params }: PageProps) {
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Link
               component={NextLink}
-              href={`/products/${product.id}`}
+              href={`/product/${product.id}`}
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "#1F1724",
               }}
             >
               <CardActionArea
@@ -101,16 +103,16 @@ export default async function CategoryPage({ params }: PageProps) {
                           color="text.secondary"
                           sx={{
                             fontFamily: "josefin sans",
-                            color: "black",
+                            color: "#1F1724",
                             marginBottom: "10px",
                           }}
                         >
-                          {product.price.toString()} 
+                          {product.price.toString()}
                         </Typography>
                       </Box>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} />
+                      <AddButton product={product} isProductPage={false} />
                     </CardActions>
                   </Box>
                   <Typography
@@ -126,6 +128,6 @@ export default async function CategoryPage({ params }: PageProps) {
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
   );
 }

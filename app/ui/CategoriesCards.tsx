@@ -51,6 +51,7 @@ export default function CategoriesCards() {
             fontFamily: "Josefin sans",
             textAlign: "center",
             marginY: "15px",
+            color: "#1F1724",
           }}
         >
           Select by category:
@@ -68,8 +69,11 @@ export default function CategoriesCards() {
                 sx={{
                   borderRadius: "30px",
                   overflow: "hidden",
-                  height: "400px",
-                  width: hoveringCard === category.id ? "400px" : "250px",
+                  height: {xs: "100px", md: "400px"},
+                  width: {
+                    xs: "400px", 
+                    md: hoveringCard === category.id ? "400px" : "250px" 
+                  },
                   transition: " 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                   position: "relative",
                 }}
@@ -87,13 +91,13 @@ export default function CategoriesCards() {
                 />
                 <CardContent
                   sx={{
-                    background: hoveringCard === category.id ? "transparent" : "rgba(0, 0, 0, 0.4)",
+                    background: {xs: "transparent", md: hoveringCard === category.id ? "transparent" : "rgba(0, 0, 0, 0.4)"},
                     padding: "16px",
                     position: "absolute",
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    color: hoveringCard === category.id ? "white" : "transparent",
+                    color: {xs: "white", md: hoveringCard === category.id ? "white" : "transparent" } ,
                     transition: "color 0.45s, background 0.45s",
                     display: "flex",
                     flexDirection: "column",

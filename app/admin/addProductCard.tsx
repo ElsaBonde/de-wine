@@ -9,8 +9,8 @@ import {
 
 export default function AddProductCard() {
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={12} sm={12} md={4} sx={{ marginTop: "20px" }}>
+
+      <Grid item>
         <Link
           href="/admin/products/new"
           color="text.secondary"
@@ -18,13 +18,8 @@ export default function AddProductCard() {
         >
           <CardActionArea
             sx={{
-              background: "#1F1724",
-              borderRadius: "8px",
-              padding: "10px",
-              display: "flex",
-              flexDirection: "column",
+              background: "#1F1724",             
               alignItems: "center",
-              gap: "10px",
               position: "relative",
             }}
           >
@@ -79,12 +74,12 @@ export default function AddProductCard() {
                 variant="h5"
                 sx={{ color: "white", fontFamily: "josefin sans" }}
               >
-                Add New Product
+                New Product
               </Typography>
             </CardContent>
           </CardActionArea>
         </Link>
       </Grid>
-    </Grid>
+
   );
 }

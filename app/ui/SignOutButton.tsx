@@ -6,6 +6,7 @@ import { MouseEventHandler } from "react";
 
 export default function SignOutButton() {
   const LogoutOutlineIconGold = (props: { onClick?: MouseEventHandler }) => (
+
     <>
       <svg width={0} height={0}>
         <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
@@ -26,6 +27,8 @@ export default function SignOutButton() {
   );
 
   return (
+
     <LogoutOutlineIconGold onClick={() => signOut({ callbackUrl: "/" })} />
+
   );
 }

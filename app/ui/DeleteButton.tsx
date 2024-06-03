@@ -16,7 +16,6 @@ interface ArchiveButtonProps {
   onArchive: (productId: string) => void;
 }
 
-// beteende för att ta bort en produkt, öppnar en dialogruta för att bekräfta arkivering
 export default function ArchiveButton({
   product,
   onArchive,
@@ -33,7 +32,7 @@ export default function ArchiveButton({
       <IconButton
         sx={{
           color: "text.secondary",
-          "&:hover": { color: "white", backgroundColor: "white" },
+          "&:hover": { color: "#1F1724", backgroundColor: "transparent" },
         }}
         onClick={() => setOpen(true)}
       >

@@ -5,7 +5,6 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Divider,
   Grid,
   Link,
   Typography,
@@ -20,20 +19,21 @@ export default async function StartPage() {
   const activeProducts = products.filter((product) => !product.isArchived);
 
   return (
-    <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
+    <Box component="main" sx={{ background: "white ", padding: "10px 20px", marginX: {xs: "0px", md: "100px"}, }}>
       <CategoriesCards />
-      <Divider>
-        <Typography
-          variant="h4"
-          sx={{
-            fontFamily: "Josefin sans",
-            textAlign: "center",
-            marginY: "15px",
-          }}
-        >
-          Our wine boxes:
-        </Typography>
-      </Divider>
+
+      <Typography
+        variant="h5"
+        sx={{
+          fontFamily: "Josefin sans",
+          marginTop: "25px",
+          marginBottom: "10px",
+          color: "#1F1724",
+        }}
+      >
+        Our selection of wines:
+      </Typography>
+
       <Grid container spacing={4}>
         {activeProducts.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
@@ -42,7 +42,7 @@ export default async function StartPage() {
               href={`/product/${product.id}`}
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "#1F1724",
               }}
             >
               <CardActionArea
@@ -77,7 +77,6 @@ export default async function StartPage() {
                         component="div"
                         sx={{
                           fontFamily: "josefin sans",
-                          "&:hover": { color: "white" },
                         }}
                       >
                         {product.title}
@@ -89,8 +88,8 @@ export default async function StartPage() {
                           color="text.secondary"
                           sx={{
                             fontFamily: "josefin sans",
-                            color: "black",
-                            marginBottom: "10px", 
+                            color: "#1F1724",
+                            marginBottom: "10px",
                           }}
                         >
                           {product.price.toString()} $
@@ -98,7 +97,7 @@ export default async function StartPage() {
                       </Box>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} />
+                      <AddButton product={product} isProductPage={false}/>
                     </CardActions>
                   </Box>
                   <Typography

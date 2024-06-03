@@ -9,13 +9,13 @@ import { useEffect, useState } from "react";
 import { orderNumber } from "../actions/orderActions";
 import { getProducts } from "../actions/productActions";
 import { userNumber } from "../actions/userActions";
+import AddProductCard from "../admin/addProductCard";
 
 export default function AdminDashboard() {
   const [usersCount, setUsersCount] = useState<number>(0);
   const [ordersCount, setOrdersCount] = useState<number>(0);
   const [productsCount, setProductsCount] = useState<number>(0);
 
-  //david kan man göra detta på ett bättre sätt eller duger det?
   useEffect(() => {
     const fetchAndSetUserNumber = async () => {
       const userCount = await userNumber();
@@ -44,12 +44,31 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        sx={{ color: "#1F1724", fontFamily: "josefin sans", marginTop: "30px" }}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "space-between",
+          alignItems: { xs: "flex-start", sm: "center" },
+          marginTop: "20px",
+          gap: { xs: "20px", sm: "0px" },
+        }}
       >
-        Dashboard
-      </Typography>
+        <Box>
+          <Typography
+            variant="h4"
+            sx={{
+              color: "#1F1724",
+              fontFamily: "josefin sans",
+            }}
+          >
+            Dashboard
+          </Typography>
+        </Box>
+        <Box>
+          <AddProductCard />
+        </Box>
+      </Box>
       <Grid
         container
         spacing={4}
@@ -79,7 +98,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "black",
+                color: "#1F1724",
                 borderRadius: "50%",
               }}
             />
@@ -115,7 +134,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "black",
+                color: "#1F1724",
                 borderRadius: "50%",
               }}
             />
@@ -151,7 +170,7 @@ export default function AdminDashboard() {
                 fontSize: "60px",
                 background:
                   "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-                color: "black",
+                color: "#1F1724",
                 borderRadius: "50%",
               }}
             />

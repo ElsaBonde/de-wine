@@ -1,8 +1,7 @@
 import { getProducts } from "@/app/actions/productActions";
-import { Grid } from "@mui/material";
-import ProductRow from "../ProductRow";
-import AddProductCard from "../addProductCard";
+import { Divider, Grid } from "@mui/material";
 import { PropsWithChildren } from "react";
+import ProductRow from "../ProductRow";
 
 export default async function ProductsPage(props: PropsWithChildren) {
   const products = await getProducts();
@@ -13,7 +12,7 @@ export default async function ProductsPage(props: PropsWithChildren) {
 
   return (
     <>
-      <AddProductCard />
+      <Divider sx={{marginTop: "35px"}} />
       <Grid container spacing={4} sx={{ marginTop: "0px" }}>
         {products.map((product) => (
           <ProductRow key={product.id} product={product} />

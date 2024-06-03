@@ -8,13 +8,17 @@ export default function SignInButton() {
   const pathname = usePathname();
 
   return (
-      <PersonOutlineIconGold
-        onClick={() => signIn(undefined, { callbackUrl: pathname })}
-      />
+    <PersonOutlineIconGold
+      onClick={() => signIn(undefined, { callbackUrl: pathname })}
+    />
   );
 }
 
-const PersonOutlineIconGold = (props: IconProps) => (
+interface Props {
+  onClick: () => void;
+}
+
+const PersonOutlineIconGold = (props: Props) => (
   <>
     <svg width={0} height={0}>
       <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
@@ -22,6 +26,14 @@ const PersonOutlineIconGold = (props: IconProps) => (
         <stop offset={1} stopColor="#F7EF8A" />
       </linearGradient>
     </svg>
-    <PersonOutlineIcon onClick={props.onClick} sx={{ fill: "url(#linearColors)", width: "33px", height: "33px", cursor: "pointer" }} />
+    <PersonOutlineIcon
+      onClick={props.onClick}
+      sx={{
+        fill: "url(#linearColors)",
+        width: "33px",
+        height: "33px",
+        cursor: "pointer",
+      }}
+    />
   </>
-)
+);

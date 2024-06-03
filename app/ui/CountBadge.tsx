@@ -8,7 +8,6 @@ import { useCart } from "./CartContext";
 
 //skriver ut antalet items i kundkorgen
 export default function CountBadge() {
-
   const ShoppingCartGold = () => (
     <>
       <svg width={0} height={0}>
@@ -17,9 +16,11 @@ export default function CountBadge() {
           <stop offset={1} stopColor="#F7EF8A" />
         </linearGradient>
       </svg>
-      <ShoppingCart sx={{ fill: "url(#linearColors)", width: "33px", height: "33px" }} />
+      <ShoppingCart
+        sx={{ fill: "url(#linearColors)", width: "33px", height: "33px" }}
+      />
     </>
-  )
+  );
 
   const { cart } = useCart();
   const [totalQuantity, setTotalQuantity] = useState(0);
@@ -39,14 +40,13 @@ export default function CountBadge() {
             //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
               backgroundColor: "#c6c6c6",
-              color: "black",
+              color: "#1F1724",
               fontSize: "15px",
               fontWeight: "bold",
             },
           }}
         >
-          <ShoppingCartGold
-          />
+          <ShoppingCartGold />
         </Badge>
       </Link>
     </Stack>
