@@ -3,6 +3,7 @@ import OrderHistory from "@/app/ui/OrderHistory";
 import SignOutButton from "@/app/ui/SignOutButton";
 import { auth } from "@/auth";
 import "@fontsource/josefin-sans";
+import "@fontsource/karla";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -19,7 +20,7 @@ export default async function UserProfilePage() {
       <Box component="main" sx={{ background: "white ", padding: "10px 20px" }}>
         <Box
           sx={{
-            backgroundColor: "#c9bcbc",
+            backgroundColor: "#1F1724",
             borderRadius: "0px 15px 15px 0px",
             display: "flex",
             padding: "20px",
@@ -51,11 +52,19 @@ export default async function UserProfilePage() {
                 color: "white",
                 fontSize: "26px",
                 paddingBottom: "10px",
+                fontFamily: "Josefin sans",
               }}
             >
               Welcome to you personal space, {session.user.name}!
             </Typography>
-            <Typography sx={{ fontSize: "16px", color: "white", width: "80%" }}>
+            <Typography
+              sx={{
+                fontSize: "16px",
+                color: "white",
+                width: "80%",
+                fontFamily: "Karla",
+              }}
+            >
               Over here you can explore your personal hub for all things
               wine-related! Here, you can track your order history, check the
               status of your deliveries, and discover the delightful contents of
