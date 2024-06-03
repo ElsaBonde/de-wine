@@ -33,6 +33,10 @@ export default function OrderHistory({ orders }: any) {
             flexDirection: "column",
             gap: "20px",
             textDecoration: "none",
+            "&:hover": {
+              transform: "scale(1.02)",
+              transition: "transform 0.6s",
+            },
           }}
         >
           <Box

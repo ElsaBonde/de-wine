@@ -2,7 +2,7 @@ import { userOrders } from "@/app/actions/orderActions";
 import OrderHistory from "@/app/ui/OrderHistory";
 import SignOutButton from "@/app/ui/SignOutButton";
 import { auth } from "@/auth";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default async function UserProfilePage() {
@@ -65,18 +65,6 @@ export default async function UserProfilePage() {
             <SignOutButton />
           </Box>
         </Box>
-        <Divider>
-          <Typography
-            variant="h4"
-            sx={{
-              fontFamily: "Josefin sans",
-              textAlign: "center",
-              marginY: "15px",
-            }}
-          >
-            Your Orders:
-          </Typography>
-        </Divider>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <Box>
             <Typography sx={{ fontFamily: "Josefin sans" }}>
