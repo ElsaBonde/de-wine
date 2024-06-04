@@ -36,15 +36,25 @@ export default function CountBadge() {
       <Link href="/checkout">
         <Badge
           badgeContent={totalQuantity > 0 ? totalQuantity : null}
+          overlap="circular"
           sx={{
-            //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
               background:
                 "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
-              border: "1px solid #1F1724 ",
+              border: "1px solid #1F1724",
               color: "#1F1724",
               fontSize: "15px",
               fontWeight: "bold",
+              width: "20px",
+              height: "20px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxSizing: "border-box",
+              top: "10%",
+              right: "-5%",
+              transform: "translate(50%, -50%)",
             },
           }}
         >
