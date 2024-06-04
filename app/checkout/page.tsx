@@ -22,7 +22,7 @@ export default function CheckoutPage() {
           }}
         >
           {" "}
-          cart is empty..
+          Cart is empty..
         </Typography>
       </>
     );

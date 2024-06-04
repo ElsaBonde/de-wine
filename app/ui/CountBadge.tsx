@@ -39,7 +39,9 @@ export default function CountBadge() {
           sx={{
             //sätter styling endast för badgen med numret
             "& .MuiBadge-badge": {
-              backgroundColor: "#c6c6c6",
+              background:
+                "linear-gradient(to right, #AE8625, #F7EF8A, #D2AC47, #EDC967)",
+              border: "1px solid #1F1724 ",
               color: "#1F1724",
               fontSize: "15px",
               fontWeight: "bold",
