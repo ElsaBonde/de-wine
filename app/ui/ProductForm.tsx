@@ -10,7 +10,7 @@ import { createProduct, updateProduct } from "../actions/productActions";
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
-  defaultValues?: ProductCreate;
+  defaultValues?: any;
 }
 
 export const ProductSchema = z.object({
@@ -30,7 +30,7 @@ export const ProductSchema = z.object({
 
 type OriginalProductCreate = z.infer<typeof ProductSchema>;
 type ProductCreate = OriginalProductCreate & {
-  categoryId: string;
+  categoryId: string[];
 };
 
 export default function ProductForm({ defaultValues }: ProductFormProps) {
@@ -52,14 +52,14 @@ export default function ProductForm({ defaultValues }: ProductFormProps) {
 
   const { register, formState, handleSubmit } = form;
 
-  const onSubmit = async (formData: ProductCreate) => {
+  const onSubmit = async (formData: any) => {
     const combinedData = {
       ...formData,
       categories: selectedCategories,
     };
     try {
       if (defaultValues) {
-        await updateProduct(defaultValues.categoryId, combinedData);
+        await updateProduct(defaultValues.id, combinedData);
       } else {
         await createProduct(combinedData);
       }
@@ -162,4 +162,3 @@ export default function ProductForm({ defaultValues }: ProductFormProps) {
     </Grid>
   );
 }
-

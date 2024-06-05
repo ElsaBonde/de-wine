@@ -1,4 +1,9 @@
 "use client";
+import { archiveProduct } from "@/app/actions/productActions";
+import ArchiveButton from "@/app/ui/DeleteButton";
+import "@fontsource/karla";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
   Box,
@@ -7,20 +12,15 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Grid,
   Link,
   Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions
 } from "@mui/material";
 import { Product } from "@prisma/client";
-import { archiveProduct } from "@/app/actions/productActions";
-import ArchiveButton from "@/app/ui/DeleteButton";
-import "@fontsource/karla";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 interface Props {
   product: Product;
@@ -66,7 +66,7 @@ export default function ProductRow({ product, open, onOpen, onClose }: Props) {
               textAlign: "center",
               color: "white",
               backgroundColor: "#1F1724",
-              fontFamily: "Karla"
+              fontFamily: "Karla",
             }}
           >
             ARCHIVED
@@ -90,8 +90,8 @@ export default function ProductRow({ product, open, onOpen, onClose }: Props) {
               >
                 {product.title}
               </Typography>
-              <Typography sx={{ fontFamily: 'Karla' }}>Product Id:</Typography>
-              <Typography sx={{ fontFamily: 'Karla' }}>{product.id}</Typography>
+              <Typography sx={{ fontFamily: "Karla" }}>Product Id:</Typography>
+              <Typography sx={{ fontFamily: "Karla" }}>{product.id}</Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
@@ -115,7 +115,8 @@ export default function ProductRow({ product, open, onOpen, onClose }: Props) {
             <ModeEditOutlineOutlinedIcon
               sx={{
                 color: "text.secondary",
-                "&:hover": { color: "#1F1724" }, fontFamily: "Karla" 
+                "&:hover": { color: "#1F1724" },
+                fontFamily: "Karla",
               }}
             />
           </Link>
@@ -123,38 +124,52 @@ export default function ProductRow({ product, open, onOpen, onClose }: Props) {
             onClick={onOpen}
             sx={{
               color: "text.secondary",
-              "&:hover": { color: "#1F1724" }, fontFamily: "Karla" 
+              "&:hover": { color: "#1F1724" },
+              fontFamily: "Karla",
             }}
           />
-          <Dialog
-            open={open}
-            onClose={onClose}
-          >
-            <DialogContent sx={{ fontFamily: 'Karla' }}>
+          <Dialog open={open} onClose={onClose}>
+            <DialogContent sx={{ fontFamily: "Karla" }}>
               <img
                 src={product.image}
                 style={{
-                  width: '200px',
-                  padding: '10px',
-                  borderRadius: '15px',
+                  width: "200px",
+                  padding: "10px",
+                  borderRadius: "15px",
                 }}
               />
-              <DialogTitle sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>{"Produktinformation"}</DialogTitle>
+              <DialogTitle sx={{ fontWeight: "bold", fontFamily: "Karla" }}>
+                {"Produktinformation"}
+              </DialogTitle>
               <DialogContent>
-                <Typography sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>
-                  Produkt-ID: <Typography component="span" sx={{ fontFamily: "Karla" }}>{product.id}</Typography>
+                <Typography sx={{ fontWeight: "bold", fontFamily: "Karla" }}>
+                  Produkt-ID:{" "}
+                  <Typography component="span" sx={{ fontFamily: "Karla" }}>
+                    {product.id}
+                  </Typography>
                 </Typography>
-                <Typography sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>
-                  Produktpris: <Typography component="span" sx={{ fontFamily: "Karla" }}>{product.price} $</Typography>
+                <Typography sx={{ fontWeight: "bold", fontFamily: "Karla" }}>
+                  Produktpris:{" "}
+                  <Typography component="span" sx={{ fontFamily: "Karla" }}>
+                    {product.price} $
+                  </Typography>
                 </Typography>
-                <Typography sx={{ fontWeight: 'bold', fontFamily: 'Karla' }}>
-                  Produktbeskrivning: <Typography component="span" sx={{ fontFamily: "Karla" }}>{product.description}</Typography>
+                <Typography sx={{ fontWeight: "bold", fontFamily: "Karla" }}>
+                  Produktbeskrivning:{" "}
+                  <Typography component="span" sx={{ fontFamily: "Karla" }}>
+                    {product.description}
+                  </Typography>
                 </Typography>
               </DialogContent>
               <DialogActions>
-                <ExpandLessIcon onClick={onClose} 
-                sx={{color: "text.secondary", 
-                "&:hover": { color: "#1F1724" }, fontFamily: "Karla"}}/>
+                <ExpandLessIcon
+                  onClick={onClose}
+                  sx={{
+                    color: "text.secondary",
+                    "&:hover": { color: "#1F1724" },
+                    fontFamily: "Karla",
+                  }}
+                />
               </DialogActions>
             </DialogContent>
           </Dialog>
