@@ -1,14 +1,12 @@
 import { getProducts } from "@/app/actions/productActions";
 import { Divider, Grid } from "@mui/material";
-import { PropsWithChildren } from "react";
-import ProductRow from "../ProductRow";
-import ProductList from "../ProductList";
 import { Product } from "@prisma/client";
+import { PropsWithChildren } from "react";
+import ProductList from "../ProductList";
 
 interface ProductListProps {
-  products: Product[]; 
+  products: Product[];
 }
-
 
 export default async function ProductsPage(props: PropsWithChildren) {
   const products = await getProducts();
@@ -19,11 +17,9 @@ export default async function ProductsPage(props: PropsWithChildren) {
 
   return (
     <>
-      <Divider sx={{marginTop: "35px"}} />
+      <Divider sx={{ marginTop: "35px" }} />
       <Grid container spacing={4} sx={{ marginTop: "0px" }}>
-        {products.map((product) => (
-        <ProductList key={products[0].id} products={products} />
-      ))}
+        <ProductList products={products} />
       </Grid>
       {props.children}
     </>
