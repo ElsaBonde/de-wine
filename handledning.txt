@@ -28,3 +28,5 @@ VILLKOR FÖR FRONTEND:
 isAdmin? 
 isArchived?
 isLoggedIn/session
+
+dgdgdgdhd
