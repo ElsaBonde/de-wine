@@ -10,7 +10,7 @@ import { createProduct, updateProduct } from "../actions/productActions";
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
-  defaultValues?: any;
+  defaultValues?: ProductCreate;
 }
 
 export const ProductSchema = z.object({
@@ -25,12 +25,14 @@ export const ProductSchema = z.object({
     .min(1, { message: "Please enter the amount of products in stock." }),
   categories: z
     .array(z.string())
-    .min(1, { message: "Please select at least one category." }),
+    .min(1, { message: "Please select at least one category." })
+    .optional(),
 });
 
 type OriginalProductCreate = z.infer<typeof ProductSchema>;
 type ProductCreate = OriginalProductCreate & {
-  categoryId: string[];
+  categoryIds: string[];
+  id: string;
 };
 
 export default function ProductForm({ defaultValues }: ProductFormProps) {
