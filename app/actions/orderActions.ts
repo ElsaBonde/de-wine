@@ -139,7 +139,7 @@ export async function createOrder(cart: CartItem[], userData: UserDataProps) {
       });
     }
   }
-
+  revalidatePath("/profile");
   return order;
 }
 
