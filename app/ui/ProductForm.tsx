@@ -6,11 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  ProductCreate,
-  createProduct,
-  updateProduct,
-} from "../actions/productActions";
+import { createProduct, updateProduct } from "../actions/productActions";
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
@@ -29,13 +25,15 @@ export const ProductSchema = z.object({
     .min(1, { message: "Please enter the amount of products in stock." }),
   categories: z
     .array(z.string())
-    .min(1, { message: "Please select at least one category." })
-    .optional(),
+    .min(1, { message: "Please select at least one category." }),
 });
 
-export default function ProductForm({
-  defaultValues,
-}: ProductFormProps) {
+type OriginalProductCreate = z.infer<typeof ProductSchema>;
+type ProductCreate = OriginalProductCreate & {
+  categoryId: string;
+};
+
+export default function ProductForm({ defaultValues }: ProductFormProps) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
@@ -61,7 +59,7 @@ export default function ProductForm({
     };
     try {
       if (defaultValues) {
-        await updateProduct(defaultValues.id, combinedData);
+        await updateProduct(defaultValues.categoryId, combinedData);
       } else {
         await createProduct(combinedData);
       }
@@ -149,7 +147,7 @@ export default function ProductForm({
           sx={{
             minWidth: "80px",
             color: "#d2d0d0",
-        backgroundColor: "#1F1724",
+            backgroundColor: "#1F1724",
             marginTop: "10px",
             fontWeight: "bold",
             justifyContent: "center",
@@ -164,3 +162,4 @@ export default function ProductForm({
     </Grid>
   );
 }
+
