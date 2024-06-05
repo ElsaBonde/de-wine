@@ -1,7 +1,7 @@
 import { getCategoryIds } from "@/app/actions/categoryActions";
-import { ProductCreate, getProductById } from "@/app/actions/productActions";
+import { getProductById } from "@/app/actions/productActions";
 import EditProductModal from "@/app/ui/Modal";
-import ProductForm from "@/app/ui/ProductForm";
+import ProductForm, { ProductCreate } from "@/app/ui/ProductForm";
 import { Box } from "@mui/material";
 
 type PageProps = { params: { slug: string } };

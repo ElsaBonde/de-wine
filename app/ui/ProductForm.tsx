@@ -30,7 +30,7 @@ export const ProductSchema = z.object({
 });
 
 type OriginalProductCreate = z.infer<typeof ProductSchema>;
-type ProductCreate = OriginalProductCreate & {
+export type ProductCreate = OriginalProductCreate & {
   categoryIds: string[];
   id: string;
 };
