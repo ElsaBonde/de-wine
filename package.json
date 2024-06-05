@@ -15,7 +15,7 @@
     "studio": "prisma studio",
     "seed": "prisma db seed",
     "types": "tsc --noEmit",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate --accelerate"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed/seed.ts"

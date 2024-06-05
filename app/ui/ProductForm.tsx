@@ -6,11 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  ProductCreate,
-  createProduct,
-  updateProduct,
-} from "../actions/productActions";
+import { createProduct, updateProduct } from "../actions/productActions";
 import SelectCategories from "./SelectCategories";
 
 interface ProductFormProps {
@@ -33,9 +29,13 @@ export const ProductSchema = z.object({
     .optional(),
 });
 
-export default function ProductForm({
-  defaultValues,
-}: ProductFormProps) {
+type OriginalProductCreate = z.infer<typeof ProductSchema>;
+type ProductCreate = OriginalProductCreate & {
+  categoryIds: string[];
+  id: string;
+};
+
+export default function ProductForm({ defaultValues }: ProductFormProps) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
@@ -54,7 +54,7 @@ export default function ProductForm({
 
   const { register, formState, handleSubmit } = form;
 
-  const onSubmit = async (formData: ProductCreate) => {
+  const onSubmit = async (formData: any) => {
     const combinedData = {
       ...formData,
       categories: selectedCategories,
@@ -149,7 +149,7 @@ export default function ProductForm({
           sx={{
             minWidth: "80px",
             color: "#d2d0d0",
-        backgroundColor: "#1F1724",
+            backgroundColor: "#1F1724",
             marginTop: "10px",
             fontWeight: "bold",
             justifyContent: "center",
