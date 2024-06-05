@@ -21,8 +21,12 @@ export default function AddButton(props: Props) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    addToCart(props.product);
-    showSnack(props.product.title + " has been added to your cart.");
+    if (props.product.inventory < 1) {
+      showSnack(props.product.title + " is out of stock.");
+    } else {
+      showSnack(props.product.title + " has been added to your cart.");
+      addToCart(props.product);
+    }
   };
 
   return (
