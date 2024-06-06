@@ -6,11 +6,12 @@ export async function mockProductsAndCategories(db: PrismaClient) {
     update: {},
     create: {
       id: "clw7ucvey00000cjnfcml6bd4",
-      title: "The best wine",
-      description: "abc",
-      price: 293,
-      image: "https://i.ibb.co/Z8mGht4/redWine.jpg",
-      inventory: 1,
+      title: "Bohemian Bliss",
+      description:
+        "Embark on a journey of Bohemian Bliss with our artistic wine trio, all from the same renowned brand. This collection features two whimsically labeled white wines, each exuding a free-spirited charm and vibrant personality. Embrace the eclectic fusion of flavors and aromas as you sip on these enchanting whites. Completing this bohemian ensemble is a rich and soulful red wine, wrapped in an equally captivating label that speaks to the heart of the bohemian ethos. Whether you're dancing under the stars or lounging in a cozy corner, our Bohemian Bliss trio promises a sensory adventure like no other. Embrace the unconventional and elevate your wine experience with this enchanting trio today.",
+      price: 100,
+      image: "https://ibb.co/XtWz4tS",
+      inventory: 50,
       categories: {
         create: [
           {
@@ -45,11 +46,12 @@ export async function mockProductsAndCategories(db: PrismaClient) {
     update: {},
     create: {
       id: "clw7ucvey00000cjnfcml6bd5",
-      title: "The second best wine",
-      description: "funka",
-      price: 288,
-      image: "https://i.ibb.co/LRpW3QX/redWine2.jpg",
-      inventory: 5,
+      title: "Citrus Delight",
+      description:
+        "Indulge in a delightful wine experience with our Citrus Delight package. This exclusive selection features three exquisite white wines, each carefully chosen to tantalize your taste buds. Highlighting this collection is a refreshing lemon-infused wine that adds a zesty twist to your sipping pleasure. Whether you're hosting a gathering or simply unwinding after a long day, our Citrus Delight package promises a journey of flavor and sophistication. Elevate your wine moments with this refreshing trio today.",
+      price: 79,
+      image: "https://ibb.co/CW8wykH",
+      inventory: 50,
       categories: {
         connect: {
           id: white.id,
@@ -101,18 +103,20 @@ export async function mockProductsAndCategories(db: PrismaClient) {
       products: {
         create: [
           {
-            title: "Popping Champagne",
-            description: "jkl",
-            price: 83763,
-            image: "https://i.ibb.co/rM4bJJy/wine4.jpg",
-            inventory: 9,
+            title: "Sparkling gold",
+            description:
+              "Welcome to Bubble Bliss, where every moment transforms into a magical celebration! Immerse yourself in a sea of shimmering bubbles, dazzling light displays, and an atmosphere filled with joy and laughter. Perfect for all occasions - from children's parties and weddings to corporate events and private gatherings. Let Bubble Bliss turn your event into an unforgettable adventure with our innovative bubble machines, professional performers, and customized decor. Create memories that last forever with Bubble Bliss!",
+            price: 69,
+            image: "https://ibb.co/8jHDYsw",
+            inventory: 40,
           },
           {
-            title: "Super Champis",
-            description: "mno",
-            price: 10000,
-            image: "https://i.ibb.co/rM4bJJy/wine4.jpg",
-            inventory: 1,
+            title: "Effervescent Elegance",
+            description:
+              "Savor the sophistication of our exclusive trio of sparkling wines. Crafted from the finest grapes, each bottle offers a symphony of delicate bubbles and exquisite flavors. Perfect for celebrating life's special moments, elevate your gatherings with this luxurious trio of bubblies.",
+            price: 119,
+            image: "https://ibb.co/VJHdRvB",
+            inventory: 50,
           },
         ],
       },
