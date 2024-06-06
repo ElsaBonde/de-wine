@@ -14,12 +14,15 @@ interface Props {
 
 export default function AddButton(props: Props) {
   //skapar en variabel som vi kan använda för att uppdatera antalet items i kundkorgen samt en variabel för att visa en snackbar
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
   const { showSnack } = useSnackbar();
 
   //ökar antalet items i kundkorgen, lägger till dem i LS och visar snackbaren
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    const productsInCart = cart.filter(
+      (product) => product.id === props.product.id
+    );
 
     if (props.product.inventory < 1) {
       showSnack(props.product.title + " is out of stock.");
