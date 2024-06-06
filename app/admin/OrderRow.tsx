@@ -20,8 +20,9 @@ export default function OrderRow({ order }: Props) {
         sx={{
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
-            md: "16px",
+            xs: "12px",
+            md: "14px",
+            lg: "16px",
           },
         }}
       >
@@ -31,8 +32,9 @@ export default function OrderRow({ order }: Props) {
         sx={{
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
-            md: "16px",
+            xs: "12px",
+            md: "14px",
+            lg: "16px",
           },
         }}
       >
@@ -42,8 +44,9 @@ export default function OrderRow({ order }: Props) {
         sx={{
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
-            md: "16px",
+            xs: "12px",
+            md: "14px",
+            lg: "16px",
           },
         }}
       >
@@ -57,8 +60,9 @@ export default function OrderRow({ order }: Props) {
                 minWidth: "65px",
                 fontFamily: "Karla",
                 fontSize: {
-                  xs: "10px",
-                  md: "16px",
+                  xs: "12px",
+                  md: "14px",
+                  lg: "16px",
                 },
               }}
             >
@@ -85,8 +89,9 @@ export default function OrderRow({ order }: Props) {
                 minWidth: "65px",
                 fontFamily: "Karla",
                 fontSize: {
-                  xs: "10px",
-                  md: "16px",
+                  xs: "12px",
+                  md: "14px",
+                  lg: "16px",
                 },
               }}
             >

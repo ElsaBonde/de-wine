@@ -55,8 +55,9 @@ export default function UserRow({ user }: Props) {
         sx={{
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
-            md: "16px",
+            xs: "12px",
+            md: "14px",
+            lg: "16px",
           },
         }}
       >
@@ -66,8 +67,9 @@ export default function UserRow({ user }: Props) {
         sx={{
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
-            md: "16px",
+            xs: "12px",
+            md: "14px",
+            lg: "16px",
           },
         }}
       >
@@ -77,8 +79,9 @@ export default function UserRow({ user }: Props) {
         sx={{
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
-            md: "16px",
+            xs: "12px",
+            md: "14px",
+            lg: "16px",
           },
         }}
       >
@@ -89,7 +92,7 @@ export default function UserRow({ user }: Props) {
           textAlign: "right",
           fontFamily: "Karla",
           fontSize: {
-            xs: "10px",
+            xs: "12px",
             md: "16px",
           },
         }}
