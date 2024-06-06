@@ -15,7 +15,7 @@ type ProductWithOutCategories = Prisma.ProductGetPayload<{}>;
 export type ProductCreate = Prisma.ProductCreateInput & {
   categories: string[];
   categoryIds: string[];
-};
+}; //TS Killer Deluxe
 
 export type CartItem = ProductWithOutCategories & {
   quantity: number;
