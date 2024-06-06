@@ -8,7 +8,14 @@ interface Props {
 export default function SignInPage({ searchParams }: Props) {
   return (
     <>
-      <Box component="div" sx={{ display: "flex", height: "100%" }}>
+      <Box
+        component="div"
+        sx={{
+          display: "flex",
+          height: "100%",
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
         <Box
           component="div"
           sx={{
