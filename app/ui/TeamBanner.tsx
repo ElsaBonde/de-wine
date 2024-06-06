@@ -44,7 +44,7 @@ const ProfileBox = styled(Box)({
 const StyledAvatar = styled(Avatar)({
   maxWidth: "100%",
   borderRadius: "50%",
-  border: "5px solid #f7f7f7",
+  border: "3px solid #1f1724",
   filter: "drop-shadow(-20px 0 10px rgba(0, 0, 0, 0.1))",
   cursor: "pointer",
   marginLeft: "-20px",
@@ -109,7 +109,7 @@ export default function TeamBanner() {
               <StyledAvatar
                 src={member.src}
                 alt={member.name}
-                sx={{ width: 150, height: 150 }}
+                sx={{ width: 200, height: 200 }}
               />
               <Name className="name">{member.name}</Name>
             </ProfileBox>
