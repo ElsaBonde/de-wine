@@ -4,9 +4,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { MouseEventHandler } from "react";
 import CountBadge from "./CountBadge";
 import SignInButton from "./SignInButton";
-import { MouseEventHandler } from "react";
 
 export default async function Header() {
   const session = await auth();
@@ -18,7 +18,7 @@ export default async function Header() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        background: "#1F1724",
+        background: "#1f1724",
         padding: "10px 20px",
         position: "relative",
       }}
@@ -59,21 +59,20 @@ export default async function Header() {
               <PersonOutlineIconGold />
             </Link>
             {session?.user.isAdmin && (
-        <Link
-          href="/admin/products"
-          style={{
-            textDecoration: "none",
-            color: "#c6c6c6",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <AdminPanelSettingsGold/>
-        </Link>
-      )}
+              <Link
+                href="/admin/products"
+                style={{
+                  textDecoration: "none",
+                  color: "#c6c6c6",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <AdminPanelSettingsGold />
+              </Link>
+            )}
           </>
-        ) 
-        : (
+        ) : (
           <SignInButton />
         )}
       </Box>
@@ -103,19 +102,19 @@ const PersonOutlineIconGold = (props: { onClick?: MouseEventHandler }) => (
 
 const AdminPanelSettingsGold = () => (
   <>
-  <svg width={0} height={0}>
-    <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
-      <stop offset={0} stopColor="#AE8625" />
-      <stop offset={1} stopColor="#F7EF8A" />
-    </linearGradient>
-  </svg>
-  <AdminPanelSettings
-    sx={{
-      fill: "url(#linearColors)",
-      width: "33px",
-      height: "33px",
-      cursor: "pointer",
-    }}
-  />
-</>
+    <svg width={0} height={0}>
+      <linearGradient id="linearColors" x1={0} y1={1} x2={1} y2={0}>
+        <stop offset={0} stopColor="#AE8625" />
+        <stop offset={1} stopColor="#F7EF8A" />
+      </linearGradient>
+    </svg>
+    <AdminPanelSettings
+      sx={{
+        fill: "url(#linearColors)",
+        width: "33px",
+        height: "33px",
+        cursor: "pointer",
+      }}
+    />
+  </>
 );

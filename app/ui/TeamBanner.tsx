@@ -1,19 +1,22 @@
+"use client";
+import "@fontsource/josefin-sans";
 import { Avatar, Box, Container, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 const Section = styled("section")({
+  marginBottom: "100px",
+  padding: "20px",
   backgroundColor: "#f7f7f7",
-  minHeight: "100vh",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 });
 
 const Heading = styled(Typography)({
-  fontFamily: "'Dancing Script', cursive",
+  fontFamily: "Josefin Sans",
   textAlign: "center",
-  fontSize: "64px",
-  color: "#10996d",
+  fontSize: "50px",
+  color: "#1f1724",
   margin: "0 0 70px",
 });
 
@@ -52,7 +55,7 @@ const StyledAvatar = styled(Avatar)({
 
 const Name = styled(Box)({
   position: "absolute",
-  backgroundColor: "#10996d",
+  backgroundColor: "#1f1724",
   color: "#fff",
   fontFamily: "'Bebas Neue', cursive",
   padding: "15px 30px",
@@ -70,7 +73,7 @@ const Name = styled(Box)({
     position: "absolute",
     width: "15px",
     height: "15px",
-    backgroundColor: "#10996d",
+    backgroundColor: "#1f1724",
     top: "0",
     left: "50%",
     transform: "translate(-50%, -50%) rotate(45deg)",
@@ -99,14 +102,14 @@ export default function TeamBanner() {
   return (
     <Section>
       <Box>
-        <Heading variant="h2">Our Team</Heading>
+        <Heading variant="h2">Winemakers</Heading>
         <ProfileContainer>
           {teamMembers.map((member, index) => (
             <ProfileBox key={index}>
               <StyledAvatar
                 src={member.src}
                 alt={member.name}
-                sx={{ width: 200, height: 200 }}
+                sx={{ width: 150, height: 150 }}
               />
               <Name className="name">{member.name}</Name>
             </ProfileBox>
