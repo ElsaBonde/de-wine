@@ -13,13 +13,21 @@ import NextLink from "next/link";
 import { getProducts } from "./actions/productActions";
 import AddButton from "./ui/AddButton";
 import CategoriesCards from "./ui/CategoriesCards";
+import TeamBanner from "./ui/TeamBanner";
 
 export default async function StartPage() {
   const products = await getProducts();
   const activeProducts = products.filter((product) => !product.isArchived);
 
   return (
-    <Box component="main" sx={{ background: "white ", padding: "10px 20px", marginX: {xs: "0px", md: "100px"}, }}>
+    <Box
+      component="main"
+      sx={{
+        background: "white ",
+        padding: "10px 20px",
+        marginX: { xs: "0px", md: "100px" },
+      }}
+    >
       <CategoriesCards />
 
       <Typography
@@ -97,7 +105,7 @@ export default async function StartPage() {
                       </Box>
                     </Box>
                     <CardActions>
-                      <AddButton product={product} isProductPage={false}/>
+                      <AddButton product={product} isProductPage={false} />
                     </CardActions>
                   </Box>
                   <Typography
@@ -113,6 +121,7 @@ export default async function StartPage() {
           </Grid>
         ))}
       </Grid>
+      <TeamBanner />
     </Box>
   );
 }
