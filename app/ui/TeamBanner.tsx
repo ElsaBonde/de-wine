@@ -39,6 +39,9 @@ const ProfileBox = styled(Box)({
     transform: "translateX(-50%)",
     boxShadow: "0 10px 20px rgba(86, 86, 198, 0.3)",
   },
+  "@media (max-width: 768px)": {
+    margin: "10px",
+  },
 });
 
 const StyledAvatar = styled(Avatar)({
@@ -50,6 +53,10 @@ const StyledAvatar = styled(Avatar)({
   marginLeft: "-20px",
   "&:not(:first-of-type)": {
     marginLeft: "-20px",
+  },
+  "@media (max-width: 768px)": {
+    width: 100,
+    height: 100,
   },
 });
 
@@ -78,6 +85,16 @@ const Name = styled(Box)({
     left: "50%",
     transform: "translate(-50%, -50%) rotate(45deg)",
   },
+  "@media (max-width: 768px)": {
+    transform: "translateX(-50%)",
+    bottom: "-50px",
+    fontSize: "10px",
+    padding: "5px 10px",
+    "&::before": {
+      width: "10px",
+      height: "10px",
+    },
+  },
 });
 
 const teamMembers = [
@@ -87,7 +104,7 @@ const teamMembers = [
   },
   {
     name: "Elsa Bonde",
-    src: "",
+    src: "teamElsa.png",
   },
   {
     name: "Michaela Andreasson",
