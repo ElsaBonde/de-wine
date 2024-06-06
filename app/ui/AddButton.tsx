@@ -25,7 +25,6 @@ export default function AddButton(props: Props) {
       .filter((product) => product.id === props.product.id)
       .reduce((total, product) => total + product.quantity, 0);
 
-    // Check if adding another item exceeds the inventory
     if (
       totalQuantityInCart >= props.product.inventory ||
       props.product.inventory < 1
