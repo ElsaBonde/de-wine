@@ -13,17 +13,17 @@ export default function CheckoutPage() {
   if (cart.length === 0) {
     return (
       <>
-        <Typography
-          variant="h2"
-          sx={{
-            textAlign: "center",
-            fontFamily: "karla",
-            fontVariant: "small-caps",
-          }}
-        >
+      <Typography
+        variant="h2"
+        sx={{
+          textAlign: "center",
+          fontFamily: "karla",
+          fontVariant: "small-caps",
+        }}
+      >
           {" "}
-          Cart is empty..
-        </Typography>
+        Cart is empty..
+      </Typography>
       </>
     );
   }
@@ -48,7 +48,7 @@ export default function CheckoutPage() {
             fontFamily: "Karla",
             fontWeight: "800",
             fontVariant: "small-caps",
-            marginX: { xs: "0px", md: "200px" },
+            marginX: { xs: "0px", md: "150px" , lg: "200px" },
           }}
         >
           Your wine order
@@ -62,7 +62,7 @@ export default function CheckoutPage() {
             marginBottom: "40px",
             padding: "20px",
             height: "auto",
-            marginX: { xs: "0px", md: "200px" },
+            marginX: { xs: "0px", md: "150px" , lg: "200px" },
           }}
         >
           {cart.map((item, index) => (
