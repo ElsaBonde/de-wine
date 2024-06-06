@@ -1,4 +1,5 @@
 import { getOrderById } from "@/app/actions/orderActions";
+import ClearCart from "@/app/ui/ClearCart";
 import { auth } from "@/auth";
 import "@fontsource/karla";
 import { Box, Card, Divider, Typography } from "@mui/material";
@@ -179,6 +180,7 @@ export default async function ConfirmationPage({ params }: PageProps) {
           Total: {order.total}$
         </Box>
       </Card>
+      <ClearCart />
     </Box>
   );
 }
