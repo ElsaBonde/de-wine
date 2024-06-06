@@ -10,7 +10,7 @@ export async function mockProductsAndCategories(db: PrismaClient) {
       description:
         "Embark on a journey of Bohemian Bliss with our artistic wine trio, all from the same renowned brand. This collection features two whimsically labeled white wines, each exuding a free-spirited charm and vibrant personality. Embrace the eclectic fusion of flavors and aromas as you sip on these enchanting whites. Completing this bohemian ensemble is a rich and soulful red wine, wrapped in an equally captivating label that speaks to the heart of the bohemian ethos. Whether you're dancing under the stars or lounging in a cozy corner, our Bohemian Bliss trio promises a sensory adventure like no other. Embrace the unconventional and elevate your wine experience with this enchanting trio today.",
       price: 100,
-      image: "https://ibb.co/XtWz4tS",
+      image: "https://i.ibb.co/YhNtWhp/ttreo3.png",
       inventory: 50,
       categories: {
         create: [
@@ -50,7 +50,8 @@ export async function mockProductsAndCategories(db: PrismaClient) {
       description:
         "Indulge in a delightful wine experience with our Citrus Delight package. This exclusive selection features three exquisite white wines, each carefully chosen to tantalize your taste buds. Highlighting this collection is a refreshing lemon-infused wine that adds a zesty twist to your sipping pleasure. Whether you're hosting a gathering or simply unwinding after a long day, our Citrus Delight package promises a journey of flavor and sophistication. Elevate your wine moments with this refreshing trio today.",
       price: 79,
-      image: "https://ibb.co/CW8wykH",
+      image:
+        "https://i.ibb.co/M9SgHYC/elinw-Craft-an-inviting-visual-for-the-White-Symphony-Boxed-W-4cc86366-c2ba-48a1-967e-b126e91f4737-1.png",
       inventory: 50,
       categories: {
         connect: {
@@ -107,7 +108,7 @@ export async function mockProductsAndCategories(db: PrismaClient) {
             description:
               "Welcome to Bubble Bliss, where every moment transforms into a magical celebration! Immerse yourself in a sea of shimmering bubbles, dazzling light displays, and an atmosphere filled with joy and laughter. Perfect for all occasions - from children's parties and weddings to corporate events and private gatherings. Let Bubble Bliss turn your event into an unforgettable adventure with our innovative bubble machines, professional performers, and customized decor. Create memories that last forever with Bubble Bliss!",
             price: 69,
-            image: "https://ibb.co/8jHDYsw",
+            image: "https://i.ibb.co/gDxM498/Microsoft-Teams-image.png",
             inventory: 40,
           },
           {
@@ -115,7 +116,8 @@ export async function mockProductsAndCategories(db: PrismaClient) {
             description:
               "Savor the sophistication of our exclusive trio of sparkling wines. Crafted from the finest grapes, each bottle offers a symphony of delicate bubbles and exquisite flavors. Perfect for celebrating life's special moments, elevate your gatherings with this luxurious trio of bubblies.",
             price: 119,
-            image: "https://ibb.co/VJHdRvB",
+            image:
+              "https://i.ibb.co/gmvGNDg/elinw-Create-an-enchanting-visual-for-Luminous-Bubbles-Sparklin-c892c7e4-97d1-4d20-854d-0b71bae8e172.png",
             inventory: 50,
           },
         ],
