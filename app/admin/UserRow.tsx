@@ -11,7 +11,6 @@ interface Props {
   user: User;
 }
 
-
 export default function UserRow({ user }: Props) {
   const handleDelete = async (userId: string) => {
     await deleteUser(userId);
@@ -24,8 +23,8 @@ export default function UserRow({ user }: Props) {
     const updatedUser = {
       ...user,
       name,
-      userName: user.userName || "John Doe", 
-      image: user.image || "cute bild", 
+      userName: user.userName || "John Doe",
+      image: user.image || "cute bild",
     };
 
     await updateUser(updatedUser, newAccessLevel);
@@ -52,12 +51,49 @@ export default function UserRow({ user }: Props) {
           style={{ borderRadius: "50%" }}
         />
       </TableCell>
-      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>
+      <TableCell
+        sx={{
+          fontFamily: "Karla",
+          fontSize: {
+            xs: "10px",
+            md: "16px",
+          },
+        }}
+      >
         {capitalizeFullName(user.name ? user.name : "John Doe")}
       </TableCell>
-      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{user.email}</TableCell>
-      <TableCell sx={{fontFamily: "Karla", fontSize: "16px"}}>{user.isAdmin ? "Admin" : "User"}</TableCell>
-      <TableCell sx={{ textAlign: "right", fontFamily: "Karla", fontSize: "16px" }}>
+      <TableCell
+        sx={{
+          fontFamily: "Karla",
+          fontSize: {
+            xs: "10px",
+            md: "16px",
+          },
+        }}
+      >
+        {user.email}
+      </TableCell>
+      <TableCell
+        sx={{
+          fontFamily: "Karla",
+          fontSize: {
+            xs: "10px",
+            md: "16px",
+          },
+        }}
+      >
+        {user.isAdmin ? "Admin" : "User"}
+      </TableCell>
+      <TableCell
+        sx={{
+          textAlign: "right",
+          fontFamily: "Karla",
+          fontSize: {
+            xs: "10px",
+            md: "16px",
+          },
+        }}
+      >
         <IconButton
           onClick={() => handleAccess(user)}
           sx={{ color: "text.secondary", "&:hover": { color: "#1F1724" } }}

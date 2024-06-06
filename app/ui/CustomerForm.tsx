@@ -65,7 +65,6 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
           fontWeight: "800",
           fontVariant: "small-caps",
           marginX: { xs: "0px", md: "200px" },
-
         }}
       >
         Checkout information
@@ -209,7 +208,13 @@ export default function CheckoutForm({ cart }: ChecokoutFormProps) {
                 Place Order
               </Button>
             ) : (
-              <Typography sx={{ color: "#1F1724", fontFamily: "josefin sans" }}>
+              <Typography
+                sx={{
+                  color: "#1F1724",
+                  fontFamily: "josefin sans",
+                  marginLeft: "20px",
+                }}
+              >
                 Please{" "}
                 <Typography
                   component={NextLink}
