@@ -119,7 +119,7 @@ export default function TeamBanner() {
   return (
     <Section>
       <Box>
-        <Heading variant="h2">Winemakers</Heading>
+        <Heading variant="h2"> The Winemakers</Heading>
         <ProfileContainer>
           {teamMembers.map((member, index) => (
             <ProfileBox key={index}>
