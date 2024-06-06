@@ -6,10 +6,9 @@ export async function mockUsers(db: PrismaClient) {
     update: {},
     create: {
       id: "clwad7xzi000108k0fosm1qs3",
-      name: "User",
-      userName: "abc",
-     
-      email: "skoj@gmail.com",
+      name: "Steve Winedrinker",
+      userName: "SuperWine",
+      email: "steve_winedrinker@gmail.com",
       isAdmin: false,
     },
   });
@@ -19,9 +18,9 @@ export async function mockUsers(db: PrismaClient) {
     update: {},
     create: {
       id: "clwad8lqc000208k0edr1419p",
-      name: "Admin",
-      userName: "kul",
-      email: "iamcool@hotmail.com",
+      name: "Adam Smith",
+      userName: "dewineAdmin",
+      email: "dewineadmin@hotmail.com",
       isAdmin: true,
     },
   });
