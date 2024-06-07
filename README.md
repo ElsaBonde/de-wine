@@ -31,3 +31,7 @@ This is a school project done by
 - [Anna](https://github.com/Annamedie)
 - [Elin](https://github.com/mypinkworld)
 - [Michaela](https://github.com/navaas)
+
+### Check out our project on Vercel!
+
+https://diwine.vercel.app/
