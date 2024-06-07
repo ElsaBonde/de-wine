@@ -92,6 +92,10 @@ export default function ProductRow({ product, open, onOpen, onClose }: Props) {
               </Typography>
               <Typography sx={{ fontFamily: "Karla" }}>Product Id:</Typography>
               <Typography sx={{ fontFamily: "Karla" }}>{product.id}</Typography>
+              <Typography sx={{ fontFamily: "Karla" }}>
+                Inventory: {""}
+                {product.inventory}
+              </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
