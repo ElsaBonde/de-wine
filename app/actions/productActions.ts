@@ -31,7 +31,6 @@ export async function getProductById(
   });
 
   return product;
- 
 }
 
 export async function getProducts() {
@@ -102,8 +101,13 @@ export async function updateProduct(
 
   const categoryIds = await getCategoryIds(categories);
 
-  const product = await db.product.update({
+  await db.product.update({
     where: { id: productId },
+    data: {
+      isArchived: true,
+    },
+  });
+  const product = await db.product.create({
     data: {
       ...restData,
     },
